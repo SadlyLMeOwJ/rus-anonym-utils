@@ -1,6 +1,6 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Test",
 	"main": "./lib/cjs/index.js",
 	"module": "./lib/index.js",
@@ -13,7 +13,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/RusAnonym/utils_package.git"
+		"url": "git+https://github.com/RusAnonym/rus-anonym-utils.git"
 	},
 	"author": "anonymous_rus <alexandrsemin2033@gmail.com>",
 	"license": "MIT",
@@ -25,8 +25,8 @@
 		"lib/"
 	],
 	"bugs": {
-		"url": "https://github.com/RusAnonym/utils_package/issues"
+		"url": "https://github.com/RusAnonym/rus-anonym-utils/issues"
 	},
-	"homepage": "https://github.com/RusAnonym/utils_package#readme",
+	"homepage": "https://github.com/RusAnonym/rus-anonym-utils#readme",
 	"dependencies": {}
 }
