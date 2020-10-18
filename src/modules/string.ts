@@ -48,3 +48,13 @@ export async function levenshtein(
 	}
 	return buf[l2 + cutHalf - flip];
 }
+
+export async function declOfNum(n: number, titles_array: { [x: string]: any }) {
+	return titles_array[
+		n % 10 === 1 && n % 100 !== 11
+			? 0
+			: n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)
+			? 1
+			: 2
+	];
+}
