@@ -1,5 +1,3 @@
-import { number } from "../index";
-
 export async function getTimeByMS(ms: number): Promise<string> {
 	let date = new Date(ms);
 	let hours: any = date.getHours();

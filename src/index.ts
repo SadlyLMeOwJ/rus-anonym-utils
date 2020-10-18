@@ -6,3 +6,4 @@ import * as time from "./modules/time";
 import * as string from "./modules/string";
 
 export { logger, number, regular, array, time, string };
+export default { logger, number, regular, array, time, string };
