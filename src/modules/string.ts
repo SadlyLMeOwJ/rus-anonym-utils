@@ -1,7 +1,7 @@
 export async function levenshtein(
 	s1: string | any[],
 	s2: string | any[],
-	costs: { replace?: any; replaceCase?: any; insert?: any; remove?: any },
+	costs?: { replace?: any; replaceCase?: any; insert?: any; remove?: any },
 ) {
 	var l1: number,
 		l2: number,
