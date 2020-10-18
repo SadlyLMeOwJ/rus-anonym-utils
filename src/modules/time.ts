@@ -56,3 +56,15 @@ export async function getDateTimeByMS(ms: number): Promise<string> {
 	}
 	return `${hours}:${minutes}:${seconds} | ${days}.${month}.${year}`;
 }
+
+export async function currentTime(): Promise<string> {
+	return await getTimeByMS(Number(new Date()));
+}
+
+export async function currentDate(): Promise<string> {
+	return await getDateByMS(Number(new Date()));
+}
+
+export async function currentDateTime(): Promise<string> {
+	return await getDateTimeByMS(Number(new Date()));
+}
