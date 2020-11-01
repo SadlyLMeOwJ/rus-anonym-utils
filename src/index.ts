@@ -13,7 +13,8 @@ export const utils = {
 	array: array,
 	time: time,
 	string: string,
+	vk_io: vk_io,
 };
 
-export { logger, number, regular, array, time, string };
-export default { logger, number, regular, array, time, string };
+export { logger, number, regular, array, time, string, vk_io };
+export default { logger, number, regular, array, time, string, vk_io };

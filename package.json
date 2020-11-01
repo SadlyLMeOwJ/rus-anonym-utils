@@ -9,6 +9,7 @@
 	},
 	"scripts": {
 		"tsc": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+		"build": "yarn tsc",
 		"prepublish": "npm run tsc"
 	},
 	"repository": {

@@ -1,6 +1,11 @@
 import { VK } from "../../node_modules/vk-io/lib/vk";
 
 const groups = {
+	/**
+    Получить идентификатор последней беседы в группе.
+    @param instanceVK - Экземпляр VK из vk-io
+    @return Идентификатор беседы.
+  */
 	getLastConversation: async (instanceVK: VK): Promise<number> => {
 		let maxConversationID = 2147483647;
 		let minConversationID = 2000000001;
