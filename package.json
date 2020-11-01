@@ -28,5 +28,7 @@
 		"url": "https://github.com/RusAnonym/rus-anonym-utils/issues"
 	},
 	"homepage": "https://github.com/RusAnonym/rus-anonym-utils#readme",
-	"dependencies": {}
+	"dependencies": {
+		"vk-io": "^4.0.3"
+	}
 }
