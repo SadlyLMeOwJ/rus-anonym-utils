@@ -1,6 +1,6 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "1.0.13",
+	"version": "1.0.14",
 	"description": "Test",
 	"main": "./lib/cjs/index.js",
 	"module": "./lib/index.js",
