@@ -5,6 +5,6 @@ import * as array from "./functions/array";
 import * as time from "./functions/time";
 import * as string from "./functions/string";
 import * as vk from "./functions/vk";
-import { NPM } from "./functions/npm";
+import * as npm from "./functions/npm";
 
-export { logger, number, regular, array, time, string, vk, NPM };
+export { logger, number, regular, array, time, string, vk, npm };

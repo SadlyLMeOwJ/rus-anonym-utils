@@ -9,7 +9,7 @@ interface checkDependenciesResponse {
 	isOutdated: boolean;
 }
 
-class NPM {
+class packageJSON {
 	private packageJSON: any;
 	constructor(packageJSON: any) {
 		this.packageJSON = packageJSON;
@@ -22,9 +22,7 @@ class NPM {
 			let arrayWithDependecies = [];
 			for (let i in this.packageJSON.dependencies) {
 				const currentDependence = await npm.repo(i);
-				const currentDependenceVersion = (
-					await currentDependence.version(`latest`)
-				).version.toString();
+				const currentDependenceVersion = await getLatestVersion(i);
 				const oldDependenceVersion = this.packageJSON.dependencies[i].replace(
 					"^",
 					"",
@@ -41,4 +39,10 @@ class NPM {
 	}
 }
 
-export { NPM };
+async function getLatestVersion(moduleName: string) {
+	return (
+		await (await npm.repo(moduleName)).version(`latest`)
+	).version.toString();
+}
+
+export { packageJSON, getLatestVersion };
