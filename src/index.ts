@@ -1,20 +1,9 @@
-import * as logger from "./modules/logger";
-import * as number from "./modules/number";
-import * as regular from "./modules/regular";
-import * as array from "./modules/array";
-import * as time from "./modules/time";
-import * as string from "./modules/string";
-import * as vk_io from "./modules/vk-io";
+import * as logger from "./functions/logger";
+import * as number from "./functions/random";
+import * as regular from "./functions/regular";
+import * as array from "./functions/array";
+import * as time from "./functions/time";
+import * as string from "./functions/string";
+import * as vk from "./functions/vk";
 
-export const utils = {
-	logger: logger,
-	number: number,
-	regular: regular,
-	array: array,
-	time: time,
-	string: string,
-	vk_io: vk_io,
-};
-
-export { logger, number, regular, array, time, string, vk_io };
-export default { logger, number, regular, array, time, string, vk_io };
+export { logger, number, regular, array, time, string, vk };
