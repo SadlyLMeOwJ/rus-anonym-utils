@@ -1,4 +1,4 @@
-export function levenshtein( // ЧТО ЭТО БЛЯТЬ?
+export function levenshtein(
 	s1: string | any[],
 	s2: string | any[],
 	costs?: { replace?: any; replaceCase?: any; insert?: any; remove?: any },
