@@ -56,7 +56,10 @@ export const groups = {
 	},
 };
 
-function checkConversationID(instanceVK: VK, peerID: number): Promise<boolean> {
+async function checkConversationID(
+	instanceVK: VK,
+	peerID: number,
+): Promise<boolean> {
 	return instanceVK.api.messages
 		.getConversationsById({
 			peer_ids: peerID,
