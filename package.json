@@ -1,12 +1,15 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "2.0.4",
+	"version": "2.0.5",
 	"description": "Personal set of utilities from RusAnonym",
-	"main": "lib/index.js",
-	"types": "lib/index.d.ts",
+	"main": "./out/cjs/main.js",
+	"module": "./out/main.js",
 	"files": [
-		"lib"
+		"out/"
 	],
+	"directories": {
+		"out": "out"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/RusAnonym/rus-anonym-utils.git"
