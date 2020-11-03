@@ -23,11 +23,13 @@ function splitTo(array: any[], elementsInChunk: number): any[] {
 	return tmp;
 }
 
-function shuffle(array: Array<any>) {
-	for (let i = array.length - 1; i > 0; i--) {
+function shuffle(inputArray: any[]): any[] {
+	let outputArray = inputArray.concat();
+	for (let i = outputArray.length - 1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]];
+		[outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
 	}
+	return outputArray;
 }
 
 export { random, splitOn, splitTo, shuffle };
