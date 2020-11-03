@@ -1,5 +1,5 @@
 import * as logger from "./functions/logger";
-import * as number from "./functions/random";
+import * as number from "./functions/number";
 import * as regular from "./functions/regular";
 import * as array from "./functions/array";
 import * as time from "./functions/time";

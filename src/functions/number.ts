@@ -18,4 +18,14 @@ function getRandomIntInclusive(min: number, max: number) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export { getRandom, getRandomArbitrary, getRandomInt, getRandomIntInclusive };
+function isInteger(number: number): boolean {
+	return (number ^ 0) === number;
+}
+
+export {
+	getRandom,
+	getRandomArbitrary,
+	getRandomInt,
+	getRandomIntInclusive,
+	isInteger,
+};

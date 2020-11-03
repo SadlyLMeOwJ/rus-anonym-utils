@@ -21,4 +21,4 @@ function isURL(url: string) {
 	return list.url.test(url);
 }
 
-export { list, isIPv4, isIPv4, isEmail, isURL };
+export { list, isIPv4, isIPv6, isEmail, isURL };
