@@ -1,6 +1,6 @@
 import { VK } from "vk-io";
 import request from "request-promise";
-import { number, regular } from "..";
+import { number, regular } from "../main";
 
 /**
  * Получить идентификатор последней беседы в группе.

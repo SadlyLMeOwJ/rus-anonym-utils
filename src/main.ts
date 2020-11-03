@@ -8,3 +8,7 @@ import * as vk from "./functions/vk";
 import * as npm from "./functions/npm";
 
 export { logger, number, regular, array, time, string, vk, npm };
+
+export default { logger, number, regular, array, time, string, vk, npm };
+
+export const utils = { logger, number, regular, array, time, string, vk, npm };
