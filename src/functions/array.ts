@@ -1,4 +1,4 @@
-import { getRandomIntInclusive } from "./random";
+import { getRandomIntInclusive } from "./number";
 
 function random(array: any[]) {
 	return array[getRandomIntInclusive(0, array.length - 1)];

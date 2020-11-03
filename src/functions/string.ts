@@ -1,4 +1,4 @@
-export function levenshtein(
+function levenshtein(
 	s1: string | any[],
 	s2: string | any[],
 	costs?: { replace?: any; replaceCase?: any; insert?: any; remove?: any },
@@ -49,7 +49,7 @@ export function levenshtein(
 	return buf[l2 + cutHalf - flip];
 }
 
-export function declOfNum(n: number, titles_array: { [x: string]: any }) {
+function declOfNum(n: number, titles_array: { [x: string]: any }) {
 	return titles_array[
 		n % 10 === 1 && n % 100 !== 11
 			? 0
@@ -58,3 +58,5 @@ export function declOfNum(n: number, titles_array: { [x: string]: any }) {
 			: 2
 	];
 }
+
+export { levenshtein, declOfNum };

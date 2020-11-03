@@ -1,4 +1,4 @@
-export function getTimeByMS(milliseconds: number): string {
+function getTimeByMS(milliseconds: number): string {
 	const { hours, minutes, seconds } = _getDate(milliseconds);
 
 	return (
@@ -10,7 +10,7 @@ export function getTimeByMS(milliseconds: number): string {
 	);
 }
 
-export function getDateByMS(milliseconds: number): string {
+function getDateByMS(milliseconds: number): string {
 	const { days, month, year } = _getDate(milliseconds);
 
 	return (
@@ -22,7 +22,7 @@ export function getDateByMS(milliseconds: number): string {
 	);
 }
 
-export function getDateTimeByMS(milliseconds: number): string {
+function getDateTimeByMS(milliseconds: number): string {
 	const { hours, minutes, seconds, days, month, year } = _getDate(milliseconds);
 
 	return (
@@ -40,15 +40,15 @@ export function getDateTimeByMS(milliseconds: number): string {
 	);
 }
 
-export function currentTime(): string {
+function currentTime(): string {
 	return getTimeByMS(Date.now());
 }
 
-export function currentDate(): string {
+function currentDate(): string {
 	return getDateByMS(Date.now());
 }
 
-export function currentDateTime(): string {
+function currentDateTime(): string {
 	return getDateTimeByMS(Date.now());
 }
 
@@ -78,3 +78,11 @@ function _getDate(
 		year: date.getFullYear(),
 	};
 }
+
+export {
+	getDateByMS,
+	getDateTimeByMS,
+	currentTime,
+	currentDate,
+	currentDateTime,
+};
