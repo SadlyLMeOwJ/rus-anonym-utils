@@ -21,7 +21,7 @@ export function getRandom(
 		max = Math.floor(max);
 	}
 	if (options?.inclusive) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
+		return Math.random() * (max - min + 1) + min;
 	}
 	return Math.random() * (max - min) + min;
 }
