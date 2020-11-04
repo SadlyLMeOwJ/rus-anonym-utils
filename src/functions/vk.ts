@@ -2,12 +2,12 @@ import { VK } from "vk-io";
 import request from "request-promise";
 import { regular } from "../main";
 
-/**
- * Получить идентификатор последней беседы в группе.
- * @param instanceVK - Экземпляр VK из vk-io
- * @return Идентификатор беседы.
- */
 const groups = {
+	/**
+	 * Получить идентификатор последней беседы в группе.
+	 * @param instanceVK - Экземпляр VK из vk-io
+	 * @return Идентификатор беседы.
+	 */
 	getLastConversation: async (instanceVK: VK): Promise<number> => {
 		return new Promise(async (resolve) => {
 			let maxConversationID: number = 2147483647;
@@ -59,6 +59,10 @@ const groups = {
 };
 
 const api = {
+	/**
+	 * Получить текущее состоянии API VK
+	 * @return Текущее состоянии API VK
+	 */
 	status: async (): Promise<
 		Array<{
 			section: string;
@@ -91,6 +95,11 @@ const api = {
 };
 
 const article = {
+	/**
+	 * Получить данные о статье по ссылке
+	 * @param articleLink - Ссылка на статью
+	 * @return данные статьи
+	 */
 	getByURL: async (
 		articleLink: string,
 	): Promise<{
@@ -151,6 +160,11 @@ async function checkConversationID(
 		});
 }
 
+/**
+ * Создать класс для работы с методами группы
+ * @param VK - экземпляр VK из vk-io
+ * @return класс с методами группы
+ */
 class Group {
 	private instanceVK: VK;
 	constructor(VK: VK) {
