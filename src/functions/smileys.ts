@@ -1732,4 +1732,15 @@ const list = {
 	],
 };
 
-export { list };
+const allSmileys: string[] = new Array().concat(
+	list.actions,
+	list.animalsAndNature,
+	list.flags,
+	list.foodAndDrink,
+	list.objects,
+	list.smileysAndHumans,
+	list.symbols,
+	list.travelsAndPlaces,
+);
+
+export { list, allSmileys };
