@@ -7,7 +7,7 @@ import { regular } from "../main";
  * @param instanceVK - Экземпляр VK из vk-io
  * @return Идентификатор беседы.
  */
-export const groups = {
+const groups = {
 	getLastConversation: async (instanceVK: VK): Promise<number> => {
 		return new Promise(async (resolve) => {
 			let maxConversationID: number = 2147483647;
@@ -58,7 +58,7 @@ export const groups = {
 	},
 };
 
-export const api = {
+const api = {
 	status: async (): Promise<
 		Array<{
 			section: string;
@@ -90,7 +90,7 @@ export const api = {
 	},
 };
 
-export const article = {
+const article = {
 	getByURL: async (
 		articleLink: string,
 	): Promise<{
@@ -150,3 +150,15 @@ async function checkConversationID(
 			return !error.code === 927;
 		});
 }
+
+class Group {
+	private instanceVK: VK;
+	constructor(VK: VK) {
+		this.instanceVK = VK;
+	}
+	async getLastConversation() {
+		return await groups.getLastConversation(this.instanceVK);
+	}
+}
+
+export { groups, api, article, Group };
