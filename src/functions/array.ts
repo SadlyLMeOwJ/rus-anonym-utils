@@ -4,7 +4,7 @@ function random(array: any[]) {
 	return array[getRandomIntInclusive(0, array.length - 1)];
 }
 
-function splitOn(array: any[], chunks: number): any {
+function splitOn(array: any[], chunks: number): any[] {
 	return array.reduce(
 		(acc, n, i) => ((acc[i % chunks] = acc[i % chunks] || []).push(n), acc),
 		[],
@@ -32,4 +32,10 @@ function shuffle(inputArray: any[]): any[] {
 	return outputArray;
 }
 
-export { random, splitOn, splitTo, shuffle };
+function removeEmptyElements(inputArray: any[]): any[] {
+	return inputArray.filter(function (element) {
+		return element != null;
+	});
+}
+
+export { random, splitOn, splitTo, shuffle, removeEmptyElements };
