@@ -6,9 +6,30 @@ import * as time from "./functions/time";
 import * as string from "./functions/string";
 import * as vk from "./functions/vk";
 import * as npm from "./functions/npm";
+import * as smileys from "./functions/smileys";
 
-export { logger, number, regular, array, time, string, vk, npm };
+export { logger, number, regular, array, time, string, vk, npm, smileys };
 
-export default { logger, number, regular, array, time, string, vk, npm };
+export default {
+	logger,
+	number,
+	regular,
+	array,
+	time,
+	string,
+	vk,
+	npm,
+	smileys,
+};
 
-export const utils = { logger, number, regular, array, time, string, vk, npm };
+export const utils = {
+	logger,
+	number,
+	regular,
+	array,
+	time,
+	string,
+	vk,
+	npm,
+	smileys,
+};
