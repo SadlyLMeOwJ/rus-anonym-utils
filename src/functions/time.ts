@@ -102,6 +102,7 @@ function _getDate(
 }
 
 export {
+	getTimeByMS,
 	getDateByMS,
 	getDateTimeByMS,
 	currentTime,
