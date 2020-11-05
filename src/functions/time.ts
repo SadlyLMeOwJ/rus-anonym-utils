@@ -1,5 +1,5 @@
 /**
- * Получить идентификатор последней беседы в группе.
+ * Получить время по миллисекундам
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return время в формате HH:MM:SS
  */
@@ -16,7 +16,7 @@ function getTimeByMS(milliseconds: number): string {
 }
 
 /**
- * Получить идентификатор последней беседы в группе.
+ * Получить дату по миллисекундам
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата в формате DD:MM:YY
  */
@@ -33,7 +33,7 @@ function getDateByMS(milliseconds: number): string {
 }
 
 /**
- * Получить идентификатор последней беседы в группе.
+ * Получить время и дату по миллисекундам
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата и время в формате HH:MM:SS | DD:MM:YY
  */
@@ -56,8 +56,7 @@ function getDateTimeByMS(milliseconds: number): string {
 }
 
 /**
- * Получить идентификатор последней беседы в группе.
- * @param milliseconds - количество миллисекунд от 1 января 1970
+ * Получить текущее время
  * @return текущее время в формате HH:MM:SS
  */
 function currentTime(): string {
@@ -65,8 +64,7 @@ function currentTime(): string {
 }
 
 /**
- * Получить идентификатор последней беседы в группе.
- * @param milliseconds - количество миллисекунд от 1 января 1970
+ * Получить текущую дату
  * @return текущая дата в формате  DD:MM:YY
  */
 function currentDate(): string {
@@ -74,8 +72,7 @@ function currentDate(): string {
 }
 
 /**
- * Получить идентификатор последней беседы в группе.
- * @param milliseconds - количество миллисекунд от 1 января 1970
+ * Получить текущее время и дату
  * @return текущее время и дата в формате HH:MM:SS | DD:MM:YY
  */
 function currentDateTime(): string {
@@ -92,12 +89,7 @@ function _getDate(
 	month: number;
 	year: number;
 } {
-	let date: Date;
-	if (Number.isInteger(milliseconds)) {
-		date = new Date(milliseconds);
-	} else {
-		date = new Date();
-	}
+	let date: Date = new Date(milliseconds);
 
 	return {
 		hours: date.getHours(),
