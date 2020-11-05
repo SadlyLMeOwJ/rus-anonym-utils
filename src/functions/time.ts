@@ -22,7 +22,7 @@ function getTimeByMS(milliseconds: number): string {
  */
 function getDateByMS(milliseconds: number): string {
 	const { days, month, year } = _getDate(milliseconds);
-
+	console.log(days);
 	return (
 		(days < 10 ? "0" + days : days) +
 		"." +
@@ -95,7 +95,7 @@ function _getDate(
 		hours: date.getHours(),
 		minutes: date.getMinutes(),
 		seconds: date.getSeconds(),
-		days: date.getDay(),
+		days: date.getDate(),
 		month: date.getMonth() + 1,
 		year: date.getFullYear(),
 	};
