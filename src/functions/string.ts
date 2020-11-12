@@ -1,3 +1,5 @@
+import list from "../DB/regularList";
+
 function levenshtein(
 	s1: string | any[],
 	s2: string | any[],
@@ -16,10 +18,10 @@ function levenshtein(
 	l2 = s2.length;
 
 	costs = costs || {};
-	let cr = costs.replace || 1;
-	let cri = costs.replaceCase || costs.replace || 1;
-	let ci = costs.insert || 1;
-	let cd = costs.remove || 1;
+	let cr: number = costs.replace || 1;
+	let cri: number = costs.replaceCase || costs.replace || 1;
+	let ci: number = costs.insert || 1;
+	let cd: number = costs.remove || 1;
 
 	cutHalf = flip = Math.max(l1, l2);
 
@@ -59,4 +61,11 @@ function declOfNum(n: number, titles_array: { [x: string]: any }) {
 	];
 }
 
-export { levenshtein, declOfNum };
+function removeZalgo(string: string): string {
+	return string.replace(
+		/(̖|̗|̘|̙|̜|̝|̞|̟|̠|̤|̥|̦|̩|̪|̫|̬|̭|̮|̯|̰|̱|̲|̳|̹|̺|̻|̼|ͅ|͇|͈|͉|͍|͎|͓|͔|͕|͖|͙|͚|̣|̕|̛|̀|́|͘|̡|̢|̧|̨|̴|̵|̶|͏|͜|͝|͞|͟|͠|͢|̸|̷|͡|҉|̍|̎|̄|̅|̿|̑|̆|̐|͒|͗|͑|̇|̈|̊|͂|̓|̈́|͊|͋|͌|̃|̂|̌|͐|̀|́|̋|̏|̒|̓|̔|̽|̉|ͣ|ͤ|ͥ|ͦ|ͧ|ͨ|ͩ|ͪ|ͫ|ͬ|ͭ|ͮ|ͯ|̾|͛|͆|̚)/gi,
+		"",
+	);
+}
+
+export { levenshtein, declOfNum, removeZalgo };
