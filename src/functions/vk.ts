@@ -1,5 +1,4 @@
 import { VK } from "vk-io";
-import request from "request-promise";
 import { regular } from "../main";
 import axios from "axios";
 
@@ -139,9 +138,7 @@ const api = {
 			uptime: number;
 		}>
 	> => {
-		let data = await request({
-			uri: `https://vk.com/dev/health`,
-		});
+		let data = await (await axios.get(`https://vk.com/dev/health`)).data;
 		data = data.toString();
 		let position1 = await data.indexOf(`var content = {`);
 		let position2 = await data.indexOf(`'header': ['`);
@@ -186,7 +183,7 @@ const article = {
 			throw new Error(`Invalid article link`);
 		} else {
 			try {
-				let data = await request(articleLink);
+				let data = await (await axios.get(articleLink)).data;
 				let position1 = await data.indexOf(`Article.init({"id":`);
 				let position2 = await data.indexOf(`</script></div>`, position1);
 				data = data.substring(position1, position2);
