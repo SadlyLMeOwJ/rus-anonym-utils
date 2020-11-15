@@ -1,8 +1,12 @@
 import { VK } from "vk-io";
 import request from "request-promise";
 import { regular } from "../main";
+import axios from "axios";
 
-const groups = {
+/**
+ * Секция для работы с методами требующими авторизацию от токена группы
+ */
+const group = {
 	/**
 	 * Получить идентификатор последней беседы в группе.
 	 * @param instanceVK - Экземпляр VK из vk-io
@@ -55,6 +59,71 @@ const groups = {
 			}
 			resolve(currentConversationID);
 		});
+	},
+};
+
+/**
+ * Секция для работы с методами требующими авторизацию от токена группы
+ */
+const user = {
+	/**
+	 * Получить идентификатор последней беседы в группе.
+	 * @param token - Токен от аккаунта пользователя
+	 * @param user_id - Идентификатор пользователя чьи стикеры требуется получить
+	 * @return Идентификатор беседы.
+	 */
+	getUserStickers: async (
+		token: string,
+		user_id: number,
+	): Promise<
+		Array<{
+			id: number;
+			name: string;
+			description: string;
+		}>
+	> => {
+		let userGifts = await axios.get(
+			`https://api.vk.com/method/gifts.getCatalog`,
+			{
+				params: { access_token: token, user_id: user_id, v: "5.103" },
+			},
+		);
+		let parseStickers: Array<{
+			id: number;
+			name: string;
+			description: string;
+		}> = [];
+		if (userGifts.data.error) {
+			if (userGifts.data.error.error_code === 3) {
+				throw new Error(`Need token from VK Me\nApp ID: 6146827`);
+			} else {
+				throw new Error(userGifts.data.error.error_msg);
+			}
+		} else {
+			userGifts.data.response.map(async function (currentStickersSet: {
+				items: any[];
+			}) {
+				currentStickersSet.items.map(async function (currentStickerPack: {
+					disabled: number;
+					gift: { stickers_product_id: any };
+					sticker_pack: { title: any; description: any };
+				}) {
+					if (
+						currentStickerPack.disabled === 1 &&
+						!parseStickers.find(
+							(x) => x.id === currentStickerPack.gift.stickers_product_id,
+						)
+					) {
+						parseStickers.push({
+							id: currentStickerPack.gift.stickers_product_id,
+							name: currentStickerPack.sticker_pack.title,
+							description: currentStickerPack.sticker_pack.description,
+						});
+					}
+				});
+			});
+		}
+		return parseStickers;
 	},
 };
 
@@ -165,14 +234,5 @@ async function checkConversationID(
  * @param VK - экземпляр VK из vk-io
  * @return класс с методами группы
  */
-class Group {
-	private instanceVK: VK;
-	constructor(VK: VK) {
-		this.instanceVK = VK;
-	}
-	async getLastConversation() {
-		return await groups.getLastConversation(this.instanceVK);
-	}
-}
 
-export { groups, api, article, Group };
+export { group, user, api, article };
