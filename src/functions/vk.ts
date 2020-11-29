@@ -8,10 +8,11 @@ import axios from "axios";
 const group = {
 	/**
 	 * Получить идентификатор последней беседы в группе.
-	 * @param instanceVK - Экземпляр VK из vk-io
+	 * @param token - Токен группы
 	 * @return Идентификатор беседы.
 	 */
-	getLastConversation: async (instanceVK: VK): Promise<number> => {
+	getLastConversation: async (token: string): Promise<number> => {
+		const instanceVK = new VK({ token: token });
 		return new Promise(async (resolve) => {
 			let maxConversationID: number = 2147483647;
 			let minConversationID: number = 2000000001;
