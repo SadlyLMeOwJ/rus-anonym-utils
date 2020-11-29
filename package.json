@@ -1,6 +1,6 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "2.0.18",
+	"version": "2.0.20",
 	"description": "Personal set of utilities from RusAnonym",
 	"main": "./out/cjs/main.js",
 	"module": "./out/main.js",
@@ -13,6 +13,9 @@
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/RusAnonym/rus-anonym-utils.git"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
 	},
 	"author": "anonymous_rus <alexandrsemin2033@gmail.com>",
 	"homepage": "https://github.com/RusAnonym/rus-anonym-utils#readme",
