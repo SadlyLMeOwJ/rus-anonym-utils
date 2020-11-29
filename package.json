@@ -1,6 +1,6 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "2.0.17",
+	"version": "2.0.18",
 	"description": "Personal set of utilities from RusAnonym",
 	"main": "./out/cjs/main.js",
 	"module": "./out/main.js",
@@ -34,6 +34,6 @@
 	"dependencies": {
 		"axios": "^0.21.0",
 		"npm-api": "^1.0.0",
-		"vk-io": "^4.0.3"
+		"vk-io": "^4.1.1"
 	}
 }
