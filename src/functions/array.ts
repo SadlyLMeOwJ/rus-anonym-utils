@@ -38,4 +38,16 @@ function removeEmptyElements(inputArray: any[]): any[] {
 	});
 }
 
-export { random, splitOn, splitTo, shuffle, removeEmptyElements };
+const number = {
+	min: function (inputArray: number[]): number {
+		return Math.min.apply(null, inputArray);
+	},
+	max: function (inputArray: number[]): number {
+		return Math.max.apply(null, inputArray);
+	},
+	average: function (inputArray: number[]): number {
+		return inputArray.reduce((a, b) => a + b) / inputArray.length;
+	},
+};
+
+export { random, splitOn, splitTo, shuffle, removeEmptyElements, number };
