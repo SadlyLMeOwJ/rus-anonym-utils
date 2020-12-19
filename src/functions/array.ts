@@ -235,12 +235,27 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 }
 
 const clone = {
+	/**
+	 * Клонирование массива с помощью slice
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	slice: function <T extends any[]>(inputArray: T) {
 		return inputArray.slice() as T;
 	},
+	/**
+	 * Клонирование массива с помощью concat
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	concat: function <T extends any[]>(inputArray: T) {
 		return ([] as any).concat(inputArray) as T;
 	},
+	/**
+	 * Клонирование массива с помощью unshift
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	unshift: function <T extends any[]>(inputArray: T) {
 		let output: any[] = [];
 		for (let i = inputArray.length; i--; ) {
@@ -248,6 +263,11 @@ const clone = {
 		}
 		return output as T;
 	},
+	/**
+	 * Клонирование массива с помощью push
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	push: function <T extends any[]>(inputArray: T) {
 		let output: any[] = [];
 		for (let i = 0, l = inputArray.length; i < l; i++) {
@@ -255,6 +275,11 @@ const clone = {
 		}
 		return output as T;
 	},
+	/**
+	 * Клонирование массива с помощью index
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	index: function <T extends any[]>(inputArray: T) {
 		let output: any[] = new Array(inputArray.length);
 		for (let i = 0, l = inputArray.length; i < l; i++) {
@@ -262,23 +287,53 @@ const clone = {
 		}
 		return output as T;
 	},
+	/**
+	 * Клонирование массива с помощью apply
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	apply: function <T extends any[]>(inputArray: T) {
 		return Array.apply(undefined, inputArray) as T;
 	},
+	/**
+	 * Клонирование массива с помощью map
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	map: function <T extends any[]>(inputArray: T) {
 		return inputArray.map(function (element) {
 			return element as T;
 		});
 	},
+	/**
+	 * Клонирование массива с помощью JSON
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	json: function <T extends any[]>(inputArray: T) {
 		return JSON.parse(JSON.stringify(inputArray)) as T;
 	},
+	/**
+	 * Клонирование массива с помощью spread
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	spread: function <T extends any[]>(inputArray: T) {
 		return [...inputArray] as T;
 	},
+	/**
+	 * Клонирование массива с помощью Array.from
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	from: function <T extends any[]>(inputArray: T) {
 		return Array.from([inputArray]) as T;
 	},
+	/**
+	 * Рекурсивное глубокое копирование массива (копирует подмассив)
+	 * @param inputArray - массив
+	 * @return новый массив
+	 */
 	recursionDeep: function <T>(inputArray: T[]): T[] {
 		let output: any = inputArray.map((element: T | T[]) => {
 			return Array.isArray(element)
@@ -287,6 +342,11 @@ const clone = {
 		});
 		return output;
 	},
+	/**
+	 * Сравнивает все методы копирования
+	 * @param inputArray - массив
+	 * @returns {Object} benchmark - Объект с выполнеными тестами
+	 */
 	benchmark: function (input: number | any[]): CloneBenchmarkResponse {
 		let inputArray: number[] = [];
 		if (Number.isInteger(input) === true) {
