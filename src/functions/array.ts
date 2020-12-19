@@ -1,4 +1,5 @@
 import { getRandomIntInclusive } from "./number";
+import { XOR } from "./logical";
 import { performance } from "perf_hooks";
 
 type sortingAlgorithm =
@@ -63,6 +64,114 @@ function shuffle(inputArray: any[]): any[] {
 function removeEmptyElements(inputArray: any[]): any[] {
 	return inputArray.filter(function (element) {
 		return element !== null;
+	});
+}
+
+/**
+ * Естественная сортировка строк
+ * @param {Array} array - Массив который требуется отсортировать
+ * @param {Function=} extractor - Функция переводящая элемент из массива в строку
+ * @example
+ * // Return [1, 2, 3]
+ * universalStringSorter([1, 3, 2], function (element) {
+ * 	element.toString()
+ * });
+ * // Return [1, 3, 2]
+ * universalStringSorter([1, 3, 2]);
+ * @return {Array} Отсортированный массив
+ */
+function naturalStringSorter(array: any[], extractor?: Function) {
+	function createSplitter(item: any) {
+		return new Splitter(item);
+	}
+
+	class elementsPart {
+		value: string | number;
+		isNumber: boolean;
+		constructor(text: string, isNumber: boolean) {
+			this.isNumber = isNumber;
+			this.value = isNumber ? Number(text) : text;
+		}
+	}
+	class Splitter {
+		source: any;
+		private key: string;
+		private elements: any[] = [];
+		private currentIndex: number = 0;
+		private fromIndex: number = 0;
+		private completed: boolean = false;
+		findElements() {
+			return this.elements.length;
+		}
+		processElement(elementIndex: number) {
+			while (this.elements.length <= elementIndex && !this.completed) {
+				this.parseString();
+			}
+			return elementIndex < this.elements.length
+				? this.elements[elementIndex]
+				: null;
+		}
+		private isNumber(char: string) {
+			let code = char.charCodeAt(0);
+			return code >= "0".charCodeAt(0) && code <= "9".charCodeAt(0);
+		}
+		private parseString() {
+			if (this.currentIndex < this.key.length) {
+				while (++this.currentIndex) {
+					var currentIsDigit = this.isNumber(
+						this.key.charAt(this.currentIndex - 1),
+					);
+					var nextChar = this.key.charAt(this.currentIndex);
+					var currentIsLast = this.currentIndex === this.key.length;
+
+					var isBorder =
+						currentIsLast || XOR(currentIsDigit, this.isNumber(nextChar));
+					if (isBorder) {
+						var partStr = this.key.slice(this.fromIndex, this.currentIndex);
+						this.elements.push(new elementsPart(partStr, currentIsDigit));
+						this.fromIndex = this.currentIndex;
+						break;
+					}
+				}
+			} else {
+				this.completed = true;
+			}
+		}
+		constructor(item: any) {
+			this.source = item;
+			this.key = typeof extractor === "function" ? extractor(item) : item;
+		}
+	}
+
+	let splittersArray = array.map(createSplitter);
+	let sortedSplittersArray = splittersArray.sort(
+		(sp1: Splitter, sp2: Splitter) => {
+			let i = 0;
+			do {
+				let first = sp1.processElement(i);
+				let second = sp2.processElement(i);
+				function compare(a: number, b: number) {
+					return a < b ? -1 : a > b ? 1 : 0;
+				}
+				if (null !== first && null !== second) {
+					if (XOR(first.isNumber, second.isNumber)) {
+						return first.isNumber ? -1 : 1;
+					} else {
+						let comp = compare(first.value, second.value);
+						if (comp != 0) {
+							return comp;
+						}
+					}
+				} else {
+					return compare(sp1.findElements(), sp2.findElements());
+				}
+			} while (++i);
+			return 0;
+		},
+	);
+
+	return sortedSplittersArray.map(function (splitterInstance: Splitter) {
+		return splitterInstance.source;
 	});
 }
 
@@ -469,4 +578,12 @@ const number = {
 	},
 };
 
-export { random, splitOn, splitTo, shuffle, removeEmptyElements, number };
+export {
+	random,
+	splitOn,
+	splitTo,
+	shuffle,
+	removeEmptyElements,
+	naturalStringSorter,
+	number,
+};

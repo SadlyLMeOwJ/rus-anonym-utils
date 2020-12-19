@@ -449,10 +449,4 @@ async function checkConversationID(
 		});
 }
 
-/**
- * Создать класс для работы с методами группы
- * @param VK - экземпляр VK из vk-io
- * @return класс с методами группы
- */
-
 export { group, user, api, article, checkToken, accessRights };
