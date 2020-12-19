@@ -13,9 +13,23 @@ type sortingAlgorithm =
 	| "heap"
 	| "quick"
 	| "shaker"
-	| "gnome";
+	| "gnome"
+	| "naturalStringSorter";
 
-interface benchmarkResponse {
+type cloneMethod =
+	| "slice"
+	| "concat"
+	| "unshift"
+	| "push"
+	| "index"
+	| "apply"
+	| "map"
+	| "json"
+	| "spread"
+	| "from"
+	| "recursionDeep";
+
+interface SortingBenchmarkResponse {
 	fastest: {
 		algorithm: sortingAlgorithm;
 		rate: number;
@@ -26,24 +40,59 @@ interface benchmarkResponse {
 	};
 	summary: Record<sortingAlgorithm, number>;
 	totalTime: number;
+	sourceArray: number[];
 	sortedArray: number[];
 }
 
-function random(array: any[]) {
-	return array[getRandomIntInclusive(0, array.length - 1)];
+interface CloneBenchmarkResponse {
+	fastest: {
+		method: cloneMethod;
+		rate: number;
+	};
+	slowest: {
+		method: cloneMethod;
+		rate: number;
+	};
+	summary: Record<cloneMethod, number>;
+	totalTime: number;
+	sourceArray: any[];
+	copiedArray: any[];
 }
 
-function splitOn(array: any[], chunks: number): any[] {
+/**
+ * Возвращает рандомный элемент из массива
+ * @param inputArray - массив
+ * @return элемент из массива
+ */
+function random<T>(inputArray: T[]): T {
+	return inputArray[getRandomIntInclusive(0, inputArray.length - 1)];
+}
+
+/**
+ * Убирает пустые элементы из массива
+ * @param inputArray - массив
+ * @param chunks - общее количество чанков, которое должно получиться
+ * @return отсортированный массив
+ */
+function splitOn<T>(array: T[], chunks: number): Array<T[]> {
 	return array.reduce(
-		(acc, n, i) => ((acc[i % chunks] = acc[i % chunks] || []).push(n), acc),
+		(acc, n, i) => (
+			((acc[i % chunks] = acc[i % chunks] || []) as T[]).push(n), acc
+		),
 		[],
 	);
 }
 
-function splitTo(array: any[], elementsInChunk: number): any[] {
+/**
+ * Режет массив по чанкам
+ * @param inputArray - массив
+ * @param elementsInChunk - количество элементов в одном чанке
+ * @return отсортированный массив
+ */
+function splitTo<T>(array: T[], elementsInChunk: number) {
 	let i,
 		j,
-		tmp = [];
+		tmp: Array<T[]> = [];
 
 	for (i = 0, j = array.length; i < j; i += elementsInChunk) {
 		tmp.push(array.slice(i, i + elementsInChunk));
@@ -52,7 +101,12 @@ function splitTo(array: any[], elementsInChunk: number): any[] {
 	return tmp;
 }
 
-function shuffle(inputArray: any[]): any[] {
+/**
+ * Перемешивает массив
+ * @param inputArray - массив
+ * @return перемешанный массив
+ */
+function shuffle<T>(inputArray: T[]): T[] {
 	let outputArray = inputArray.concat();
 	for (let i = outputArray.length - 1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));
@@ -61,7 +115,12 @@ function shuffle(inputArray: any[]): any[] {
 	return outputArray;
 }
 
-function removeEmptyElements(inputArray: any[]): any[] {
+/**
+ * Убирает пустые элементы из массива
+ * @param inputArray - массив
+ * @return отсортированный массив
+ */
+function removeEmptyElements<T>(inputArray: T[]): T[] {
 	return inputArray.filter(function (element) {
 		return element !== null;
 	});
@@ -80,7 +139,7 @@ function removeEmptyElements(inputArray: any[]): any[] {
  * universalStringSorter([1, 3, 2]);
  * @return {Array} Отсортированный массив
  */
-function naturalStringSorter(array: any[], extractor?: Function) {
+function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 	function createSplitter(item: any) {
 		return new Splitter(item);
 	}
@@ -174,6 +233,135 @@ function naturalStringSorter(array: any[], extractor?: Function) {
 		return splitterInstance.source;
 	});
 }
+
+const clone = {
+	slice: function <T extends any[]>(inputArray: T) {
+		return inputArray.slice() as T;
+	},
+	concat: function <T extends any[]>(inputArray: T) {
+		return ([] as any).concat(inputArray) as T;
+	},
+	unshift: function <T extends any[]>(inputArray: T) {
+		let output: any[] = [];
+		for (let i = inputArray.length; i--; ) {
+			output.unshift(inputArray[i]);
+		}
+		return output as T;
+	},
+	push: function <T extends any[]>(inputArray: T) {
+		let output: any[] = [];
+		for (let i = 0, l = inputArray.length; i < l; i++) {
+			output.push(inputArray[i]);
+		}
+		return output as T;
+	},
+	index: function <T extends any[]>(inputArray: T) {
+		let output: any[] = new Array(inputArray.length);
+		for (let i = 0, l = inputArray.length; i < l; i++) {
+			output[i] = inputArray[i];
+		}
+		return output as T;
+	},
+	apply: function <T extends any[]>(inputArray: T) {
+		return Array.apply(undefined, inputArray) as T;
+	},
+	map: function <T extends any[]>(inputArray: T) {
+		return inputArray.map(function (element) {
+			return element as T;
+		});
+	},
+	json: function <T extends any[]>(inputArray: T) {
+		return JSON.parse(JSON.stringify(inputArray)) as T;
+	},
+	spread: function <T extends any[]>(inputArray: T) {
+		return [...inputArray] as T;
+	},
+	from: function <T extends any[]>(inputArray: T) {
+		return Array.from([inputArray]) as T;
+	},
+	recursionDeep: function <T>(inputArray: T[]): T[] {
+		let output: any = inputArray.map((element: T | T[]) => {
+			return Array.isArray(element)
+				? clone.recursionDeep(element)
+				: (element as T);
+		});
+		return output;
+	},
+	benchmark: function (input: number | any[]): CloneBenchmarkResponse {
+		let inputArray: number[] = [];
+		if (Number.isInteger(input) === true) {
+			inputArray = Array.from({ length: Number(input) }, () =>
+				Math.floor(Math.random() * Number(input)),
+			);
+		} else if (Array.isArray(input)) {
+			inputArray = input;
+		}
+
+		let cloneMethods: cloneMethod[] = [
+			"slice",
+			"concat",
+			"unshift",
+			"push",
+			"index",
+			"apply",
+			"map",
+			"json",
+			"spread",
+			"from",
+			"recursionDeep",
+		];
+
+		let response: CloneBenchmarkResponse = {
+			fastest: {
+				method: "slice",
+				rate: Number.MAX_VALUE,
+			},
+			slowest: {
+				method: "slice",
+				rate: 0,
+			},
+			summary: {
+				slice: 0,
+				concat: 0,
+				unshift: 0,
+				push: 0,
+				index: 0,
+				apply: 0,
+				map: 0,
+				json: 0,
+				spread: 0,
+				from: 0,
+				recursionDeep: 0,
+			},
+			totalTime: 0,
+			sourceArray: inputArray,
+			copiedArray: [],
+		};
+
+		for (let method of cloneMethods) {
+			let sortStart = performance.now();
+			//@ts-ignore
+			response.copiedArray = clone[method](inputArray);
+			response.summary[method] = performance.now() - sortStart;
+		}
+
+		let tempKey: cloneMethod;
+
+		for (tempKey in response.summary) {
+			if (response.fastest.rate > response.summary[tempKey]) {
+				response.fastest.method = tempKey;
+				response.fastest.rate = response.summary[tempKey];
+			}
+			if (response.slowest.rate < response.summary[tempKey]) {
+				response.slowest.method = tempKey;
+				response.slowest.rate = response.summary[tempKey];
+			}
+			response.totalTime += response.summary[tempKey];
+		}
+
+		return response;
+	},
+};
 
 const number = {
 	/**
@@ -499,11 +687,21 @@ const number = {
 			return inputArray;
 		},
 		/**
+		 * Натуральная сортировка
+		 * @param inputArray - массив с числами
+		 * @return отсортированный массив с числами
+		 */
+		naturalStringSorter: function (inputArray: number[]): number[] {
+			return naturalStringSorter(inputArray, function (element: number) {
+				return element.toString();
+			});
+		},
+		/**
 		 * Сравнивает все методы сортировок
 		 * @param inputArray - массив с числами, либо число из которого нужно сгенерировать массив
 		 * @returns {Object} benchmark - Объект с выполнеными тестами
 		 */
-		benchmark: function (input: number[] | number): benchmarkResponse {
+		benchmark: function (input: number[] | number): SortingBenchmarkResponse {
 			let inputArray: number[] = [];
 			if (Number.isInteger(input) === true) {
 				inputArray = Array.from({ length: Number(input) }, () =>
@@ -525,9 +723,10 @@ const number = {
 				"quick",
 				"shaker",
 				"gnome",
+				"naturalStringSorter",
 			];
 
-			let response: benchmarkResponse = {
+			let response: SortingBenchmarkResponse = {
 				fastest: {
 					algorithm: "Shell",
 					rate: Number.MAX_VALUE,
@@ -548,8 +747,10 @@ const number = {
 					quick: 0,
 					shaker: 0,
 					gnome: 0,
+					naturalStringSorter: 0,
 				},
 				totalTime: 0,
+				sourceArray: inputArray,
 				sortedArray: [],
 			};
 
@@ -586,4 +787,5 @@ export {
 	removeEmptyElements,
 	naturalStringSorter,
 	number,
+	clone,
 };

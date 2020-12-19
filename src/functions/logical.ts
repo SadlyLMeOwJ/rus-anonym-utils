@@ -97,4 +97,4 @@ function IMP(a: boolean, b: boolean): boolean {
 	return a === true && b === false ? false : true;
 }
 
-export { AND, OR, XOR, NOT, NOR, IMP };
+export { AND, OR, XOR, NOT, NOR, IMP, EQ, ANOT };
