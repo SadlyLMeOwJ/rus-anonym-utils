@@ -1,3 +1,7 @@
+import moment from "moment";
+import "moment-precise-range-plugin";
+import { declOfNum } from "./string";
+
 /**
  * Получить время по миллисекундам
  * @param milliseconds - количество миллисекунд от 1 января 1970
@@ -100,6 +104,59 @@ function _getDate(
 	};
 }
 
+/**
+ * Получить время до нового года
+ * @return возвращает строку с временем до нового года
+ * @example
+ * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
+ * utils.time.getTimeUntilNewYear();
+ */
+function getTimeUntilNewYear(): string {
+	let newYearDate = moment(
+		`${new Date().getFullYear() + 1}-01-01 00:00:00`,
+		"YYYY-MM-DD HH:mm:ss",
+	);
+	let objectWithTime = moment.preciseDiff(moment(), newYearDate, true);
+	return (
+		"" +
+		(objectWithTime.years
+			? objectWithTime.years +
+			  " " +
+			  declOfNum(objectWithTime.years, ["год", "года", "лет"]) +
+			  ", "
+			: "") +
+		(objectWithTime.months
+			? objectWithTime.months +
+			  " " +
+			  declOfNum(objectWithTime.months, ["месяц", "месяца", "месяцев"]) +
+			  ", "
+			: "") +
+		(objectWithTime.days
+			? objectWithTime.days +
+			  " " +
+			  declOfNum(objectWithTime.days, ["день", "дня", "дней"]) +
+			  ", "
+			: "") +
+		(objectWithTime.hours
+			? objectWithTime.hours +
+			  " " +
+			  declOfNum(objectWithTime.hours, ["час", "часа", "часов"]) +
+			  ", "
+			: "") +
+		(objectWithTime.minutes
+			? objectWithTime.minutes +
+			  " " +
+			  declOfNum(objectWithTime.minutes, ["минута", "минуты", "минут"]) +
+			  ", "
+			: "") +
+		(objectWithTime.seconds
+			? objectWithTime.seconds +
+			  " " +
+			  declOfNum(objectWithTime.seconds, ["секунда", "секунды", "секунд"])
+			: "")
+	);
+}
+
 export {
 	getTimeByMS,
 	getDateByMS,
@@ -107,4 +164,5 @@ export {
 	currentTime,
 	currentDate,
 	currentDateTime,
+	getTimeUntilNewYear,
 };
