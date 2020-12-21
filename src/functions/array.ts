@@ -16,7 +16,11 @@ import {
 /**
  * Возвращает рандомный элемент из массива
  * @param inputArray - массив
- * @return элемент из массива
+ * @returns элемент из массива
+ *
+ * @example
+ * // Return 2
+ * array.random([1, 2, 3, 4]);
  */
 function random<T>(inputArray: T[]): T {
 	return inputArray[getRandomIntInclusive(0, inputArray.length - 1)];
@@ -26,7 +30,11 @@ function random<T>(inputArray: T[]): T {
  * Убирает пустые элементы из массива
  * @param inputArray - массив
  * @param chunks - общее количество чанков, которое должно получиться
- * @return отсортированный массив
+ * @returns отсортированный массив
+ *
+ * @example
+ * // Return [[1, 2], [3]]
+ * array.splitOn([1, 2, 3], 2);
  */
 function splitOn<T>(array: T[], chunks: number): Array<T[]> {
 	return array.reduce(
@@ -41,7 +49,11 @@ function splitOn<T>(array: T[], chunks: number): Array<T[]> {
  * Режет массив по чанкам
  * @param inputArray - массив
  * @param elementsInChunk - количество элементов в одном чанке
- * @return отсортированный массив
+ * @returns отсортированный массив
+ *
+ * @example
+ * // Return [[1], [2], [3]]
+ * array.splitTo([1, 2, 3], 3);
  */
 function splitTo<T>(array: T[], elementsInChunk: number) {
 	let i,
@@ -58,7 +70,11 @@ function splitTo<T>(array: T[], elementsInChunk: number) {
 /**
  * Перемешивает массив
  * @param inputArray - массив
- * @return перемешанный массив
+ * @returns перемешанный массив
+ *
+ * @example
+ * // Return [5, 1, 4, 2, 3]
+ * array.shuffle([1, 2, 3, 4, 5]);
  */
 function shuffle<T>(inputArray: T[]): T[] {
 	let outputArray = inputArray.concat();
@@ -72,7 +88,11 @@ function shuffle<T>(inputArray: T[]): T[] {
 /**
  * Убирает пустые элементы из массива
  * @param inputArray - массив
- * @return отсортированный массив
+ * @returns отсортированный массив
+ *
+ * @example
+ * // Return [1, 3, 5]
+ * array.removeEmptyElements([1, null, 3, null, 5]);
  */
 function removeEmptyElements<T>(inputArray: T[]): T[] {
 	return inputArray.filter(function (element) {
@@ -84,14 +104,15 @@ function removeEmptyElements<T>(inputArray: T[]): T[] {
  * Естественная сортировка строк
  * @param {Array} array - Массив который требуется отсортировать
  * @param {Function=} extractor - Функция переводящая элемент из массива в строку
+ * @returns {Array} Отсортированный массив
+ *
  * @example
  * // Return [1, 2, 3]
- * universalStringSorter([1, 3, 2], function (element) {
+ * array.universalStringSorter([1, 3, 2], function (element) {
  * 	element.toString()
  * });
  * // Return [1, 3, 2]
- * universalStringSorter([1, 3, 2]);
- * @return {Array} Отсортированный массив
+ * array.universalStringSorter([1, 3, 2]);
  */
 function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 	function createSplitter(item: any) {
@@ -188,11 +209,18 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 	});
 }
 
+/**
+ * Функции для клонирования массивов
+ * @namespace cloneMethods
+ * @exports array/cloneMethods
+ */
 const clone = {
 	/**
 	 * Клонирование массива с помощью slice
+	 * @memberof cloneMethods
+	 * @method slice
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	slice: function <T extends any[]>(inputArray: T) {
 		return inputArray.slice() as T;
@@ -200,7 +228,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью concat
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	concat: function <T extends any[]>(inputArray: T) {
 		return ([] as any).concat(inputArray) as T;
@@ -208,7 +236,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью unshift
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	unshift: function <T extends any[]>(inputArray: T) {
 		let output: any[] = [];
@@ -220,7 +248,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью push
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	push: function <T extends any[]>(inputArray: T) {
 		let output: any[] = [];
@@ -232,7 +260,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью index
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	index: function <T extends any[]>(inputArray: T) {
 		let output: any[] = new Array(inputArray.length);
@@ -244,7 +272,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью apply
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	apply: function <T extends any[]>(inputArray: T) {
 		return Array.apply(undefined, inputArray) as T;
@@ -252,7 +280,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью map
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	map: function <T extends any[]>(inputArray: T) {
 		return inputArray.map(function (element) {
@@ -262,7 +290,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью JSON
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	json: function <T extends any[]>(inputArray: T) {
 		return JSON.parse(JSON.stringify(inputArray)) as T;
@@ -270,7 +298,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью spread
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	spread: function <T extends any[]>(inputArray: T) {
 		return [...inputArray] as T;
@@ -278,7 +306,7 @@ const clone = {
 	/**
 	 * Клонирование массива с помощью Array.from
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	from: function <T extends any[]>(inputArray: T) {
 		return Array.from([inputArray]) as T;
@@ -286,7 +314,7 @@ const clone = {
 	/**
 	 * Рекурсивное глубокое копирование массива (копирует подмассив)
 	 * @param inputArray - массив
-	 * @return новый массив
+	 * @returns новый массив
 	 */
 	recursionDeep: function <T>(inputArray: T[]): T[] {
 		let output: any = inputArray.map((element: T | T[]) => {
@@ -381,7 +409,7 @@ const number = {
 	/**
 	 * Вывод минимального значения в массиве
 	 * @param inputArray - массив с числами
-	 * @return - минимальное значение
+	 * @returns - минимальное значение
 	 */
 	min: function (inputArray: number[]): number {
 		return Math.min.apply(null, inputArray);
@@ -389,7 +417,7 @@ const number = {
 	/**
 	 * Вывод максимального значения в массиве
 	 * @param inputArray - массив с числами
-	 * @return максимальное значение
+	 * @returns максимальное значение
 	 */
 	max: function (inputArray: number[]): number {
 		return Math.max.apply(null, inputArray);
@@ -397,7 +425,7 @@ const number = {
 	/**
 	 * Вывод среднего значения в массиве
 	 * @param inputArray - массив с числами
-	 * @return среднее значение
+	 * @returns среднее значение
 	 */
 	average: function (inputArray: number[]): number {
 		return inputArray.reduce((a, b) => a + b) / inputArray.length;
@@ -409,7 +437,7 @@ const number = {
 		/**
 		 * Пузырьковая сортировка
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		bubble: function (inputArray: number[]): number[] {
 			inputArray = ([] as number[]).concat(inputArray);
@@ -430,7 +458,7 @@ const number = {
 		/**
 		 * Сортировка выбором
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		selection: function (inputArray: number[]): number[] {
 			inputArray = ([] as number[]).concat(inputArray);
@@ -454,7 +482,7 @@ const number = {
 		/**
 		 * Сортировка вставками
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		insertion: function (inputArray: number[]): number[] {
 			inputArray = ([] as number[]).concat(inputArray);
@@ -476,7 +504,7 @@ const number = {
 		/**
 		 * Сортировка Шелла
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		Shell: function (inputArray: number[]): number[] {
 			inputArray = ([] as number[]).concat(inputArray);
@@ -502,7 +530,7 @@ const number = {
 		/**
 		 * Сортировка подсчётом
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		simpleCounting: function (inputArray: number[]): number[] {
 			if (inputArray.length <= 1) {
@@ -528,7 +556,7 @@ const number = {
 		/**
 		 * Сортировка расчёской
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		comb: function (inputArray: number[]): number[] {
 			inputArray = ([] as number[]).concat(inputArray);
@@ -552,7 +580,7 @@ const number = {
 		/**
 		 * Сортировка слиянием
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		merge: function (inputArray: number[]): number[] {
 			inputArray = ([] as number[]).concat(inputArray);
@@ -583,7 +611,7 @@ const number = {
 		/**
 		 * Пирамидальная сортировка
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		heap: function (inputArray: number[]): number[] {
 			inputArray = ([] as number[]).concat(inputArray);
@@ -623,7 +651,7 @@ const number = {
 		/**
 		 * Быстрая сортировка
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		quick: function (inputArray: number[]): number[] {
 			if (inputArray.length <= 1) {
@@ -641,7 +669,7 @@ const number = {
 		/**
 		 * Сортировка перемешиванием
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		shaker: function (inputArray: number[]): number[] {
 			let i = 0,
@@ -677,7 +705,7 @@ const number = {
 		/**
 		 * Гномья сортировка
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		gnome: function (inputArray: number[]): number[] {
 			let n = inputArray.length,
@@ -703,7 +731,7 @@ const number = {
 		/**
 		 * Натуральная сортировка
 		 * @param inputArray - массив с числами
-		 * @return отсортированный массив с числами
+		 * @returns отсортированный массив с числами
 		 */
 		naturalStringSorter: function (inputArray: number[]): number[] {
 			return naturalStringSorter(inputArray, function (element: number) {
