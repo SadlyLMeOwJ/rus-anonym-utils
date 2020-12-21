@@ -1,18 +1,15 @@
 {
-    "tags": {
-        "allowUnknownTags": [
-            "category",
-            "subcategory"
-        ]
-    },
+	"tags": {
+		"allowUnknownTags": ["category", "subcategory"]
+	},
 	"source": {
 		"include": ["./src"],
 		"includePattern": "\\.(ts|js)$"
 	},
 	"plugins": [
 		"node_modules/better-docs/typescript",
-        "node_modules/better-docs/component",
-        "node_modules/better-docs/typedef-import",
+		"node_modules/better-docs/component",
+		"node_modules/better-docs/typedef-import",
 		"node_modules/better-docs/category",
 		"plugins/markdown"
 	],
@@ -25,10 +22,12 @@
 		"template": "node_modules/better-docs"
 	},
 	"templates": {
-        "cleverLinks": false,
-        "monospaceLinks": false,
+		"cleverLinks": false,
+		"monospaceLinks": false,
 		"better-docs": {
-			"name": "Example documentation"
+			"name": "RusAnonym Utils documentation",
+			"title": "Documentation",
+			"hideGenerator": true
 		},
 		"search": true
 	}
