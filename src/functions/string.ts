@@ -1,4 +1,6 @@
-import list from "../DB/regularList";
+/**
+ * @module String
+ */
 
 function levenshtein(
 	s1: string | any[],

@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> time.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Example documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>time.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module Time
+ */
+
+import moment from "moment";
+import "moment-precise-range-plugin";
+import { declOfNum } from "./string";
+
+/**
+ * Получить время по миллисекундам
+ * @param milliseconds - количество миллисекунд от 1 января 1970
+ * @return время в формате HH:MM:SS
+ */
+function getTimeByMS(milliseconds: number): string {
+	const { hours, minutes, seconds } = _getDate(milliseconds);
+
+	return (
+		(hours &lt; 10 ? "0" + hours : hours) +
+		":" +
+		(minutes &lt; 10 ? "0" + minutes : minutes) +
+		":" +
+		(seconds &lt; 10 ? "0" + seconds : seconds)
+	);
+}
+
+/**
+ * Получить дату по миллисекундам
+ * @param milliseconds - количество миллисекунд от 1 января 1970
+ * @return дата в формате DD:MM:YY
+ */
+function getDateByMS(milliseconds: number): string {
+	const { days, month, year } = _getDate(milliseconds);
+	return (
+		(days &lt; 10 ? "0" + days : days) +
+		"." +
+		(month &lt; 10 ? "0" + month : month) +
+		"." +
+		year
+	);
+}
+
+/**
+ * Получить время и дату по миллисекундам
+ * @param milliseconds - количество миллисекунд от 1 января 1970
+ * @return дата и время в формате HH:MM:SS | DD:MM:YY
+ */
+function getDateTimeByMS(milliseconds: number): string {
+	const { hours, minutes, seconds, days, month, year } = _getDate(milliseconds);
+
+	return (
+		(hours &lt; 10 ? "0" + hours : hours) +
+		":" +
+		(minutes &lt; 10 ? "0" + minutes : minutes) +
+		":" +
+		(seconds &lt; 10 ? "0" + seconds : seconds) +
+		" | " +
+		(days &lt; 10 ? "0" + days : days) +
+		"." +
+		(month &lt; 10 ? "0" + month : month) +
+		"." +
+		year
+	);
+}
+
+/**
+ * Получить текущее время
+ * @return текущее время в формате HH:MM:SS
+ */
+function currentTime(): string {
+	return getTimeByMS(Date.now());
+}
+
+/**
+ * Получить текущую дату
+ * @return текущая дата в формате  DD:MM:YY
+ */
+function currentDate(): string {
+	return getDateByMS(Date.now());
+}
+
+/**
+ * Получить текущее время и дату
+ * @return текущее время и дата в формате HH:MM:SS | DD:MM:YY
+ */
+function currentDateTime(): string {
+	return getDateTimeByMS(Date.now());
+}
+
+function _getDate(
+	milliseconds: number,
+): {
+	hours: number;
+	minutes: number;
+	seconds: number;
+	days: number;
+	month: number;
+	year: number;
+} {
+	let date: Date = new Date(milliseconds);
+
+	return {
+		hours: date.getHours(),
+		minutes: date.getMinutes(),
+		seconds: date.getSeconds(),
+		days: date.getDate(),
+		month: date.getMonth() + 1,
+		year: date.getFullYear(),
+	};
+}
+
+/**
+ * Получить время до нового года
+ * @return возвращает строку с временем до нового года
+ * @example
+ * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
+ * utils.time.getTimeUntilNewYear();
+ */
+function getTimeUntilNewYear(): string {
+	let newYearDate = moment(
+		`${new Date().getFullYear() + 1}-01-01 00:00:00`,
+		"YYYY-MM-DD HH:mm:ss",
+	);
+	let objectWithTime = moment.preciseDiff(moment(), newYearDate, true);
+	return (
+		"" +
+		(objectWithTime.years
+			? objectWithTime.years +
+			  " " +
+			  declOfNum(objectWithTime.years, ["год", "года", "лет"]) +
+			  ", "
+			: "") +
+		(objectWithTime.months
+			? objectWithTime.months +
+			  " " +
+			  declOfNum(objectWithTime.months, ["месяц", "месяца", "месяцев"]) +
+			  ", "
+			: "") +
+		(objectWithTime.days
+			? objectWithTime.days +
+			  " " +
+			  declOfNum(objectWithTime.days, ["день", "дня", "дней"]) +
+			  ", "
+			: "") +
+		(objectWithTime.hours
+			? objectWithTime.hours +
+			  " " +
+			  declOfNum(objectWithTime.hours, ["час", "часа", "часов"]) +
+			  ", "
+			: "") +
+		(objectWithTime.minutes
+			? objectWithTime.minutes +
+			  " " +
+			  declOfNum(objectWithTime.minutes, ["минута", "минуты", "минут"]) +
+			  ", "
+			: "") +
+		(objectWithTime.seconds
+			? objectWithTime.seconds +
+			  " " +
+			  declOfNum(objectWithTime.seconds, ["секунда", "секунды", "секунд"])
+			: "")
+	);
+}
+
+export {
+	getTimeByMS,
+	getDateByMS,
+	getDateTimeByMS,
+	currentTime,
+	currentDate,
+	currentDateTime,
+	getTimeUntilNewYear,
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>

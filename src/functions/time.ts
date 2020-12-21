@@ -1,3 +1,7 @@
+/**
+ * @module Time
+ */
+
 import moment from "moment";
 import "moment-precise-range-plugin";
 import { declOfNum } from "./string";

@@ -1,4 +1,7 @@
-// @ts-ignore
+/**
+ * @module NPM
+ */
+
 import instanceNPM from "npm-api";
 const npm = new instanceNPM();
 

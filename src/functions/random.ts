@@ -1,3 +1,7 @@
+/**
+ * @module Random
+ */
+
 import * as array from "./array";
 
 function generatePercentsArray(

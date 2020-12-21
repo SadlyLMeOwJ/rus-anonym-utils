@@ -1,3 +1,7 @@
+/**
+ * @module Regular
+ */
+
 import list from "../DB/regularList";
 
 function isEmail(email: string) {

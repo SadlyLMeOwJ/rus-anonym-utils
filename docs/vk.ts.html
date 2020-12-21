@@ -1,4 +1,99 @@
-/**
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> vk.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Example documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>vk.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @module VK
  */
 
@@ -31,11 +126,11 @@ type accessRight =
 	| "manage";
 
 const accessRights: {
-	user: Array<{
+	user: Array&lt;{
 		right: accessRight;
 		mask: number;
 	}>;
-	group: Array<{
+	group: Array&lt;{
 		right: accessRight;
 		mask: number;
 	}>;
@@ -43,109 +138,109 @@ const accessRights: {
 	user: [
 		{
 			right: "notify",
-			mask: 1 << 0,
+			mask: 1 &lt;&lt; 0,
 		},
 		{
 			right: "friends",
-			mask: 1 << 1,
+			mask: 1 &lt;&lt; 1,
 		},
 		{
 			right: "photos",
-			mask: 1 << 2,
+			mask: 1 &lt;&lt; 2,
 		},
 		{
 			right: "audio",
-			mask: 1 << 3,
+			mask: 1 &lt;&lt; 3,
 		},
 		{
 			right: "video",
-			mask: 1 << 4,
+			mask: 1 &lt;&lt; 4,
 		},
 		{
 			right: "stories",
-			mask: 1 << 6,
+			mask: 1 &lt;&lt; 6,
 		},
 		{
 			right: "pages",
-			mask: 1 << 7,
+			mask: 1 &lt;&lt; 7,
 		},
 		{
 			right: "leftLink",
-			mask: 1 << 8,
+			mask: 1 &lt;&lt; 8,
 		},
 		{
 			right: "status",
-			mask: 1 << 10,
+			mask: 1 &lt;&lt; 10,
 		},
 		{
 			right: "notes",
-			mask: 1 << 11,
+			mask: 1 &lt;&lt; 11,
 		},
 		{
 			right: "messages",
-			mask: 1 << 12,
+			mask: 1 &lt;&lt; 12,
 		},
 		{
 			right: "wall",
-			mask: 1 << 13,
+			mask: 1 &lt;&lt; 13,
 		},
 		{
 			right: "ads",
-			mask: 1 << 15,
+			mask: 1 &lt;&lt; 15,
 		},
 		{
 			right: "offline",
-			mask: 1 << 16,
+			mask: 1 &lt;&lt; 16,
 		},
 		{
 			right: "docs",
-			mask: 1 << 17,
+			mask: 1 &lt;&lt; 17,
 		},
 		{
 			right: "groups",
-			mask: 1 << 18,
+			mask: 1 &lt;&lt; 18,
 		},
 		{
 			right: "notifications",
-			mask: 1 << 19,
+			mask: 1 &lt;&lt; 19,
 		},
 		{
 			right: "stats",
-			mask: 1 << 20,
+			mask: 1 &lt;&lt; 20,
 		},
 		{
 			right: "email",
-			mask: 1 << 22,
+			mask: 1 &lt;&lt; 22,
 		},
 		{
 			right: "market",
-			mask: 1 << 27,
+			mask: 1 &lt;&lt; 27,
 		},
 	],
 	group: [
 		{
 			right: "stories",
-			mask: 1 << 0,
+			mask: 1 &lt;&lt; 0,
 		},
 		{
 			right: "photos",
-			mask: 1 << 2,
+			mask: 1 &lt;&lt; 2,
 		},
 		{
 			right: "app_widget",
-			mask: 1 << 6,
+			mask: 1 &lt;&lt; 6,
 		},
 		{
 			right: "messages",
-			mask: 1 << 12,
+			mask: 1 &lt;&lt; 12,
 		},
 		{
 			right: "docs",
-			mask: 1 << 17,
+			mask: 1 &lt;&lt; 17,
 		},
 		{
 			right: "manage",
-			mask: 1 << 18,
+			mask: 1 &lt;&lt; 18,
 		},
 	],
 };
@@ -159,7 +254,7 @@ const group = {
 	 * @param token - Токен группы
 	 * @return Идентификатор беседы.
 	 */
-	getLastConversation: async (token: string): Promise<number> => {
+	getLastConversation: async (token: string): Promise&lt;number> => {
 		const instanceVK = new VK({ token: token });
 		return new Promise(async (resolve) => {
 			let maxConversationID: number = 2147483647;
@@ -176,7 +271,7 @@ const group = {
 					if (maxConversationID !== currentConversationID) {
 						while (!status) {
 							if (minConversationID + 10 > maxConversationID) {
-								for (let i = minConversationID; i < maxConversationID; i++) {
+								for (let i = minConversationID; i &lt; maxConversationID; i++) {
 									if (!(await checkConversationID(instanceVK, i))) {
 										status = true;
 										currentConversationID = i - 1;
@@ -223,8 +318,8 @@ const user = {
 	getUserStickers: async (
 		token: string,
 		user_id: number,
-	): Promise<
-		Array<{
+	): Promise&lt;
+		Array&lt;{
 			id: number;
 			name: string;
 			description: string;
@@ -236,7 +331,7 @@ const user = {
 				params: { access_token: token, user_id: user_id, v: "5.103" },
 			},
 		);
-		let parseStickers: Array<{
+		let parseStickers: Array&lt;{
 			id: number;
 			name: string;
 			description: string;
@@ -257,7 +352,7 @@ const user = {
 					sticker_pack: { title: any; description: any };
 				}) {
 					if (
-						currentStickerPack.disabled === 1 &&
+						currentStickerPack.disabled === 1 &amp;&amp;
 						!parseStickers.find(
 							(x) => x.id === currentStickerPack.gift.stickers_product_id,
 						)
@@ -280,8 +375,8 @@ const api = {
 	 * Получить текущее состоянии API VK
 	 * @return Текущее состоянии API VK
 	 */
-	status: async (): Promise<
-		Array<{
+	status: async (): Promise&lt;
+		Array&lt;{
 			section: string;
 			performance: number;
 			uptime: number;
@@ -317,7 +412,7 @@ const article = {
 	 */
 	getByURL: async (
 		articleLink: string,
-	): Promise<{
+	): Promise&lt;{
 		id: number;
 		owner_id: number;
 		access_hash: string;
@@ -334,7 +429,7 @@ const article = {
 			try {
 				let data = await (await axios.get(articleLink)).data;
 				let position1 = await data.indexOf(`Article.init({"id":`);
-				let position2 = await data.indexOf(`</script></div>`, position1);
+				let position2 = await data.indexOf(`&lt;/script>&lt;/div>`, position1);
 				data = data.substring(position1, position2);
 				position1 = 13;
 				position2 = await data.indexOf(`, {`);
@@ -359,7 +454,7 @@ const article = {
 
 async function checkToken(
 	token: string,
-): Promise<{
+): Promise&lt;{
 	type: "user" | "group";
 	id: number;
 	accessRights: accessRight[];
@@ -415,7 +510,7 @@ async function checkToken(
 		let currentPermissions = await tempVK.api.groups.getTokenPermissions({});
 		for (let i in accessRights.group) {
 			if (
-				Boolean(currentPermissions.mask & accessRights.group[i].mask) === true
+				Boolean(currentPermissions.mask &amp; accessRights.group[i].mask) === true
 			) {
 				outputData.accessRights.push(accessRights.group[i].right);
 			}
@@ -426,7 +521,7 @@ async function checkToken(
 			user_id: outputData.id,
 		});
 		for (let i in accessRights.user) {
-			if (Boolean(currentPermissions & accessRights.user[i].mask) === true) {
+			if (Boolean(currentPermissions &amp; accessRights.user[i].mask) === true) {
 				outputData.accessRights.push(accessRights.user[i].right);
 			}
 		}
@@ -438,7 +533,7 @@ async function checkToken(
 async function checkConversationID(
 	instanceVK: VK,
 	peerID: number,
-): Promise<boolean> {
+): Promise&lt;boolean> {
 	return instanceVK.api.messages
 		.getConversationsById({
 			peer_ids: peerID,
@@ -454,3 +549,34 @@ async function checkConversationID(
 }
 
 export { group, user, api, article, checkToken, accessRights };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>
