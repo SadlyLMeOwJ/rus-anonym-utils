@@ -1,5 +1,6 @@
 /**
  * @module Random
+ * @deprecated
  */
 
 import * as array from "./array";

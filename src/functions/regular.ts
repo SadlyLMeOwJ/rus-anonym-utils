@@ -2,7 +2,7 @@
  * @module Regular
  */
 
-import list from "../DB/regularTemplate";
+import regularList from "../DB/regularTemplate";
 
 /**
  * Проверка является ли переданная строка E-Mail адресом
@@ -10,7 +10,7 @@ import list from "../DB/regularTemplate";
  * @returns {boolean}
  */
 function isEmail(email: string): boolean {
-	return new RegExp(list.email, "").test(email);
+	return new RegExp(regularList.email, "").test(email);
 }
 
 /**
@@ -19,7 +19,7 @@ function isEmail(email: string): boolean {
  * @returns {boolean}
  */
 function isIPv4(address: string): boolean {
-	return new RegExp(list.IPv4, "").test(address);
+	return new RegExp(regularList.IPv4, "").test(address);
 }
 
 /**
@@ -28,7 +28,7 @@ function isIPv4(address: string): boolean {
  * @returns {boolean}
  */
 function isIPv6(address: string): boolean {
-	return new RegExp(list.IPv6, "").test(address);
+	return new RegExp(regularList.IPv6, "").test(address);
 }
 
 /**
@@ -37,7 +37,34 @@ function isIPv6(address: string): boolean {
  * @returns {boolean}
  */
 function isURL(url: string): boolean {
-	return new RegExp(list.url, "").test(url);
+	return new RegExp(regularList.url, "").test(url);
 }
+
+/**
+ * @constant {Object.<string, string>}
+ * @namespace
+ * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
+ * @example
+ * // => RegEx
+ * new RegExp(regular.list.email, "g");
+ */
+const list = {
+	/**
+	 * Шаблон для E-Mail адресов
+	 */
+	email: regularList.email,
+	/**
+	 * Шаблон для IPv4 адресов
+	 */
+	IPv4: regularList.IPv4,
+	/**
+	 * Шаблон для IPv6 адресов
+	 */
+	IPv6: regularList.IPv6,
+	/**
+	 * Шаблон для ссылок
+	 */
+	url: regularList.url,
+};
 
 export { list, isIPv4, isIPv6, isEmail, isURL };

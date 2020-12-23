@@ -53,16 +53,32 @@ function levenshtein(
 	return buf[l2 + cutHalf - flip];
 }
 
-function declOfNum(n: number, titles_array: { [x: string]: any }) {
-	return titles_array[
-		n % 10 === 1 && n % 100 !== 11
+/**
+ * Функция для корректного склонения чисел
+ * @param n {number} - Число
+ * @param titles_array {string[]} - Строки для склонения
+ * @returns {string} корректное название
+ * @example
+ * // => помидора
+ * string.declOfNum(3, ["помидор", "помидора", "помидоров"]);
+ */
+function declOfNum(inputNumber: number, titlesArray: string[]): string {
+	return titlesArray[
+		inputNumber % 10 === 1 && inputNumber % 100 !== 11
 			? 0
-			: n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)
+			: inputNumber % 10 >= 2 &&
+			  inputNumber % 10 <= 4 &&
+			  (inputNumber % 100 < 10 || inputNumber % 100 >= 20)
 			? 1
 			: 2
 	];
 }
 
+/**
+ * Возвращает строку без Zalgo
+ * @param string {string} - строка из которой необходимо убрать Zalgo
+ * @returns {string}
+ */
 function removeZalgo(string: string): string {
 	return string.replace(
 		/(̖|̗|̘|̙|̜|̝|̞|̟|̠|̤|̥|̦|̩|̪|̫|̬|̭|̮|̯|̰|̱|̲|̳|̹|̺|̻|̼|ͅ|͇|͈|͉|͍|͎|͓|͔|͕|͖|͙|͚|̣|̕|̛|̀|́|͘|̡|̢|̧|̨|̴|̵|̶|͏|͜|͝|͞|͟|͠|͢|̸|̷|͡|҉|̍|̎|̄|̅|̿|̑|̆|̐|͒|͗|͑|̇|̈|̊|͂|̓|̈́|͊|͋|͌|̃|̂|̌|͐|̀|́|̋|̏|̒|̓|̔|̽|̉|ͣ|ͤ|ͥ|ͦ|ͧ|ͨ|ͩ|ͪ|ͫ|ͬ|ͭ|ͮ|ͯ|̾|͛|͆|̚)/gi,

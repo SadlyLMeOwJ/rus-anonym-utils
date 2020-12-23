@@ -1,5 +1,6 @@
 /**
  * @module NPM
+ * @description Функции для работы с NPM
  */
 
 import instanceNPM from "npm-api";
@@ -7,7 +8,7 @@ const npm = new instanceNPM();
 
 /**
  * Получает массив с списком всех модулей
- * @param packageJSON - package.json
+ * @param packageJSON {JSON} - package.json
  * @returns массив с всеми модулями
  */
 async function getDependecies(
@@ -37,8 +38,8 @@ async function getDependecies(
 
 /**
  * Получает последнюю версию переданного модуля
- * @param moduleName - название модуля
- * @returns Последняя версия модуля
+ * @param moduleName {string} - название модуля
+ * @returns {string} Последняя версия модуля
  */
 async function getLatestVersion(moduleName: string): Promise<string> {
 	return (
