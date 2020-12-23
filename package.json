@@ -1,6 +1,6 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "2.0.28",
+	"version": "2.0.29",
 	"description": "Personal set of utilities from RusAnonym",
 	"main": "./out/cjs/main.js",
 	"module": "./out/main.js",
@@ -23,10 +23,11 @@
 		"build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
 		"prepublish": "yarn build",
 		"test": "yarn build && node test",
-		"docs": "jsdoc -c 'jsdoc.json'"
+		"docs": "jsdoc -c jsdoc.json"
 	},
 	"license": "MIT",
 	"devDependencies": {
+		"@types/moment": "^2.13.0",
 		"@types/moment-precise-range-plugin": "^0.2.0",
 		"@types/node": "^12.0.0",
 		"@types/request": "^2.48.5",
@@ -36,6 +37,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.21.0",
+		"jsdoc": "^3.6.6",
 		"moment": "^2.29.1",
 		"moment-precise-range-plugin": "^1.3.0",
 		"npm-api": "^1.0.0",
