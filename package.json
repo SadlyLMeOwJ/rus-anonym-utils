@@ -23,7 +23,8 @@
 		"build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
 		"prepublish": "yarn build",
 		"test": "yarn build && node test",
-		"docs": "jsdoc -c jsdoc.json"
+		"docs": "jsdoc -c jsdoc.json",
+		"update": "rm -rf ./docs ./out && yarn build && yarn docs"
 	},
 	"license": "MIT",
 	"devDependencies": {

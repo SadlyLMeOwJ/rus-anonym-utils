@@ -30,7 +30,7 @@ function random<T>(inputArray: T[]): T {
 /**
  * Убирает пустые элементы из массива
  * @param inputArray {Array} - массив
- * @param chunks - общее количество чанков, которое должно получиться
+ * @param chunks {Array.<Array>} - общее количество чанков, которое должно получиться
  * @returns отсортированный массив
  *
  * @example
