@@ -24,8 +24,7 @@
 		"prepublish": "yarn build",
 		"start": "yarn build && node test",
 		"docs": "jsdoc -c jsdoc.json",
-		"update": "rm -rf ./docs ./out && yarn build && yarn docs",
-		"test": "jasmine"
+		"update": "rm -rf ./docs ./out && yarn build && yarn docs"
 	},
 	"license": "MIT",
 	"devDependencies": {
