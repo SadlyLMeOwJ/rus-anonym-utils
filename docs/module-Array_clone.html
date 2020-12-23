@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation NPM</title>
+  <title>Documentation Array/clone</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -74,7 +74,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Array-clone.html">clone</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Array_clone.html">Array/clone</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
                 
             </nav>
         </div>
@@ -82,7 +82,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Module</p>
-                    <h1>NPM</h1>
+                    <h1>Array/clone</h1>
                 </header>
                 
 
@@ -94,6 +94,8 @@
 <header>
     
         
+            
+        
     
 </header>
 
@@ -101,6 +103,86 @@
     <div class="container-overview">
     
         
+            <div class="description"><p>Функции для клонирования массивов</p></div>
+        
+
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="functions_array.ts.html" class="button">View Source</a>
+            <span>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line180">line 180</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
     
@@ -129,18 +211,16 @@
 
 
     
-    <h4 class="name" id="~getDependecies">
-        <a class="href-link" href="#~getDependecies">#</a>
+    <h4 class="name" id="~concat">
+        <a class="href-link" href="#~concat">#</a>
         
-            
-                <span class='tag'>async</span>
             
                 <span class='tag'>inner</span>
             
         
         <span class="code-name">
             
-                getDependecies<span class="signature">(packageJSON)</span><span class="type-signature"></span>
+                concat<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -149,7 +229,7 @@
     
     
     <div class="description">
-        <p>Получает массив с списком всех модулей</p>
+        <p>Клонирование массива с помощью concat</p>
     </div>
     
 
@@ -187,7 +267,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>packageJSON</code></td>
+      <td class="name"><code>inputArray</code></td>
   
 
   <td class="type">
@@ -198,7 +278,7 @@
 
   
 
-  <td class="description last"><p>package.json</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -244,9 +324,9 @@
 
     
         <p class="tag-source">
-            <a href="functions_npm.ts.html" class="button">View Source</a>
+            <a href="functions_array.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_npm.ts.html">functions/npm.ts</a>, <a href="functions_npm.ts.html#line12">line 12</a>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line195">line 195</a>
             </span>
         </p>
     
@@ -277,7 +357,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>массив с всеми модулями</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -295,18 +375,16 @@
 
 
     
-    <h4 class="name" id="~getLatestVersion">
-        <a class="href-link" href="#~getLatestVersion">#</a>
+    <h4 class="name" id="~slice">
+        <a class="href-link" href="#~slice">#</a>
         
-            
-                <span class='tag'>async</span>
             
                 <span class='tag'>inner</span>
             
         
         <span class="code-name">
             
-                getLatestVersion<span class="signature">(moduleName)</span><span class="type-signature"></span>
+                slice<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -315,7 +393,7 @@
     
     
     <div class="description">
-        <p>Получает последнюю версию переданного модуля</p>
+        <p>Клонирование массива с помощью slice</p>
     </div>
     
 
@@ -353,7 +431,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>moduleName</code></td>
+      <td class="name"><code>inputArray</code></td>
   
 
   <td class="type">
@@ -364,7 +442,7 @@
 
   
 
-  <td class="description last"><p>название модуля</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -410,9 +488,9 @@
 
     
         <p class="tag-source">
-            <a href="functions_npm.ts.html" class="button">View Source</a>
+            <a href="functions_array.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_npm.ts.html">functions/npm.ts</a>, <a href="functions_npm.ts.html#line32">line 32</a>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line185">line 185</a>
             </span>
         </p>
     
@@ -443,7 +521,171 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>Последняя версия модуля</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
+    
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="~unshift">
+        <a class="href-link" href="#~unshift">#</a>
+        
+            
+                <span class='tag'>inner</span>
+            
+        
+        <span class="code-name">
+            
+                unshift<span class="signature">(inputArray)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Клонирование массива с помощью unshift</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="functions_array.ts.html" class="button">View Source</a>
+            <span>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line204">line 204</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>

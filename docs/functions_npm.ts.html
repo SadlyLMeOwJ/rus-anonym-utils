@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation string.ts</title>
+  <title>Documentation functions/npm.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-cloneMethods.html">cloneMethods</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Array-clone.html">clone</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>string.ts</h1>
+                    <h1>functions/npm.ts</h1>
                 </header>
                 
 
@@ -94,78 +94,54 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module String
+ * @module NPM
  */
 
-function levenshtein(
-	s1: string | any[],
-	s2: string | any[],
-	costs?: { replace?: any; replaceCase?: any; insert?: any; remove?: any },
-) {
-	let l1: number,
-		l2: number,
-		flip: number,
-		ch: string,
-		chl: any,
-		ii: number,
-		ii2: number,
-		cost: any,
-		cutHalf: number;
-	l1 = s1.length;
-	l2 = s2.length;
+import instanceNPM from "npm-api";
+const npm = new instanceNPM();
 
-	costs = costs || {};
-	let cr: number = costs.replace || 1;
-	let cri: number = costs.replaceCase || costs.replace || 1;
-	let ci: number = costs.insert || 1;
-	let cd: number = costs.remove || 1;
-
-	cutHalf = flip = Math.max(l1, l2);
-
-	let minCost = Math.min(cd, ci, cr);
-	let minD = Math.max(minCost, (l1 - l2) * cd);
-	let minI = Math.max(minCost, (l2 - l1) * ci);
-	let buf = new Array(cutHalf * 2 - 1);
-
-	for (let i = 0; i &lt;= l2; ++i) {
-		buf[i] = i * minD;
+/**
+ * Получает массив с списком всех модулей
+ * @param packageJSON - package.json
+ * @returns массив с всеми модулями
+ */
+async function getDependecies(
+	packageJSON: any,
+): Promise&lt;
+	Array&lt;{
+		name: string;
+		lastVersion: string;
+		currentVersion: string;
+		isOutdated: boolean;
+	}>
+> {
+	let arrayWithDependecies = [];
+	for (let i in packageJSON.dependencies) {
+		const currentDependence = await npm.repo(i);
+		const currentDependenceVersion = await getLatestVersion(i);
+		const oldDependenceVersion = packageJSON.dependencies[i].replace("^", "");
+		arrayWithDependecies.push({
+			name: currentDependence.name,
+			lastVersion: currentDependenceVersion,
+			currentVersion: oldDependenceVersion,
+			isOutdated: currentDependenceVersion !== oldDependenceVersion,
+		});
 	}
-
-	for (let i = 0; i &lt; l1; ++i, flip = cutHalf - flip) {
-		ch = s1[i];
-		chl = ch.toLowerCase();
-
-		buf[flip] = (i + 1) * minI;
-
-		ii = flip;
-		ii2 = cutHalf - flip;
-
-		for (let j = 0; j &lt; l2; ++j, ++ii, ++ii2) {
-			cost = ch === s2[j] ? 0 : chl === s2[j].toLowerCase() ? cri : cr;
-			buf[ii + 1] = Math.min(buf[ii2 + 1] + cd, buf[ii] + ci, buf[ii2] + cost);
-		}
-	}
-	return buf[l2 + cutHalf - flip];
+	return arrayWithDependecies;
 }
 
-function declOfNum(n: number, titles_array: { [x: string]: any }) {
-	return titles_array[
-		n % 10 === 1 &amp;&amp; n % 100 !== 11
-			? 0
-			: n % 10 >= 2 &amp;&amp; n % 10 &lt;= 4 &amp;&amp; (n % 100 &lt; 10 || n % 100 >= 20)
-			? 1
-			: 2
-	];
+/**
+ * Получает последнюю версию переданного модуля
+ * @param moduleName - название модуля
+ * @returns Последняя версия модуля
+ */
+async function getLatestVersion(moduleName: string): Promise&lt;string> {
+	return (
+		await (await npm.repo(moduleName)).version(`latest`)
+	).version.toString();
 }
 
-function removeZalgo(string: string): string {
-	return string.replace(
-		/(̖|̗|̘|̙|̜|̝|̞|̟|̠|̤|̥|̦|̩|̪|̫|̬|̭|̮|̯|̰|̱|̲|̳|̹|̺|̻|̼|ͅ|͇|͈|͉|͍|͎|͓|͔|͕|͖|͙|͚|̣|̕|̛|̀|́|͘|̡|̢|̧|̨|̴|̵|̶|͏|͜|͝|͞|͟|͠|͢|̸|̷|͡|҉|̍|̎|̄|̅|̿|̑|̆|̐|͒|͗|͑|̇|̈|̊|͂|̓|̈́|͊|͋|͌|̃|̂|̌|͐|̀|́|̋|̏|̒|̓|̔|̽|̉|ͣ|ͤ|ͥ|ͦ|ͧ|ͨ|ͩ|ͪ|ͫ|ͬ|ͭ|ͮ|ͯ|̾|͛|͆|̚)/gi,
-		"",
-	);
-}
-
-export { levenshtein, declOfNum, removeZalgo };
+export { getDependecies, getLatestVersion };
 </code></pre>
         </article>
     </section>

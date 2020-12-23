@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation array.ts</title>
+  <title>Documentation functions/array.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-cloneMethods.html">cloneMethods</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Array-clone.html">clone</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>array.ts</h1>
+                    <h1>functions/array.ts</h1>
                 </header>
                 
 
@@ -95,6 +95,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  * @module Array
+ * @description Функции для работы с массивами
  */
 
 import { getRandomIntInclusive } from "./number";
@@ -110,7 +111,7 @@ import {
 
 /**
  * Возвращает рандомный элемент из массива
- * @param inputArray - массив
+ * @param inputArray {Array} - массив
  * @returns элемент из массива
  *
  * @example
@@ -123,7 +124,7 @@ function random&lt;T>(inputArray: T[]): T {
 
 /**
  * Убирает пустые элементы из массива
- * @param inputArray - массив
+ * @param inputArray {Array} - массив
  * @param chunks - общее количество чанков, которое должно получиться
  * @returns отсортированный массив
  *
@@ -142,7 +143,7 @@ function splitOn&lt;T>(array: T[], chunks: number): Array&lt;T[]> {
 
 /**
  * Режет массив по чанкам
- * @param inputArray - массив
+ * @param inputArray {Array} - массив
  * @param elementsInChunk - количество элементов в одном чанке
  * @returns отсортированный массив
  *
@@ -164,7 +165,7 @@ function splitTo&lt;T>(array: T[], elementsInChunk: number) {
 
 /**
  * Перемешивает массив
- * @param inputArray - массив
+ * @param inputArray {Array} - массив
  * @returns перемешанный массив
  *
  * @example
@@ -182,7 +183,7 @@ function shuffle&lt;T>(inputArray: T[]): T[] {
 
 /**
  * Убирает пустые элементы из массива
- * @param inputArray - массив
+ * @param inputArray {Array} - массив
  * @returns отсортированный массив
  *
  * @example
@@ -306,15 +307,27 @@ function naturalStringSorter&lt;T>(array: T[], extractor?: Function): T[] {
 
 /**
  * Функции для клонирования массивов
- * @namespace cloneMethods
- * @exports array/cloneMethods
+ * @namespace
  */
-const clone = {
+const clone: {
+	slice: &lt;T extends any[]>(inputArray: T) => T[];
+	concat: &lt;T extends any[]>(inputArray: T) => T[];
+	unshift: &lt;T extends any[]>(inputArray: T) => T[];
+	push: &lt;T extends any[]>(inputArray: T) => T[];
+	index: &lt;T extends any[]>(inputArray: T) => T[];
+	apply: &lt;T extends any[]>(inputArray: T) => T[];
+	map: &lt;T extends any[]>(inputArray: T) => T[];
+	json: &lt;T extends any[]>(inputArray: T) => T[];
+	spread: &lt;T extends any[]>(inputArray: T) => T[];
+	from: &lt;T extends any[]>(inputArray: T) => T[];
+	recursionDeep: &lt;T extends any[]>(inputArray: T) => T[];
+	benchmark: &lt;T extends any[]>(
+		inputArray: T | number,
+	) => CloneBenchmarkResponse;
+} = {
 	/**
 	 * Клонирование массива с помощью slice
-	 * @memberof cloneMethods
-	 * @method slice
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	slice: function &lt;T extends any[]>(inputArray: T) {
@@ -322,7 +335,7 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью concat
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	concat: function &lt;T extends any[]>(inputArray: T) {
@@ -330,19 +343,19 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью unshift
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	unshift: function &lt;T extends any[]>(inputArray: T) {
-		let output: any[] = [];
+		let output: T[] = [];
 		for (let i = inputArray.length; i--; ) {
 			output.unshift(inputArray[i]);
 		}
-		return output as T;
+		return output;
 	},
 	/**
 	 * Клонирование массива с помощью push
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	push: function &lt;T extends any[]>(inputArray: T) {
@@ -354,7 +367,7 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью index
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	index: function &lt;T extends any[]>(inputArray: T) {
@@ -366,7 +379,7 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью apply
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	apply: function &lt;T extends any[]>(inputArray: T) {
@@ -374,7 +387,7 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью map
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	map: function &lt;T extends any[]>(inputArray: T) {
@@ -384,7 +397,7 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью JSON
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	json: function &lt;T extends any[]>(inputArray: T) {
@@ -392,7 +405,7 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью spread
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	spread: function &lt;T extends any[]>(inputArray: T) {
@@ -400,7 +413,7 @@ const clone = {
 	},
 	/**
 	 * Клонирование массива с помощью Array.from
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	from: function &lt;T extends any[]>(inputArray: T) {
@@ -408,7 +421,7 @@ const clone = {
 	},
 	/**
 	 * Рекурсивное глубокое копирование массива (копирует подмассив)
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
 	recursionDeep: function &lt;T>(inputArray: T[]): T[] {
@@ -421,7 +434,7 @@ const clone = {
 	},
 	/**
 	 * Сравнивает все методы копирования
-	 * @param inputArray - массив
+	 * @param inputArray {Array} - массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
 	benchmark: function (input: number | any[]): CloneBenchmarkResponse {
@@ -503,7 +516,7 @@ const clone = {
 const number = {
 	/**
 	 * Вывод минимального значения в массиве
-	 * @param inputArray - массив с числами
+	 * @param inputArray {Array} - массив с числами
 	 * @returns - минимальное значение
 	 */
 	min: function (inputArray: number[]): number {
@@ -511,7 +524,7 @@ const number = {
 	},
 	/**
 	 * Вывод максимального значения в массиве
-	 * @param inputArray - массив с числами
+	 * @param inputArray {Array} - массив с числами
 	 * @returns максимальное значение
 	 */
 	max: function (inputArray: number[]): number {
@@ -519,7 +532,7 @@ const number = {
 	},
 	/**
 	 * Вывод среднего значения в массиве
-	 * @param inputArray - массив с числами
+	 * @param inputArray {Array} - массив с числами
 	 * @returns среднее значение
 	 */
 	average: function (inputArray: number[]): number {
@@ -531,7 +544,7 @@ const number = {
 	sort: {
 		/**
 		 * Пузырьковая сортировка
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		bubble: function (inputArray: number[]): number[] {
@@ -552,7 +565,7 @@ const number = {
 		},
 		/**
 		 * Сортировка выбором
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		selection: function (inputArray: number[]): number[] {
@@ -576,7 +589,7 @@ const number = {
 		},
 		/**
 		 * Сортировка вставками
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		insertion: function (inputArray: number[]): number[] {
@@ -598,7 +611,7 @@ const number = {
 		},
 		/**
 		 * Сортировка Шелла
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		Shell: function (inputArray: number[]): number[] {
@@ -624,7 +637,7 @@ const number = {
 		},
 		/**
 		 * Сортировка подсчётом
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		simpleCounting: function (inputArray: number[]): number[] {
@@ -650,7 +663,7 @@ const number = {
 		},
 		/**
 		 * Сортировка расчёской
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		comb: function (inputArray: number[]): number[] {
@@ -674,7 +687,7 @@ const number = {
 		},
 		/**
 		 * Сортировка слиянием
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		merge: function (inputArray: number[]): number[] {
@@ -705,7 +718,7 @@ const number = {
 		},
 		/**
 		 * Пирамидальная сортировка
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		heap: function (inputArray: number[]): number[] {
@@ -745,7 +758,7 @@ const number = {
 		},
 		/**
 		 * Быстрая сортировка
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		quick: function (inputArray: number[]): number[] {
@@ -763,7 +776,7 @@ const number = {
 		},
 		/**
 		 * Сортировка перемешиванием
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		shaker: function (inputArray: number[]): number[] {
@@ -799,7 +812,7 @@ const number = {
 		},
 		/**
 		 * Гномья сортировка
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		gnome: function (inputArray: number[]): number[] {
@@ -825,7 +838,7 @@ const number = {
 		},
 		/**
 		 * Натуральная сортировка
-		 * @param inputArray - массив с числами
+		 * @param inputArray {Array} - массив с числами
 		 * @returns отсортированный массив с числами
 		 */
 		naturalStringSorter: function (inputArray: number[]): number[] {
@@ -835,7 +848,7 @@ const number = {
 		},
 		/**
 		 * Сравнивает все методы сортировок
-		 * @param inputArray - массив с числами, либо число из которого нужно сгенерировать массив
+		 * @param inputArray {Array} - массив с числами, либо число из которого нужно сгенерировать массив
 		 * @returns {Object} benchmark - Объект с выполнеными тестами
 		 */
 		benchmark: function (input: number[] | number): SortingBenchmarkResponse {

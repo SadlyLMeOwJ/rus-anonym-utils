@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation vk.ts</title>
+  <title>Documentation functions/vk.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-cloneMethods.html">cloneMethods</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Array-clone.html">clone</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>vk.ts</h1>
+                    <h1>functions/vk.ts</h1>
                 </header>
                 
 
@@ -247,6 +247,7 @@ const accessRights: {
 
 /**
  * Секция для работы с методами требующими авторизацию от токена группы
+ * @namespace
  */
 const group = {
 	/**
@@ -307,6 +308,7 @@ const group = {
 
 /**
  * Секция для работы с методами требующими авторизацию от токена группы
+ * @namespace
  */
 const user = {
 	/**
@@ -370,6 +372,10 @@ const user = {
 	},
 };
 
+/**
+ * Секция для работы с API VK
+ * @namespace
+ */
 const api = {
 	/**
 	 * Получить текущее состоянии API VK
@@ -404,6 +410,10 @@ const api = {
 	},
 };
 
+/**
+ * Секция для работы с методами которые работает с статьями VK
+ * @namespace
+ */
 const article = {
 	/**
 	 * Получить данные о статье по ссылке
@@ -452,6 +462,11 @@ const article = {
 	},
 };
 
+/**
+ * Проверка токена
+ * @param token {string} - Проверяемый токен
+ * @return данные токена
+ */
 async function checkToken(
 	token: string,
 ): Promise&lt;{

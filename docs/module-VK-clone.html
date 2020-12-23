@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation NPM</title>
+  <title>Documentation clone</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -74,15 +74,15 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Array-clone.html">clone</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Array-clone.html">clone</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-clone.html">clone</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
                 
             </nav>
         </div>
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>NPM</h1>
+                    <p>Namespace</p>
+                    <h1>clone</h1>
                 </header>
                 
 
@@ -93,6 +93,8 @@
 
 <header>
     
+        <h2>
+            <span class="ancestors"><a href="module-VK.html">VK</a>~</span>clone</h2>
         
     
 </header>
@@ -101,6 +103,53 @@
     <div class="container-overview">
     
         
+            <div class="description"><p>Секция для работы с методами которые работает с статьями VK</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="functions_vk.ts.html" class="button">View Source</a>
+            <span>
+                <a href="functions_vk.ts.html">functions/vk.ts</a>, <a href="functions_vk.ts.html#line246">line 246</a>
+            </span>
+        </p>
+    
+</dl>
+
 
         
     
@@ -129,18 +178,16 @@
 
 
     
-    <h4 class="name" id="~getDependecies">
-        <a class="href-link" href="#~getDependecies">#</a>
+    <h4 class="name" id=".getByURL">
+        <a class="href-link" href="#.getByURL">#</a>
         
             
-                <span class='tag'>async</span>
-            
-                <span class='tag'>inner</span>
+                <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                getDependecies<span class="signature">(packageJSON)</span><span class="type-signature"></span>
+                getByURL<span class="signature">(articleLink)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -149,7 +196,7 @@
     
     
     <div class="description">
-        <p>Получает массив с списком всех модулей</p>
+        <p>Получить данные о статье по ссылке</p>
     </div>
     
 
@@ -187,7 +234,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>packageJSON</code></td>
+      <td class="name"><code>articleLink</code></td>
   
 
   <td class="type">
@@ -198,7 +245,7 @@
 
   
 
-  <td class="description last"><p>package.json</p></td>
+  <td class="description last"><p>Ссылка на статью</p></td>
 </tr>
 
 
@@ -244,9 +291,9 @@
 
     
         <p class="tag-source">
-            <a href="functions_npm.ts.html" class="button">View Source</a>
+            <a href="functions_vk.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_npm.ts.html">functions/npm.ts</a>, <a href="functions_npm.ts.html#line12">line 12</a>
+                <a href="functions_vk.ts.html">functions/vk.ts</a>, <a href="functions_vk.ts.html#line252">line 252</a>
             </span>
         </p>
     
@@ -277,173 +324,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>массив с всеми модулями</p></div>
-    
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="~getLatestVersion">
-        <a class="href-link" href="#~getLatestVersion">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>inner</span>
-            
-        
-        <span class="code-name">
-            
-                getLatestVersion<span class="signature">(moduleName)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Получает последнюю версию переданного модуля</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>moduleName</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>название модуля</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_npm.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_npm.ts.html">functions/npm.ts</a>, <a href="functions_npm.ts.html#line32">line 32</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Последняя версия модуля</p></div>
+    <div class='param-desc column is-7'><p>данные статьи</p></div>
     
     
 </div>

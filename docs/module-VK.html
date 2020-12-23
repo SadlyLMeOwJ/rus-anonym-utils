@@ -74,7 +74,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-cloneMethods.html">cloneMethods</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Array-clone.html">clone</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
                 
             </nav>
         </div>
@@ -117,109 +117,115 @@
     
 
     
+        <h3 class="subsection-title">Namespaces</h3>
+
+        <dl>
+            <dt><a href="module-VK-api.html">api</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-VK-article.html">article</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-VK-group.html">group</a></dt>
+            <dd></dd>
+        
+            <dt><a href="module-VK-user.html">user</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
 
     
         <div class='vertical-section'>
-            <h1>Members</h1>
+            <h1>Methods</h1>
             <div class="members">
             
                 <div class="member">
 
-<h4 class="name" id="~group">
-    <a class="href-link" href="#~group">#</a>
+
     
+    <h4 class="name" id="~checkToken">
+        <a class="href-link" href="#~checkToken">#</a>
         
-            <span class='tag'>inner</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        group
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Секция для работы с методами требующими авторизацию от токена группы</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="vk.ts.html" class="button">View Source</a>
-            <span>
-                <a href="vk.ts.html">vk.ts</a>, <a href="vk.ts.html#line121">line 121</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
             
-                <div class="member">
-
-<h4 class="name" id="~user">
-    <a class="href-link" href="#~user">#</a>
-    
+                <span class='tag'>async</span>
+            
+                <span class='tag'>inner</span>
+            
         
-            <span class='tag'>inner</span>
-        
-            <span class='tag'>constant</span>
-        
+        <span class="code-name">
+            
+                checkToken<span class="signature">(token)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
     
-    <span class="code-name">
-        user
-    </span>
+
     
-</h4>
+    
+    <div class="description">
+        <p>Проверка токена</p>
+    </div>
+    
 
 
 
 
-<div class="description">
-    <p>Секция для работы с методами требующими авторизацию от токена группы</p>
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>token</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Проверяемый токен</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
 </div>
 
 
@@ -259,14 +265,47 @@
 
     
         <p class="tag-source">
-            <a href="vk.ts.html" class="button">View Source</a>
+            <a href="functions_vk.ts.html" class="button">View Source</a>
             <span>
-                <a href="vk.ts.html">vk.ts</a>, <a href="vk.ts.html#line174">line 174</a>
+                <a href="functions_vk.ts.html">functions/vk.ts</a>, <a href="functions_vk.ts.html#line289">line 289</a>
             </span>
         </p>
     
 </dl>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>данные токена</p></div>
+    
+    
+</div>
+
+                
+        </div>
+    </div>
 
 
 
@@ -275,8 +314,6 @@
             
             </div>
         </div>
-    
-
     
 
     

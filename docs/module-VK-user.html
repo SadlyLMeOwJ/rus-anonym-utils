@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation NPM</title>
+  <title>Documentation user</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -81,8 +81,8 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>NPM</h1>
+                    <p>Namespace</p>
+                    <h1>user</h1>
                 </header>
                 
 
@@ -93,6 +93,8 @@
 
 <header>
     
+        <h2>
+            <span class="ancestors"><a href="module-VK.html">VK</a>~</span>user</h2>
         
     
 </header>
@@ -101,6 +103,53 @@
     <div class="container-overview">
     
         
+            <div class="description"><p>Секция для работы с методами требующими авторизацию от токена группы</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="functions_vk.ts.html" class="button">View Source</a>
+            <span>
+                <a href="functions_vk.ts.html">functions/vk.ts</a>, <a href="functions_vk.ts.html#line176">line 176</a>
+            </span>
+        </p>
+    
+</dl>
+
 
         
     
@@ -129,18 +178,16 @@
 
 
     
-    <h4 class="name" id="~getDependecies">
-        <a class="href-link" href="#~getDependecies">#</a>
+    <h4 class="name" id=".getUserStickers">
+        <a class="href-link" href="#.getUserStickers">#</a>
         
             
-                <span class='tag'>async</span>
-            
-                <span class='tag'>inner</span>
+                <span class='tag'>static</span>
             
         
         <span class="code-name">
             
-                getDependecies<span class="signature">(packageJSON)</span><span class="type-signature"></span>
+                getUserStickers<span class="signature">(token, user_id)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -149,7 +196,7 @@
     
     
     <div class="description">
-        <p>Получает массив с списком всех модулей</p>
+        <p>Получить стикеры пользователя</p>
     </div>
     
 
@@ -187,7 +234,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>packageJSON</code></td>
+      <td class="name"><code>token</code></td>
   
 
   <td class="type">
@@ -198,7 +245,27 @@
 
   
 
-  <td class="description last"><p>package.json</p></td>
+  <td class="description last"><p>Токен от аккаунта пользователя</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>user_id</code></td>
+  
+
+  <td class="type">
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Идентификатор пользователя чьи стикеры требуется получить</p></td>
 </tr>
 
 
@@ -244,9 +311,9 @@
 
     
         <p class="tag-source">
-            <a href="functions_npm.ts.html" class="button">View Source</a>
+            <a href="functions_vk.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_npm.ts.html">functions/npm.ts</a>, <a href="functions_npm.ts.html#line12">line 12</a>
+                <a href="functions_vk.ts.html">functions/vk.ts</a>, <a href="functions_vk.ts.html#line183">line 183</a>
             </span>
         </p>
     
@@ -277,173 +344,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>массив с всеми модулями</p></div>
-    
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="~getLatestVersion">
-        <a class="href-link" href="#~getLatestVersion">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>inner</span>
-            
-        
-        <span class="code-name">
-            
-                getLatestVersion<span class="signature">(moduleName)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Получает последнюю версию переданного модуля</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>moduleName</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>название модуля</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="functions_npm.ts.html" class="button">View Source</a>
-            <span>
-                <a href="functions_npm.ts.html">functions/npm.ts</a>, <a href="functions_npm.ts.html#line32">line 32</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Последняя версия модуля</p></div>
+    <div class='param-desc column is-7'><p>Массив со стикерами пользователя</p></div>
     
     
 </div>

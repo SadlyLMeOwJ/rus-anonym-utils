@@ -152,6 +152,7 @@ const accessRights: {
 
 /**
  * Секция для работы с методами требующими авторизацию от токена группы
+ * @namespace
  */
 const group = {
 	/**
@@ -212,6 +213,7 @@ const group = {
 
 /**
  * Секция для работы с методами требующими авторизацию от токена группы
+ * @namespace
  */
 const user = {
 	/**
@@ -275,6 +277,10 @@ const user = {
 	},
 };
 
+/**
+ * Секция для работы с API VK
+ * @namespace
+ */
 const api = {
 	/**
 	 * Получить текущее состоянии API VK
@@ -309,6 +315,10 @@ const api = {
 	},
 };
 
+/**
+ * Секция для работы с методами которые работает с статьями VK
+ * @namespace
+ */
 const article = {
 	/**
 	 * Получить данные о статье по ссылке
@@ -357,6 +367,11 @@ const article = {
 	},
 };
 
+/**
+ * Проверка токена
+ * @param token {string} - Проверяемый токен
+ * @return данные токена
+ */
 async function checkToken(
 	token: string,
 ): Promise<{
