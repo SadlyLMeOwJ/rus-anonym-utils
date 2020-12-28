@@ -32,6 +32,15 @@ function isIPv6(address: string): boolean {
 }
 
 /**
+ *  Проверка является ли переданная строка IP адресом
+ * @param address {string} - IP адрес
+ * @returns {boolean}
+ */
+function isIP(address: string): boolean {
+	return new RegExp(regularList.ip, "").test(address);
+}
+
+/**
  *  Проверка является ли переданная строка ccылкой
  * @param url {string} - URL
  * @returns {boolean}
@@ -41,7 +50,6 @@ function isURL(url: string): boolean {
 }
 
 /**
- * @constant {Object.<string, string>}
  * @namespace
  * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
  * @example
@@ -62,9 +70,13 @@ const list = {
 	 */
 	IPv6: regularList.IPv6,
 	/**
+	 * Шаблон для любых IP адресов
+	 */
+	ip: regularList.ip,
+	/**
 	 * Шаблон для ссылок
 	 */
 	url: regularList.url,
 };
 
-export { list, isIPv4, isIPv6, isEmail, isURL };
+export { list, isIPv4, isIPv6, isIP, isEmail, isURL };

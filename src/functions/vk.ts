@@ -162,11 +162,11 @@ const group = {
 	 */
 	getLastConversation: async (token: string): Promise<number> => {
 		const instanceVK = new VK({ token: token });
+		let maxConversationID: number = 2147483647;
+		let minConversationID: number = 2000000001;
+		let currentConversationID: number = maxConversationID;
+		let status: boolean = false;
 		return new Promise(async (resolve) => {
-			let maxConversationID: number = 2147483647;
-			let minConversationID: number = 2000000001;
-			let currentConversationID: number = maxConversationID;
-			let status = false;
 			while (!status) {
 				if (!(await checkConversationID(instanceVK, currentConversationID))) {
 					maxConversationID = currentConversationID;
@@ -212,7 +212,7 @@ const group = {
 };
 
 /**
- * Секция для работы с методами требующими авторизацию от токена группы
+ * Секция для работы с методами требующими авторизацию от токена пользователя
  * @namespace
  */
 const user = {
