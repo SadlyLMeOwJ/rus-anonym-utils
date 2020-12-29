@@ -87,6 +87,23 @@ function shuffle<T>(inputArray: T[]): T[] {
 }
 
 /**
+ * Вставляет элемент в массив
+ * @param inputArray {Array} - массив
+ * @param index {Number} - Индекс добавляемого элемента
+ * @param element {any} - Новый элемент
+ * @returns итоговый массив
+ *
+ * @example
+ * // Return [1, 2, 3, 4, 5]
+ * array.insert([1, 2, 4, 5], 2, 3);
+ */
+function insert(inputArray: any[], index: number, element: any): any[] {
+	let outputArray = inputArray.concat();
+	outputArray.splice(index, 0, element);
+	return outputArray;
+}
+
+/**
  * Убирает пустые элементы из массива
  * @param inputArray {Array} - массив
  * @returns отсортированный массив
@@ -839,6 +856,7 @@ export {
 	splitOn,
 	splitTo,
 	shuffle,
+	insert,
 	removeEmptyElements,
 	naturalStringSorter,
 	number,
