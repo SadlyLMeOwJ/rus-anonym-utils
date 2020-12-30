@@ -96,7 +96,7 @@ function shuffle<T>(inputArray: T[]): T[] {
  * @example
  * // Return [1, 2, 3, 4, 5]
  * array.insert([1, 2, 4, 5], 2, 3);
- */
+ */	
 function insert(inputArray: any[], index: number, element: any): any[] {
 	let outputArray = inputArray.concat();
 	outputArray.splice(index, 0, element);
@@ -121,7 +121,7 @@ function removeEmptyElements<T>(inputArray: T[]): T[] {
 /**
  * Естественная сортировка строк
  * @param {Array} array - Массив который требуется отсортировать
- * @param {Function=} extractor - Функция переводящая элемент из массива в строку
+ * @param {Function=} extractor - Функция переводящая элемент массива в строку
  * @returns {Array} Отсортированный массив
  *
  * @example
@@ -133,7 +133,7 @@ function removeEmptyElements<T>(inputArray: T[]): T[] {
  * array.universalStringSorter([1, 3, 2]);
  */
 function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
-	function createSplitter(item: any) {
+	function createSplitter(item: T) {
 		return new Splitter(item);
 	}
 
@@ -146,7 +146,7 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 		}
 	}
 	class Splitter {
-		source: any;
+		source: T;
 		private key: string;
 		private elements: any[] = [];
 		private currentIndex: number = 0;
@@ -229,6 +229,9 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 
 /**
  * Класс для работы с методами клонирования массивов
+ * @example
+ * const utils = require(`rus-anonym-utils`);
+ * utils.array.clone
  */
 class Clone {
 	private static instance: Clone;
@@ -443,6 +446,12 @@ class Clone {
 	}
 }
 
+/**
+ * Класс для работы с сортировкой числовых массивов
+ * @example
+ * const utils = require(`rus-anonym-utils`);
+ * utils.array.number.sort
+ */
 class NumberArraysSort {
 	private static instance: NumberArraysSort;
 	/**
@@ -875,6 +884,7 @@ class NumberArrays {
 
 	/**
 	 * Функции сортировки числовых массивов
+	 * @memberof NumberArraysSort
 	 */
 	public static sort = NumberArraysSort.getInstance();
 
@@ -886,8 +896,8 @@ class NumberArrays {
 	}
 }
 
-const cloneClass = Clone.getInstance();
-const numberClass = NumberArrays.getInstance();
+const clone = Clone.getInstance();
+const number = NumberArrays.getInstance();
 
 export {
 	random,
@@ -897,6 +907,6 @@ export {
 	insert,
 	removeEmptyElements,
 	naturalStringSorter,
-	numberClass,
-	cloneClass,
+	number,
+	clone,
 };
