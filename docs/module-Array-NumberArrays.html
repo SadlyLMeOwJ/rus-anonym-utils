@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation user</title>
+  <title>Documentation NumberArrays</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -81,8 +81,8 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Namespace</p>
-                    <h1>user</h1>
+                    <p>Class</p>
+                    <h1>NumberArrays</h1>
                 </header>
                 
 
@@ -93,8 +93,8 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="module-VK.html">VK</a>~</span>user</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>
+            <span class="ancestors"><a href="module-Array.html">Array</a>~</span>NumberArrays</h2>
         
     
 </header>
@@ -103,10 +103,19 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Секция для работы с методами требующими авторизацию от токена пользователя</p></div>
-        
+            
 
-        
+
+
+
+
+
+
+
+
+
+
+
 
 
 <dl class="details">
@@ -142,13 +151,33 @@
 
     
         <p class="tag-source">
-            <a href="functions_vk.ts.html" class="button">View Source</a>
+            <a href="functions_array.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_vk.ts.html">functions/vk.ts</a>, <a href="functions_vk.ts.html#line176">line 176</a>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line768">line 768</a>
             </span>
         </p>
     
 </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         
@@ -168,6 +197,86 @@
     
 
     
+        <div class='vertical-section'>
+            <h1>Members</h1>
+            <div class="members">
+            
+                <div class="member">
+
+<h4 class="name" id=".sort">
+    <a class="href-link" href="#.sort">#</a>
+    
+        
+            <span class='tag'>static</span>
+        
+    
+    <span class="code-name">
+        sort
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Функции сортировки числовых массивов</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="functions_array.ts.html" class="button">View Source</a>
+            <span>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line803">line 803</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
 
     
         <div class='vertical-section'>
@@ -178,8 +287,8 @@
 
 
     
-    <h4 class="name" id=".getUserStickers">
-        <a class="href-link" href="#.getUserStickers">#</a>
+    <h4 class="name" id=".average">
+        <a class="href-link" href="#.average">#</a>
         
             
                 <span class='tag'>static</span>
@@ -187,7 +296,7 @@
         
         <span class="code-name">
             
-                getUserStickers<span class="signature">(token, user_id)</span><span class="type-signature"></span>
+                average<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -196,7 +305,7 @@
     
     
     <div class="description">
-        <p>Получить стикеры пользователя</p>
+        <p>Вывод среднего значения в массиве</p>
     </div>
     
 
@@ -234,10 +343,15 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>token</code></td>
+      <td class="name"><code>inputArray</code></td>
   
 
   <td class="type">
+  
+      
+<span class="param-type">Array</span>
+
+
   
   </td>
 
@@ -245,27 +359,7 @@
 
   
 
-  <td class="description last"><p>Токен от аккаунта пользователя</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>user_id</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Идентификатор пользователя чьи стикеры требуется получить</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -311,9 +405,9 @@
 
     
         <p class="tag-source">
-            <a href="functions_vk.ts.html" class="button">View Source</a>
+            <a href="functions_array.ts.html" class="button">View Source</a>
             <span>
-                <a href="functions_vk.ts.html">functions/vk.ts</a>, <a href="functions_vk.ts.html#line183">line 183</a>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line790">line 790</a>
             </span>
         </p>
     
@@ -344,7 +438,347 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>Массив со стикерами пользователя</p></div>
+    <div class='param-desc column is-7'><p>среднее значение</p></div>
+    
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".max">
+        <a class="href-link" href="#.max">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                max<span class="signature">(inputArray)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Вывод максимального значения в массиве</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="functions_array.ts.html" class="button">View Source</a>
+            <span>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line782">line 782</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>максимальное значение</p></div>
+    
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".min">
+        <a class="href-link" href="#.min">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                min<span class="signature">(inputArray)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Вывод минимального значения в массиве</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="functions_array.ts.html" class="button">View Source</a>
+            <span>
+                <a href="functions_array.ts.html">functions/array.ts</a>, <a href="functions_array.ts.html#line774">line 774</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><ul>
+<li>минимальное значение</li>
+</ul></div>
     
     
 </div>
