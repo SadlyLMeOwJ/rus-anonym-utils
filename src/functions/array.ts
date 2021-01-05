@@ -96,7 +96,7 @@ function shuffle<T>(inputArray: T[]): T[] {
  * @example
  * // Return [1, 2, 3, 4, 5]
  * array.insert([1, 2, 4, 5], 2, 3);
- */	
+ */
 function insert(inputArray: any[], index: number, element: any): any[] {
 	let outputArray = inputArray.concat();
 	outputArray.splice(index, 0, element);
