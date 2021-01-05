@@ -50,6 +50,15 @@ function isURL(url: string): boolean {
 }
 
 /**
+ * Проверка является ли переданная строка номером
+ * @param email {string} - E-Mail адрес
+ * @returns {boolean}
+ */
+function isNumber(number: string): boolean {
+	return new RegExp(regularList.number, "i").test(number);
+}
+
+/**
  * @namespace
  * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
  * @example
@@ -77,6 +86,10 @@ const list = {
 	 * Шаблон для ссылок
 	 */
 	url: regularList.url,
+	/**
+	 * Шаблон для номеров
+	 */
+	number: regularList.email,
 };
 
-export { list, isIPv4, isIPv6, isIP, isEmail, isURL };
+export { list, isIPv4, isIPv6, isIP, isEmail, isURL, isNumber };
