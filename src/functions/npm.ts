@@ -11,8 +11,8 @@ const npm = new instanceNPM();
  * @param packageJSON {JSON} - package.json
  * @returns массив с всеми модулями
  */
-async function getDependecies(
-	packageJSON: any,
+async function getDependecies<T extends { dependencies: string[] }>(
+	packageJSON: T,
 ): Promise<
 	Array<{
 		name: string;
