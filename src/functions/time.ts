@@ -96,7 +96,7 @@ function _getDate(
 	month: number;
 	year: number;
 } {
-	let date: Date = new Date(milliseconds);
+	const date: Date = new Date(milliseconds);
 
 	return {
 		hours: date.getHours(),
@@ -116,11 +116,11 @@ function _getDate(
  * utils.time.getTimeUntilNewYear();
  */
 function getTimeUntilNewYear(): string {
-	let newYearDate = moment(
+	const newYearDate = moment(
 		`${new Date().getFullYear() + 1}-01-01 00:00:00`,
 		"YYYY-MM-DD HH:mm:ss",
 	);
-	let objectWithTime = moment.preciseDiff(moment(), newYearDate, true);
+	const objectWithTime = moment.preciseDiff(moment(), newYearDate, true);
 	return (
 		"" +
 		(objectWithTime.years

@@ -11,7 +11,7 @@ function generatePercentsArray(
 		possibility: number;
 	}>,
 ): Array<any> {
-	let outputArray: Array<any> = [];
+	const outputArray: Array<any> = [];
 	inputArray.map(function (element) {
 		for (let i = 0; i < element.possibility; i++) {
 			outputArray.push(element.element);

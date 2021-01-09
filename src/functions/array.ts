@@ -78,9 +78,9 @@ function splitTo<T>(array: T[], elementsInChunk: number) {
  * array.shuffle([1, 2, 3, 4, 5]);
  */
 function shuffle<T>(inputArray: T[]): T[] {
-	let outputArray = inputArray.concat();
+	const outputArray = inputArray.concat();
 	for (let i = outputArray.length - 1; i > 0; i--) {
-		let j = Math.floor(Math.random() * (i + 1));
+		const j = Math.floor(Math.random() * (i + 1));
 		[outputArray[i], outputArray[j]] = [outputArray[j], outputArray[i]];
 	}
 	return outputArray;
@@ -98,7 +98,7 @@ function shuffle<T>(inputArray: T[]): T[] {
  * array.insert([1, 2, 4, 5], 2, 3);
  */
 function insert(inputArray: any[], index: number, element: any): any[] {
-	let outputArray = inputArray.concat();
+	const outputArray = inputArray.concat();
 	outputArray.splice(index, 0, element);
 	return outputArray;
 }
@@ -149,9 +149,9 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 		source: T;
 		private key: string;
 		private elements: any[] = [];
-		private currentIndex: number = 0;
-		private fromIndex: number = 0;
-		private completed: boolean = false;
+		private currentIndex = 0;
+		private fromIndex = 0;
+		private completed = false;
 		findElements() {
 			return this.elements.length;
 		}
@@ -164,22 +164,22 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 				: null;
 		}
 		private isNumber(char: string) {
-			let code = char.charCodeAt(0);
+			const code = char.charCodeAt(0);
 			return code >= "0".charCodeAt(0) && code <= "9".charCodeAt(0);
 		}
 		private parseString() {
 			if (this.currentIndex < this.key.length) {
 				while (++this.currentIndex) {
-					var currentIsDigit = this.isNumber(
+					const currentIsDigit = this.isNumber(
 						this.key.charAt(this.currentIndex - 1),
 					);
-					var nextChar = this.key.charAt(this.currentIndex);
-					var currentIsLast = this.currentIndex === this.key.length;
+					const nextChar = this.key.charAt(this.currentIndex);
+					const currentIsLast = this.currentIndex === this.key.length;
 
-					var isBorder =
+					const isBorder =
 						currentIsLast || XOR(currentIsDigit, this.isNumber(nextChar));
 					if (isBorder) {
-						var partStr = this.key.slice(this.fromIndex, this.currentIndex);
+						const partStr = this.key.slice(this.fromIndex, this.currentIndex);
 						this.elements.push(new elementsPart(partStr, currentIsDigit));
 						this.fromIndex = this.currentIndex;
 						break;
@@ -195,13 +195,13 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 		}
 	}
 
-	let splittersArray = array.map(createSplitter);
-	let sortedSplittersArray = splittersArray.sort(
+	const splittersArray = array.map(createSplitter);
+	const sortedSplittersArray = splittersArray.sort(
 		(sp1: Splitter, sp2: Splitter) => {
 			let i = 0;
 			do {
-				let first = sp1.processElement(i);
-				let second = sp2.processElement(i);
+				const first = sp1.processElement(i);
+				const second = sp2.processElement(i);
 				function compare(a: number, b: number) {
 					return a < b ? -1 : a > b ? 1 : 0;
 				}
@@ -209,7 +209,7 @@ function naturalStringSorter<T>(array: T[], extractor?: Function): T[] {
 					if (XOR(first.isNumber, second.isNumber)) {
 						return first.isNumber ? -1 : 1;
 					} else {
-						let comp = compare(first.value, second.value);
+						const comp = compare(first.value, second.value);
 						if (comp != 0) {
 							return comp;
 						}
@@ -264,7 +264,7 @@ class Clone {
 	 * @returns новый массив
 	 */
 	public static unshift<T extends any[]>(inputArray: T) {
-		let output: T[] = [];
+		const output: T[] = [];
 		for (let i = inputArray.length; i--; ) {
 			output.unshift(inputArray[i]);
 		}
@@ -277,7 +277,7 @@ class Clone {
 	 * @returns новый массив
 	 */
 	public static push<T extends any[]>(inputArray: T) {
-		let output: any[] = [];
+		const output: any[] = [];
 		for (let i = 0, l = inputArray.length; i < l; i++) {
 			output.push(inputArray[i]);
 		}
@@ -290,7 +290,7 @@ class Clone {
 	 * @returns новый массив
 	 */
 	public static index<T extends any[]>(inputArray: T) {
-		let output: any[] = new Array(inputArray.length);
+		const output: any[] = new Array(inputArray.length);
 		for (let i = 0, l = inputArray.length; i < l; i++) {
 			output[i] = inputArray[i];
 		}
@@ -350,7 +350,7 @@ class Clone {
 	 * @returns новый массив
 	 */
 	public static recursionDeep<T>(inputArray: T[]): T[] {
-		let output: any = inputArray.map((element: T | T[]) => {
+		const output: any = inputArray.map((element: T | T[]) => {
 			return Array.isArray(element)
 				? this.recursionDeep(element)
 				: (element as T);
@@ -373,7 +373,7 @@ class Clone {
 			inputArray = input;
 		}
 
-		let cloneMethods: cloneMethod[] = [
+		const cloneMethods: cloneMethod[] = [
 			"slice",
 			"concat",
 			"unshift",
@@ -387,7 +387,7 @@ class Clone {
 			"recursionDeep",
 		];
 
-		let response: CloneBenchmarkResponse = {
+		const response: CloneBenchmarkResponse = {
 			fastest: {
 				method: "slice",
 				rate: Number.MAX_VALUE,
@@ -414,8 +414,8 @@ class Clone {
 			copiedArray: [],
 		};
 
-		for (let method of cloneMethods) {
-			let sortStart = performance.now();
+		for (const method of cloneMethods) {
+			const sortStart = performance.now();
 			//@ts-ignore
 			response.copiedArray = clone[method](inputArray);
 			response.summary[method] = performance.now() - sortStart;
@@ -472,7 +472,7 @@ class NumberArraysSort {
 		for (let i = 0, endI = inputArray.length - 1; i < endI; i++) {
 			for (let j = 0, endJ = endI - i; j < endJ; j++) {
 				if (inputArray[j] > inputArray[j + 1]) {
-					let currentElement = inputArray[j];
+					const currentElement = inputArray[j];
 					inputArray[j] = inputArray[j + 1];
 					inputArray[j + 1] = currentElement;
 				}
@@ -490,7 +490,7 @@ class NumberArraysSort {
 		if (inputArray.length <= 1) {
 			return inputArray;
 		}
-		let arrayLength = inputArray.length;
+		const arrayLength = inputArray.length;
 		for (let i = 0; i < arrayLength - 1; i++) {
 			let min = i;
 			for (let j = i + 1; j < arrayLength; j++) {
@@ -498,7 +498,7 @@ class NumberArraysSort {
 					min = j;
 				}
 			}
-			let t = inputArray[min];
+			const t = inputArray[min];
 			inputArray[min] = inputArray[i];
 			inputArray[i] = t;
 		}
@@ -514,7 +514,7 @@ class NumberArraysSort {
 		if (inputArray.length <= 1) {
 			return inputArray;
 		}
-		let n = inputArray.length;
+		const n = inputArray.length;
 		for (let i = 0; i < n; i++) {
 			let v = inputArray[i],
 				j = i - 1;
@@ -561,7 +561,7 @@ class NumberArraysSort {
 		if (inputArray.length <= 1) {
 			return inputArray;
 		}
-		let n = inputArray.length,
+		const n = inputArray.length,
 			count: number[] = [],
 			outputArray: number[] = [];
 		for (let i = 0; i < n; i++) {
@@ -679,7 +679,7 @@ class NumberArraysSort {
 		if (inputArray.length <= 1) {
 			return inputArray;
 		}
-		let a = [],
+		const a = [],
 			b = [],
 			p = inputArray[0];
 		for (let i = 1; i < inputArray.length; i++) {
@@ -738,7 +738,7 @@ class NumberArraysSort {
 				i = j;
 				j++;
 			} else {
-				let t = inputArray[i - 1];
+				const t = inputArray[i - 1];
 				inputArray[i - 1] = inputArray[i];
 				inputArray[i] = t;
 				i--;
@@ -775,7 +775,7 @@ class NumberArraysSort {
 			inputArray = input;
 		}
 
-		let sortingAlgorithms: sortingAlgorithm[] = [
+		const sortingAlgorithms: sortingAlgorithm[] = [
 			"bubble",
 			"selection",
 			"insertion",
@@ -790,7 +790,7 @@ class NumberArraysSort {
 			"naturalStringSorter",
 		];
 
-		let response: SortingBenchmarkResponse = {
+		const response: SortingBenchmarkResponse = {
 			fastest: {
 				algorithm: "Shell",
 				rate: Number.MAX_VALUE,
@@ -818,8 +818,8 @@ class NumberArraysSort {
 			sortedArray: [],
 		};
 
-		for (let algorithm of sortingAlgorithms) {
-			let sortStart = performance.now();
+		for (const algorithm of sortingAlgorithms) {
+			const sortStart = performance.now();
 			response.sortedArray = this[algorithm](inputArray);
 			response.summary[algorithm] = performance.now() - sortStart;
 		}

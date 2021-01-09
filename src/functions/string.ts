@@ -20,17 +20,17 @@ function levenshtein(
 	l2 = s2.length;
 
 	costs = costs || {};
-	let cr: number = costs.replace || 1;
-	let cri: number = costs.replaceCase || costs.replace || 1;
-	let ci: number = costs.insert || 1;
-	let cd: number = costs.remove || 1;
+	const cr: number = costs.replace || 1;
+	const cri: number = costs.replaceCase || costs.replace || 1;
+	const ci: number = costs.insert || 1;
+	const cd: number = costs.remove || 1;
 
 	cutHalf = flip = Math.max(l1, l2);
 
-	let minCost = Math.min(cd, ci, cr);
-	let minD = Math.max(minCost, (l1 - l2) * cd);
-	let minI = Math.max(minCost, (l2 - l1) * ci);
-	let buf = new Array(cutHalf * 2 - 1);
+	const minCost = Math.min(cd, ci, cr);
+	const minD = Math.max(minCost, (l1 - l2) * cd);
+	const minI = Math.max(minCost, (l2 - l1) * ci);
+	const buf = new Array(cutHalf * 2 - 1);
 
 	for (let i = 0; i <= l2; ++i) {
 		buf[i] = i * minD;

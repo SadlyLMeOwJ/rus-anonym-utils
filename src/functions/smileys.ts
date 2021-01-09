@@ -1737,7 +1737,7 @@ const list = {
 	],
 };
 
-const allSmileys: string[] = new Array().concat(
+const allSmileys: string[] = [].concat(
 	list.actions,
 	list.animalsAndNature,
 	list.flags,

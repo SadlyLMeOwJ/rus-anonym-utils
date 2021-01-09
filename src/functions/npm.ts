@@ -21,8 +21,8 @@ async function getDependecies(
 		isOutdated: boolean;
 	}>
 > {
-	let arrayWithDependecies = [];
-	for (let i in packageJSON.dependencies) {
+	const arrayWithDependecies = [];
+	for (const i in packageJSON.dependencies) {
 		const currentDependence = await npm.repo(i);
 		const currentDependenceVersion = await getLatestVersion(i);
 		const oldDependenceVersion = packageJSON.dependencies[i].replace("^", "");
