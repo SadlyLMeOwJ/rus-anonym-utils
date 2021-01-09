@@ -1,23 +1,26 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /**
  * @module String
  */
 
 function levenshtein(
-	s1: string | any[],
-	s2: string | any[],
-	costs?: { replace?: any; replaceCase?: any; insert?: any; remove?: any },
-) {
-	let l1: number,
-		l2: number,
-		flip: number,
+	s1: string,
+	s2: string,
+	costs?: {
+		replace?: number;
+		replaceCase?: number;
+		insert?: number;
+		remove?: number;
+	},
+): number {
+	let flip: number,
 		ch: string,
-		chl: any,
+		chl: string,
 		ii: number,
 		ii2: number,
-		cost: any,
-		cutHalf: number;
-	l1 = s1.length;
-	l2 = s2.length;
+		cost: number;
+	const l1 = s1.length;
+	const l2 = s2.length;
 
 	costs = costs || {};
 	const cr: number = costs.replace || 1;
@@ -25,7 +28,7 @@ function levenshtein(
 	const ci: number = costs.insert || 1;
 	const cd: number = costs.remove || 1;
 
-	cutHalf = flip = Math.max(l1, l2);
+	const cutHalf = (flip = Math.max(l1, l2));
 
 	const minCost = Math.min(cd, ci, cr);
 	const minD = Math.max(minCost, (l1 - l2) * cd);
