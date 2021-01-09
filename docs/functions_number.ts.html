@@ -156,21 +156,21 @@ function isInteger(number: number): boolean {
  * @returns {string} Итоговую строку
  */
 function separator(number: number, separator: string): string {
-	let output = number.toString();
+	const output = number.toString();
 	if (!output) {
 		throw new Error(`Invalid number`);
 	} else {
 		separator = separator || ".";
-		let splitted = output.split("");
-		let reversed = splitted.reverse();
-		let joined = reversed.join("");
-		let matched = joined.match(/[0-9]{1,3}/g);
-		let separated = matched?.join(
+		const splitted = output.split("");
+		const reversed = splitted.reverse();
+		const joined = reversed.join("");
+		const matched = joined.match(/[0-9]{1,3}/g);
+		const separated = matched?.join(
 			separator.toString().split("").reverse().join(""),
 		);
-		let splittedOutput = separated?.split("");
-		let reversedOutput = splittedOutput?.reverse();
-		let joinedOutput = reversedOutput?.join("");
+		const splittedOutput = separated?.split("");
+		const reversedOutput = splittedOutput?.reverse();
+		const joinedOutput = reversedOutput?.join("");
 		if (joinedOutput) {
 			return joinedOutput;
 		} else {

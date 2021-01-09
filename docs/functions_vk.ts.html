@@ -257,52 +257,50 @@ const group = {
 	 */
 	getLastConversation: async (token: string): Promise&lt;number> => {
 		const instanceVK = new VK({ token: token });
-		let maxConversationID: number = 2147483647;
-		let minConversationID: number = 2000000001;
+		let maxConversationID = 2147483647;
+		let minConversationID = 2000000001;
 		let currentConversationID: number = maxConversationID;
-		let status: boolean = false;
-		return new Promise(async (resolve) => {
-			while (!status) {
-				if (!(await checkConversationID(instanceVK, currentConversationID))) {
-					maxConversationID = currentConversationID;
-					currentConversationID = Math.round(
-						(currentConversationID + minConversationID) / 2,
-					);
-				} else {
-					if (maxConversationID !== currentConversationID) {
-						while (!status) {
-							if (minConversationID + 10 > maxConversationID) {
-								for (let i = minConversationID; i &lt; maxConversationID; i++) {
-									if (!(await checkConversationID(instanceVK, i))) {
-										status = true;
-										currentConversationID = i - 1;
-										resolve(currentConversationID);
-									}
+		let status = false;
+		while (!status) {
+			if (!(await checkConversationID(instanceVK, currentConversationID))) {
+				maxConversationID = currentConversationID;
+				currentConversationID = Math.round(
+					(currentConversationID + minConversationID) / 2,
+				);
+			} else {
+				if (maxConversationID !== currentConversationID) {
+					while (!status) {
+						if (minConversationID + 10 > maxConversationID) {
+							for (let i = minConversationID; i &lt; maxConversationID; i++) {
+								if (!(await checkConversationID(instanceVK, i))) {
+									status = true;
+									currentConversationID = i - 1;
+									return currentConversationID;
 								}
 							}
-							currentConversationID = Math.round(
-								(minConversationID + maxConversationID) / 2,
-							);
-
-							if (
-								!(await checkConversationID(instanceVK, currentConversationID))
-							) {
-								maxConversationID = currentConversationID;
-								currentConversationID = Math.round(
-									(currentConversationID + minConversationID) / 2,
-								);
-							} else {
-								minConversationID = currentConversationID;
-							}
 						}
-					} else {
-						status = true;
-						resolve(currentConversationID);
+						currentConversationID = Math.round(
+							(minConversationID + maxConversationID) / 2,
+						);
+
+						if (
+							!(await checkConversationID(instanceVK, currentConversationID))
+						) {
+							maxConversationID = currentConversationID;
+							currentConversationID = Math.round(
+								(currentConversationID + minConversationID) / 2,
+							);
+						} else {
+							minConversationID = currentConversationID;
+						}
 					}
+				} else {
+					status = true;
+					return currentConversationID;
 				}
 			}
-			resolve(currentConversationID);
-		});
+		}
+		return currentConversationID;
 	},
 };
 
@@ -327,13 +325,13 @@ const user = {
 			description: string;
 		}>
 	> => {
-		let userGifts = await axios.get(
+		const userGifts = await axios.get(
 			`https://api.vk.com/method/gifts.getCatalog`,
 			{
-				params: { access_token: token, user_id: user_id, v: "5.103" },
+				params: { access_token: token, user_id: user_id, v: "5.126" },
 			},
 		);
-		let parseStickers: Array&lt;{
+		const parseStickers: Array&lt;{
 			id: number;
 			name: string;
 			description: string;
@@ -346,13 +344,13 @@ const user = {
 			}
 		} else {
 			userGifts.data.response.map(async function (currentStickersSet: {
-				items: any[];
-			}) {
-				currentStickersSet.items.map(async function (currentStickerPack: {
+				items: Array&lt;{
 					disabled: number;
-					gift: { stickers_product_id: any };
-					sticker_pack: { title: any; description: any };
-				}) {
+					gift: { stickers_product_id: number };
+					sticker_pack: { title: string; description: string };
+				}>;
+			}) {
+				currentStickersSet.items.map(async function (currentStickerPack) {
 					if (
 						currentStickerPack.disabled === 1 &amp;&amp;
 						!parseStickers.find(
@@ -392,14 +390,14 @@ const api = {
 		data = data.toString();
 		let position1 = await data.indexOf(`var content = {`);
 		let position2 = await data.indexOf(`'header': ['`);
-		let newData = data.substring(position1, position2);
+		const newData = data.substring(position1, position2);
 		position1 = newData.indexOf(`[[`);
 		position2 = newData.indexOf(`]]`);
-		let arrayWithSections = JSON.parse(
+		const arrayWithSections = JSON.parse(
 			newData.substring(position1, position2 + 2),
 		);
-		let outputArray = [];
-		for (let i in arrayWithSections) {
+		const outputArray = [];
+		for (const i in arrayWithSections) {
 			outputArray.push({
 				section: arrayWithSections[i][0],
 				performance: arrayWithSections[i][2],
@@ -444,7 +442,7 @@ const article = {
 				position1 = 13;
 				position2 = await data.indexOf(`, {`);
 				data = data.substring(position1, position2);
-				let articleData = JSON.parse(data);
+				const articleData = JSON.parse(data);
 				return {
 					id: articleData.id,
 					owner_id: articleData.owner_id,
@@ -478,9 +476,9 @@ async function checkToken(
 		throw new Error("Invalid token length");
 	}
 
-	let splitToken = token.split("");
-	for (let tempWord of splitToken) {
-		let allowedWord = [
+	const splitToken = token.split("");
+	for (const tempWord of splitToken) {
+		const allowedWord = [
 			"d",
 			"e",
 			"f",
@@ -503,12 +501,12 @@ async function checkToken(
 		}
 	}
 
-	let tempVK = new VK({ token: token });
-	let tokenData = await tempVK.api.users.get({}).catch((err) => {
+	const tempVK = new VK({ token: token });
+	const tokenData = await tempVK.api.users.get({}).catch(() => {
 		throw new Error("Invalid token");
 	});
 
-	let outputData: {
+	const outputData: {
 		type: "user" | "group";
 		id: number;
 		accessRights: accessRight[];
@@ -519,11 +517,11 @@ async function checkToken(
 	};
 
 	if (tokenData.length === 0) {
-		let [secondTokenData] = await tempVK.api.groups.getById({});
+		const [secondTokenData] = await tempVK.api.groups.getById({});
 		outputData.type = "group";
 		outputData.id = secondTokenData.id;
-		let currentPermissions = await tempVK.api.groups.getTokenPermissions({});
-		for (let i in accessRights.group) {
+		const currentPermissions = await tempVK.api.groups.getTokenPermissions({});
+		for (const i in accessRights.group) {
 			if (
 				Boolean(currentPermissions.mask &amp; accessRights.group[i].mask) === true
 			) {
@@ -532,10 +530,10 @@ async function checkToken(
 		}
 	} else {
 		outputData.id = tokenData[0].id;
-		let currentPermissions = await tempVK.api.account.getAppPermissions({
+		const currentPermissions = await tempVK.api.account.getAppPermissions({
 			user_id: outputData.id,
 		});
-		for (let i in accessRights.user) {
+		for (const i in accessRights.user) {
 			if (Boolean(currentPermissions &amp; accessRights.user[i].mask) === true) {
 				outputData.accessRights.push(accessRights.user[i].right);
 			}
@@ -557,9 +555,8 @@ async function checkConversationID(
 			const [data] = items;
 			return !!data.peer.id;
 		})
-		.catch((error) => {
-			// @ts-ignore
-			return !error.code === 927;
+		.catch(() => {
+			return false;
 		});
 }
 

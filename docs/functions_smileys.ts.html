@@ -97,7 +97,6 @@
  * @module Smileys
  */
 
-
 const list = {
 	smileysAndHumans: [
 		"😀",
@@ -1832,7 +1831,7 @@ const list = {
 	],
 };
 
-const allSmileys: string[] = new Array().concat(
+const allSmileys: string[] = ([] as string[]).concat(
 	list.actions,
 	list.animalsAndNature,
 	list.flags,

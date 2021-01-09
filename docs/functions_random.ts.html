@@ -100,13 +100,13 @@
 
 import * as array from "./array";
 
-function generatePercentsArray(
+function generatePercentsArray&lt;T>(
 	inputArray: Array&lt;{
-		element: any;
+		element: T;
 		possibility: number;
 	}>,
-): Array&lt;any> {
-	let outputArray: Array&lt;any> = [];
+): Array&lt;T> {
+	const outputArray: Array&lt;T> = [];
 	inputArray.map(function (element) {
 		for (let i = 0; i &lt; element.possibility; i++) {
 			outputArray.push(element.element);
@@ -119,12 +119,12 @@ function generatePercentsArray(
 	}
 }
 
-function getRandomElementByPercents(
+function getRandomElementByPercents&lt;T>(
 	inputArray: Array&lt;{
-		element: any;
+		element: T;
 		possibility: number;
 	}>,
-): any {
+): T {
 	return array.random(generatePercentsArray(inputArray));
 }
 

@@ -106,8 +106,8 @@ const npm = new instanceNPM();
  * @param packageJSON {JSON} - package.json
  * @returns массив с всеми модулями
  */
-async function getDependecies(
-	packageJSON: any,
+async function getDependecies&lt;T extends { dependencies: string[] }>(
+	packageJSON: T,
 ): Promise&lt;
 	Array&lt;{
 		name: string;
@@ -116,8 +116,8 @@ async function getDependecies(
 		isOutdated: boolean;
 	}>
 > {
-	let arrayWithDependecies = [];
-	for (let i in packageJSON.dependencies) {
+	const arrayWithDependecies = [];
+	for (const i in packageJSON.dependencies) {
 		const currentDependence = await npm.repo(i);
 		const currentDependenceVersion = await getLatestVersion(i);
 		const oldDependenceVersion = packageJSON.dependencies[i].replace("^", "");
