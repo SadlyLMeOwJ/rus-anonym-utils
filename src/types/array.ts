@@ -40,7 +40,7 @@ interface SortingBenchmarkResponse {
 	sortedArray: number[];
 }
 
-interface CloneBenchmarkResponse {
+interface CloneBenchmarkResponse<T> {
 	fastest: {
 		method: cloneMethod;
 		rate: number;
@@ -51,8 +51,8 @@ interface CloneBenchmarkResponse {
 	};
 	summary: Record<cloneMethod, number>;
 	totalTime: number;
-	sourceArray: any[];
-	copiedArray: any[];
+	sourceArray: T[] | number[];
+	copiedArray: T[] | number[];
 }
 
 export {
