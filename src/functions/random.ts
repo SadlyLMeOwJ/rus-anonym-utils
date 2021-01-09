@@ -5,13 +5,13 @@
 
 import * as array from "./array";
 
-function generatePercentsArray(
+function generatePercentsArray<T>(
 	inputArray: Array<{
-		element: any;
+		element: T;
 		possibility: number;
 	}>,
-): Array<any> {
-	const outputArray: Array<any> = [];
+): Array<T> {
+	const outputArray: Array<T> = [];
 	inputArray.map(function (element) {
 		for (let i = 0; i < element.possibility; i++) {
 			outputArray.push(element.element);
@@ -24,12 +24,12 @@ function generatePercentsArray(
 	}
 }
 
-function getRandomElementByPercents(
+function getRandomElementByPercents<T>(
 	inputArray: Array<{
-		element: any;
+		element: T;
 		possibility: number;
 	}>,
-): any {
+): T {
 	return array.random(generatePercentsArray(inputArray));
 }
 
