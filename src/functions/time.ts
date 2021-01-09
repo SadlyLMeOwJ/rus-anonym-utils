@@ -11,8 +11,8 @@ import { declOfNum } from "./string";
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return время в формате HH:MM:SS
  */
-function getTimeByMS(milliseconds: number): string {
-	const { hours, minutes, seconds } = _getDate(milliseconds);
+function getTimeByMS(milliseconds: number | Date): string {
+	const { hours, minutes, seconds } = _getDate(Number(milliseconds));
 
 	return (
 		(hours < 10 ? "0" + hours : hours) +
@@ -28,8 +28,8 @@ function getTimeByMS(milliseconds: number): string {
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата в формате DD:MM:YY
  */
-function getDateByMS(milliseconds: number): string {
-	const { days, month, year } = _getDate(milliseconds);
+function getDateByMS(milliseconds: number | Date): string {
+	const { days, month, year } = _getDate(Number(milliseconds));
 	return (
 		(days < 10 ? "0" + days : days) +
 		"." +
@@ -44,8 +44,10 @@ function getDateByMS(milliseconds: number): string {
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата и время в формате HH:MM:SS | DD:MM:YY
  */
-function getDateTimeByMS(milliseconds: number): string {
-	const { hours, minutes, seconds, days, month, year } = _getDate(milliseconds);
+function getDateTimeByMS(milliseconds: number | Date): string {
+	const { hours, minutes, seconds, days, month, year } = _getDate(
+		Number(milliseconds),
+	);
 
 	return (
 		(hours < 10 ? "0" + hours : hours) +
