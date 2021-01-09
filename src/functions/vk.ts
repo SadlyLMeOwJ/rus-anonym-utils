@@ -166,48 +166,46 @@ const group = {
 		let minConversationID = 2000000001;
 		let currentConversationID: number = maxConversationID;
 		let status = false;
-		return new Promise(async (resolve) => {
-			while (!status) {
-				if (!(await checkConversationID(instanceVK, currentConversationID))) {
-					maxConversationID = currentConversationID;
-					currentConversationID = Math.round(
-						(currentConversationID + minConversationID) / 2,
-					);
-				} else {
-					if (maxConversationID !== currentConversationID) {
-						while (!status) {
-							if (minConversationID + 10 > maxConversationID) {
-								for (let i = minConversationID; i < maxConversationID; i++) {
-									if (!(await checkConversationID(instanceVK, i))) {
-										status = true;
-										currentConversationID = i - 1;
-										resolve(currentConversationID);
-									}
+		while (!status) {
+			if (!(await checkConversationID(instanceVK, currentConversationID))) {
+				maxConversationID = currentConversationID;
+				currentConversationID = Math.round(
+					(currentConversationID + minConversationID) / 2,
+				);
+			} else {
+				if (maxConversationID !== currentConversationID) {
+					while (!status) {
+						if (minConversationID + 10 > maxConversationID) {
+							for (let i = minConversationID; i < maxConversationID; i++) {
+								if (!(await checkConversationID(instanceVK, i))) {
+									status = true;
+									currentConversationID = i - 1;
+									return currentConversationID;
 								}
 							}
-							currentConversationID = Math.round(
-								(minConversationID + maxConversationID) / 2,
-							);
-
-							if (
-								!(await checkConversationID(instanceVK, currentConversationID))
-							) {
-								maxConversationID = currentConversationID;
-								currentConversationID = Math.round(
-									(currentConversationID + minConversationID) / 2,
-								);
-							} else {
-								minConversationID = currentConversationID;
-							}
 						}
-					} else {
-						status = true;
-						resolve(currentConversationID);
+						currentConversationID = Math.round(
+							(minConversationID + maxConversationID) / 2,
+						);
+
+						if (
+							!(await checkConversationID(instanceVK, currentConversationID))
+						) {
+							maxConversationID = currentConversationID;
+							currentConversationID = Math.round(
+								(currentConversationID + minConversationID) / 2,
+							);
+						} else {
+							minConversationID = currentConversationID;
+						}
 					}
+				} else {
+					status = true;
+					return currentConversationID;
 				}
 			}
-			resolve(currentConversationID);
-		});
+		}
+		return currentConversationID;
 	},
 };
 
@@ -235,7 +233,7 @@ const user = {
 		const userGifts = await axios.get(
 			`https://api.vk.com/method/gifts.getCatalog`,
 			{
-				params: { access_token: token, user_id: user_id, v: "5.103" },
+				params: { access_token: token, user_id: user_id, v: "5.126" },
 			},
 		);
 		const parseStickers: Array<{
@@ -251,13 +249,13 @@ const user = {
 			}
 		} else {
 			userGifts.data.response.map(async function (currentStickersSet: {
-				items: any[];
-			}) {
-				currentStickersSet.items.map(async function (currentStickerPack: {
+				items: Array<{
 					disabled: number;
-					gift: { stickers_product_id: any };
-					sticker_pack: { title: any; description: any };
-				}) {
+					gift: { stickers_product_id: number };
+					sticker_pack: { title: string; description: string };
+				}>;
+			}) {
+				currentStickersSet.items.map(async function (currentStickerPack) {
 					if (
 						currentStickerPack.disabled === 1 &&
 						!parseStickers.find(
@@ -409,7 +407,7 @@ async function checkToken(
 	}
 
 	const tempVK = new VK({ token: token });
-	const tokenData = await tempVK.api.users.get({}).catch((err) => {
+	const tokenData = await tempVK.api.users.get({}).catch(() => {
 		throw new Error("Invalid token");
 	});
 
@@ -462,9 +460,8 @@ async function checkConversationID(
 			const [data] = items;
 			return !!data.peer.id;
 		})
-		.catch((error) => {
-			// @ts-ignore
-			return !error.code === 927;
+		.catch(() => {
+			return false;
 		});
 }
 
