@@ -163,6 +163,101 @@ function getTimeUntilNewYear(): string {
 	);
 }
 
+/**
+ * Получить время до выбранной даты
+ * @return возвращает строку с временем до даты
+ * @example
+ * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
+ * utils.time.getPrecizeDiff(new Date(), new Date(Number(new Date()) + 2813645000));
+ */
+function getPrecizeDiff({
+	firstDate,
+	secondDate,
+	json = false,
+	i18n = {
+		year: ["год", "года", "лет"],
+		month: ["месяц", "месяца", "месяцев"],
+		day: ["день", "дня", "дней"],
+		hour: ["час", "часа", "часов"],
+		minute: ["минута", "минуты", "минут"],
+		second: ["секунда", "секунды", "секунд"],
+	},
+}: {
+	firstDate: Date;
+	secondDate: Date;
+	json?: boolean;
+	i18n?: {
+		year: [string, string, string];
+		month: [string, string, string];
+		day: [string, string, string];
+		hour: [string, string, string];
+		minute: [string, string, string];
+		second: [string, string, string];
+	};
+}):
+	| string
+	| Record<
+			"year" | "month" | "day" | "hour" | "minute" | "second",
+			{ value: number; declination: string }
+	  > {
+	const objectWithTime = moment.preciseDiff(
+		moment(firstDate),
+		moment(secondDate),
+		true,
+	);
+	const precizeData = {
+		year: {
+			value: objectWithTime.years,
+			declination: declOfNum(objectWithTime.years, i18n.year),
+		},
+		month: {
+			value: objectWithTime.months,
+			declination: declOfNum(objectWithTime.months, i18n.month),
+		},
+		day: {
+			value: objectWithTime.days,
+			declination: declOfNum(objectWithTime.days, i18n.day),
+		},
+		hour: {
+			value: objectWithTime.hours,
+			declination: declOfNum(objectWithTime.hours, i18n.hour),
+		},
+		minute: {
+			value: objectWithTime.minutes,
+			declination: declOfNum(objectWithTime.minutes, i18n.minute),
+		},
+		second: {
+			value: objectWithTime.minutes,
+			declination: declOfNum(objectWithTime.minutes, i18n.minute),
+		},
+	};
+	if (json === true) {
+		return precizeData;
+	} else {
+		return (
+			"" +
+			(objectWithTime.years
+				? objectWithTime.years + " " + precizeData.year.value + ", "
+				: "") +
+			(objectWithTime.months
+				? objectWithTime.months + " " + precizeData.month.value + ", "
+				: "") +
+			(objectWithTime.days
+				? objectWithTime.days + " " + precizeData.day.value + ", "
+				: "") +
+			(objectWithTime.hours
+				? objectWithTime.hours + " " + precizeData.hour.value + ", "
+				: "") +
+			(objectWithTime.minutes
+				? objectWithTime.minutes + " " + precizeData.minute.value + ", "
+				: "") +
+			(objectWithTime.seconds
+				? objectWithTime.seconds + " " + precizeData.second.value
+				: "")
+		);
+	}
+}
+
 export {
 	getTimeByMS,
 	getDateByMS,
@@ -171,4 +266,5 @@ export {
 	currentDate,
 	currentDateTime,
 	getTimeUntilNewYear,
+	getPrecizeDiff,
 };
