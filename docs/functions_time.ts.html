@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-NPM.html">NPM</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="module-Array-Clone.html">Clone</a></li><li><a href="module-Array-NumberArrays.html">NumberArrays</a></li><li><a href="module-Array-NumberArraysSort.html">NumberArraysSort</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="module-Array-Clone.html">Clone</a></li><li><a href="module-Array-NumberArrays.html">NumberArrays</a></li><li><a href="module-Array-NumberArraysSort.html">NumberArraysSort</a></li></ul></div>
                 
             </nav>
         </div>
@@ -106,8 +106,8 @@ import { declOfNum } from "./string";
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return время в формате HH:MM:SS
  */
-function getTimeByMS(milliseconds: number): string {
-	const { hours, minutes, seconds } = _getDate(milliseconds);
+function getTimeByMS(milliseconds: number | Date): string {
+	const { hours, minutes, seconds } = _getDate(Number(milliseconds));
 
 	return (
 		(hours &lt; 10 ? "0" + hours : hours) +
@@ -123,8 +123,8 @@ function getTimeByMS(milliseconds: number): string {
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата в формате DD:MM:YY
  */
-function getDateByMS(milliseconds: number): string {
-	const { days, month, year } = _getDate(milliseconds);
+function getDateByMS(milliseconds: number | Date): string {
+	const { days, month, year } = _getDate(Number(milliseconds));
 	return (
 		(days &lt; 10 ? "0" + days : days) +
 		"." +
@@ -139,8 +139,10 @@ function getDateByMS(milliseconds: number): string {
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата и время в формате HH:MM:SS | DD:MM:YY
  */
-function getDateTimeByMS(milliseconds: number): string {
-	const { hours, minutes, seconds, days, month, year } = _getDate(milliseconds);
+function getDateTimeByMS(milliseconds: number | Date): string {
+	const { hours, minutes, seconds, days, month, year } = _getDate(
+		Number(milliseconds),
+	);
 
 	return (
 		(hours &lt; 10 ? "0" + hours : hours) +
@@ -256,6 +258,101 @@ function getTimeUntilNewYear(): string {
 	);
 }
 
+/**
+ * Получить время до выбранной даты
+ * @return возвращает строку с временем до даты
+ * @example
+ * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
+ * utils.time.getPrecizeDiff(new Date(), new Date(Number(new Date()) + 2813645000));
+ */
+function getPrecizeDiff({
+	firstDate,
+	secondDate,
+	json = false,
+	i18n = {
+		year: ["год", "года", "лет"],
+		month: ["месяц", "месяца", "месяцев"],
+		day: ["день", "дня", "дней"],
+		hour: ["час", "часа", "часов"],
+		minute: ["минута", "минуты", "минут"],
+		second: ["секунда", "секунды", "секунд"],
+	},
+}: {
+	firstDate: Date;
+	secondDate: Date;
+	json?: boolean;
+	i18n?: {
+		year: [string, string, string];
+		month: [string, string, string];
+		day: [string, string, string];
+		hour: [string, string, string];
+		minute: [string, string, string];
+		second: [string, string, string];
+	};
+}):
+	| string
+	| Record&lt;
+			"year" | "month" | "day" | "hour" | "minute" | "second",
+			{ value: number; declination: string }
+	  > {
+	const objectWithTime = moment.preciseDiff(
+		moment(firstDate),
+		moment(secondDate),
+		true,
+	);
+	const precizeData = {
+		year: {
+			value: objectWithTime.years,
+			declination: declOfNum(objectWithTime.years, i18n.year),
+		},
+		month: {
+			value: objectWithTime.months,
+			declination: declOfNum(objectWithTime.months, i18n.month),
+		},
+		day: {
+			value: objectWithTime.days,
+			declination: declOfNum(objectWithTime.days, i18n.day),
+		},
+		hour: {
+			value: objectWithTime.hours,
+			declination: declOfNum(objectWithTime.hours, i18n.hour),
+		},
+		minute: {
+			value: objectWithTime.minutes,
+			declination: declOfNum(objectWithTime.minutes, i18n.minute),
+		},
+		second: {
+			value: objectWithTime.minutes,
+			declination: declOfNum(objectWithTime.minutes, i18n.minute),
+		},
+	};
+	if (json === true) {
+		return precizeData;
+	} else {
+		return (
+			"" +
+			(objectWithTime.years
+				? objectWithTime.years + " " + precizeData.year.value + ", "
+				: "") +
+			(objectWithTime.months
+				? objectWithTime.months + " " + precizeData.month.value + ", "
+				: "") +
+			(objectWithTime.days
+				? objectWithTime.days + " " + precizeData.day.value + ", "
+				: "") +
+			(objectWithTime.hours
+				? objectWithTime.hours + " " + precizeData.hour.value + ", "
+				: "") +
+			(objectWithTime.minutes
+				? objectWithTime.minutes + " " + precizeData.minute.value + ", "
+				: "") +
+			(objectWithTime.seconds
+				? objectWithTime.seconds + " " + precizeData.second.value
+				: "")
+		);
+	}
+}
+
 export {
 	getTimeByMS,
 	getDateByMS,
@@ -264,6 +361,7 @@ export {
 	currentDate,
 	currentDateTime,
 	getTimeUntilNewYear,
+	getPrecizeDiff,
 };
 </code></pre>
         </article>
