@@ -15,8 +15,10 @@
 		"url": "git+https://github.com/RusAnonym/rus-anonym-utils.git"
 	},
 	"author": "anonymous_rus <alexandrsemin2033@gmail.com>",
-	"homepage": "https://github.com/RusAnonym/rus-anonym-utils#readme",
+	"homepage": "https://github.com/RusAnonym/rus-anonym-utils/",
+	"readme": "https://rusanonym.github.io/rus-anonym-utils/",
 	"bugs": {
+		"email": "alexandrsemin2033@gmail.com",
 		"url": "https://github.com/RusAnonym/rus-anonym-utils/issues"
 	},
 	"scripts": {

@@ -382,25 +382,25 @@ async function checkToken(
 	}
 
 	const splitToken = token.split("");
+	const allowedWord = [
+		"d",
+		"e",
+		"f",
+		"b",
+		"c",
+		"a",
+		"0",
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"8",
+		"9",
+	];
 	for (const tempWord of splitToken) {
-		const allowedWord = [
-			"d",
-			"e",
-			"f",
-			"b",
-			"c",
-			"a",
-			"0",
-			"1",
-			"2",
-			"3",
-			"4",
-			"5",
-			"6",
-			"7",
-			"8",
-			"9",
-		];
 		if (!allowedWord.find((x) => x === tempWord)) {
 			throw new Error("Invalid token symbols");
 		}
