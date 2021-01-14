@@ -2,7 +2,7 @@
  * @module Regular
  */
 
-import regularList from "../DB/regularTemplate";
+import regularList from "../DB/regular/regularTemplate";
 
 /**
  * Проверка является ли переданная строка E-Mail адресом

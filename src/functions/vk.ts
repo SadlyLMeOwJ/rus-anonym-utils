@@ -233,7 +233,7 @@ const user = {
 		const userGifts = await axios.get(
 			`https://api.vk.com/method/gifts.getCatalog`,
 			{
-				params: { access_token: token, user_id: user_id, v: "5.126" },
+				params: { access_token: token, user_id: user_id, v: "5.103" },
 			},
 		);
 		const parseStickers: Array<{
