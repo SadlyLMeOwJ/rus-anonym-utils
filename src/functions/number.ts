@@ -3,6 +3,8 @@
  * @description Функции для работы с числами
  */
 
+import CryptoJS from "crypto-js";
+
 /**
  * Получение случайного числа от 0 (включительно) до 1 (не включая)
  * @returns {number} случайное числа от 0 (включительно) до 1 (не включая)
@@ -18,7 +20,7 @@ function getRandom(): number {
  * @returns {number} Возвращает случайное число в заданном интервале. Возвращаемое значение не менее (и может быть равно) min и не более (и не равно) max.
  */
 function getRandomArbitrary(min: number, max: number): number {
-	return Math.random() * (max - min) + min;
+	return getRandom() * (max - min) + min;
 }
 
 /**
@@ -27,10 +29,13 @@ function getRandomArbitrary(min: number, max: number): number {
  * @param max {number} - Максимальное значение
  * @returns {number} Возвращает случайное целое число в заданном интервале. Возвращаемое значение не менее min (или следующее целое число, которое больше min, если min не целое) и не более (но не равно) max.
  */
-function getRandomInt(min: number, max: number): number {
+function getRandomInt(min: number, max: number, seed?: string): number {
+	if (seed) {
+		return (parseInt(CryptoJS.SHA256(seed).toString(), 16) % (max -min +	 1) ) + min;
+	}
 	min = Math.ceil(min);
 	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min)) + min;
+	return Math.floor(getRandom() * (max - min)) + min;
 }
 
 /**
@@ -42,7 +47,7 @@ function getRandomInt(min: number, max: number): number {
 function getRandomIntInclusive(min: number, max: number): number {
 	min = Math.ceil(min);
 	max = Math.floor(max);
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+	return Math.floor(getRandom() * (max - min + 1)) + min;
 }
 
 /**
