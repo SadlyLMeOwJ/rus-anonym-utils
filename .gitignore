@@ -6,5 +6,5 @@ test.ts
 .vscode/
 yarn.lock
 package-lock.json
-out/
+dist/
 out.json
