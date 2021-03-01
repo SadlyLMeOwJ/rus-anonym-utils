@@ -1,5 +1,7 @@
 import { cloneMethod, CloneBenchmarkResponse } from "../../../types/array";
 
+import { performance } from "perf_hooks";
+
 /**
  * Класс для работы с методами клонирования массивов
  * @example
@@ -196,7 +198,7 @@ class Clone {
 			const sortStart = performance.now();
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			//@ts-ignore
-			response.copiedArray = clone[method](inputArray);
+			response.copiedArray = Clone[method](inputArray);
 			response.summary[method] = performance.now() - sortStart;
 		}
 
