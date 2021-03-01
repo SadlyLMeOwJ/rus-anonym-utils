@@ -6,6 +6,9 @@
 import { XOR } from "../logical";
 import { getRandomIntInclusive } from "../number";
 
+import ArrayClone from "./plugins/Clone";
+import NumberArray from "./plugins/Number";
+
 /**
  * Возвращает рандомный элемент из массива
  * @param inputArray {Array} - массив
@@ -233,6 +236,8 @@ export {
 	insert,
 	removeEmptyElements,
 	naturalStringSorter,
+	ArrayClone as clone,
+	NumberArray as number,
 };
 
 function __naturalSortingCompare(a: number, b: number) {

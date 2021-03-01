@@ -1,3 +1,5 @@
+import Sort from "./NumberSort";
+
 class Number {
 	/**
 	 * @hideconstructor
@@ -30,6 +32,8 @@ class Number {
 	public static average(inputArray: number[]): number {
 		return inputArray.reduce((a, b) => a + b) / inputArray.length;
 	}
+
+	public static sort = Sort;
 }
 
 export default Number;
