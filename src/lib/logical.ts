@@ -11,9 +11,7 @@
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function AND(a: boolean, b: boolean): boolean {
-	return a && b;
-}
+const AND = (a: boolean, b: boolean): boolean => a && b;
 
 /**
  * Логическое ИЛИ
@@ -24,9 +22,7 @@ function AND(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function OR(a: boolean, b: boolean): boolean {
-	return a || b;
-}
+const OR = (a: boolean, b: boolean): boolean => a || b;
 
 /**
  * Логическое И-НЕ
@@ -35,9 +31,7 @@ function OR(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function ANOT(a: boolean, b: boolean): boolean {
-	return a === true && b === true;
-}
+const ANOT = (a: boolean, b: boolean): boolean => a === true && b === true;
 
 /**
  * Логическое ИЛИ-НЕ
@@ -47,9 +41,7 @@ function ANOT(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function NOR(a: boolean, b: boolean): boolean {
-	return a === false && b === false;
-}
+const NOR = (a: boolean, b: boolean): boolean => a === false && b === false;
 
 /**
  * Логическое исключающее ИЛИ
@@ -60,9 +52,7 @@ function NOR(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function XOR(a: boolean, b: boolean): boolean {
-	return a ? !b : b;
-}
+const XOR = (a: boolean, b: boolean): boolean => (a ? !b : b);
 
 /**
  * Логическое НЕ
@@ -72,9 +62,7 @@ function XOR(a: boolean, b: boolean): boolean {
  * @param {boolean} a - 1 значение
  * @return {boolean} - результат
  */
-function NOT(a: boolean): boolean {
-	return !a;
-}
+const NOT = (a: boolean): boolean => !a;
 
 /**
  * Логическое РАВНО
@@ -85,9 +73,7 @@ function NOT(a: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function EQ(a: boolean, b: boolean): boolean {
-	return a === b;
-}
+const EQ = (a: boolean, b: boolean): boolean => a === b;
 
 /**
  * Импликация
@@ -97,8 +83,8 @@ function EQ(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function IMP(a: boolean, b: boolean): boolean {
+const IMP = (a: boolean, b: boolean): boolean => {
 	return a === true && b === false ? false : true;
-}
+};
 
 export { AND, OR, XOR, NOT, NOR, IMP, EQ, ANOT };

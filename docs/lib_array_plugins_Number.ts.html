@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation functions/random.ts</title>
+  <title>Documentation lib/array/plugins/Number.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="module-Array-Clone.html">Clone</a></li><li><a href="module-Array-NumberArrays.html">NumberArrays</a></li><li><a href="module-Array-NumberArraysSort.html">NumberArraysSort</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li><li><a href="Number.html">Number</a></li><li><a href="NumberSort.html">NumberSort</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>functions/random.ts</h1>
+                    <h1>lib/array/plugins/Number.ts</h1>
                 </header>
                 
 
@@ -93,42 +93,45 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @module Random
- * @deprecated
- */
+            <pre class="prettyprint source linenums"><code>import Sort from "./NumberSort";
 
-import * as array from "./array";
+class Number {
+	/**
+	 * @hideconstructor
+	 */
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	private constructor() {}
 
-function generatePercentsArray&lt;T>(
-	inputArray: Array&lt;{
-		element: T;
-		possibility: number;
-	}>,
-): Array&lt;T> {
-	const outputArray: Array&lt;T> = [];
-	inputArray.map(function (element) {
-		for (let i = 0; i &lt; element.possibility; i++) {
-			outputArray.push(element.element);
-		}
-	});
-	if (outputArray.length !== 100) {
-		throw new Error(`You must specify all 100%`);
-	} else {
-		return array.shuffle(outputArray);
+	/**
+	 * Вывод минимального значения в массиве
+	 * @param inputArray {Array} - массив с числами
+	 * @returns - минимальное значение
+	 */
+	public static min(inputArray: number[]): number {
+		return Math.min.apply(null, inputArray);
 	}
+
+	/**
+	 * Вывод максимального значения в массиве
+	 * @param inputArray {Array} - массив с числами
+	 * @returns максимальное значение
+	 */
+	public static max(inputArray: number[]): number {
+		return Math.max.apply(null, inputArray);
+	}
+	/**
+	 * Вывод среднего значения в массиве
+	 * @param inputArray {Array} - массив с числами
+	 * @returns среднее значение
+	 */
+	public static average(inputArray: number[]): number {
+		return inputArray.reduce((a, b) => a + b) / inputArray.length;
+	}
+
+	public static sort = Sort;
 }
 
-function getRandomElementByPercents&lt;T>(
-	inputArray: Array&lt;{
-		element: T;
-		possibility: number;
-	}>,
-): T {
-	return array.random(generatePercentsArray(inputArray));
-}
-
-export { generatePercentsArray, getRandomElementByPercents };
+export default Number;
 </code></pre>
         </article>
     </section>

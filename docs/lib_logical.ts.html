@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation functions/logical.ts</title>
+  <title>Documentation lib/logical.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="module-Array-Clone.html">Clone</a></li><li><a href="module-Array-NumberArrays.html">NumberArrays</a></li><li><a href="module-Array-NumberArraysSort.html">NumberArraysSort</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li><li><a href="Number.html">Number</a></li><li><a href="NumberSort.html">NumberSort</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>functions/logical.ts</h1>
+                    <h1>lib/logical.ts</h1>
                 </header>
                 
 
@@ -106,9 +106,7 @@
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function AND(a: boolean, b: boolean): boolean {
-	return a &amp;&amp; b;
-}
+const AND = (a: boolean, b: boolean): boolean => a &amp;&amp; b;
 
 /**
  * Логическое ИЛИ
@@ -119,9 +117,7 @@ function AND(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function OR(a: boolean, b: boolean): boolean {
-	return a || b;
-}
+const OR = (a: boolean, b: boolean): boolean => a || b;
 
 /**
  * Логическое И-НЕ
@@ -130,9 +126,7 @@ function OR(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function ANOT(a: boolean, b: boolean): boolean {
-	return a === true &amp;&amp; b === true;
-}
+const ANOT = (a: boolean, b: boolean): boolean => a === true &amp;&amp; b === true;
 
 /**
  * Логическое ИЛИ-НЕ
@@ -142,9 +136,7 @@ function ANOT(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function NOR(a: boolean, b: boolean): boolean {
-	return a === false &amp;&amp; b === false;
-}
+const NOR = (a: boolean, b: boolean): boolean => a === false &amp;&amp; b === false;
 
 /**
  * Логическое исключающее ИЛИ
@@ -155,9 +147,7 @@ function NOR(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function XOR(a: boolean, b: boolean): boolean {
-	return a ? !b : b;
-}
+const XOR = (a: boolean, b: boolean): boolean => (a ? !b : b);
 
 /**
  * Логическое НЕ
@@ -167,9 +157,7 @@ function XOR(a: boolean, b: boolean): boolean {
  * @param {boolean} a - 1 значение
  * @return {boolean} - результат
  */
-function NOT(a: boolean): boolean {
-	return !a;
-}
+const NOT = (a: boolean): boolean => !a;
 
 /**
  * Логическое РАВНО
@@ -180,9 +168,7 @@ function NOT(a: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function EQ(a: boolean, b: boolean): boolean {
-	return a === b;
-}
+const EQ = (a: boolean, b: boolean): boolean => a === b;
 
 /**
  * Импликация
@@ -192,9 +178,9 @@ function EQ(a: boolean, b: boolean): boolean {
  * @param {boolean} b - 2 значение
  * @return {boolean} - результат
  */
-function IMP(a: boolean, b: boolean): boolean {
+const IMP = (a: boolean, b: boolean): boolean => {
 	return a === true &amp;&amp; b === false ? false : true;
-}
+};
 
 export { AND, OR, XOR, NOT, NOR, IMP, EQ, ANOT };
 </code></pre>

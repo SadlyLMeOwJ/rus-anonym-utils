@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation lib/array/plugins/Clone.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">RusAnonym Utils documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li><li><a href="Number.html">Number</a></li><li><a href="NumberSort.html">NumberSort</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>lib/array/plugins/Clone.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { cloneMethod, CloneBenchmarkResponse } from "../../../types/array";
+
+import { performance } from "perf_hooks";
+
+/**
+ * Класс для работы с методами клонирования массивов
+ * @example
+ * const utils = require(`rus-anonym-utils`);
+ * utils.array.clone
+ */
+class Clone {
+	/**
+	 * @hideconstructor
+	 */
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	private constructor() {}
+
+	/**
+	 * Клонирование массива с помощью slice
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static slice&lt;T>(inputArray: T[]): T[] {
+		return inputArray.slice() as T[];
+	}
+
+	/**
+	 * Клонирование массива с помощью concat
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static concat&lt;T>(inputArray: T[]): T[] {
+		return ([] as T[]).concat(inputArray) as T[];
+	}
+
+	/**
+	 * Клонирование массива с помощью unshift
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static unshift&lt;T>(inputArray: T[]): T[] {
+		const output: T[] = [];
+		for (let i = inputArray.length; i--; ) {
+			output.unshift(inputArray[i]);
+		}
+		return output;
+	}
+
+	/**
+	 * Клонирование массива с помощью push
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static push&lt;T>(inputArray: T[]): T[] {
+		const output: T[] = [];
+		for (let i = 0, l = inputArray.length; i &lt; l; i++) {
+			output.push(inputArray[i]);
+		}
+		return output;
+	}
+
+	/**
+	 * Клонирование массива с помощью index
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static index&lt;T>(inputArray: T[]): T[] {
+		const output: T[] = new Array(inputArray.length);
+		for (let i = 0, l = inputArray.length; i &lt; l; i++) {
+			output[i] = inputArray[i];
+		}
+		return output as T[];
+	}
+
+	/**
+	 * Клонирование массива с помощью apply
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static apply&lt;T>(inputArray: T[]): T[] {
+		// eslint-disable-next-line prefer-spread
+		return Array.apply(undefined, inputArray) as T[];
+	}
+
+	/**
+	 * Клонирование массива с помощью map
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static map&lt;T>(inputArray: T[]): T[] {
+		return inputArray.map(function (element) {
+			return element;
+		});
+	}
+
+	/**
+	 * Клонирование массива с помощью JSON
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static json&lt;T>(inputArray: T[]): T[] {
+		return JSON.parse(JSON.stringify(inputArray)) as T[];
+	}
+
+	/**
+	 * Клонирование массива с помощью spread
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static spread&lt;T>(inputArray: T[]): T[] {
+		return [...inputArray] as T[];
+	}
+
+	/**
+	 * Клонирование массива с помощью Array.from
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static from&lt;T>(inputArray: T[]): T[] {
+		return Array.from(inputArray) as T[];
+	}
+
+	/**
+	 * Рекурсивное глубокое копирование массива (копирует подмассив)
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public static recursionDeep&lt;T>(inputArray: T[]): T[] {
+		const output = inputArray.map((element: T | T[]) => {
+			return this.__recursionDeepCopy(element);
+		});
+		return output as T[];
+	}
+
+	private static __recursionDeepCopy&lt;T>(inputArray: T | T[]): T | T[] {
+		return Array.isArray(inputArray)
+			? this.__recursionDeepCopy(inputArray)
+			: (inputArray as T);
+	}
+
+	/**
+	 * Сравнивает все методы копирования
+	 * @param inputArray {Array} - массив
+	 * @returns {Object} benchmark - Объект с выполнеными тестами
+	 */
+	public static benchmark&lt;T>(input: number | T[]): CloneBenchmarkResponse&lt;T> {
+		let inputArray: number[] | T[] = [];
+		if (Number.isInteger(input) === true) {
+			inputArray = Array.from({ length: Number(input) }, () =>
+				Math.floor(Math.random() * Number(input)),
+			);
+		} else if (Array.isArray(input)) {
+			inputArray = input;
+		}
+
+		const cloneMethods: cloneMethod[] = [
+			"slice",
+			"concat",
+			"unshift",
+			"push",
+			"index",
+			"apply",
+			"map",
+			"json",
+			"spread",
+			"from",
+			"recursionDeep",
+		];
+
+		const response: CloneBenchmarkResponse&lt;T> = {
+			fastest: {
+				method: "slice",
+				rate: Number.MAX_VALUE,
+			},
+			slowest: {
+				method: "slice",
+				rate: 0,
+			},
+			summary: {
+				slice: 0,
+				concat: 0,
+				unshift: 0,
+				push: 0,
+				index: 0,
+				apply: 0,
+				map: 0,
+				json: 0,
+				spread: 0,
+				from: 0,
+				recursionDeep: 0,
+			},
+			totalTime: 0,
+			sourceArray: inputArray,
+			copiedArray: [],
+		};
+
+		for (const method of cloneMethods) {
+			const sortStart = performance.now();
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			//@ts-ignore
+			response.copiedArray = Clone[method](inputArray);
+			response.summary[method] = performance.now() - sortStart;
+		}
+
+		let tempKey: cloneMethod;
+
+		for (tempKey in response.summary) {
+			if (response.fastest.rate > response.summary[tempKey]) {
+				response.fastest.method = tempKey;
+				response.fastest.rate = response.summary[tempKey];
+			}
+			if (response.slowest.rate &lt; response.summary[tempKey]) {
+				response.slowest.method = tempKey;
+				response.slowest.rate = response.summary[tempKey];
+			}
+			response.totalTime += response.summary[tempKey];
+		}
+
+		return response;
+	}
+}
+
+export default Clone;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>
