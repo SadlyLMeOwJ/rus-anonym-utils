@@ -7,7 +7,6 @@ import { cloneMethod, CloneBenchmarkResponse } from "../../../types/array";
  * utils.array.clone
  */
 class Clone {
-	private static instance: Clone;
 	/**
 	 * @hideconstructor
 	 */
@@ -216,13 +215,6 @@ class Clone {
 		}
 
 		return response;
-	}
-
-	public static getInstance(): Clone {
-		if (!Clone.instance) {
-			Clone.instance = new Clone();
-		}
-		return Clone.instance;
 	}
 }
 
