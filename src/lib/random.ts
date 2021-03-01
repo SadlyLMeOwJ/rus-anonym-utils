@@ -3,7 +3,7 @@
  * @deprecated
  */
 
-import * as array from "./array";
+import { random, shuffle } from "./array/core";
 
 function generatePercentsArray<T>(
 	inputArray: Array<{
@@ -20,7 +20,7 @@ function generatePercentsArray<T>(
 	if (outputArray.length !== 100) {
 		throw new Error(`You must specify all 100%`);
 	} else {
-		return array.shuffle(outputArray);
+		return shuffle(outputArray);
 	}
 }
 
@@ -30,7 +30,7 @@ function getRandomElementByPercents<T>(
 		possibility: number;
 	}>,
 ): T {
-	return array.random(generatePercentsArray(inputArray));
+	return random(generatePercentsArray(inputArray));
 }
 
 export { generatePercentsArray, getRandomElementByPercents };
