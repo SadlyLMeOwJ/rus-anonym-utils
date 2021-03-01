@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation functions/string.ts</title>
+  <title>Documentation lib/number.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>functions/string.ts</h1>
+                    <h1>lib/number.ts</h1>
                 </header>
                 
 
@@ -94,96 +94,104 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module String
+ * @module Number
+ * @description Функции для работы с числами
  */
 
-function levenshtein(
-	s1: string,
-	s2: string,
-	costs?: {
-		replace?: number;
-		replaceCase?: number;
-		insert?: number;
-		remove?: number;
-	},
-): number {
-	let flip: number,
-		ch: string,
-		chl: string,
-		ii: number,
-		ii2: number,
-		cost: number;
-	const l1 = s1.length;
-	const l2 = s2.length;
+import CryptoJS from "crypto-js";
 
-	costs = costs || {};
-	const cr: number = costs.replace || 1;
-	const cri: number = costs.replaceCase || costs.replace || 1;
-	const ci: number = costs.insert || 1;
-	const cd: number = costs.remove || 1;
+/**
+ * Получение случайного числа от 0 (включительно) до 1 (не включая)
+ * @returns {number} случайное числа от 0 (включительно) до 1 (не включая)
+ */
+function getRandom(): number {
+	return Math.random();
+}
 
-	const cutHalf = (flip = Math.max(l1, l2));
+/**
+ * Получить псевдослучайное число с плавающей точкой в диапазоне от 0 до 1
+ * @param min {number} - Минимальное значение
+ * @param max {number} - Максимальное значение
+ * @returns {number} Возвращает случайное число в заданном интервале. Возвращаемое значение не менее (и может быть равно) min и не более (и не равно) max.
+ */
+function getRandomArbitrary(min: number, max: number): number {
+	return getRandom() * (max - min) + min;
+}
 
-	const minCost = Math.min(cd, ci, cr);
-	const minD = Math.max(minCost, (l1 - l2) * cd);
-	const minI = Math.max(minCost, (l2 - l1) * ci);
-	const buf = new Array(cutHalf * 2 - 1);
-
-	for (let i = 0; i &lt;= l2; ++i) {
-		buf[i] = i * minD;
+/**
+ * Получение случайного целого числа в заданном интервале
+ * @param min {number} - Минимальное значение
+ * @param max {number} - Максимальное значение
+ * @returns {number} Возвращает случайное целое число в заданном интервале. Возвращаемое значение не менее min (или следующее целое число, которое больше min, если min не целое) и не более (но не равно) max.
+ */
+function getRandomInt(min: number, max: number, seed?: string): number {
+	if (seed) {
+		return (parseInt(CryptoJS.SHA256(seed).toString(), 16) % (max -min +	 1) ) + min;
 	}
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(getRandom() * (max - min)) + min;
+}
 
-	for (let i = 0; i &lt; l1; ++i, flip = cutHalf - flip) {
-		ch = s1[i];
-		chl = ch.toLowerCase();
+/**
+ * Получение случайного целого числа в заданном интервале, включительно
+ * @param min {number} - Минимальное значение
+ * @param max {number} - Максимальное значение
+ * @returns {number} Возвращает случайное целое число в заданном интервале. Возвращаемое значение не менее min (или следующее целое число, которое больше min, если min не целое) и не более (но не равно) max включительно
+ */
+function getRandomIntInclusive(min: number, max: number): number {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(getRandom() * (max - min + 1)) + min;
+}
 
-		buf[flip] = (i + 1) * minI;
+/**
+ * Проверяет, является ли число целым
+ * @param number {number} - Число
+ * @returns {boolean} Возвращает true, если число целое, и false если оно не является целым
+ */
+function isInteger(number: number): boolean {
+	return (number ^ 0) === number;
+}
 
-		ii = flip;
-		ii2 = cutHalf - flip;
-
-		for (let j = 0; j &lt; l2; ++j, ++ii, ++ii2) {
-			cost = ch === s2[j] ? 0 : chl === s2[j].toLowerCase() ? cri : cr;
-			buf[ii + 1] = Math.min(buf[ii2 + 1] + cd, buf[ii] + ci, buf[ii2] + cost);
+/**
+ * Разделяет число по 3 символа
+ * @param number {number} - Число
+ * @param separator {string} - Разделитель
+ * @returns {string} Итоговую строку
+ */
+function separator(number: number, separator: string): string {
+	const output = number.toString();
+	if (!output) {
+		throw new Error(`Invalid number`);
+	} else {
+		separator = separator || ".";
+		const splitted = output.split("");
+		const reversed = splitted.reverse();
+		const joined = reversed.join("");
+		const matched = joined.match(/[0-9]{1,3}/g);
+		const separated = matched?.join(
+			separator.toString().split("").reverse().join(""),
+		);
+		const splittedOutput = separated?.split("");
+		const reversedOutput = splittedOutput?.reverse();
+		const joinedOutput = reversedOutput?.join("");
+		if (joinedOutput) {
+			return joinedOutput;
+		} else {
+			throw new Error(`Invalid number`);
 		}
 	}
-	return buf[l2 + cutHalf - flip];
 }
 
-/**
- * Функция для корректного склонения чисел
- * @param n {number} - Число
- * @param titles_array {string[]} - Строки для склонения
- * @returns {string} корректное название
- * @example
- * // => помидора
- * string.declOfNum(3, ["помидор", "помидора", "помидоров"]);
- */
-function declOfNum(inputNumber: number, titlesArray: string[]): string {
-	return titlesArray[
-		inputNumber % 10 === 1 &amp;&amp; inputNumber % 100 !== 11
-			? 0
-			: inputNumber % 10 >= 2 &amp;&amp;
-			  inputNumber % 10 &lt;= 4 &amp;&amp;
-			  (inputNumber % 100 &lt; 10 || inputNumber % 100 >= 20)
-			? 1
-			: 2
-	];
-}
-
-/**
- * Возвращает строку без Zalgo
- * @param string {string} - строка из которой необходимо убрать Zalgo
- * @returns {string}
- */
-function removeZalgo(string: string): string {
-	return string.replace(
-		/(̖|̗|̘|̙|̜|̝|̞|̟|̠|̤|̥|̦|̩|̪|̫|̬|̭|̮|̯|̰|̱|̲|̳|̹|̺|̻|̼|ͅ|͇|͈|͉|͍|͎|͓|͔|͕|͖|͙|͚|̣|̕|̛|̀|́|͘|̡|̢|̧|̨|̴|̵|̶|͏|͜|͝|͞|͟|͠|͢|̸|̷|͡|҉|̍|̎|̄|̅|̿|̑|̆|̐|͒|͗|͑|̇|̈|̊|͂|̓|̈́|͊|͋|͌|̃|̂|̌|͐|̀|́|̋|̏|̒|̓|̔|̽|̉|ͣ|ͤ|ͥ|ͦ|ͧ|ͨ|ͩ|ͪ|ͫ|ͬ|ͭ|ͮ|ͯ|̾|͛|͆|̚)/gi,
-		"",
-	);
-}
-
-export { levenshtein, declOfNum, removeZalgo };
+export {
+	getRandom,
+	getRandomArbitrary,
+	getRandomInt,
+	getRandomIntInclusive,
+	isInteger,
+	separator,
+};
 </code></pre>
         </article>
     </section>

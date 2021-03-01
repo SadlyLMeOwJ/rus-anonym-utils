@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation functions/regular.ts</title>
+  <title>Documentation lib/logger.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>functions/regular.ts</h1>
+                    <h1>lib/logger.ts</h1>
                 </header>
                 
 
@@ -94,100 +94,39 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module Regular
+ * @module Logger
  */
+import chalk from "chalk";
+import { currentDateTime } from "./time";
 
-import regularList from "../DB/regular/regularTemplate";
+type eventType = "debug" | "info" | "warn" | "error" | "fatal";
 
-/**
- * Проверка является ли переданная строка E-Mail адресом
- * @param email {string} - E-Mail адрес
- * @returns {boolean}
- */
-function isEmail(email: string): boolean {
-	return new RegExp(regularList.email, "").test(email);
-}
-
-/**
- *  Проверка является ли переданная строка IPv4 адресом
- * @param address {string} - IPv4 адрес
- * @returns {boolean}
- */
-function isIPv4(address: string): boolean {
-	return new RegExp(regularList.IPv4, "").test(address);
-}
-
-/**
- *  Проверка является ли переданная строка IPv6 адресом
- * @param address {string} - IPv6 адрес
- * @returns {boolean}
- */
-function isIPv6(address: string): boolean {
-	return new RegExp(regularList.IPv6, "").test(address);
-}
-
-/**
- *  Проверка является ли переданная строка IP адресом
- * @param address {string} - IP адрес
- * @returns {boolean}
- */
-function isIP(address: string): boolean {
-	return new RegExp(regularList.ip, "").test(address);
-}
-
-/**
- *  Проверка является ли переданная строка ccылкой
- * @param url {string} - URL
- * @returns {boolean}
- */
-function isURL(url: string): boolean {
-	return new RegExp(regularList.url, "").test(url);
-}
-
-/**
- * Проверка является ли переданная строка номером
- * @param email {string} - E-Mail адрес
- * @returns {boolean}
- */
-function isNumber(number: string): boolean {
-	return new RegExp(regularList.number, "i").test(number);
-}
-
-/**
- * @namespace
- * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
- * @example
- * // => RegEx
- * new RegExp(regular.list.email, "g");
- */
-const list = {
-	/**
-	 * Шаблон для E-Mail адресов
-	 */
-	email: regularList.email,
-	/**
-	 * Шаблон для IPv4 адресов
-	 */
-	IPv4: regularList.IPv4,
-	/**
-	 * Шаблон для IPv6 адресов
-	 */
-	IPv6: regularList.IPv6,
-	/**
-	 * Шаблон для любых IP адресов
-	 */
-	ip: regularList.ip,
-	/**
-	 * Шаблон для ссылок
-	 */
-	url: regularList.url,
-	/**
-	 * Шаблон для номеров
-	 */
-	number: regularList.email,
+const EVENTS: Record&lt;eventType, string> = {
+	debug: chalk.green("DEBUG"),
+	info: chalk.green("INFO"),
+	warn: chalk.yellow("WARN"),
+	error: chalk.red("ERROR"),
+	fatal: chalk.red("FATAL"),
 };
 
-export { list, isIPv4, isIPv6, isIP, isEmail, isURL, isNumber };
+function debug(text: string): void {
+	return console.log(`[${currentDateTime()}] | ${EVENTS.debug} - ${text}`);
+}
+
+function info(text: string): void {
+	return console.log(`[${currentDateTime()}] | ${EVENTS.info} - ${text}`);
+}
+function warn(text: string): void {
+	return console.log(`[${currentDateTime()}] | ${EVENTS.warn} - ${text}`);
+}
+function error(text: string): void {
+	return console.log(`[${currentDateTime()}] | ${EVENTS.error} - ${text}`);
+}
+function fatal(text: string): void {
+	return console.log(`[${currentDateTime()}] | ${EVENTS.fatal} - ${text}`);
+}
+
+export { debug, info, warn, error, fatal };
 </code></pre>
         </article>
     </section>

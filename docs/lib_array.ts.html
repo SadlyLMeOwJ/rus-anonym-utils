@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation functions/array.ts</title>
+  <title>Documentation lib/array.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>functions/array.ts</h1>
+                    <h1>lib/array.ts</h1>
                 </header>
                 
 
@@ -118,48 +118,47 @@ import {
  * // Return 2
  * array.random([1, 2, 3, 4]);
  */
-function random&lt;T>(inputArray: T[]): T {
+const random = &lt;T>(inputArray: T[]): T => {
 	return inputArray[getRandomIntInclusive(0, inputArray.length - 1)];
-}
+};
 
 /**
- * Убирает пустые элементы из массива
+ * Режет массив по чанкам
  * @param inputArray {Array} - массив
  * @param chunks {Array.&lt;Array>} - общее количество чанков, которое должно получиться
- * @returns отсортированный массив
+ * @returns итоговый массив
  *
  * @example
  * // Return [[1, 2], [3]]
  * array.splitOn([1, 2, 3], 2);
  */
-function splitOn&lt;T>(array: T[], chunks: number): Array&lt;T[]> {
+const splitOn = &lt;T>(array: T[], chunks: number): T[][] => {
 	return array.reduce(
 		(acc, n, i) => (
 			((acc[i % chunks] = acc[i % chunks] || []) as T[]).push(n), acc
 		),
 		[],
 	);
-}
+};
 
 /**
- * Режет массив по чанкам
+ * Режет массив по элементам в чанке
  * @param inputArray {Array} - массив
  * @param elementsInChunk - количество элементов в одном чанке
- * @returns отсортированный массив
+ * @returns итоговый массив
  *
  * @example
  * // Return [[1], [2], [3]]
  * array.splitTo([1, 2, 3], 3);
  */
-function splitTo&lt;T>(array: T[], elementsInChunk: number): T[][] {
-	let i, j;
-	const tmp: Array&lt;T[]> = [];
+function splitTo&lt;T>(inputArray: T[], elementsInChunk: number): T[][] {
+	const outputArray: Array&lt;T[]> = [];
 
-	for (i = 0, j = array.length; i &lt; j; i += elementsInChunk) {
-		tmp.push(array.slice(i, i + elementsInChunk));
+	for (let i = 0; i &lt; inputArray.length; i += elementsInChunk) {
+		outputArray.push(inputArray.slice(i, i + elementsInChunk));
 	}
 
-	return tmp;
+	return outputArray;
 }
 
 /**
