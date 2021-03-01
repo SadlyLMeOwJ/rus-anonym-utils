@@ -2,7 +2,7 @@
  * @module Utils
  */
 
-import * as array from "./lib/array";
+import * as array from "./lib/array/array";
 import * as logger from "./lib/logger";
 import * as logical from "./lib/logical";
 import * as number from "./lib/number";
