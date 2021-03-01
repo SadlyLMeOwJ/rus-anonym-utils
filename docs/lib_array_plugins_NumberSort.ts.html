@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation lib/array/plugins/NumberSort.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">RusAnonym Utils documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li><li><a href="Number.html">Number</a></li><li><a href="NumberSort.html">NumberSort</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>lib/array/plugins/NumberSort.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {
+	SortingBenchmarkResponse,
+	sortingAlgorithm,
+} from "../../../types/array";
+
+import { naturalStringSorter } from "../core";
+
+import { performance } from "perf_hooks";
+
+class NumberSort {
+	/**
+	 * @hideconstructor
+	 */
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	private constructor() {}
+
+	/**
+	 * Пузырьковая сортировка
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static bubble(inputArray: number[]): number[] {
+		inputArray = ([] as number[]).concat(inputArray);
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		for (let i = 0, endI = inputArray.length - 1; i &lt; endI; i++) {
+			for (let j = 0, endJ = endI - i; j &lt; endJ; j++) {
+				if (inputArray[j] > inputArray[j + 1]) {
+					const currentElement = inputArray[j];
+					inputArray[j] = inputArray[j + 1];
+					inputArray[j + 1] = currentElement;
+				}
+			}
+		}
+		return inputArray;
+	}
+	/**
+	 * Сортировка выбором
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static selection(inputArray: number[]): number[] {
+		inputArray = ([] as number[]).concat(inputArray);
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		const arrayLength = inputArray.length;
+		for (let i = 0; i &lt; arrayLength - 1; i++) {
+			let min = i;
+			for (let j = i + 1; j &lt; arrayLength; j++) {
+				if (inputArray[j] &lt; inputArray[min]) {
+					min = j;
+				}
+			}
+			const t = inputArray[min];
+			inputArray[min] = inputArray[i];
+			inputArray[i] = t;
+		}
+		return inputArray;
+	}
+	/**
+	 * Сортировка вставками
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static insertion(inputArray: number[]): number[] {
+		inputArray = ([] as number[]).concat(inputArray);
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		const n = inputArray.length;
+		for (let i = 0; i &lt; n; i++) {
+			const v = inputArray[i];
+			let j = i - 1;
+			while (j >= 0 &amp;&amp; inputArray[j] > v) {
+				inputArray[j + 1] = inputArray[j];
+				j--;
+			}
+			inputArray[j + 1] = v;
+		}
+		return inputArray;
+	}
+	/**
+	 * Сортировка Шелла
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static Shell(inputArray: number[]): number[] {
+		inputArray = ([] as number[]).concat(inputArray);
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		const n = inputArray.length;
+		let i = Math.floor(n / 2);
+		while (i > 0) {
+			for (let j = 0; j &lt; n; j++) {
+				let k = j;
+				const t = inputArray[j];
+				while (k >= i &amp;&amp; inputArray[k - i] > t) {
+					inputArray[k] = inputArray[k - i];
+					k -= i;
+				}
+				inputArray[k] = t;
+			}
+			i = i == 2 ? 1 : Math.floor((i * 5) / 11);
+		}
+		return inputArray;
+	}
+	/**
+	 * Сортировка подсчётом
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static simpleCounting(inputArray: number[]): number[] {
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		const n = inputArray.length,
+			count: number[] = [],
+			outputArray: number[] = [];
+		for (let i = 0; i &lt; n; i++) {
+			count[i] = 0;
+		}
+		for (let i = 0; i &lt; n - 1; i++) {
+			for (let j = i + 1; j &lt; n; j++) {
+				if (inputArray[i] &lt; inputArray[j]) count[j]++;
+				else count[i]++;
+			}
+		}
+		for (let i = 0; i &lt; n; i++) {
+			outputArray[count[i]] = inputArray[i];
+		}
+		return outputArray;
+	}
+	/**
+	 * Сортировка расчёской
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static comb(inputArray: number[]): number[] {
+		inputArray = ([] as number[]).concat(inputArray);
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		const l = inputArray.length;
+		const factor = 1.247;
+		let gapFactor = l / factor;
+		while (gapFactor > 1) {
+			const gap = Math.round(gapFactor);
+			for (let i = 0, j = gap; j &lt; l; i++, j++) {
+				if (inputArray[i] > inputArray[j]) {
+					[inputArray[i], inputArray[j]] = [inputArray[j], inputArray[i]];
+				}
+			}
+			gapFactor = gapFactor / factor;
+		}
+		return inputArray;
+	}
+	/**
+	 * Сортировка слиянием
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static merge(inputArray: number[]): number[] {
+		inputArray = ([] as number[]).concat(inputArray);
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		const middle = Math.floor(inputArray.length / 2);
+		const arrLeft = inputArray.slice(0, middle);
+		const arrRight = inputArray.slice(middle);
+
+		function mergeArray(firstArray: number[], secondArray: number[]): number[] {
+			const arrSort = [];
+			let i = 0;
+			let j = 0;
+			while (i &lt; firstArray.length &amp;&amp; j &lt; secondArray.length) {
+				arrSort.push(
+					firstArray[i] &lt; secondArray[j] ? firstArray[i++] : secondArray[j++],
+				);
+			}
+			return [...arrSort, ...firstArray.slice(i), ...secondArray.slice(j)];
+		}
+
+		return mergeArray(this.merge(arrLeft), this.merge(arrRight));
+	}
+	/**
+	 * Пирамидальная сортировка
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static heap(inputArray: number[]): number[] {
+		inputArray = ([] as number[]).concat(inputArray);
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		let n = inputArray.length,
+			i = Math.floor(n / 2),
+			j,
+			k,
+			t;
+		// eslint-disable-next-line no-constant-condition
+		while (true) {
+			if (i > 0) t = inputArray[--i];
+			else {
+				n--;
+				if (n == 0) {
+					return inputArray;
+				}
+				t = inputArray[n];
+				inputArray[n] = inputArray[0];
+			}
+			j = i;
+			k = j * 2 + 1;
+			while (k &lt; n) {
+				if (k + 1 &lt; n &amp;&amp; inputArray[k + 1] > inputArray[k]) k++;
+				if (inputArray[k] > t) {
+					inputArray[j] = inputArray[k];
+					j = k;
+					k = j * 2 + 1;
+				} else {
+					break;
+				}
+			}
+			inputArray[j] = t;
+		}
+	}
+	/**
+	 * Быстрая сортировка
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static quick(inputArray: number[]): number[] {
+		if (inputArray.length &lt;= 1) {
+			return inputArray;
+		}
+		const a = [],
+			b = [],
+			p = inputArray[0];
+		for (let i = 1; i &lt; inputArray.length; i++) {
+			if (inputArray[i] &lt; p) a[a.length] = inputArray[i];
+			else b[b.length] = inputArray[i];
+		}
+		return this.quick(a).concat(p, this.quick(b));
+	}
+	/**
+	 * Сортировка перемешиванием
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static shaker(inputArray: number[]): number[] {
+		let i = 0,
+			j = inputArray.length - 1,
+			s = true,
+			t;
+		while (i &lt; j &amp;&amp; s) {
+			s = false;
+			for (let k = i; k &lt; j; k++) {
+				if (inputArray[k] > inputArray[k + 1]) {
+					t = inputArray[k];
+					inputArray[k] = inputArray[k + 1];
+					inputArray[k + 1] = t;
+					s = true;
+				}
+			}
+			j--;
+			if (s) {
+				s = false;
+				for (let k = j; k > i; k--) {
+					if (inputArray[k] &lt; inputArray[k - 1]) {
+						t = inputArray[k];
+						inputArray[k] = inputArray[k - 1];
+						inputArray[k - 1] = t;
+						s = true;
+					}
+				}
+			}
+			i++;
+		}
+		return inputArray;
+	}
+	/**
+	 * Гномья сортировка
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static gnome(inputArray: number[]): number[] {
+		const n = inputArray.length;
+		let i = 1;
+		let j = 2;
+		while (i &lt; n) {
+			if (inputArray[i - 1] &lt; inputArray[i]) {
+				i = j;
+				j++;
+			} else {
+				const t = inputArray[i - 1];
+				inputArray[i - 1] = inputArray[i];
+				inputArray[i] = t;
+				i--;
+				if (i == 0) {
+					i = j;
+					j++;
+				}
+			}
+		}
+		return inputArray;
+	}
+	/**
+	 * Натуральная сортировка
+	 * @param inputArray {Array} - массив с числами
+	 * @returns отсортированный массив с числами
+	 */
+	public static naturalStringSorter(inputArray: number[]): number[] {
+		return naturalStringSorter(inputArray, function (element: number): string {
+			return element.toString();
+		});
+	}
+	/**
+	 * Сравнивает все методы сортировок
+	 * @param inputArray {Array} - массив с числами, либо число из которого нужно сгенерировать массив
+	 * @returns {Object} benchmark - Объект с выполнеными тестами
+	 */
+	public static benchmark(input: number[] | number): SortingBenchmarkResponse {
+		let inputArray: number[] = [];
+		if (Number.isInteger(input) === true) {
+			inputArray = Array.from({ length: Number(input) }, () =>
+				Math.floor(Math.random() * Number(input)),
+			);
+		} else if (Array.isArray(input)) {
+			inputArray = input;
+		}
+
+		const sortingAlgorithms: sortingAlgorithm[] = [
+			"bubble",
+			"selection",
+			"insertion",
+			"Shell",
+			"simpleCounting",
+			"comb",
+			"merge",
+			"heap",
+			"quick",
+			"shaker",
+			"gnome",
+			"naturalStringSorter",
+		];
+
+		const response: SortingBenchmarkResponse = {
+			fastest: {
+				algorithm: "Shell",
+				rate: Number.MAX_VALUE,
+			},
+			slowest: {
+				algorithm: "Shell",
+				rate: 0,
+			},
+			summary: {
+				bubble: 0,
+				selection: 0,
+				insertion: 0,
+				Shell: 0,
+				simpleCounting: 0,
+				comb: 0,
+				merge: 0,
+				heap: 0,
+				quick: 0,
+				shaker: 0,
+				gnome: 0,
+				naturalStringSorter: 0,
+			},
+			totalTime: 0,
+			sourceArray: inputArray,
+			sortedArray: [],
+		};
+
+		for (const algorithm of sortingAlgorithms) {
+			const sortStart = performance.now();
+			response.sortedArray = this[algorithm](inputArray);
+			response.summary[algorithm] = performance.now() - sortStart;
+		}
+
+		let tempKey: sortingAlgorithm;
+
+		for (tempKey in response.summary) {
+			if (response.fastest.rate > response.summary[tempKey]) {
+				response.fastest.algorithm = tempKey;
+				response.fastest.rate = response.summary[tempKey];
+			}
+			if (response.slowest.rate &lt; response.summary[tempKey]) {
+				response.slowest.algorithm = tempKey;
+				response.slowest.rate = response.summary[tempKey];
+			}
+			response.totalTime += response.summary[tempKey];
+		}
+
+		return response;
+	}
+}
+
+export default NumberSort;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation NumberArraysSort</title>
+  <title>Documentation Clone</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -74,7 +74,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="module-Array-Clone.html">Clone</a></li><li><a href="module-Array-NumberArrays.html">NumberArrays</a></li><li><a href="module-Array-NumberArraysSort.html">NumberArraysSort</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logger.html">Logger</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li><li><a href="Number.html">Number</a></li><li><a href="NumberSort.html">NumberSort</a></li></ul></div>
                 
             </nav>
         </div>
@@ -82,7 +82,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Class</p>
-                    <h1>NumberArraysSort</h1>
+                    <h1>Clone</h1>
                 </header>
                 
 
@@ -93,10 +93,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-Array.html">Array</a>~</span>NumberArraysSort</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Clone</h2>
         
-            <div class="class-description"><p>Класс для работы с сортировкой числовых массивов</p></div>
+            <div class="class-description"><p>Класс для работы с методами клонирования массивов</p></div>
         
     
 </header>
@@ -153,9 +152,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line403">line 403</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line9">line 9</a>
             </span>
         </p>
     
@@ -185,7 +184,7 @@
     
     
         <pre class="prettyprint"><code>const utils = require(`rus-anonym-utils`);
-utils.array.number.sort</code></pre>
+utils.array.clone</code></pre>
     
 
 
@@ -217,12 +216,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="benchmark">
-        <a class="href-link" href="#benchmark">#</a>
+    <h4 class="name" id=".apply">
+        <a class="href-link" href="#.apply">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                benchmark<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Object}</span>
+                apply<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -231,7 +234,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Сравнивает все методы сортировок</p>
+        <p>Клонирование массива с помощью apply</p>
     </div>
     
 
@@ -285,7 +288,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами, либо число из которого нужно сгенерировать массив</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -331,9 +334,178 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line709">line 709</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line72">line 72</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>новый массив</p></div>
+    
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id=".benchmark">
+        <a class="href-link" href="#.benchmark">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
+        
+        <span class="code-name">
+            
+                benchmark<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Object}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Сравнивает все методы копирования</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line131">line 131</a>
             </span>
         </p>
     
@@ -390,12 +562,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="bubble">
-        <a class="href-link" href="#bubble">#</a>
+    <h4 class="name" id=".concat">
+        <a class="href-link" href="#.concat">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                bubble<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                concat<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -404,7 +580,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Пузырьковая сортировка</p>
+        <p>Клонирование массива с помощью concat</p>
     </div>
     
 
@@ -458,7 +634,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -504,9 +680,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line414">line 414</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line28">line 28</a>
             </span>
         </p>
     
@@ -537,7 +713,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -555,12 +731,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="comb">
-        <a class="href-link" href="#comb">#</a>
+    <h4 class="name" id=".from">
+        <a class="href-link" href="#.from">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                comb<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                from<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -569,7 +749,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Сортировка расчёской</p>
+        <p>Клонирование массива с помощью Array.from</p>
     </div>
     
 
@@ -623,7 +803,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -669,9 +849,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line533">line 533</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line107">line 107</a>
             </span>
         </p>
     
@@ -702,7 +882,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -720,12 +900,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="gnome">
-        <a class="href-link" href="#gnome">#</a>
+    <h4 class="name" id=".index">
+        <a class="href-link" href="#.index">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                gnome<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                index<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -734,7 +918,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Гномья сортировка</p>
+        <p>Клонирование массива с помощью index</p>
     </div>
     
 
@@ -788,7 +972,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -834,9 +1018,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line672">line 672</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line60">line 60</a>
             </span>
         </p>
     
@@ -867,7 +1051,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -885,12 +1069,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="heap">
-        <a class="href-link" href="#heap">#</a>
+    <h4 class="name" id=".json">
+        <a class="href-link" href="#.json">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                heap<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                json<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -899,7 +1087,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Пирамидальная сортировка</p>
+        <p>Клонирование массива с помощью JSON</p>
     </div>
     
 
@@ -953,7 +1141,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -999,9 +1187,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line581">line 581</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line91">line 91</a>
             </span>
         </p>
     
@@ -1032,7 +1220,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -1050,12 +1238,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="insertion">
-        <a class="href-link" href="#insertion">#</a>
+    <h4 class="name" id=".map">
+        <a class="href-link" href="#.map">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                insertion<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                map<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1064,7 +1256,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Сортировка вставками</p>
+        <p>Клонирование массива с помощью map</p>
     </div>
     
 
@@ -1118,7 +1310,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -1164,9 +1356,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line459">line 459</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line81">line 81</a>
             </span>
         </p>
     
@@ -1197,7 +1389,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -1215,12 +1407,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="merge">
-        <a class="href-link" href="#merge">#</a>
+    <h4 class="name" id=".push">
+        <a class="href-link" href="#.push">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                merge<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                push<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1229,7 +1425,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Сортировка слиянием</p>
+        <p>Клонирование массива с помощью push</p>
     </div>
     
 
@@ -1283,7 +1479,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -1329,9 +1525,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line557">line 557</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line48">line 48</a>
             </span>
         </p>
     
@@ -1362,7 +1558,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -1380,12 +1576,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="naturalStringSorter">
-        <a class="href-link" href="#naturalStringSorter">#</a>
+    <h4 class="name" id=".recursionDeep">
+        <a class="href-link" href="#.recursionDeep">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                naturalStringSorter<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                recursionDeep<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1394,7 +1594,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Натуральная сортировка</p>
+        <p>Рекурсивное глубокое копирование массива (копирует подмассив)</p>
     </div>
     
 
@@ -1448,7 +1648,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -1494,9 +1694,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line699">line 699</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line115">line 115</a>
             </span>
         </p>
     
@@ -1527,7 +1727,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -1545,12 +1745,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="quick">
-        <a class="href-link" href="#quick">#</a>
+    <h4 class="name" id=".slice">
+        <a class="href-link" href="#.slice">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                quick<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                slice<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1559,7 +1763,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Быстрая сортировка</p>
+        <p>Клонирование массива с помощью slice</p>
     </div>
     
 
@@ -1613,7 +1817,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -1659,9 +1863,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line621">line 621</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line20">line 20</a>
             </span>
         </p>
     
@@ -1692,7 +1896,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -1710,12 +1914,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="selection">
-        <a class="href-link" href="#selection">#</a>
+    <h4 class="name" id=".spread">
+        <a class="href-link" href="#.spread">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                selection<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                spread<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1724,7 +1932,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Сортировка выбором</p>
+        <p>Клонирование массива с помощью spread</p>
     </div>
     
 
@@ -1778,7 +1986,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -1824,9 +2032,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line435">line 435</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line99">line 99</a>
             </span>
         </p>
     
@@ -1857,7 +2065,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>
@@ -1875,12 +2083,16 @@ utils.array.number.sort</code></pre>
 
 
     
-    <h4 class="name" id="shaker">
-        <a class="href-link" href="#shaker">#</a>
+    <h4 class="name" id=".unshift">
+        <a class="href-link" href="#.unshift">#</a>
+        
+            
+                <span class='tag'>static</span>
+            
         
         <span class="code-name">
             
-                shaker<span class="signature">(inputArray)</span><span class="type-signature"></span>
+                unshift<span class="signature">(inputArray)</span><span class="type-signature"></span>
             
         </span>
     </h4>
@@ -1889,7 +2101,7 @@ utils.array.number.sort</code></pre>
     
     
     <div class="description">
-        <p>Сортировка перемешиванием</p>
+        <p>Клонирование массива с помощью unshift</p>
     </div>
     
 
@@ -1943,7 +2155,7 @@ utils.array.number.sort</code></pre>
 
   
 
-  <td class="description last"><p>массив с числами</p></td>
+  <td class="description last"><p>массив</p></td>
 </tr>
 
 
@@ -1989,9 +2201,9 @@ utils.array.number.sort</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Clone.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line639">line 639</a>
+                <a href="lib_array_plugins_Clone.ts.html">lib/array/plugins/Clone.ts</a>, <a href="lib_array_plugins_Clone.ts.html#line36">line 36</a>
             </span>
         </p>
     
@@ -2022,337 +2234,7 @@ utils.array.number.sort</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
-    
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="Shell">
-        <a class="href-link" href="#Shell">#</a>
-        
-        <span class="code-name">
-            
-                Shell<span class="signature">(inputArray)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Сортировка Шелла</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>inputArray</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>массив с числами</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line481">line 481</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
-    
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="simpleCounting">
-        <a class="href-link" href="#simpleCounting">#</a>
-        
-        <span class="code-name">
-            
-                simpleCounting<span class="signature">(inputArray)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Сортировка подсчётом</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>inputArray</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>массив с числами</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_array.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_array.ts.html">lib/array.ts</a>, <a href="lib_array.ts.html#line507">line 507</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    <div class='param-desc column is-7'><p>новый массив</p></div>
     
     
 </div>

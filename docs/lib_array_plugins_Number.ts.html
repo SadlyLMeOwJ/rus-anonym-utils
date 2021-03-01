@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation VK</title>
+  <title>Documentation lib/array/plugins/Number.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -81,247 +83,58 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>VK</h1>
+                    <p>Source</p>
+                    <h1>lib/array/plugins/Number.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Namespaces</h3>
-
-        <dl>
-            <dt><a href="module-VK-api.html">api</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-VK-article.html">article</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-VK-group.html">group</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-VK-user.html">user</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="~checkToken">
-        <a class="href-link" href="#~checkToken">#</a>
-        
-            
-                <span class='tag'>async</span>
-            
-                <span class='tag'>inner</span>
-            
-        
-        <span class="code-name">
-            
-                checkToken<span class="signature">(token)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Проверка токена</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>token</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Проверяемый токен</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_vk.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_vk.ts.html">lib/vk.ts</a>, <a href="lib_vk.ts.html#line287">line 287</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>данные токена</p></div>
-    
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Sort from "./NumberSort";
+
+class Number {
+	/**
+	 * @hideconstructor
+	 */
+	// eslint-disable-next-line @typescript-eslint/no-empty-function
+	private constructor() {}
+
+	/**
+	 * Вывод минимального значения в массиве
+	 * @param inputArray {Array} - массив с числами
+	 * @returns - минимальное значение
+	 */
+	public static min(inputArray: number[]): number {
+		return Math.min.apply(null, inputArray);
+	}
+
+	/**
+	 * Вывод максимального значения в массиве
+	 * @param inputArray {Array} - массив с числами
+	 * @returns максимальное значение
+	 */
+	public static max(inputArray: number[]): number {
+		return Math.max.apply(null, inputArray);
+	}
+	/**
+	 * Вывод среднего значения в массиве
+	 * @param inputArray {Array} - массив с числами
+	 * @returns среднее значение
+	 */
+	public static average(inputArray: number[]): number {
+		return inputArray.reduce((a, b) => a + b) / inputArray.length;
+	}
+
+	public static sort = Sort;
+}
+
+export default Number;
+</code></pre>
+        </article>
+    </section>
 
 
 
