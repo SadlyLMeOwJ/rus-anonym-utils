@@ -106,7 +106,7 @@ import { declOfNum } from "./string";
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return время в формате HH:MM:SS
  */
-function getTimeByMS(milliseconds: number | Date): string {
+const getTimeByMS = (milliseconds: number | Date): string => {
 	const { hours, minutes, seconds } = _getDate(Number(milliseconds));
 
 	return (
@@ -116,14 +116,14 @@ function getTimeByMS(milliseconds: number | Date): string {
 		":" +
 		(seconds &lt; 10 ? "0" + seconds : seconds)
 	);
-}
+};
 
 /**
  * Получить дату по миллисекундам
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата в формате DD:MM:YY
  */
-function getDateByMS(milliseconds: number | Date): string {
+const getDateByMS = (milliseconds: number | Date): string => {
 	const { days, month, year } = _getDate(Number(milliseconds));
 	return (
 		(days &lt; 10 ? "0" + days : days) +
@@ -132,14 +132,14 @@ function getDateByMS(milliseconds: number | Date): string {
 		"." +
 		year
 	);
-}
+};
 
 /**
  * Получить время и дату по миллисекундам
  * @param milliseconds - количество миллисекунд от 1 января 1970
  * @return дата и время в формате HH:MM:SS | DD:MM:YY
  */
-function getDateTimeByMS(milliseconds: number | Date): string {
+const getDateTimeByMS = (milliseconds: number | Date): string => {
 	const { hours, minutes, seconds, days, month, year } = _getDate(
 		Number(milliseconds),
 	);
@@ -157,33 +157,27 @@ function getDateTimeByMS(milliseconds: number | Date): string {
 		"." +
 		year
 	);
-}
+};
 
 /**
  * Получить текущее время
  * @return текущее время в формате HH:MM:SS
  */
-function currentTime(): string {
-	return getTimeByMS(Date.now());
-}
+const currentTime = (): string => getTimeByMS(Date.now());
 
 /**
  * Получить текущую дату
  * @return текущая дата в формате  DD:MM:YY
  */
-function currentDate(): string {
-	return getDateByMS(Date.now());
-}
+const currentDate = (): string => getDateByMS(Date.now());
 
 /**
  * Получить текущее время и дату
  * @return текущее время и дата в формате HH:MM:SS | DD:MM:YY
  */
-function currentDateTime(): string {
-	return getDateTimeByMS(Date.now());
-}
+const currentDateTime = (): string => getDateTimeByMS(Date.now());
 
-function _getDate(
+const _getDate = (
 	milliseconds: number,
 ): {
 	hours: number;
@@ -192,7 +186,7 @@ function _getDate(
 	days: number;
 	month: number;
 	year: number;
-} {
+} => {
 	const date: Date = new Date(milliseconds);
 
 	return {
@@ -203,7 +197,7 @@ function _getDate(
 		month: date.getMonth() + 1,
 		year: date.getFullYear(),
 	};
-}
+};
 
 /**
  * Получить время до нового года
@@ -212,7 +206,7 @@ function _getDate(
  * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
  * utils.time.getTimeUntilNewYear();
  */
-function getTimeUntilNewYear(): string {
+const getTimeUntilNewYear = (): string => {
 	const newYearDate = moment(
 		`${new Date().getFullYear() + 1}-01-01 00:00:00`,
 		"YYYY-MM-DD HH:mm:ss",
@@ -256,7 +250,7 @@ function getTimeUntilNewYear(): string {
 			  declOfNum(objectWithTime.seconds, ["секунда", "секунды", "секунд"])
 			: "")
 	);
-}
+};
 
 /**
  * Получить время до выбранной даты
@@ -265,7 +259,7 @@ function getTimeUntilNewYear(): string {
  * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
  * utils.time.getPrecizeDiff(new Date(), new Date(Number(new Date()) + 2813645000));
  */
-function getPrecizeDiff({
+const getPrecizeDiff = ({
 	firstDate,
 	secondDate,
 	json = false,
@@ -294,7 +288,7 @@ function getPrecizeDiff({
 	| Record&lt;
 			"year" | "month" | "day" | "hour" | "minute" | "second",
 			{ value: number; declination: string }
-	  > {
+	  > => {
 	const objectWithTime = moment.preciseDiff(
 		moment(firstDate),
 		moment(secondDate),
@@ -351,7 +345,7 @@ function getPrecizeDiff({
 				: "")
 		);
 	}
-}
+};
 
 export {
 	getTimeByMS,
