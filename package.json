@@ -1,6 +1,6 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "2.0.34",
+	"version": "2.1.0",
 	"description": "Personal set of utilities from RusAnonym",
 	"main": "./dist/cjs/main.js",
 	"module": "./dist/main.js",
