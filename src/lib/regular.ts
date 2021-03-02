@@ -9,54 +9,54 @@ import regularList from "../DB/regular/regularTemplate";
  * @param email {string} - E-Mail адрес
  * @returns {boolean}
  */
-function isEmail(email: string): boolean {
+const isEmail = (email: string): boolean => {
 	return new RegExp(regularList.email, "").test(email);
-}
+};
 
 /**
  *  Проверка является ли переданная строка IPv4 адресом
  * @param address {string} - IPv4 адрес
  * @returns {boolean}
  */
-function isIPv4(address: string): boolean {
+const isIPv4 = (address: string): boolean => {
 	return new RegExp(regularList.IPv4, "").test(address);
-}
+};
 
 /**
  *  Проверка является ли переданная строка IPv6 адресом
  * @param address {string} - IPv6 адрес
  * @returns {boolean}
  */
-function isIPv6(address: string): boolean {
+const isIPv6 = (address: string): boolean => {
 	return new RegExp(regularList.IPv6, "").test(address);
-}
+};
 
 /**
  *  Проверка является ли переданная строка IP адресом
  * @param address {string} - IP адрес
  * @returns {boolean}
  */
-function isIP(address: string): boolean {
+const isIP = (address: string): boolean => {
 	return new RegExp(regularList.ip, "").test(address);
-}
+};
 
 /**
  *  Проверка является ли переданная строка ccылкой
  * @param url {string} - URL
  * @returns {boolean}
  */
-function isURL(url: string): boolean {
+const isURL = (url: string): boolean => {
 	return new RegExp(regularList.url, "").test(url);
-}
+};
 
 /**
  * Проверка является ли переданная строка номером
  * @param email {string} - E-Mail адрес
  * @returns {boolean}
  */
-function isNumber(number: string): boolean {
+const isNumber = (number: string): boolean => {
 	return new RegExp(regularList.number, "i").test(number);
-}
+};
 
 /**
  * @namespace

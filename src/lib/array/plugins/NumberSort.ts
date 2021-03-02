@@ -7,6 +7,8 @@ import { naturalStringSorter } from "../core";
 
 import { performance } from "perf_hooks";
 
+import Clone from "./Clone";
+
 class NumberSort {
 	/**
 	 * @hideconstructor
@@ -376,7 +378,7 @@ class NumberSort {
 
 		for (const algorithm of sortingAlgorithms) {
 			const sortStart = performance.now();
-			response.sortedArray = this[algorithm](inputArray);
+			response.sortedArray = this[algorithm](Clone.concat(inputArray));
 			response.summary[algorithm] = performance.now() - sortStart;
 		}
 

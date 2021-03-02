@@ -2,7 +2,7 @@
  * @module String
  */
 
-function levenshtein(
+const levenshtein = (
 	s1: string,
 	s2: string,
 	costs?: {
@@ -11,7 +11,7 @@ function levenshtein(
 		insert?: number;
 		remove?: number;
 	},
-): number {
+): number => {
 	let flip: number,
 		ch: string,
 		chl: string,
@@ -53,7 +53,7 @@ function levenshtein(
 		}
 	}
 	return buf[l2 + cutHalf - flip];
-}
+};
 
 /**
  * Функция для корректного склонения чисел
@@ -64,7 +64,7 @@ function levenshtein(
  * // => помидора
  * string.declOfNum(3, ["помидор", "помидора", "помидоров"]);
  */
-function declOfNum(inputNumber: number, titlesArray: string[]): string {
+const declOfNum = (inputNumber: number, titlesArray: string[]): string => {
 	return titlesArray[
 		inputNumber % 10 === 1 && inputNumber % 100 !== 11
 			? 0
@@ -74,18 +74,18 @@ function declOfNum(inputNumber: number, titlesArray: string[]): string {
 			? 1
 			: 2
 	];
-}
+};
 
 /**
  * Возвращает строку без Zalgo
  * @param string {string} - строка из которой необходимо убрать Zalgo
  * @returns {string}
  */
-function removeZalgo(string: string): string {
+const removeZalgo = (string: string): string => {
 	return string.replace(
 		/(̖|̗|̘|̙|̜|̝|̞|̟|̠|̤|̥|̦|̩|̪|̫|̬|̭|̮|̯|̰|̱|̲|̳|̹|̺|̻|̼|ͅ|͇|͈|͉|͍|͎|͓|͔|͕|͖|͙|͚|̣|̕|̛|̀|́|͘|̡|̢|̧|̨|̴|̵|̶|͏|͜|͝|͞|͟|͠|͢|̸|̷|͡|҉|̍|̎|̄|̅|̿|̑|̆|̐|͒|͗|͑|̇|̈|̊|͂|̓|̈́|͊|͋|͌|̃|̂|̌|͐|̀|́|̋|̏|̒|̓|̔|̽|̉|ͣ|ͤ|ͥ|ͦ|ͧ|ͨ|ͩ|ͪ|ͫ|ͬ|ͭ|ͮ|ͯ|̾|͛|͆|̚)/gi,
 		"",
 	);
-}
+};
 
 export { levenshtein, declOfNum, removeZalgo };
