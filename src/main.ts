@@ -15,3 +15,5 @@ const array = new ArrayClass();
 const logical = new LogicalClass();
 
 export { array, logical, number, regular, smileys, string, time, vk };
+
+export default { array, logical, number, regular, smileys, string, time, vk };
