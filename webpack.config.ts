@@ -1,5 +1,6 @@
 import * as path from "path";
 import * as webpack from "webpack";
+import nodeExternals from "webpack-node-externals";
 
 const config: webpack.Configuration = {
 	mode: "production",
@@ -17,6 +18,7 @@ const config: webpack.Configuration = {
 	resolve: {
 		extensions: [".ts", ".js"],
 	},
+	externals: [nodeExternals()],
 	output: {
 		filename: "main.js",
 		library: {
