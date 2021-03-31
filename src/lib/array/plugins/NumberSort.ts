@@ -1,10 +1,12 @@
 import { SortingBenchmarkResponse, sortingAlgorithm } from "../types";
 
-import core from "../core";
-
 import { performance } from "perf_hooks";
 
-import Clone from "./Clone";
+import CloneClass from "./Clone";
+
+import naturalStringSorter from "../lib/naturalStringSorter";
+
+const Clone = new CloneClass();
 
 class NumberSort {
 	/**
@@ -316,12 +318,9 @@ class NumberSort {
 	 * @returns отсортированный массив с числами
 	 */
 	public naturalStringSorter(inputArray: number[]): number[] {
-		return new core().naturalStringSorter(
-			inputArray,
-			function (element: number): string {
-				return element.toString();
-			},
-		);
+		return naturalStringSorter(inputArray, function (element: number): string {
+			return element.toString();
+		});
 	}
 
 	/**
@@ -384,7 +383,7 @@ class NumberSort {
 
 		for (const algorithm of sortingAlgorithms) {
 			const sortStart = performance.now();
-			response.sortedArray = this[algorithm](new Clone().concat(inputArray));
+			response.sortedArray = this[algorithm](Clone.concat(inputArray));
 			response.summary[algorithm] = performance.now() - sortStart;
 		}
 

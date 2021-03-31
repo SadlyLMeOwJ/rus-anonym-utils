@@ -3,18 +3,12 @@
  * @description Функции для работы с массивами
  */
 
-import LogicalClass from "../logical/core";
 import { getRandomIntInclusive } from "../number/core";
+import naturalStringSorter from "./lib/naturalStringSorter";
 
 import CloneArray from "./plugins/Clone";
 import NumberArray from "./plugins/Number";
-
-const Logical = new LogicalClass();
 export default class Array {
-	private __naturalSortingCompare(a: number, b: number) {
-		return a < b ? -1 : a > b ? 1 : 0;
-	}
-
 	/**
 	 * Возвращает рандомный элемент из массива
 	 * @param inputArray {Array} - массив
@@ -135,104 +129,7 @@ export default class Array {
 		array: T[],
 		extractor?: (input: T) => string,
 	): T[] {
-		function createSplitter(item: T): Splitter {
-			return new Splitter(item);
-		}
-
-		class elementsPart {
-			value: string | number;
-			isNumber: boolean;
-			constructor(text: string, isNumber: boolean) {
-				this.isNumber = isNumber;
-				this.value = isNumber ? Number(text) : text;
-			}
-		}
-		class Splitter {
-			source: T;
-			private key: string;
-			private elements: elementsPart[] = [];
-			private currentIndex = 0;
-			private fromIndex = 0;
-			private completed = false;
-			findElements() {
-				return this.elements.length;
-			}
-			processElement(elementIndex: number) {
-				while (this.elements.length <= elementIndex && !this.completed) {
-					this.parseString();
-				}
-				return elementIndex < this.elements.length
-					? this.elements[elementIndex]
-					: null;
-			}
-			private isNumber(char: string) {
-				const code = char.charCodeAt(0);
-				return code >= "0".charCodeAt(0) && code <= "9".charCodeAt(0);
-			}
-			private parseString() {
-				if (this.currentIndex < this.key.length) {
-					while (++this.currentIndex) {
-						const currentIsDigit = this.isNumber(
-							this.key.charAt(this.currentIndex - 1),
-						);
-						const nextChar = this.key.charAt(this.currentIndex);
-						const currentIsLast = this.currentIndex === this.key.length;
-
-						const isBorder =
-							currentIsLast ||
-							Logical.XOR(currentIsDigit, this.isNumber(nextChar));
-						if (isBorder) {
-							const partStr = this.key.slice(this.fromIndex, this.currentIndex);
-							this.elements.push(new elementsPart(partStr, currentIsDigit));
-							this.fromIndex = this.currentIndex;
-							break;
-						}
-					}
-				} else {
-					this.completed = true;
-				}
-			}
-			constructor(item: T) {
-				this.source = item;
-				this.key =
-					typeof extractor === "function" ? extractor(item) : String(item);
-			}
-		}
-
-		const splittersArray = array.map(createSplitter);
-		const sortedSplittersArray = splittersArray.sort(
-			(sp1: Splitter, sp2: Splitter) => {
-				let i = 0;
-				do {
-					const first = sp1.processElement(i);
-					const second = sp2.processElement(i);
-
-					if (null !== first && null !== second) {
-						if (Logical.XOR(first.isNumber, second.isNumber)) {
-							return first.isNumber ? -1 : 1;
-						} else {
-							const comp = this.__naturalSortingCompare(
-								Number(first.value),
-								Number(second.value),
-							);
-							if (comp != 0) {
-								return comp;
-							}
-						}
-					} else {
-						return this.__naturalSortingCompare(
-							sp1.findElements(),
-							sp2.findElements(),
-						);
-					}
-				} while (++i);
-				return 0;
-			},
-		);
-
-		return sortedSplittersArray.map(function (splitterInstance: Splitter) {
-			return splitterInstance.source;
-		});
+		return naturalStringSorter(array, extractor);
 	}
 
 	/**
