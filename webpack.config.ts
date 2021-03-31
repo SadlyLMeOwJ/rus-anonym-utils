@@ -1,11 +1,23 @@
 import * as path from "path";
 import * as webpack from "webpack";
 import nodeExternals from "webpack-node-externals";
+import TerserWebpack from "terser-webpack-plugin";
 
 const config: webpack.Configuration = {
 	mode: "production",
 	target: "node",
 	entry: "./src/main.ts",
+	optimization: {
+		minimize: true,
+		minimizer: [
+			new TerserWebpack({
+				parallel: true,
+				terserOptions: {
+					module: true,
+				},
+			}),
+		],
+	},
 	module: {
 		rules: [
 			{
