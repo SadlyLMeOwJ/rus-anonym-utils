@@ -1,9 +1,6 @@
-import {
-	SortingBenchmarkResponse,
-	sortingAlgorithm,
-} from "../types";
+import { SortingBenchmarkResponse, sortingAlgorithm } from "../types";
 
-import { naturalStringSorter } from "../core";
+import core from "../core";
 
 import { performance } from "perf_hooks";
 
@@ -11,17 +8,11 @@ import Clone from "./Clone";
 
 class NumberSort {
 	/**
-	 * @hideconstructor
-	 */
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	private constructor() {}
-
-	/**
 	 * Пузырьковая сортировка
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static bubble(inputArray: number[]): number[] {
+	public bubble(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
@@ -42,7 +33,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static selection(inputArray: number[]): number[] {
+	public selection(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
@@ -66,7 +57,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static insertion(inputArray: number[]): number[] {
+	public insertion(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
@@ -88,7 +79,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static Shell(inputArray: number[]): number[] {
+	public Shell(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
@@ -114,7 +105,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static simpleCounting(inputArray: number[]): number[] {
+	public simpleCounting(inputArray: number[]): number[] {
 		if (inputArray.length <= 1) {
 			return inputArray;
 		}
@@ -140,7 +131,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static comb(inputArray: number[]): number[] {
+	public comb(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
@@ -164,7 +155,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static merge(inputArray: number[]): number[] {
+	public merge(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
@@ -192,7 +183,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static heap(inputArray: number[]): number[] {
+	public heap(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
@@ -233,7 +224,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static quick(inputArray: number[]): number[] {
+	public quick(inputArray: number[]): number[] {
 		if (inputArray.length <= 1) {
 			return inputArray;
 		}
@@ -251,7 +242,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static shaker(inputArray: number[]): number[] {
+	public shaker(inputArray: number[]): number[] {
 		let i = 0,
 			j = inputArray.length - 1,
 			s = true,
@@ -287,7 +278,7 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static gnome(inputArray: number[]): number[] {
+	public gnome(inputArray: number[]): number[] {
 		const n = inputArray.length;
 		let i = 1;
 		let j = 2;
@@ -313,17 +304,20 @@ class NumberSort {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public static naturalStringSorter(inputArray: number[]): number[] {
-		return naturalStringSorter(inputArray, function (element: number): string {
-			return element.toString();
-		});
+	public naturalStringSorter(inputArray: number[]): number[] {
+		return new core().naturalStringSorter(
+			inputArray,
+			function (element: number): string {
+				return element.toString();
+			},
+		);
 	}
 	/**
 	 * Сравнивает все методы сортировок
 	 * @param inputArray {Array} - массив с числами, либо число из которого нужно сгенерировать массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public static benchmark(input: number[] | number): SortingBenchmarkResponse {
+	public benchmark(input: number[] | number): SortingBenchmarkResponse {
 		let inputArray: number[] = [];
 		if (Number.isInteger(input) === true) {
 			inputArray = Array.from({ length: Number(input) }, () =>
@@ -378,7 +372,7 @@ class NumberSort {
 
 		for (const algorithm of sortingAlgorithms) {
 			const sortStart = performance.now();
-			response.sortedArray = this[algorithm](Clone.concat(inputArray));
+			response.sortedArray = this[algorithm](new Clone().concat(inputArray));
 			response.summary[algorithm] = performance.now() - sortStart;
 		}
 

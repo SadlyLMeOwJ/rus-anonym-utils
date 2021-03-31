@@ -2,12 +2,6 @@ import Sort from "./NumberSort";
 
 class Number {
 	/**
-	 * @hideconstructor
-	 */
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	private constructor() {}
-
-	/**
 	 * Вывод минимального значения в массиве
 	 * @param inputArray {Array} - массив с числами
 	 * @returns - минимальное значение
@@ -33,7 +27,7 @@ class Number {
 		return inputArray.reduce((a, b) => a + b) / inputArray.length;
 	}
 
-	public static sort = Sort;
+	public static sort = new Sort();
 }
 
 export default Number;
