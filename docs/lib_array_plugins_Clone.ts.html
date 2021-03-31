@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Random.html">Random</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul><h3>Classes</h3><ul><li><a href="Clone.html">Clone</a></li><li><a href="Number.html">Number</a></li><li><a href="NumberSort.html">NumberSort</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
                 
             </nav>
         </div>
@@ -97,25 +97,13 @@
 
 import { performance } from "perf_hooks";
 
-/**
- * Класс для работы с методами клонирования массивов
- * @example
- * const utils = require(`rus-anonym-utils`);
- * utils.array.clone
- */
 class Clone {
-	/**
-	 * @hideconstructor
-	 */
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	private constructor() {}
-
 	/**
 	 * Клонирование массива с помощью slice
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static slice&lt;T>(inputArray: T[]): T[] {
+	public slice&lt;T>(inputArray: T[]): T[] {
 		return inputArray.slice() as T[];
 	}
 
@@ -124,7 +112,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static concat&lt;T>(inputArray: T[]): T[] {
+	public concat&lt;T>(inputArray: T[]): T[] {
 		return ([] as T[]).concat(inputArray) as T[];
 	}
 
@@ -133,7 +121,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static unshift&lt;T>(inputArray: T[]): T[] {
+	public unshift&lt;T>(inputArray: T[]): T[] {
 		const output: T[] = [];
 		for (let i = inputArray.length; i--; ) {
 			output.unshift(inputArray[i]);
@@ -146,7 +134,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static push&lt;T>(inputArray: T[]): T[] {
+	public push&lt;T>(inputArray: T[]): T[] {
 		const output: T[] = [];
 		for (let i = 0, l = inputArray.length; i &lt; l; i++) {
 			output.push(inputArray[i]);
@@ -159,7 +147,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static index&lt;T>(inputArray: T[]): T[] {
+	public index&lt;T>(inputArray: T[]): T[] {
 		const output: T[] = new Array(inputArray.length);
 		for (let i = 0, l = inputArray.length; i &lt; l; i++) {
 			output[i] = inputArray[i];
@@ -172,7 +160,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static apply&lt;T>(inputArray: T[]): T[] {
+	public apply&lt;T>(inputArray: T[]): T[] {
 		// eslint-disable-next-line prefer-spread
 		return Array.apply(undefined, inputArray) as T[];
 	}
@@ -193,7 +181,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static json&lt;T>(inputArray: T[]): T[] {
+	public json&lt;T>(inputArray: T[]): T[] {
 		return JSON.parse(JSON.stringify(inputArray)) as T[];
 	}
 
@@ -202,7 +190,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static spread&lt;T>(inputArray: T[]): T[] {
+	public spread&lt;T>(inputArray: T[]): T[] {
 		return [...inputArray] as T[];
 	}
 
@@ -211,7 +199,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static from&lt;T>(inputArray: T[]): T[] {
+	public from&lt;T>(inputArray: T[]): T[] {
 		return Array.from(inputArray) as T[];
 	}
 
@@ -220,14 +208,14 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static recursionDeep&lt;T>(inputArray: T[]): T[] {
+	public recursionDeep&lt;T>(inputArray: T[]): T[] {
 		const output = inputArray.map((element: T | T[]) => {
 			return this.__recursionDeepCopy(element);
 		});
 		return output as T[];
 	}
 
-	private static __recursionDeepCopy&lt;T>(inputArray: T | T[]): T | T[] {
+	private __recursionDeepCopy&lt;T>(inputArray: T | T[]): T | T[] {
 		return Array.isArray(inputArray)
 			? this.__recursionDeepCopy(inputArray)
 			: (inputArray as T);
@@ -238,7 +226,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public static benchmark&lt;T>(input: number | T[]): CloneBenchmarkResponse&lt;T> {
+	public benchmark&lt;T>(input: number | T[]): CloneBenchmarkResponse&lt;T> {
 		let inputArray: number[] | T[] = [];
 		if (Number.isInteger(input) === true) {
 			inputArray = Array.from({ length: Number(input) }, () =>
