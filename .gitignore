@@ -7,3 +7,5 @@ yarn.lock
 package-lock.json
 dist/
 out.json
+yarn.lock
+yarn-error.log
