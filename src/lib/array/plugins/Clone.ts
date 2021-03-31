@@ -3,6 +3,20 @@ import { cloneMethod, CloneBenchmarkResponse } from "../types";
 import { performance } from "perf_hooks";
 
 class Clone {
+	private methods: cloneMethod[] = [
+		"slice",
+		"concat",
+		"unshift",
+		"push",
+		"index",
+		"apply",
+		"map",
+		"json",
+		"spread",
+		"from",
+		"recursionDeep",
+	];
+
 	/**
 	 * Клонирование массива с помощью slice
 	 * @param inputArray {Array} - массив
@@ -75,7 +89,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static map<T>(inputArray: T[]): T[] {
+	public map<T>(inputArray: T[]): T[] {
 		return inputArray.map(function (element) {
 			return element;
 		});
@@ -131,30 +145,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public benchmark<T>(input: number | T[]): CloneBenchmarkResponse<T> {
-		let inputArray: number[] | T[] = [];
-		if (Number.isInteger(input) === true) {
-			inputArray = Array.from({ length: Number(input) }, () =>
-				Math.floor(Math.random() * Number(input)),
-			);
-		} else if (Array.isArray(input)) {
-			inputArray = input;
-		}
-
-		const cloneMethods: cloneMethod[] = [
-			"slice",
-			"concat",
-			"unshift",
-			"push",
-			"index",
-			"apply",
-			"map",
-			"json",
-			"spread",
-			"from",
-			"recursionDeep",
-		];
-
+	public benchmark<T>(input: T[]): CloneBenchmarkResponse<T> {
 		const response: CloneBenchmarkResponse<T> = {
 			fastest: {
 				method: "slice",
@@ -178,15 +169,14 @@ class Clone {
 				recursionDeep: 0,
 			},
 			totalTime: 0,
-			sourceArray: inputArray,
+			sourceArray: input,
 			copiedArray: [],
 		};
 
-		for (const method of cloneMethods) {
+		for (const method of this.methods) {
 			const sortStart = performance.now();
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			//@ts-ignore
-			response.copiedArray = Clone[method](inputArray);
+
+			response.copiedArray = this[method](input);
 			response.summary[method] = performance.now() - sortStart;
 		}
 
@@ -205,6 +195,25 @@ class Clone {
 		}
 
 		return response;
+	}
+
+	/**
+	 * Выполняет копирование наиболее быстрым методом (не всегда корректно работает)
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public faster<T>(input: T[]): Promise<T[]> {
+		return new Promise((resolve) => {
+			Promise.race(
+				this.methods.map((method) => {
+					return new Promise((raceResolver) => {
+						raceResolver(this[method](input));
+					});
+				}),
+			).then((value) => {
+				return resolve(value as T[]);
+			});
+		});
 	}
 }
 

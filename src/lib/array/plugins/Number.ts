@@ -18,6 +18,7 @@ class Number {
 	public static max(inputArray: number[]): number {
 		return Math.max.apply(null, inputArray);
 	}
+
 	/**
 	 * Вывод среднего значения в массиве
 	 * @param inputArray {Array} - массив с числами

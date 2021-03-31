@@ -28,6 +28,7 @@ class NumberSort {
 		}
 		return inputArray;
 	}
+
 	/**
 	 * Сортировка выбором
 	 * @param inputArray {Array} - массив с числами
@@ -52,6 +53,7 @@ class NumberSort {
 		}
 		return inputArray;
 	}
+
 	/**
 	 * Сортировка вставками
 	 * @param inputArray {Array} - массив с числами
@@ -74,6 +76,7 @@ class NumberSort {
 		}
 		return inputArray;
 	}
+
 	/**
 	 * Сортировка Шелла
 	 * @param inputArray {Array} - массив с числами
@@ -100,6 +103,7 @@ class NumberSort {
 		}
 		return inputArray;
 	}
+
 	/**
 	 * Сортировка подсчётом
 	 * @param inputArray {Array} - массив с числами
@@ -126,6 +130,7 @@ class NumberSort {
 		}
 		return outputArray;
 	}
+
 	/**
 	 * Сортировка расчёской
 	 * @param inputArray {Array} - массив с числами
@@ -150,6 +155,7 @@ class NumberSort {
 		}
 		return inputArray;
 	}
+
 	/**
 	 * Сортировка слиянием
 	 * @param inputArray {Array} - массив с числами
@@ -178,6 +184,7 @@ class NumberSort {
 
 		return mergeArray(this.merge(arrLeft), this.merge(arrRight));
 	}
+
 	/**
 	 * Пирамидальная сортировка
 	 * @param inputArray {Array} - массив с числами
@@ -219,6 +226,7 @@ class NumberSort {
 			inputArray[j] = t;
 		}
 	}
+
 	/**
 	 * Быстрая сортировка
 	 * @param inputArray {Array} - массив с числами
@@ -237,6 +245,7 @@ class NumberSort {
 		}
 		return this.quick(a).concat(p, this.quick(b));
 	}
+
 	/**
 	 * Сортировка перемешиванием
 	 * @param inputArray {Array} - массив с числами
@@ -273,6 +282,7 @@ class NumberSort {
 		}
 		return inputArray;
 	}
+
 	/**
 	 * Гномья сортировка
 	 * @param inputArray {Array} - массив с числами
@@ -299,6 +309,7 @@ class NumberSort {
 		}
 		return inputArray;
 	}
+
 	/**
 	 * Натуральная сортировка
 	 * @param inputArray {Array} - массив с числами
@@ -312,6 +323,7 @@ class NumberSort {
 			},
 		);
 	}
+
 	/**
 	 * Сравнивает все методы сортировок
 	 * @param inputArray {Array} - массив с числами, либо число из которого нужно сгенерировать массив

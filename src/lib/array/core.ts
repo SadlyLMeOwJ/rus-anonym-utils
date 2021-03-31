@@ -3,11 +3,13 @@
  * @description Функции для работы с массивами
  */
 
-import { XOR } from "../logical/core";
+import LogicalClass from "../logical/core";
 import { getRandomIntInclusive } from "../number/core";
 
 import CloneArray from "./plugins/Clone";
 import NumberArray from "./plugins/Number";
+
+const Logical = new LogicalClass();
 export default class Array {
 	private __naturalSortingCompare(a: number, b: number) {
 		return a < b ? -1 : a > b ? 1 : 0;
@@ -177,7 +179,8 @@ export default class Array {
 						const currentIsLast = this.currentIndex === this.key.length;
 
 						const isBorder =
-							currentIsLast || XOR(currentIsDigit, this.isNumber(nextChar));
+							currentIsLast ||
+							Logical.XOR(currentIsDigit, this.isNumber(nextChar));
 						if (isBorder) {
 							const partStr = this.key.slice(this.fromIndex, this.currentIndex);
 							this.elements.push(new elementsPart(partStr, currentIsDigit));
@@ -205,7 +208,7 @@ export default class Array {
 					const second = sp2.processElement(i);
 
 					if (null !== first && null !== second) {
-						if (XOR(first.isNumber, second.isNumber)) {
+						if (Logical.XOR(first.isNumber, second.isNumber)) {
 							return first.isNumber ? -1 : 1;
 						} else {
 							const comp = this.__naturalSortingCompare(
