@@ -1,0 +1,584 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation lib/vk/core.ts</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">RusAnonym Utils documentation</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>lib/vk/core.ts</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module VK
+ */
+
+import { VK } from "vk-io";
+import { isURL } from "../regular/core";
+import axios from "axios";
+
+type accessRight =
+	| "notify"
+	| "friends"
+	| "photos"
+	| "audio"
+	| "video"
+	| "stories"
+	| "pages"
+	| "leftLink"
+	| "status"
+	| "notes"
+	| "messages"
+	| "wall"
+	| "ads"
+	| "offline"
+	| "docs"
+	| "groups"
+	| "notifications"
+	| "stats"
+	| "email"
+	| "market"
+	| "app_widget"
+	| "manage";
+
+const accessRights: {
+	user: Array&lt;{
+		right: accessRight;
+		mask: number;
+	}>;
+	group: Array&lt;{
+		right: accessRight;
+		mask: number;
+	}>;
+} = {
+	user: [
+		{
+			right: "notify",
+			mask: 1 &lt;&lt; 0,
+		},
+		{
+			right: "friends",
+			mask: 1 &lt;&lt; 1,
+		},
+		{
+			right: "photos",
+			mask: 1 &lt;&lt; 2,
+		},
+		{
+			right: "audio",
+			mask: 1 &lt;&lt; 3,
+		},
+		{
+			right: "video",
+			mask: 1 &lt;&lt; 4,
+		},
+		{
+			right: "stories",
+			mask: 1 &lt;&lt; 6,
+		},
+		{
+			right: "pages",
+			mask: 1 &lt;&lt; 7,
+		},
+		{
+			right: "leftLink",
+			mask: 1 &lt;&lt; 8,
+		},
+		{
+			right: "status",
+			mask: 1 &lt;&lt; 10,
+		},
+		{
+			right: "notes",
+			mask: 1 &lt;&lt; 11,
+		},
+		{
+			right: "messages",
+			mask: 1 &lt;&lt; 12,
+		},
+		{
+			right: "wall",
+			mask: 1 &lt;&lt; 13,
+		},
+		{
+			right: "ads",
+			mask: 1 &lt;&lt; 15,
+		},
+		{
+			right: "offline",
+			mask: 1 &lt;&lt; 16,
+		},
+		{
+			right: "docs",
+			mask: 1 &lt;&lt; 17,
+		},
+		{
+			right: "groups",
+			mask: 1 &lt;&lt; 18,
+		},
+		{
+			right: "notifications",
+			mask: 1 &lt;&lt; 19,
+		},
+		{
+			right: "stats",
+			mask: 1 &lt;&lt; 20,
+		},
+		{
+			right: "email",
+			mask: 1 &lt;&lt; 22,
+		},
+		{
+			right: "market",
+			mask: 1 &lt;&lt; 27,
+		},
+	],
+	group: [
+		{
+			right: "stories",
+			mask: 1 &lt;&lt; 0,
+		},
+		{
+			right: "photos",
+			mask: 1 &lt;&lt; 2,
+		},
+		{
+			right: "app_widget",
+			mask: 1 &lt;&lt; 6,
+		},
+		{
+			right: "messages",
+			mask: 1 &lt;&lt; 12,
+		},
+		{
+			right: "docs",
+			mask: 1 &lt;&lt; 17,
+		},
+		{
+			right: "manage",
+			mask: 1 &lt;&lt; 18,
+		},
+	],
+};
+
+/**
+ * Секция для работы с методами требующими авторизацию от токена группы
+ * @namespace
+ */
+const group = {
+	/**
+	 * Получить идентификатор последней беседы в группе.
+	 * @param token - Токен группы
+	 * @return Идентификатор беседы.
+	 */
+	getLastConversation: async (token: string): Promise&lt;number> => {
+		const instanceVK = new VK({ token: token });
+		let maxConversationID = 2147483647;
+		let minConversationID = 2000000001;
+		let currentConversationID: number = maxConversationID;
+		let status = false;
+		while (!status) {
+			if (!(await checkConversationID(instanceVK, currentConversationID))) {
+				maxConversationID = currentConversationID;
+				currentConversationID = Math.round(
+					(currentConversationID + minConversationID) / 2,
+				);
+			} else {
+				if (maxConversationID !== currentConversationID) {
+					while (!status) {
+						if (minConversationID + 10 > maxConversationID) {
+							for (let i = minConversationID; i &lt; maxConversationID; i++) {
+								if (!(await checkConversationID(instanceVK, i))) {
+									status = true;
+									currentConversationID = i - 1;
+									return currentConversationID;
+								}
+							}
+						}
+						currentConversationID = Math.round(
+							(minConversationID + maxConversationID) / 2,
+						);
+
+						if (
+							!(await checkConversationID(instanceVK, currentConversationID))
+						) {
+							maxConversationID = currentConversationID;
+							currentConversationID = Math.round(
+								(currentConversationID + minConversationID) / 2,
+							);
+						} else {
+							minConversationID = currentConversationID;
+						}
+					}
+				} else {
+					status = true;
+					return currentConversationID;
+				}
+			}
+		}
+		return currentConversationID;
+	},
+};
+
+/**
+ * Секция для работы с методами требующими авторизацию от токена пользователя
+ * @namespace
+ */
+const user = {
+	/**
+	 * Получить стикеры пользователя
+	 * @param token - Токен от аккаунта пользователя
+	 * @param user_id - Идентификатор пользователя чьи стикеры требуется получить
+	 * @return Массив со стикерами пользователя
+	 */
+	getUserStickers: async (
+		token: string,
+		user_id: number,
+	): Promise&lt;
+		Array&lt;{
+			id: number;
+			name: string;
+			description: string;
+		}>
+	> => {
+		const userGifts = await axios.get(
+			`https://api.vk.com/method/gifts.getCatalog`,
+			{
+				params: { access_token: token, user_id: user_id, v: "5.103" },
+			},
+		);
+		const parseStickers: Array&lt;{
+			id: number;
+			name: string;
+			description: string;
+		}> = [];
+		if (userGifts.data.error) {
+			if (userGifts.data.error.error_code === 3) {
+				throw new Error(`Need token from VK Me\nApp ID: 6146827`);
+			} else {
+				throw new Error(userGifts.data.error.error_msg);
+			}
+		} else {
+			userGifts.data.response.map(async function (currentStickersSet: {
+				items: Array&lt;{
+					disabled: number;
+					gift: { stickers_product_id: number };
+					sticker_pack: { title: string; description: string };
+				}>;
+			}) {
+				currentStickersSet.items.map(async function (currentStickerPack) {
+					if (
+						currentStickerPack.disabled === 1 &amp;&amp;
+						!parseStickers.find(
+							(x) => x.id === currentStickerPack.gift.stickers_product_id,
+						)
+					) {
+						parseStickers.push({
+							id: currentStickerPack.gift.stickers_product_id,
+							name: currentStickerPack.sticker_pack.title,
+							description: currentStickerPack.sticker_pack.description,
+						});
+					}
+				});
+			});
+		}
+		return parseStickers;
+	},
+};
+
+/**
+ * Секция для работы с API VK
+ * @namespace
+ */
+const api = {
+	/**
+	 * Получить текущее состоянии API VK
+	 * @return Текущее состоянии API VK
+	 */
+	status: async (): Promise&lt;
+		Array&lt;{
+			section: string;
+			performance: number;
+			uptime: number;
+		}>
+	> => {
+		let data = await (await axios.get(`https://vk.com/dev/health`)).data;
+		data = data.toString();
+		let position1 = await data.indexOf(`var content = {`);
+		let position2 = await data.indexOf(`'header': ['`);
+		const newData = data.substring(position1, position2);
+		position1 = newData.indexOf(`[[`);
+		position2 = newData.indexOf(`]]`);
+		const arrayWithSections = JSON.parse(
+			newData.substring(position1, position2 + 2),
+		);
+		const outputArray = [];
+		for (const i in arrayWithSections) {
+			outputArray.push({
+				section: arrayWithSections[i][0],
+				performance: arrayWithSections[i][2],
+				uptime: arrayWithSections[i][3],
+			});
+		}
+		return outputArray;
+	},
+};
+
+/**
+ * Секция для работы с методами которые работает с статьями VK
+ * @namespace
+ */
+const article = {
+	/**
+	 * Получить данные о статье по ссылке
+	 * @param articleLink - Ссылка на статью
+	 * @return данные статьи
+	 */
+	getByURL: async (
+		articleLink: string,
+	): Promise&lt;{
+		id: number;
+		owner_id: number;
+		access_hash: string;
+		title: string;
+		subtitle: string;
+		published: Date;
+		views: number;
+		shares: number;
+	}> => {
+		articleLink = articleLink.replace("https://m.", "https://");
+		if (isURL(articleLink) === false) {
+			throw new Error(`Invalid article link`);
+		} else {
+			try {
+				let data = await (await axios.get(articleLink)).data;
+				let position1 = await data.indexOf(`Article.init({"id":`);
+				let position2 = await data.indexOf(`&lt;/script>&lt;/div>`, position1);
+				data = data.substring(position1, position2);
+				position1 = 13;
+				position2 = await data.indexOf(`, {`);
+				data = data.substring(position1, position2);
+				const articleData = JSON.parse(data);
+				return {
+					id: articleData.id,
+					owner_id: articleData.owner_id,
+					access_hash: articleData.access_hash,
+					title: articleData.title,
+					subtitle: articleData.subtitle,
+					published: new Date(articleData.published_date * 1000),
+					views: articleData.views,
+					shares: articleData.shares,
+				};
+			} catch (error) {
+				throw new Error(`Invalid article`);
+			}
+		}
+	},
+};
+
+/**
+ * Проверка токена
+ * @param token {string} - Проверяемый токен
+ * @return данные токена
+ */
+async function checkToken(
+	token: string,
+): Promise&lt;{
+	type: "user" | "group";
+	id: number;
+	accessRights: accessRight[];
+}> {
+	if (token.length !== 85) {
+		throw new Error("Invalid token length");
+	}
+
+	const splitToken = token.split("");
+	const allowedWord = [
+		"d",
+		"e",
+		"f",
+		"b",
+		"c",
+		"a",
+		"0",
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"8",
+		"9",
+	];
+	for (const tempWord of splitToken) {
+		if (!allowedWord.find((x) => x === tempWord)) {
+			throw new Error("Invalid token symbols");
+		}
+	}
+
+	const tempVK = new VK({ token: token });
+	const tokenData = await tempVK.api.users.get({}).catch(() => {
+		throw new Error("Invalid token");
+	});
+
+	const outputData: {
+		type: "user" | "group";
+		id: number;
+		accessRights: accessRight[];
+	} = {
+		type: "user",
+		id: 0,
+		accessRights: [],
+	};
+
+	if (tokenData.length === 0) {
+		const [secondTokenData] = await tempVK.api.groups.getById({});
+		outputData.type = "group";
+		outputData.id = secondTokenData.id;
+		const currentPermissions = await tempVK.api.groups.getTokenPermissions({});
+		for (const i in accessRights.group) {
+			if (
+				Boolean(currentPermissions.mask &amp; accessRights.group[i].mask) === true
+			) {
+				outputData.accessRights.push(accessRights.group[i].right);
+			}
+		}
+	} else {
+		outputData.id = tokenData[0].id;
+		const currentPermissions = await tempVK.api.account.getAppPermissions({
+			user_id: outputData.id,
+		});
+		for (const i in accessRights.user) {
+			if (Boolean(currentPermissions &amp; accessRights.user[i].mask) === true) {
+				outputData.accessRights.push(accessRights.user[i].right);
+			}
+		}
+	}
+
+	return outputData;
+}
+
+async function checkConversationID(
+	instanceVK: VK,
+	peerID: number,
+): Promise&lt;boolean> {
+	return instanceVK.api.messages
+		.getConversationsById({
+			peer_ids: peerID,
+		})
+		.then(({ items }) => {
+			const [data] = items;
+			return !!data.peer.id;
+		})
+		.catch(() => {
+			return false;
+		});
+}
+
+export { group, user, api, article, checkToken, accessRights };
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+</body>
+</html>

@@ -1,9 +1,10 @@
 node_modules/
-test.js
-test.ts
+test.*
 .idea/
 .vscode/
 yarn.lock
 package-lock.json
 dist/
 out.json
+yarn.lock
+yarn-error.log

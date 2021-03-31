@@ -1,26 +1,28 @@
-import { cloneMethod, CloneBenchmarkResponse } from "../../../types/array";
+import { cloneMethod, CloneBenchmarkResponse } from "../types";
 
 import { performance } from "perf_hooks";
 
-/**
- * Класс для работы с методами клонирования массивов
- * @example
- * const utils = require(`rus-anonym-utils`);
- * utils.array.clone
- */
 class Clone {
-	/**
-	 * @hideconstructor
-	 */
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	private constructor() {}
+	private methods: cloneMethod[] = [
+		"slice",
+		"concat",
+		"unshift",
+		"push",
+		"index",
+		"apply",
+		"map",
+		"json",
+		"spread",
+		"from",
+		"recursionDeep",
+	];
 
 	/**
 	 * Клонирование массива с помощью slice
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static slice<T>(inputArray: T[]): T[] {
+	public slice<T>(inputArray: T[]): T[] {
 		return inputArray.slice() as T[];
 	}
 
@@ -29,7 +31,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static concat<T>(inputArray: T[]): T[] {
+	public concat<T>(inputArray: T[]): T[] {
 		return ([] as T[]).concat(inputArray) as T[];
 	}
 
@@ -38,7 +40,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static unshift<T>(inputArray: T[]): T[] {
+	public unshift<T>(inputArray: T[]): T[] {
 		const output: T[] = [];
 		for (let i = inputArray.length; i--; ) {
 			output.unshift(inputArray[i]);
@@ -51,7 +53,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static push<T>(inputArray: T[]): T[] {
+	public push<T>(inputArray: T[]): T[] {
 		const output: T[] = [];
 		for (let i = 0, l = inputArray.length; i < l; i++) {
 			output.push(inputArray[i]);
@@ -64,7 +66,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static index<T>(inputArray: T[]): T[] {
+	public index<T>(inputArray: T[]): T[] {
 		const output: T[] = new Array(inputArray.length);
 		for (let i = 0, l = inputArray.length; i < l; i++) {
 			output[i] = inputArray[i];
@@ -77,7 +79,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static apply<T>(inputArray: T[]): T[] {
+	public apply<T>(inputArray: T[]): T[] {
 		// eslint-disable-next-line prefer-spread
 		return Array.apply(undefined, inputArray) as T[];
 	}
@@ -87,7 +89,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static map<T>(inputArray: T[]): T[] {
+	public map<T>(inputArray: T[]): T[] {
 		return inputArray.map(function (element) {
 			return element;
 		});
@@ -98,7 +100,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static json<T>(inputArray: T[]): T[] {
+	public json<T>(inputArray: T[]): T[] {
 		return JSON.parse(JSON.stringify(inputArray)) as T[];
 	}
 
@@ -107,7 +109,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static spread<T>(inputArray: T[]): T[] {
+	public spread<T>(inputArray: T[]): T[] {
 		return [...inputArray] as T[];
 	}
 
@@ -116,7 +118,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static from<T>(inputArray: T[]): T[] {
+	public from<T>(inputArray: T[]): T[] {
 		return Array.from(inputArray) as T[];
 	}
 
@@ -125,14 +127,14 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns новый массив
 	 */
-	public static recursionDeep<T>(inputArray: T[]): T[] {
+	public recursionDeep<T>(inputArray: T[]): T[] {
 		const output = inputArray.map((element: T | T[]) => {
 			return this.__recursionDeepCopy(element);
 		});
 		return output as T[];
 	}
 
-	private static __recursionDeepCopy<T>(inputArray: T | T[]): T | T[] {
+	private __recursionDeepCopy<T>(inputArray: T | T[]): T | T[] {
 		return Array.isArray(inputArray)
 			? this.__recursionDeepCopy(inputArray)
 			: (inputArray as T);
@@ -143,30 +145,7 @@ class Clone {
 	 * @param inputArray {Array} - массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public static benchmark<T>(input: number | T[]): CloneBenchmarkResponse<T> {
-		let inputArray: number[] | T[] = [];
-		if (Number.isInteger(input) === true) {
-			inputArray = Array.from({ length: Number(input) }, () =>
-				Math.floor(Math.random() * Number(input)),
-			);
-		} else if (Array.isArray(input)) {
-			inputArray = input;
-		}
-
-		const cloneMethods: cloneMethod[] = [
-			"slice",
-			"concat",
-			"unshift",
-			"push",
-			"index",
-			"apply",
-			"map",
-			"json",
-			"spread",
-			"from",
-			"recursionDeep",
-		];
-
+	public benchmark<T>(input: T[]): CloneBenchmarkResponse<T> {
 		const response: CloneBenchmarkResponse<T> = {
 			fastest: {
 				method: "slice",
@@ -190,15 +169,14 @@ class Clone {
 				recursionDeep: 0,
 			},
 			totalTime: 0,
-			sourceArray: inputArray,
+			sourceArray: input,
 			copiedArray: [],
 		};
 
-		for (const method of cloneMethods) {
+		for (const method of this.methods) {
 			const sortStart = performance.now();
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			//@ts-ignore
-			response.copiedArray = Clone[method](inputArray);
+
+			response.copiedArray = this[method](input);
 			response.summary[method] = performance.now() - sortStart;
 		}
 
@@ -217,6 +195,25 @@ class Clone {
 		}
 
 		return response;
+	}
+
+	/**
+	 * Выполняет копирование наиболее быстрым методом (не всегда корректно работает)
+	 * @param inputArray {Array} - массив
+	 * @returns новый массив
+	 */
+	public faster<T>(input: T[]): Promise<T[]> {
+		return new Promise((resolve) => {
+			Promise.race(
+				this.methods.map((method) => {
+					return new Promise((raceResolver) => {
+						raceResolver(this[method](input));
+					});
+				}),
+			).then((value) => {
+				return resolve(value as T[]);
+			});
+		});
 	}
 }
 

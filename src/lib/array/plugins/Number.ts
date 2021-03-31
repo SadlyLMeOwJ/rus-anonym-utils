@@ -2,17 +2,11 @@ import Sort from "./NumberSort";
 
 class Number {
 	/**
-	 * @hideconstructor
-	 */
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	private constructor() {}
-
-	/**
 	 * Вывод минимального значения в массиве
 	 * @param inputArray {Array} - массив с числами
 	 * @returns - минимальное значение
 	 */
-	public static min(inputArray: number[]): number {
+	public min(inputArray: number[]): number {
 		return Math.min.apply(null, inputArray);
 	}
 
@@ -21,19 +15,20 @@ class Number {
 	 * @param inputArray {Array} - массив с числами
 	 * @returns максимальное значение
 	 */
-	public static max(inputArray: number[]): number {
+	public max(inputArray: number[]): number {
 		return Math.max.apply(null, inputArray);
 	}
+
 	/**
 	 * Вывод среднего значения в массиве
 	 * @param inputArray {Array} - массив с числами
 	 * @returns среднее значение
 	 */
-	public static average(inputArray: number[]): number {
+	public average(inputArray: number[]): number {
 		return inputArray.reduce((a, b) => a + b) / inputArray.length;
 	}
 
-	public static sort = Sort;
+	public sort = new Sort();
 }
 
 export default Number;

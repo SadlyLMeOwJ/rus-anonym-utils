@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation user</title>
+  <title>Documentation lib/regular/core.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -81,293 +83,114 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Namespace</p>
-                    <h1>user</h1>
+                    <p>Source</p>
+                    <h1>lib/regular/core.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-            <span class="ancestors"><a href="module-VK.html">VK</a>~</span>user</h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-            <div class="description"><p>Секция для работы с методами требующими авторизацию от токена пользователя</p></div>
-        
-
-        
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_vk_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_vk_core.ts.html">lib/vk/core.ts</a>, <a href="lib_vk_core.ts.html#line174">line 174</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Methods</h1>
-            <div class="members">
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id=".getUserStickers">
-        <a class="href-link" href="#.getUserStickers">#</a>
-        
-            
-                <span class='tag'>static</span>
-            
-        
-        <span class="code-name">
-            
-                getUserStickers<span class="signature">(token, user_id)</span><span class="type-signature"></span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Получить стикеры пользователя</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>token</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Токен от аккаунта пользователя</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>user_id</code></td>
-  
-
-  <td class="type">
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Идентификатор пользователя чьи стикеры требуется получить</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_vk_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_vk_core.ts.html">lib/vk/core.ts</a>, <a href="lib_vk_core.ts.html#line181">line 181</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Массив со стикерами пользователя</p></div>
-    
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module Regular
+ */
+
+import regularList from "./DB/regularTemplate";
+
+/**
+ * Проверка является ли переданная строка E-Mail адресом
+ * @param email {string} - E-Mail адрес
+ * @returns {boolean}
+ */
+const isEmail = (email: string): boolean => {
+	return new RegExp(regularList.email, "").test(email);
+};
+
+/**
+ *  Проверка является ли переданная строка IPv4 адресом
+ * @param address {string} - IPv4 адрес
+ * @returns {boolean}
+ */
+const isIPv4 = (address: string): boolean => {
+	return new RegExp(regularList.IPv4, "").test(address);
+};
+
+/**
+ *  Проверка является ли переданная строка IPv6 адресом
+ * @param address {string} - IPv6 адрес
+ * @returns {boolean}
+ */
+const isIPv6 = (address: string): boolean => {
+	return new RegExp(regularList.IPv6, "").test(address);
+};
+
+/**
+ *  Проверка является ли переданная строка IP адресом
+ * @param address {string} - IP адрес
+ * @returns {boolean}
+ */
+const isIP = (address: string): boolean => {
+	return new RegExp(regularList.ip, "").test(address);
+};
+
+/**
+ *  Проверка является ли переданная строка ccылкой
+ * @param url {string} - URL
+ * @returns {boolean}
+ */
+const isURL = (url: string): boolean => {
+	return new RegExp(regularList.url, "").test(url);
+};
+
+/**
+ * Проверка является ли переданная строка номером
+ * @param email {string} - E-Mail адрес
+ * @returns {boolean}
+ */
+const isNumber = (number: string): boolean => {
+	return new RegExp(regularList.number, "i").test(number);
+};
+
+/**
+ * @namespace
+ * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
+ * @example
+ * // => RegEx
+ * new RegExp(regular.list.email, "g");
+ */
+const list = {
+	/**
+	 * Шаблон для E-Mail адресов
+	 */
+	email: regularList.email,
+	/**
+	 * Шаблон для IPv4 адресов
+	 */
+	IPv4: regularList.IPv4,
+	/**
+	 * Шаблон для IPv6 адресов
+	 */
+	IPv6: regularList.IPv6,
+	/**
+	 * Шаблон для любых IP адресов
+	 */
+	ip: regularList.ip,
+	/**
+	 * Шаблон для ссылок
+	 */
+	url: regularList.url,
+	/**
+	 * Шаблон для номеров
+	 */
+	number: regularList.email,
+};
+
+export { list, isIPv4, isIPv6, isIP, isEmail, isURL, isNumber };
+</code></pre>
+        </article>
+    </section>
 
 
 
