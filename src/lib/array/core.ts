@@ -3,8 +3,8 @@
  * @description Функции для работы с массивами
  */
 
-import { XOR } from "../logical";
-import { getRandomIntInclusive } from "../number";
+import { XOR } from "../logical/core";
+import { getRandomIntInclusive } from "../number/core";
 
 import ArrayClone from "./plugins/Clone";
 import NumberArray from "./plugins/Number";

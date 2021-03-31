@@ -1,7 +1,7 @@
 import {
 	SortingBenchmarkResponse,
 	sortingAlgorithm,
-} from "../../../types/array";
+} from "../types";
 
 import { naturalStringSorter } from "../core";
 

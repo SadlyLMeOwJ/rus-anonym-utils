@@ -3,7 +3,7 @@
  * @deprecated
  */
 
-import { random, shuffle } from "./array/core";
+import { random, shuffle } from "../array/core";
 
 function generatePercentsArray<T>(
 	inputArray: Array<{

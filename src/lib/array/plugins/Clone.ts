@@ -1,4 +1,4 @@
-import { cloneMethod, CloneBenchmarkResponse } from "../../../types/array";
+import { cloneMethod, CloneBenchmarkResponse } from "../types";
 
 import { performance } from "perf_hooks";
 
