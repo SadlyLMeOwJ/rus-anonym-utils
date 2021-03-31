@@ -1,7 +1,7 @@
 /**
  * @module Logical
  */
-class Logical {
+export default class Logical {
 	/**
 	 * Логическое И
 	 * Конъюнкция
@@ -85,9 +85,9 @@ class Logical {
 	 * @param {boolean} b - 2 значение
 	 * @return {boolean} - результат
 	 */
-	public EQ = (a: boolean, b: boolean): boolean => {
+	public EQ(a: boolean, b: boolean): boolean {
 		return a === b;
-	};
+	}
 
 	/**
 	 * Импликация
@@ -101,5 +101,3 @@ class Logical {
 		return a === true && b === false ? false : true;
 	}
 }
-
-export default new Logical();
