@@ -12,3 +12,5 @@ import * as time from "./lib/time/core";
 import * as vk from "./lib/vk/core";
 
 export { array, logical, number, regular, smileys, string, time, vk };
+
+export default { array, logical, number, regular, smileys, string, time, vk };
