@@ -4,7 +4,7 @@
 
 import moment from "moment";
 import "moment-precise-range-plugin";
-import { declOfNum } from "../string/core";
+import { string } from "../string/core";
 
 /**
  * Получить время по миллисекундам
@@ -122,37 +122,49 @@ const getTimeUntilNewYear = (): string => {
 		(objectWithTime.years
 			? objectWithTime.years +
 			  " " +
-			  declOfNum(objectWithTime.years, ["год", "года", "лет"]) +
+			  string.declOfNum(objectWithTime.years, ["год", "года", "лет"]) +
 			  ", "
 			: "") +
 		(objectWithTime.months
 			? objectWithTime.months +
 			  " " +
-			  declOfNum(objectWithTime.months, ["месяц", "месяца", "месяцев"]) +
+			  string.declOfNum(objectWithTime.months, [
+					"месяц",
+					"месяца",
+					"месяцев",
+			  ]) +
 			  ", "
 			: "") +
 		(objectWithTime.days
 			? objectWithTime.days +
 			  " " +
-			  declOfNum(objectWithTime.days, ["день", "дня", "дней"]) +
+			  string.declOfNum(objectWithTime.days, ["день", "дня", "дней"]) +
 			  ", "
 			: "") +
 		(objectWithTime.hours
 			? objectWithTime.hours +
 			  " " +
-			  declOfNum(objectWithTime.hours, ["час", "часа", "часов"]) +
+			  string.declOfNum(objectWithTime.hours, ["час", "часа", "часов"]) +
 			  ", "
 			: "") +
 		(objectWithTime.minutes
 			? objectWithTime.minutes +
 			  " " +
-			  declOfNum(objectWithTime.minutes, ["минута", "минуты", "минут"]) +
+			  string.declOfNum(objectWithTime.minutes, [
+					"минута",
+					"минуты",
+					"минут",
+			  ]) +
 			  ", "
 			: "") +
 		(objectWithTime.seconds
 			? objectWithTime.seconds +
 			  " " +
-			  declOfNum(objectWithTime.seconds, ["секунда", "секунды", "секунд"])
+			  string.declOfNum(objectWithTime.seconds, [
+					"секунда",
+					"секунды",
+					"секунд",
+			  ])
 			: "")
 	);
 };
@@ -202,27 +214,27 @@ const getPrecizeDiff = ({
 	const precizeData = {
 		year: {
 			value: objectWithTime.years,
-			declination: declOfNum(objectWithTime.years, i18n.year),
+			declination: string.declOfNum(objectWithTime.years, i18n.year),
 		},
 		month: {
 			value: objectWithTime.months,
-			declination: declOfNum(objectWithTime.months, i18n.month),
+			declination: string.declOfNum(objectWithTime.months, i18n.month),
 		},
 		day: {
 			value: objectWithTime.days,
-			declination: declOfNum(objectWithTime.days, i18n.day),
+			declination: string.declOfNum(objectWithTime.days, i18n.day),
 		},
 		hour: {
 			value: objectWithTime.hours,
-			declination: declOfNum(objectWithTime.hours, i18n.hour),
+			declination: string.declOfNum(objectWithTime.hours, i18n.hour),
 		},
 		minute: {
 			value: objectWithTime.minutes,
-			declination: declOfNum(objectWithTime.minutes, i18n.minute),
+			declination: string.declOfNum(objectWithTime.minutes, i18n.minute),
 		},
 		second: {
 			value: objectWithTime.minutes,
-			declination: declOfNum(objectWithTime.minutes, i18n.minute),
+			declination: string.declOfNum(objectWithTime.minutes, i18n.minute),
 		},
 	};
 	if (json === true) {
