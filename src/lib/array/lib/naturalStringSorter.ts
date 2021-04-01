@@ -1,5 +1,4 @@
-import LogicalClass from "../../logical/core";
-const Logical = new LogicalClass();
+import { logical } from "../../logical/core";
 
 function __naturalSortingCompare(a: number, b: number) {
 	return a < b ? -1 : a > b ? 1 : 0;
@@ -54,7 +53,7 @@ export default function naturalStringSorter<T>(
 
 					const isBorder =
 						currentIsLast ||
-						Logical.XOR(currentIsDigit, this.isNumber(nextChar));
+						logical.XOR(currentIsDigit, this.isNumber(nextChar));
 					if (isBorder) {
 						const partStr = this.key.slice(this.fromIndex, this.currentIndex);
 						this.elements.push(new elementsPart(partStr, currentIsDigit));
@@ -82,7 +81,7 @@ export default function naturalStringSorter<T>(
 				const second = sp2.processElement(i);
 
 				if (null !== first && null !== second) {
-					if (Logical.XOR(first.isNumber, second.isNumber)) {
+					if (logical.XOR(first.isNumber, second.isNumber)) {
 						return first.isNumber ? -1 : 1;
 					} else {
 						const comp = __naturalSortingCompare(
