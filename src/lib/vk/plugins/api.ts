@@ -3,6 +3,7 @@ import { accessRightType } from "./../types";
 
 import axios from "axios";
 import { VK } from "vk-io";
+import UtilsError from "../../../utils/error";
 
 export class VK_API {
 	/**
@@ -50,7 +51,7 @@ export class VK_API {
 		accessRights: accessRightType[];
 	}> {
 		if (token.length !== 85) {
-			throw new Error("Invalid token length");
+			throw new UtilsError("Invalid token length");
 		}
 
 		const splitToken = token.split("");
@@ -75,13 +76,13 @@ export class VK_API {
 
 		for (const tempWord of splitToken) {
 			if (!allowedWord.find((x) => x === tempWord)) {
-				throw new Error("Invalid token symbols");
+				throw new UtilsError("Invalid token symbols");
 			}
 		}
 
 		const tempVK = new VK({ token: token });
 		const tokenData = await tempVK.api.users.get({}).catch(() => {
-			throw new Error("Invalid token");
+			throw new UtilsError("Invalid token");
 		});
 
 		const outputData: {
@@ -101,11 +102,12 @@ export class VK_API {
 			const currentPermissions = await tempVK.api.groups.getTokenPermissions(
 				{},
 			);
-			for (const i in accessRights.group) {
+			for (const right in accessRights.group) {
 				if (
-					Boolean(currentPermissions.mask & accessRights.group[i].mask) === true
+					Boolean(currentPermissions.mask & accessRights.group[right].mask) ===
+					true
 				) {
-					outputData.accessRights.push(accessRights.group[i].right);
+					outputData.accessRights.push(accessRights.group[right].right);
 				}
 			}
 		} else {
@@ -113,9 +115,11 @@ export class VK_API {
 			const currentPermissions = await tempVK.api.account.getAppPermissions({
 				user_id: outputData.id,
 			});
-			for (const i in accessRights.user) {
-				if (Boolean(currentPermissions & accessRights.user[i].mask) === true) {
-					outputData.accessRights.push(accessRights.user[i].right);
+			for (const right in accessRights.user) {
+				if (
+					Boolean(currentPermissions & accessRights.user[right].mask) === true
+				) {
+					outputData.accessRights.push(accessRights.user[right].right);
 				}
 			}
 		}
