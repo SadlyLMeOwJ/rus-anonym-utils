@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
                 
             </nav>
         </div>
@@ -98,12 +98,12 @@
  * @description Функции для работы с массивами
  */
 
-import { getRandomIntInclusive } from "../number/core";
+import { number } from "../number/core";
 import naturalStringSorter from "./lib/naturalStringSorter";
 
 import CloneArray from "./plugins/Clone";
 import NumberArray from "./plugins/Number";
-export default class Array {
+export class ArrayUtils {
 	/**
 	 * Возвращает рандомный элемент из массива
 	 * @param inputArray {Array} - массив
@@ -114,7 +114,7 @@ export default class Array {
 	 * array.random([1, 2, 3, 4]);
 	 */
 	public random&lt;T>(inputArray: T[]): T {
-		return inputArray[getRandomIntInclusive(0, inputArray.length - 1)];
+		return inputArray[number.getRandomIntInclusive(0, inputArray.length - 1)];
 	}
 
 	/**
@@ -229,9 +229,6 @@ export default class Array {
 
 	/**
 	 * Класс для работы с методами клонирования массивов
-	 * @example
-	 * const utils = require(`rus-anonym-utils`);
-	 * utils.array.clone
 	 */
 	public clone: CloneArray = new CloneArray();
 
@@ -240,6 +237,11 @@ export default class Array {
 	 */
 	public number: NumberArray = new NumberArray();
 }
+
+/**
+ * Класс для работы с массивами
+ */
+export const array = new ArrayUtils();
 </code></pre>
         </article>
     </section>

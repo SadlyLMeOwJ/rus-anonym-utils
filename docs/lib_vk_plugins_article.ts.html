@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation VK</title>
+  <title>Documentation lib/vk/plugins/article.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -81,135 +83,71 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>VK</h1>
+                    <p>Source</p>
+                    <h1>lib/vk/plugins/article.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from "axios";
+import { regular } from "./../../regular/core";
 
-<article>
-    <div class="container-overview">
-    
-        
+export class VK_Article {
+	/**
+	 * Получить данные о статье по ссылке
+	 * @param articleLink - Ссылка на статью
+	 * @return данные статьи
+	 */
+	public async getByURL(
+		articleLink: string,
+	): Promise&lt;{
+		id: number;
+		owner_id: number;
+		access_hash: string;
+		title: string;
+		subtitle: string;
+		published: Date;
+		views: number;
+		shares: number;
+	}> {
+		articleLink = articleLink.replace("https://m.", "https://");
+		if (regular.isURL(articleLink) === false) {
+			throw new Error(`Invalid article link`);
+		} else {
+			try {
+				let data = await (await axios.get(articleLink)).data;
+				let position1 = await data.indexOf(`Article.init({"id":`);
+				let position2 = await data.indexOf(`&lt;/script>&lt;/div>`, position1);
+				data = data.substring(position1, position2);
+				position1 = 13;
+				position2 = await data.indexOf(`, {`);
+				data = data.substring(position1, position2);
+				const articleData = JSON.parse(data);
+				return {
+					id: articleData.id,
+					owner_id: articleData.owner_id,
+					access_hash: articleData.access_hash,
+					title: articleData.title,
+					subtitle: articleData.subtitle,
+					published: new Date(articleData.published_date * 1000),
+					views: articleData.views,
+					shares: articleData.shares,
+				};
+			} catch (error) {
+				throw new Error(`Invalid article`);
+			}
+		}
+	}
+}
 
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id=".vk">
-    <a class="href-link" href="#.vk">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        vk
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Секция для работы с методами VK</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_vk_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_vk_core.ts.html">lib/vk/core.ts</a>, <a href="lib_vk_core.ts.html#line32">line 32</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export const article = new VK_Article();
+</code></pre>
+        </article>
+    </section>
 
 
 
