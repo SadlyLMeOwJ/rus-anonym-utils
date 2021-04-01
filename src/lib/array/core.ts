@@ -3,12 +3,12 @@
  * @description Функции для работы с массивами
  */
 
-import { getRandomIntInclusive } from "../number/core";
+import { number } from "../number/core";
 import naturalStringSorter from "./lib/naturalStringSorter";
 
 import CloneArray from "./plugins/Clone";
 import NumberArray from "./plugins/Number";
-export default class Array {
+export class ArrayUtils {
 	/**
 	 * Возвращает рандомный элемент из массива
 	 * @param inputArray {Array} - массив
@@ -19,7 +19,7 @@ export default class Array {
 	 * array.random([1, 2, 3, 4]);
 	 */
 	public random<T>(inputArray: T[]): T {
-		return inputArray[getRandomIntInclusive(0, inputArray.length - 1)];
+		return inputArray[number.getRandomIntInclusive(0, inputArray.length - 1)];
 	}
 
 	/**
@@ -134,9 +134,6 @@ export default class Array {
 
 	/**
 	 * Класс для работы с методами клонирования массивов
-	 * @example
-	 * const utils = require(`rus-anonym-utils`);
-	 * utils.array.clone
 	 */
 	public clone: CloneArray = new CloneArray();
 
@@ -145,3 +142,8 @@ export default class Array {
 	 */
 	public number: NumberArray = new NumberArray();
 }
+
+/**
+ * Класс для работы с массивами
+ */
+export const array = new ArrayUtils();

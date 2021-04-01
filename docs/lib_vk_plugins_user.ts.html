@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation VK</title>
+  <title>Documentation lib/vk/plugins/user.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -81,135 +83,84 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>VK</h1>
+                    <p>Source</p>
+                    <h1>lib/vk/plugins/user.ts</h1>
                 </header>
                 
 
 
 
-
-<section>
-
-<header>
     
-        
-    
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from "axios";
 
-<article>
-    <div class="container-overview">
-    
-        
+export class VK_User {
+	/**
+	 * Получить стикеры пользователя
+	 * @param token - Токен от аккаунта пользователя
+	 * @param user_id - Идентификатор пользователя чьи стикеры требуется получить
+	 * @return Массив со стикерами пользователя
+	 */
+	public async getUserStickers(
+		token: string,
+		user_id: number,
+	): Promise&lt;
+		Array&lt;{
+			id: number;
+			name: string;
+			description: string;
+		}>
+	> {
+		const userGifts = await axios.get(
+			`https://api.vk.com/method/gifts.getCatalog`,
+			{
+				params: { access_token: token, user_id: user_id, v: "5.103" },
+			},
+		);
+		const parseStickers: Array&lt;{
+			id: number;
+			name: string;
+			description: string;
+		}> = [];
+		if (userGifts.data.error) {
+			if (userGifts.data.error.error_code === 3) {
+				throw new Error(`Need token from VK Me\nApp ID: 6146827`);
+			} else {
+				throw new Error(userGifts.data.error.error_msg);
+			}
+		} else {
+			userGifts.data.response.map(async function (currentStickersSet: {
+				items: Array&lt;{
+					disabled: number;
+					gift: { stickers_product_id: number };
+					sticker_pack: { title: string; description: string };
+				}>;
+			}) {
+				currentStickersSet.items.map(async function (currentStickerPack) {
+					if (
+						currentStickerPack.disabled === 1 &amp;&amp;
+						!parseStickers.find(
+							(x) => x.id === currentStickerPack.gift.stickers_product_id,
+						)
+					) {
+						parseStickers.push({
+							id: currentStickerPack.gift.stickers_product_id,
+							name: currentStickerPack.sticker_pack.title,
+							description: currentStickerPack.sticker_pack.description,
+						});
+					}
+				});
+			});
+		}
+		return parseStickers;
+	}
+}
 
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-<h4 class="name" id=".vk">
-    <a class="href-link" href="#.vk">#</a>
-    
-        
-            <span class='tag'>static</span>
-        
-            <span class='tag'>constant</span>
-        
-    
-    <span class="code-name">
-        vk
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Секция для работы с методами VK</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_vk_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_vk_core.ts.html">lib/vk/core.ts</a>, <a href="lib_vk_core.ts.html#line32">line 32</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export const user = new VK_User();
+</code></pre>
+        </article>
+    </section>
 
 
 

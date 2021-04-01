@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation Smileys</title>
+  <title>Documentation lib/vk/plugins/group.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -74,60 +76,105 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-Smileys.html">Smileys</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul><h3>Namespaces</h3><ul><li><a href="module-Regular-list.html">list</a></li><li><a href="module-VK-api.html">api</a></li><li><a href="module-VK-article.html">article</a></li><li><a href="module-VK-group.html">group</a></li><li><a href="module-VK-user.html">user</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
                 
             </nav>
         </div>
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Module</p>
-                    <h1>Smileys</h1>
+                    <p>Source</p>
+                    <h1>lib/vk/plugins/group.ts</h1>
                 </header>
                 
 
 
 
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { VK } from "vk-io";
 
-<section>
+export class VK_Group {
+	private async __checkConversationID(
+		instanceVK: VK,
+		peerID: number,
+	): Promise&lt;boolean> {
+		return instanceVK.api.messages
+			.getConversationsById({
+				peer_ids: peerID,
+			})
+			.then(({ items }) => {
+				const [data] = items;
+				return !!data.peer.id;
+			})
+			.catch(() => {
+				return false;
+			});
+	}
+	/**
+	 * Получить идентификатор последней беседы в группе.
+	 * @param token - Токен группы
+	 * @return Идентификатор беседы.
+	 */
+	public async getLastConversation(token: string): Promise&lt;number> {
+		const instanceVK = new VK({ token: token });
+		let maxConversationID = 2147483647;
+		let minConversationID = 2000000001;
+		let currentConversationID: number = maxConversationID;
+		let status = false;
+		while (!status) {
+			if (
+				!(await this.__checkConversationID(instanceVK, currentConversationID))
+			) {
+				maxConversationID = currentConversationID;
+				currentConversationID = Math.round(
+					(currentConversationID + minConversationID) / 2,
+				);
+			} else {
+				if (maxConversationID !== currentConversationID) {
+					while (!status) {
+						if (minConversationID + 10 > maxConversationID) {
+							for (let i = minConversationID; i &lt; maxConversationID; i++) {
+								if (!(await this.__checkConversationID(instanceVK, i))) {
+									status = true;
+									currentConversationID = i - 1;
+									return currentConversationID;
+								}
+							}
+						}
+						currentConversationID = Math.round(
+							(minConversationID + maxConversationID) / 2,
+						);
 
-<header>
-    
-        
-    
-</header>
+						if (
+							!(await this.__checkConversationID(
+								instanceVK,
+								currentConversationID,
+							))
+						) {
+							maxConversationID = currentConversationID;
+							currentConversationID = Math.round(
+								(currentConversationID + minConversationID) / 2,
+							);
+						} else {
+							minConversationID = currentConversationID;
+						}
+					}
+				} else {
+					status = true;
+					return currentConversationID;
+				}
+			}
+		}
+		return currentConversationID;
+	}
+}
 
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-    
-    </div>
-    
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+export const group = new VK_Group();
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -1,7 +1,7 @@
 /**
  * @module Logical
  */
-export default class Logical {
+export class LogicalUtils {
 	/**
 	 * Логическое И
 	 * Конъюнкция
@@ -101,3 +101,8 @@ export default class Logical {
 		return a === true && b === false ? false : true;
 	}
 }
+
+/**
+ * Класс для работы с логическими функциями
+ */
+export const logical = new LogicalUtils();
