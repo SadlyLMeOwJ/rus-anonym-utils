@@ -8,7 +8,7 @@ import { number } from "./lib/number/core";
 import { regular } from "./lib/regular/core";
 import { string } from "./lib/string/core";
 import { time } from "./lib/time/core";
-import * as vk from "./lib/vk/core";
+import { vk } from "./lib/vk/core";
 
 export { array, logical, number, regular, string, time, vk };
 
