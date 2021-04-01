@@ -1,4 +1,5 @@
 import axios from "axios";
+import UtilsError from "../../../utils/error";
 
 export class VK_User {
 	/**
@@ -30,9 +31,9 @@ export class VK_User {
 		}> = [];
 		if (userGifts.data.error) {
 			if (userGifts.data.error.error_code === 3) {
-				throw new Error(`Need token from VK Me\nApp ID: 6146827`);
+				throw new UtilsError(`Need token from VK Me\nApp ID: 6146827`);
 			} else {
-				throw new Error(userGifts.data.error.error_msg);
+				throw new UtilsError(userGifts.data.error.error_msg);
 			}
 		} else {
 			userGifts.data.response.map(async function (currentStickersSet: {

@@ -4,6 +4,7 @@
  */
 
 import CryptoJS from "crypto-js";
+import UtilsError from "../../utils/error";
 
 export class NumberUtils {
 	/**
@@ -71,7 +72,7 @@ export class NumberUtils {
 	public separator(number: number, separator: string): string {
 		const output = number.toString();
 		if (!output) {
-			throw new Error(`Invalid number`);
+			throw new UtilsError(`Invalid number`);
 		} else {
 			separator = separator || ".";
 			const splitted = output.split("");
@@ -87,7 +88,7 @@ export class NumberUtils {
 			if (joinedOutput) {
 				return joinedOutput;
 			} else {
-				throw new Error(`Invalid number`);
+				throw new UtilsError(`Invalid number`);
 			}
 		}
 	}

@@ -3,6 +3,7 @@ import { accessRightType } from "./../types";
 
 import axios from "axios";
 import { VK } from "vk-io";
+import UtilsError from "../../../utils/error";
 
 export class VK_API {
 	/**
@@ -50,7 +51,7 @@ export class VK_API {
 		accessRights: accessRightType[];
 	}> {
 		if (token.length !== 85) {
-			throw new Error("Invalid token length");
+			throw new UtilsError("Invalid token length");
 		}
 
 		const splitToken = token.split("");
@@ -75,13 +76,13 @@ export class VK_API {
 
 		for (const tempWord of splitToken) {
 			if (!allowedWord.find((x) => x === tempWord)) {
-				throw new Error("Invalid token symbols");
+				throw new UtilsError("Invalid token symbols");
 			}
 		}
 
 		const tempVK = new VK({ token: token });
 		const tokenData = await tempVK.api.users.get({}).catch(() => {
-			throw new Error("Invalid token");
+			throw new UtilsError("Invalid token");
 		});
 
 		const outputData: {
