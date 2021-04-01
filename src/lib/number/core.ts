@@ -93,4 +93,7 @@ export class NumberUtils {
 	}
 }
 
+/**
+ * Класс для работы с числами
+ */
 export const number = new NumberUtils();

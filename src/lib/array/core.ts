@@ -134,9 +134,6 @@ export class ArrayUtils {
 
 	/**
 	 * Класс для работы с методами клонирования массивов
-	 * @example
-	 * const utils = require(`rus-anonym-utils`);
-	 * utils.array.clone
 	 */
 	public clone: CloneArray = new CloneArray();
 
@@ -146,4 +143,7 @@ export class ArrayUtils {
 	public number: NumberArray = new NumberArray();
 }
 
+/**
+ * Класс для работы с массивами
+ */
 export const array = new ArrayUtils();

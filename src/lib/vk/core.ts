@@ -3,7 +3,7 @@
  */
 
 import { VK } from "vk-io";
-import { isURL } from "../regular/core";
+import { regular } from "../regular/core";
 import axios from "axios";
 
 type accessRight =
@@ -336,7 +336,7 @@ const article = {
 		shares: number;
 	}> => {
 		articleLink = articleLink.replace("https://m.", "https://");
-		if (isURL(articleLink) === false) {
+		if (regular.isURL(articleLink) === false) {
 			throw new Error(`Invalid article link`);
 		} else {
 			try {

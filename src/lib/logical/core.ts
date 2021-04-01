@@ -102,4 +102,7 @@ export class LogicalUtils {
 	}
 }
 
+/**
+ * Класс для работы с логическими функциями
+ */
 export const logical = new LogicalUtils();
