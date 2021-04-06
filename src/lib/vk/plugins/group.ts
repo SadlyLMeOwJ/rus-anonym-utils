@@ -5,17 +5,15 @@ export class VK_Group {
 		instanceVK: VK,
 		peerID: number,
 	): Promise<boolean> {
-		return instanceVK.api.messages
-			.getConversationsById({
+		try {
+			const { items } = await instanceVK.api.messages.getConversationsById({
 				peer_ids: peerID,
-			})
-			.then(({ items }) => {
-				const [data] = items;
-				return !!data.peer.id;
-			})
-			.catch(() => {
-				return false;
 			});
+			const [data] = items;
+			return !!data.peer.id;
+		} catch (e) {
+			return false;
+		}
 	}
 	/**
 	 * Получить идентификатор последней беседы в группе.

@@ -1,5 +1,5 @@
-import { accessRights } from "./../DB/accessRights";
-import { accessRightType } from "./../types";
+import { accessRights as AccessRights } from "./../DB/accessRights";
+import { ICheckToken, IVKAPIStatus } from "./../types";
 
 import axios from "axios";
 import { VK } from "vk-io";
@@ -10,32 +10,26 @@ export class VK_API {
 	 * Получить текущее состоянии API VK
 	 * @return Текущее состоянии API VK
 	 */
-	public async status(): Promise<
-		Array<{
-			section: string;
-			performance: number;
-			uptime: number;
-		}>
-	> {
-		let data = await (await axios.get(`https://vk.com/dev/health`)).data;
+	public async status(): Promise<IVKAPIStatus[]> {
+		let data: string = (await axios.get(`https://vk.com/dev/health`)).data;
 		data = data.toString();
-		let position1 = await data.indexOf(`var content = {`);
-		let position2 = await data.indexOf(`'header': ['`);
+		let position1 = data.indexOf(`var content = {`);
+		let position2 = data.indexOf(`'header': ['`);
 		const newData = data.substring(position1, position2);
 		position1 = newData.indexOf(`[[`);
 		position2 = newData.indexOf(`]]`);
 		const arrayWithSections = JSON.parse(
 			newData.substring(position1, position2 + 2),
 		);
-		const outputArray = [];
+		const OutputArray = [];
 		for (const sectionData of arrayWithSections) {
-			outputArray.push({
+			OutputArray.push({
 				section: sectionData[0],
 				performance: sectionData[2],
 				uptime: sectionData[3],
 			});
 		}
-		return outputArray;
+		return OutputArray;
 	}
 
 	/**
@@ -43,19 +37,13 @@ export class VK_API {
 	 * @param token {string} - Проверяемый токен
 	 * @return данные токена
 	 */
-	public async checkToken(
-		token: string,
-	): Promise<{
-		type: "user" | "group";
-		id: number;
-		accessRights: accessRightType[];
-	}> {
+	public async checkToken(token: string): Promise<ICheckToken> {
 		if (token.length !== 85) {
 			throw new UtilsError("Invalid token length");
 		}
 
-		const splitToken = token.split("");
-		const allowedWord = [
+		const TokenWords = token.split("");
+		const AllowedWordSet = new Set([
 			"d",
 			"e",
 			"f",
@@ -72,10 +60,10 @@ export class VK_API {
 			"7",
 			"8",
 			"9",
-		];
+		]);
 
-		for (const tempWord of splitToken) {
-			if (!allowedWord.find((x) => x === tempWord)) {
+		for (const tempWord of TokenWords) {
+			if (!AllowedWordSet.has(tempWord.toLowerCase())) {
 				throw new UtilsError("Invalid token symbols");
 			}
 		}
@@ -85,11 +73,7 @@ export class VK_API {
 			throw new UtilsError("Invalid token");
 		});
 
-		const outputData: {
-			type: "user" | "group";
-			id: number;
-			accessRights: accessRightType[];
-		} = {
+		const OutputData: ICheckToken = {
 			type: "user",
 			id: 0,
 			accessRights: [],
@@ -97,34 +81,34 @@ export class VK_API {
 
 		if (tokenData.length === 0) {
 			const [secondTokenData] = await tempVK.api.groups.getById({});
-			outputData.type = "group";
-			outputData.id = secondTokenData.id;
+			OutputData.type = "group";
+			OutputData.id = secondTokenData.id;
 			const currentPermissions = await tempVK.api.groups.getTokenPermissions(
 				{},
 			);
-			for (const right in accessRights.group) {
+			for (const right in AccessRights.group) {
 				if (
-					Boolean(currentPermissions.mask & accessRights.group[right].mask) ===
+					Boolean(currentPermissions.mask & AccessRights.group[right].mask) ===
 					true
 				) {
-					outputData.accessRights.push(accessRights.group[right].right);
+					OutputData.accessRights.push(AccessRights.group[right].right);
 				}
 			}
 		} else {
-			outputData.id = tokenData[0].id;
+			OutputData.id = tokenData[0].id;
 			const currentPermissions = await tempVK.api.account.getAppPermissions({
-				user_id: outputData.id,
+				user_id: OutputData.id,
 			});
-			for (const right in accessRights.user) {
+			for (const right in AccessRights.user) {
 				if (
-					Boolean(currentPermissions & accessRights.user[right].mask) === true
+					Boolean(currentPermissions & AccessRights.user[right].mask) === true
 				) {
-					outputData.accessRights.push(accessRights.user[right].right);
+					OutputData.accessRights.push(AccessRights.user[right].right);
 				}
 			}
 		}
 
-		return outputData;
+		return OutputData;
 	}
 }
 
