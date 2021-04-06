@@ -1,15 +1,6 @@
-import { accessRightType } from "./../types";
+import { IAccessRights } from "./../types";
 
-export const accessRights: {
-	user: Array<{
-		right: accessRightType;
-		mask: number;
-	}>;
-	group: Array<{
-		right: accessRightType;
-		mask: number;
-	}>;
-} = {
+export const accessRights: IAccessRights = {
 	user: [
 		{
 			right: "notify",

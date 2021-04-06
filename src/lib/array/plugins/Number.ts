@@ -28,6 +28,18 @@ class Number {
 		return inputArray.reduce((a, b) => a + b) / inputArray.length;
 	}
 
+	/**
+	 * Подсчёт суммы массива
+	 * @param inputArray {Array} - массив с числами
+	 * @returns среднее значение
+	 */
+	public total(inputArray: number[]): number {
+		return inputArray.reduce(
+			(totalPrice, tempPrice) => totalPrice + tempPrice,
+			0,
+		);
+	}
+
 	public sort = new Sort();
 }
 
