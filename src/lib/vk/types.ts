@@ -105,3 +105,37 @@ export interface IGetUserStickerPacks {
 	total_price: number;
 	items: IUserStickerPack[];
 }
+
+interface IStoreGetStickersKeywordsSticker {
+	sticker_id: number;
+	images: {
+		height: number;
+		width: number;
+		url: string;
+	}[];
+	images_with_background: {
+		height: number;
+		width: number;
+		url: string;
+	}[];
+}
+
+interface IStoreGetStickersKeywordsDictionary {
+	words: string[];
+	user_stickers: IStoreGetStickersKeywordsSticker[];
+	promoted_stickers?: IStoreGetStickersKeywordsSticker[];
+}
+export interface IStoreGetStickersKeywords {
+	count: number;
+	dictionary: IStoreGetStickersKeywordsDictionary[];
+}
+
+export interface IStoreGetStickersKeywordsWord {
+	word: string;
+	stickers: IStoreGetStickersKeywordsSticker[];
+}
+
+export interface IStoreGetStickersKeywordsNumber {
+	sticker_id: number | number[];
+	words: string[];
+}

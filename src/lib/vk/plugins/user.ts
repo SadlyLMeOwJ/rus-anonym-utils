@@ -1,4 +1,10 @@
-import { IGetUserStickerPacks, IUserStickerPack } from "./../types";
+import {
+	IGetUserStickerPacks,
+	IStoreGetStickersKeywords,
+	IStoreGetStickersKeywordsNumber,
+	IStoreGetStickersKeywordsWord,
+	IUserStickerPack,
+} from "./../types";
 import { VK } from "vk-io";
 
 import UtilsError from "../../../utils/error";
@@ -22,6 +28,73 @@ export class VK_User {
 				throw new UtilsError(error.message);
 			}
 		}
+	}
+
+	public async getStickerKeywords(
+		token: string,
+	): Promise<IStoreGetStickersKeywords>;
+	public async getStickerKeywords(
+		token: string,
+		word: string,
+	): Promise<IStoreGetStickersKeywordsWord>;
+	public async getStickerKeywords(
+		token: string,
+		sticker_id: number | number[],
+	): Promise<IStoreGetStickersKeywordsNumber>;
+	public async getStickerKeywords(
+		token: string,
+		wordOrSticker?: string | number | number[],
+	): Promise<unknown> {
+		const vk = new VK({ token: token, apiVersion: "5.103" });
+		const StickersKeywords = (await vk.api.call(
+			"store.getStickersKeywords",
+			{},
+		)) as IStoreGetStickersKeywords;
+		if (!wordOrSticker) {
+			return StickersKeywords;
+		}
+		if (typeof wordOrSticker === "string") {
+			const OutputData: IStoreGetStickersKeywordsWord = {
+				word: wordOrSticker,
+				stickers: [],
+			};
+			for (const dictionary of StickersKeywords.dictionary) {
+				if (dictionary.words.includes(wordOrSticker)) {
+					for (const sticker of dictionary.user_stickers) {
+						OutputData.stickers.push(sticker);
+					}
+					if (dictionary.promoted_stickers) {
+						for (const sticker of dictionary.promoted_stickers) {
+							OutputData.stickers.push(sticker);
+						}
+					}
+				}
+			}
+			return OutputData;
+		}
+		const OutputData: IStoreGetStickersKeywordsNumber = {
+			sticker_id: wordOrSticker,
+			words: [],
+		};
+		if (typeof wordOrSticker === "number") {
+			wordOrSticker = [wordOrSticker];
+		}
+		for (const dictionary of StickersKeywords.dictionary) {
+			for (const userSticker of dictionary.user_stickers) {
+				if (wordOrSticker.includes(userSticker.sticker_id)) {
+					OutputData.words = OutputData.words.concat(dictionary.words);
+				}
+			}
+
+			if (dictionary.promoted_stickers) {
+				for (const promotedSticker of dictionary.promoted_stickers) {
+					if (wordOrSticker.includes(promotedSticker.sticker_id)) {
+						OutputData.words = OutputData.words.concat(dictionary.words);
+					}
+				}
+			}
+		}
+		return OutputData;
 	}
 
 	public async getAllStickers(token: string): Promise<IUserStickerPack[]> {
