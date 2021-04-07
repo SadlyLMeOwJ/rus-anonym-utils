@@ -119,11 +119,11 @@ export class ArrayUtils {
 	 *
 	 * @example
 	 * // Return [1, 2, 3]
-	 * array.universalStringSorter([1, 3, 2], function (element) {
-	 * 	element.toString()
+	 * array.naturalStringSorter([1, 3, 2], function (element) {
+	 * 	return element.toString();
 	 * });
-	 * // Return [1, 3, 2]
-	 * array.universalStringSorter([1, 3, 2]);
+	 * // Return [1, 2, 3]
+	 * array.naturalStringSorter([1, 3, 2]);
 	 */
 	public naturalStringSorter<T>(
 		array: T[],
