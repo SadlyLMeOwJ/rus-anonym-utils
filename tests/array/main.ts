@@ -37,8 +37,7 @@ describe("Array section", () => {
 			const sourceArray = Array.from({ length: 10 }, () => () => Math.random());
 			const compare = <T>(a1: T[], a2: string | T[]): boolean => {
 				return (
-					a1.length == a2.length &&
-					a1.every((v: T, i: string | number) => v === a2[i])
+					a1.length == a2.length && a1.every((v: T, i: number) => v === a2[i])
 				);
 			};
 			const shuffleArray = utils.array.shuffle(sourceArray);
