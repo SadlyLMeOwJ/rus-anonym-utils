@@ -28,7 +28,7 @@ const list = {
 	/**
 	 * Шаблон для номеров
 	 */
-	number: regularList.email,
+	number: regularList.phone,
 };
 
 export class RegularUtils {
