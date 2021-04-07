@@ -27,7 +27,7 @@
 		"start": "npm run build && node test",
 		"docs": "jsdoc -c jsdoc.json",
 		"lint": "eslint ./src --ext .ts",
-		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/*.ts'"
+		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './tests/main.ts'"
 	},
 	"license": "MIT",
 	"devDependencies": {

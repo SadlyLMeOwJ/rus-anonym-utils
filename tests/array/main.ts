@@ -1,4 +1,4 @@
-import utils from "../src/main";
+import utils from "../../src/main";
 
 import { describe, it } from "mocha";
 
