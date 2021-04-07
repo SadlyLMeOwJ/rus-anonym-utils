@@ -25,7 +25,7 @@
 		"build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
 		"docs": "jsdoc -c jsdoc.json",
 		"lint": "eslint ./src --ext .ts",
-		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './tests/main.ts'"
+		"test": "env TS_NODE_PROJECT='./tsconfig-for-autotests.json' mocha -r ts-node/register './tests/main.ts'"
 	},
 	"license": "MIT",
 	"devDependencies": {
@@ -36,6 +36,7 @@
 		"@types/node": "^14.14.37",
 		"@types/request": "^2.48.5",
 		"@types/request-promise": "^4.1.46",
+		"@types/terser-webpack-plugin": "^5.0.3",
 		"@types/webpack": "^5.28.0",
 		"@typescript-eslint/eslint-plugin": "^4.12.0",
 		"@typescript-eslint/parser": "^4.12.0",
