@@ -55,9 +55,12 @@ interface CloneBenchmarkResponse<T> {
 	copiedArray: T[] | number[];
 }
 
+type TComparisonOperators = ">" | "<";
+
 export {
 	sortingAlgorithm,
 	cloneMethod,
 	SortingBenchmarkResponse,
 	CloneBenchmarkResponse,
+	TComparisonOperators,
 };
