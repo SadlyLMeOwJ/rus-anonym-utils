@@ -133,6 +133,15 @@ export class ArrayUtils {
 	}
 
 	/**
+	 * Убирает из массива неуникальные значения (работает только с примитивами)
+	 * @param {Array} array - Массив который требуется уникализировать
+	 * @returns {Array} - Массив состоящий из уникальных значений
+	 */
+	public makeUnique<T>(array: T[]): T[] {
+		return Array.from(new Set(array));
+	}
+
+	/**
 	 * Класс для работы с методами клонирования массивов
 	 */
 	public clone: CloneArray = new CloneArray();
