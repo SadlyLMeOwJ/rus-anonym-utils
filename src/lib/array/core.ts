@@ -142,6 +142,15 @@ export class ArrayUtils {
 	}
 
 	/**
+	 * Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
+	 * @param array - входной массив
+	 * @returns {Array} - Массив состоящий из реальных значений
+	 */
+	public removeFalseValues<T>(array: T[]): T[] {
+		return array.filter(Boolean);
+	}
+
+	/**
 	 * Класс для работы с методами клонирования массивов
 	 */
 	public clone: CloneArray = new CloneArray();
