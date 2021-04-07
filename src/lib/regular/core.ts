@@ -82,7 +82,7 @@ export class RegularUtils {
 	 * @param email {string} - E-Mail адрес
 	 * @returns {boolean}
 	 */
-	public isNumber(number: string): boolean {
+	public isPhoneNumber(number: string): boolean {
 		return new RegExp(regularList.number, "i").test(number);
 	}
 
