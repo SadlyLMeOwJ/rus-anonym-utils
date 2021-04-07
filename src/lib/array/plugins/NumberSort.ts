@@ -1,4 +1,8 @@
-import { SortingBenchmarkResponse, sortingAlgorithm } from "../types";
+import {
+	SortingBenchmarkResponse,
+	sortingAlgorithm,
+	TComparisonOperators,
+} from "../types";
 
 import { performance } from "perf_hooks";
 
@@ -9,19 +13,32 @@ import naturalStringSorter from "../lib/naturalStringSorter";
 const Clone = new CloneClass();
 
 class NumberSort {
+	private __operators: Record<
+		TComparisonOperators,
+		(x: number, y: number) => boolean
+	> = {
+		">": (x: number, y: number): boolean => x > y,
+		"<": (x: number, y: number): boolean => x < y,
+	};
+
 	/**
 	 * Пузырьковая сортировка
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
-	public bubble(inputArray: number[]): number[] {
+	public bubble(
+		inputArray: number[],
+		operator?: TComparisonOperators,
+	): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length <= 1) {
 			return inputArray;
 		}
 		for (let i = 0, endI = inputArray.length - 1; i < endI; i++) {
 			for (let j = 0, endJ = endI - i; j < endJ; j++) {
-				if (inputArray[j] > inputArray[j + 1]) {
+				if (
+					this.__operators[operator || ">"](inputArray[j], inputArray[j + 1])
+				) {
 					const currentElement = inputArray[j];
 					inputArray[j] = inputArray[j + 1];
 					inputArray[j + 1] = currentElement;

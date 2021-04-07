@@ -119,17 +119,35 @@ export class ArrayUtils {
 	 *
 	 * @example
 	 * // Return [1, 2, 3]
-	 * array.universalStringSorter([1, 3, 2], function (element) {
-	 * 	element.toString()
+	 * array.naturalStringSorter([1, 3, 2], function (element) {
+	 * 	return element.toString();
 	 * });
-	 * // Return [1, 3, 2]
-	 * array.universalStringSorter([1, 3, 2]);
+	 * // Return [1, 2, 3]
+	 * array.naturalStringSorter([1, 3, 2]);
 	 */
 	public naturalStringSorter<T>(
 		array: T[],
 		extractor?: (input: T) => string,
 	): T[] {
 		return naturalStringSorter(array, extractor);
+	}
+
+	/**
+	 * Убирает из массива неуникальные значения (работает только с примитивами)
+	 * @param {Array} array - Массив который требуется уникализировать
+	 * @returns {Array} - Массив состоящий из уникальных значений
+	 */
+	public makeUnique<T>(array: T[]): T[] {
+		return Array.from(new Set(array));
+	}
+
+	/**
+	 * Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
+	 * @param array - входной массив
+	 * @returns {Array} - Массив состоящий из реальных значений
+	 */
+	public removeFalseValues<T>(array: T[]): T[] {
+		return array.filter(Boolean);
 	}
 
 	/**

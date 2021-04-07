@@ -203,17 +203,11 @@ class Clone {
 	 * @returns новый массив
 	 */
 	public faster<T>(input: T[]): Promise<T[]> {
-		return new Promise((resolve) => {
-			Promise.race(
-				this.methods.map((method) => {
-					return new Promise((raceResolver) => {
-						raceResolver(this[method](input));
-					});
-				}),
-			).then((value) => {
-				return resolve(value as T[]);
-			});
-		});
+		return Promise.any(
+			this.methods.map((method) => {
+				return this[method](input);
+			}),
+		);
 	}
 }
 

@@ -23,14 +23,14 @@
 	},
 	"scripts": {
 		"build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
-		"prepublish": "npm run build",
-		"start": "npm run build && node test",
 		"docs": "jsdoc -c jsdoc.json",
-		"lint": "eslint ./src --ext .ts"
+		"lint": "eslint ./src --ext .ts",
+		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './tests/main.ts'"
 	},
 	"license": "MIT",
 	"devDependencies": {
 		"@types/crypto-js": "^4.0.1",
+		"@types/mocha": "^8.2.2",
 		"@types/moment": "^2.13.0",
 		"@types/moment-precise-range-plugin": "^0.2.0",
 		"@types/node": "^14.14.37",
@@ -45,6 +45,7 @@
 		"eslint": "^7.17.0",
 		"https-browserify": "^1.0.0",
 		"jsdoc": "^3.6.6",
+		"mocha": "^8.3.2",
 		"stream-browserify": "^3.0.0",
 		"stream-http": "^3.1.1",
 		"terser-webpack-plugin": "^5.1.1",

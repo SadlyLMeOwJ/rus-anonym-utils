@@ -40,6 +40,23 @@ class Number {
 		);
 	}
 
+	/**
+	 * Генерирует массив заполненный выбранной цифрой, либо нулями
+	 * @param {Number} length - Длина выходного массива
+	 * @param {Number} customNumber - Цифра, которой нужно заполнить массив, или функция её генерирующая
+	 * @returns {Array.<Number>} - Массив заполнный нулями
+	 */
+	public generate(
+		length: number,
+		customNumber?: number | (() => number),
+	): number[] {
+		if (typeof customNumber === "function") {
+			return Array.from({ length: length }, () => customNumber());
+		} else {
+			return Array.from({ length: length }, () => customNumber || 0);
+		}
+	}
+
 	public sort = new Sort();
 }
 
