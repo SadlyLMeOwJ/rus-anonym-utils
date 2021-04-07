@@ -23,7 +23,6 @@
 	},
 	"scripts": {
 		"build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
-		"prepublish": "npm run build",
 		"docs": "jsdoc -c jsdoc.json",
 		"lint": "eslint ./src --ext .ts",
 		"test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register './tests/main.ts'"
