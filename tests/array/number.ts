@@ -1,5 +1,6 @@
 import utils from "../../dist/main";
 import assert from "assert";
+import numberArraySortTests from "./numberSorter";
 
 const numberArrayTests = (): void => {
 	it("min", () => {
@@ -21,6 +22,8 @@ const numberArrayTests = (): void => {
 	it("generate", () => {
 		assert.deepStrictEqual(utils.array.number.generate(5, 0), [0, 0, 0, 0, 0]);
 	});
+
+	describe("Sort", numberArraySortTests);
 };
 
 export default numberArrayTests;
