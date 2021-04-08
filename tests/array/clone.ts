@@ -55,13 +55,15 @@ function cloneTests(): void {
 		assert.ok(utils.array.clone.benchmark([1, 2, 3]));
 	});
 
-	it("faster", async () => {
-		assert.deepStrictEqual(await utils.array.clone.faster([1, 2, 3]), [
-			1,
-			2,
-			3,
-		]);
-	});
+	if (process.version >= "v15") {
+		it("faster", async () => {
+			assert.deepStrictEqual(await utils.array.clone.faster([1, 2, 3]), [
+				1,
+				2,
+				3,
+			]);
+		});
+	}
 }
 
 export default cloneTests;
