@@ -2,6 +2,8 @@ import utils from "../../dist/main";
 
 import { describe, it } from "mocha";
 
+import cloneTests from "./clone";
+
 describe("Array section", () => {
 	describe("Main functions", () => {
 		it("random", (done) => {
@@ -99,4 +101,5 @@ describe("Array section", () => {
 			}
 		});
 	});
+	describe("Clone functions", cloneTests);
 });
