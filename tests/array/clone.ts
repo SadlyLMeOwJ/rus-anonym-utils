@@ -1,6 +1,5 @@
 import utils from "../../dist/main";
 
-import { it } from "mocha";
 import assert from "assert";
 
 function cloneTests(): void {
