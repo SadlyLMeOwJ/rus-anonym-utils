@@ -1,4 +1,4 @@
-import { IArticleGetByUrl } from "./../types";
+import { IArticleGetByUrl } from "../typings";
 import axios from "axios";
 import { regular } from "./../../regular/core";
 import UtilsError from "../../../utils/error";

@@ -1,5 +1,5 @@
 import { accessRights as AccessRights } from "./../DB/accessRights";
-import { ICheckToken, IVKAPIStatus } from "./../types";
+import { ICheckToken, IVKAPIStatus } from "../typings";
 
 import axios from "axios";
 import { VK } from "vk-io";

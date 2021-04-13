@@ -4,11 +4,11 @@ import {
 	IStoreGetStickersKeywordsNumber,
 	IStoreGetStickersKeywordsWord,
 	IUserStickerPack,
-} from "./../types";
+} from "../typings";
 import { VK } from "vk-io";
 
 import UtilsError from "../../../utils/error";
-import { IGiftsGetCatalogResponse } from "../types";
+import { IGiftsGetCatalogResponse } from "../typings";
 
 export class VK_User {
 	private async __parseUserGifts(
