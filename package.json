@@ -40,6 +40,7 @@
 		"@types/webpack": "^5.28.0",
 		"@typescript-eslint/eslint-plugin": "^4.12.0",
 		"@typescript-eslint/parser": "^4.12.0",
+		"anymatch": "^3.1.2",
 		"better-docs": "^2.3.2",
 		"cross-env": "^7.0.3",
 		"crypto-browserify": "^3.12.0",
