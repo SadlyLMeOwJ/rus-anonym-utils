@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
 	IGetUserStickerPacks,
 	IStoreGetStickersKeywords,
@@ -174,6 +175,28 @@ export class VK_User {
 			}).reduce((totalPrice, tempPrice) => totalPrice + tempPrice, 0),
 			items: ParseStickers,
 		};
+	}
+
+	public async setSteps({
+		token,
+		steps,
+		distance,
+		date,
+	}: {
+		token: string;
+		steps: number;
+		distance: number;
+		date: string | Date;
+	}): Promise<{
+		steps: number;
+		distance: number;
+	}> {
+		const vk = new VK({ token });
+		return await vk.api.call("vkRun.setSteps", {
+			date: moment(date).format("YYYY-MM-DD"),
+			steps,
+			distance,
+		});
 	}
 }
 
