@@ -1,14 +1,15 @@
+import moment from "moment";
 import {
 	IGetUserStickerPacks,
 	IStoreGetStickersKeywords,
 	IStoreGetStickersKeywordsNumber,
 	IStoreGetStickersKeywordsWord,
 	IUserStickerPack,
-} from "./../types";
+} from "../typings";
 import { VK } from "vk-io";
 
 import UtilsError from "../../../utils/error";
-import { IGiftsGetCatalogResponse } from "../types";
+import { IGiftsGetCatalogResponse } from "../typings";
 
 export class VK_User {
 	private async __parseUserGifts(
@@ -174,6 +175,36 @@ export class VK_User {
 			}).reduce((totalPrice, tempPrice) => totalPrice + tempPrice, 0),
 			items: ParseStickers,
 		};
+	}
+
+	/**
+	 *
+	 * @param token - Токен от аккаунта пользователя
+	 * @param steps - Количество шагов
+	 * @param distance - Дистанция в метрах
+	 * @param date - Дата в формате YYYY-MM-DD или Date
+	 * @returns обьект с полями steps и distance
+	 */
+	public async setSteps({
+		token,
+		steps,
+		distance,
+		date,
+	}: {
+		token: string;
+		steps: number;
+		distance: number;
+		date: string | Date;
+	}): Promise<{
+		steps: number;
+		distance: number;
+	}> {
+		const vk = new VK({ token });
+		return await vk.api.call("vkRun.setSteps", {
+			date: moment(date).format("YYYY-MM-DD"),
+			steps,
+			distance,
+		});
 	}
 }
 

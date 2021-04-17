@@ -21,16 +21,24 @@ export default function naturalStringSorter<T>(
 		}
 	}
 	class Splitter {
-		source: T;
+		public source: T;
 		private key: string;
 		private elements: elementsPart[] = [];
 		private currentIndex = 0;
 		private fromIndex = 0;
 		private completed = false;
-		findElements() {
+
+		constructor(item: T) {
+			this.source = item;
+			this.key =
+				typeof extractor === "function" ? extractor(item) : String(item);
+		}
+
+		get elementsCount() {
 			return this.elements.length;
 		}
-		processElement(elementIndex: number) {
+
+		public processElement(elementIndex: number) {
 			while (this.elements.length <= elementIndex && !this.completed) {
 				this.parseString();
 			}
@@ -38,10 +46,12 @@ export default function naturalStringSorter<T>(
 				? this.elements[elementIndex]
 				: null;
 		}
+
 		private isNumber(char: string) {
 			const code = char.charCodeAt(0);
 			return code >= "0".charCodeAt(0) && code <= "9".charCodeAt(0);
 		}
+
 		private parseString() {
 			if (this.currentIndex < this.key.length) {
 				while (++this.currentIndex) {
@@ -64,11 +74,6 @@ export default function naturalStringSorter<T>(
 			} else {
 				this.completed = true;
 			}
-		}
-		constructor(item: T) {
-			this.source = item;
-			this.key =
-				typeof extractor === "function" ? extractor(item) : String(item);
 		}
 	}
 
@@ -94,8 +99,8 @@ export default function naturalStringSorter<T>(
 					}
 				} else {
 					return __naturalSortingCompare(
-						sp1.findElements(),
-						sp2.findElements(),
+						sp1.elementsCount,
+						sp2.elementsCount,
 					);
 				}
 			} while (++i);

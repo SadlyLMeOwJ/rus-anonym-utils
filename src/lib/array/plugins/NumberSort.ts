@@ -2,7 +2,7 @@ import {
 	SortingBenchmarkResponse,
 	sortingAlgorithm,
 	TComparisonOperators,
-} from "../types";
+} from "../typings";
 
 import { performance } from "perf_hooks";
 
