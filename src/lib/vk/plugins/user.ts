@@ -178,12 +178,12 @@ export class VK_User {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param token - Токен от аккаунта пользователя
 	 * @param steps - Количество шагов
 	 * @param distance - Дистанция в метрах
 	 * @param date - Дата в формате YYYY-MM-DD или Date
-	 * @returns 
+	 * @returns обьект с полями steps и distance
 	 */
 	public async setSteps({
 		token,
