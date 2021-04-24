@@ -16,8 +16,7 @@ describe("Array section", () => {
 
 		it("splitOn", (done) => {
 			const splittedArray = utils.array.splitOn([1, 2, 3], 2);
-			// bug
-			if (splittedArray.length === 2 && splittedArray[1][0] === 2) {
+			if (splittedArray.length === 2 && splittedArray[1][0] === 3) {
 				done();
 			} else {
 				done(new Error());
