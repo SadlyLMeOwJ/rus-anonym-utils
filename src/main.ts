@@ -11,6 +11,10 @@ import { time } from "./lib/time/core";
 import { vk } from "./lib/vk/core";
 import { IP } from "./lib/IP/core";
 
-export { array, logical, number, regular, string, time, vk, IP };
+function sleep(ms: number): Promise<void> {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-export default { array, logical, number, regular, string, time, vk, IP };
+export { array, logical, number, regular, string, time, vk, IP, sleep };
+
+export default { array, logical, number, regular, string, time, vk, IP, sleep };
