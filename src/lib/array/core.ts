@@ -33,12 +33,15 @@ export class ArrayUtils {
 	 * array.splitOn([1, 2, 3], 2);
 	 */
 	public splitOn<T>(array: T[], chunks: number): T[][] {
-		return array.reduce(
-			(acc, n, i) => (
-				((acc[i % chunks] = acc[i % chunks] || []) as T[]).push(n), acc
-			),
-			[],
-		);
+		const outputArray: T[][] = [];
+		const maxIteration = Math.floor(array.length / chunks) * chunks;
+		for (let i = 0; i < maxIteration; i += chunks) {
+			outputArray.push(array.slice(i, i + chunks));
+		}
+		if (array[maxIteration]) {
+			outputArray.push(array.slice(maxIteration));
+		}
+		return outputArray;
 	}
 
 	/**
@@ -49,7 +52,7 @@ export class ArrayUtils {
 	 *
 	 * @example
 	 * // Return [[1], [2], [3]]
-	 * array.splitTo([1, 2, 3], 3);
+	 * array.splitTo([1, 2, 3], 1);
 	 */
 	public splitTo<T>(inputArray: T[], elementsInChunk: number): T[][] {
 		const outputArray: T[][] = [];
