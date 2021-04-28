@@ -7,9 +7,20 @@
 	"files": [
 		"dist/"
 	],
+	"exports": {
+		"default": "./dist/main.js"
+	},
 	"directories": {
 		"dist": "dist"
 	},
+	"engines": {
+		"node": "*"
+	},
+	"keywords": [
+		"utils",
+		"util",
+		"function"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/RusAnonym/rus-anonym-utils.git"

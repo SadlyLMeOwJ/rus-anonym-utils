@@ -24,7 +24,4 @@ export class IPUtils {
 	public v6: IPv6 = new IPv6();
 }
 
-/**
- * Класс для работы с IP адресами
- */
 export const IP = new IPUtils();

@@ -95,7 +95,4 @@ export class RegularUtils {
 	public list = list;
 }
 
-/**
- * Класс для работы с регулярными выражениями
- */
 export const regular = new RegularUtils();

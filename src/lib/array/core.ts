@@ -164,7 +164,4 @@ export class ArrayUtils {
 	public number: NumberArray = new NumberArray();
 }
 
-/**
- * Класс для работы с массивами
- */
 export const array = new ArrayUtils();
