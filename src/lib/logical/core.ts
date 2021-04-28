@@ -1,5 +1,7 @@
 /**
- * @module Logical
+ * @category Logical
+ * @description Класс для работы с логическими функциями
+ * @hideconstructor
  */
 export class LogicalUtils {
 	/**
@@ -7,9 +9,10 @@ export class LogicalUtils {
 	 * Конъюнкция
 	 * Логическое умножение, выражение «AND».
 	 * Конъюнкция возвращает true только тогда, когда оба аргумента равны true, иначе false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public AND(a: boolean, b: boolean): boolean {
 		return a && b;
@@ -20,9 +23,10 @@ export class LogicalUtils {
 	 * Дизъюнкция
 	 * Логическое сложение, выражение «OR». Также называется «слабой дизъюнкцией».
 	 * Возвращает false только тогда, когда оба аргумента равны false, иначе true.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public OR(a: boolean, b: boolean): boolean {
 		return a || b;
@@ -31,9 +35,10 @@ export class LogicalUtils {
 	/**
 	 * Логическое И-НЕ
 	 * Возвращает true только тогда, когда оба аргумента равны true, иначе false
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public ANOT(a: boolean, b: boolean): boolean {
 		return a === true && b === true;
@@ -43,9 +48,10 @@ export class LogicalUtils {
 	 * Логическое ИЛИ-НЕ
 	 * Иначе стрелка Пирса, выражение «NOR».
 	 * Возвращает true только тогда, когда оба аргумента одновременно равны false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public NOR(a: boolean, b: boolean): boolean {
 		return a === false && b === false;
@@ -56,9 +62,10 @@ export class LogicalUtils {
 	 * Сильная дизъюнкция
 	 * Исключающая дизъюнкция, выражение «XOR».
 	 * Возвращает true только тогда, когда только один из них равен true, а второй равен false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public XOR(a: boolean, b: boolean): boolean {
 		return a ? !b : b;
@@ -69,8 +76,9 @@ export class LogicalUtils {
 	 * Отрицание
 	 * Инверсия, негация, выражение «NOT».
 	 * Возвращает противоположное значение: для false — true, для true — false.
+	 *
 	 * @param {boolean} a - 1 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public NOT(a: boolean): boolean {
 		return !a;
@@ -81,9 +89,10 @@ export class LogicalUtils {
 	 * Эквивалентность
 	 * Тождество, равенство, выражение «EQ».
 	 * Возвращает true только тогда, когда оба аргумента равны одновременно false или true.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public EQ(a: boolean, b: boolean): boolean {
 		return a === b;
@@ -93,9 +102,10 @@ export class LogicalUtils {
 	 * Импликация
 	 * Выражает зависимость причины и следствия.
 	 * То есть возвращает ложь только тогда, когда первый аргумент равен true, а второй аргумент — false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public IMP(a: boolean, b: boolean): boolean {
 		return a === true && b === false ? false : true;

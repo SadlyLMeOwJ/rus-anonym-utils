@@ -4,7 +4,7 @@
 	},
 	"source": {
 		"include": ["./src"],
-		"includePattern": "\\.(ts|js)$"
+		"includePattern": "\\.(ts)$"
 	},
 	"plugins": [
 		"node_modules/better-docs/typescript",
@@ -27,7 +27,7 @@
 			"name": "RusAnonym Utils documentation",
 			"title": "Documentation",
 			"hideGenerator": true
-		},	
+		},
 		"search": true
 	}
 }

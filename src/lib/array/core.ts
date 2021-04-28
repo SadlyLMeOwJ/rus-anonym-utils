@@ -1,17 +1,19 @@
-/**
- * @module Array
- * @description Функции для работы с массивами
- */
-
 import { number } from "../number/core";
 import naturalStringSorter from "./lib/naturalStringSorter";
 
 import CloneArray from "./plugins/Clone";
 import NumberArray from "./plugins/Number";
+
+/**
+ * @category Array
+ * @description Класс для работы с массивами
+ * @hideconstructor
+ */
 export class ArrayUtils {
 	/**
 	 * Возвращает рандомный элемент из массива
-	 * @param inputArray {Array} - массив
+	 *
+	 * @param {Array} inputArray - массив
 	 * @returns элемент из массива
 	 *
 	 * @example
@@ -24,7 +26,9 @@ export class ArrayUtils {
 
 	/**
 	 * Режет массив по чанкам
+	 *
 	 * @param inputArray {Array} - массив
+	 * @param array
 	 * @param chunks {Array.<Array>} - общее количество чанков, которое должно получиться
 	 * @returns итоговый массив
 	 *
@@ -46,6 +50,7 @@ export class ArrayUtils {
 
 	/**
 	 * Режет массив по элементам в чанке
+	 *
 	 * @param inputArray {Array} - массив
 	 * @param elementsInChunk - количество элементов в одном чанке
 	 * @returns итоговый массив
@@ -66,6 +71,7 @@ export class ArrayUtils {
 
 	/**
 	 * Перемешивает массив
+	 *
 	 * @param inputArray {Array} - массив
 	 * @returns перемешанный массив
 	 *
@@ -84,6 +90,7 @@ export class ArrayUtils {
 
 	/**
 	 * Вставляет элемент в массив
+	 *
 	 * @param inputArray {Array} - массив
 	 * @param index {Number} - Индекс добавляемого элемента
 	 * @param element {any} - Новый элемент
@@ -101,6 +108,7 @@ export class ArrayUtils {
 
 	/**
 	 * Убирает пустые элементы из массива
+	 *
 	 * @param inputArray {Array} - массив
 	 * @returns отсортированный массив
 	 *
@@ -116,6 +124,7 @@ export class ArrayUtils {
 
 	/**
 	 * Естественная сортировка строк
+	 *
 	 * @param {Array} array - Массив который требуется отсортировать
 	 * @param {Function=} extractor - Функция переводящая элемент массива в строку
 	 * @returns {Array} Отсортированный массив
@@ -137,6 +146,7 @@ export class ArrayUtils {
 
 	/**
 	 * Убирает из массива неуникальные значения (работает только с примитивами)
+	 *
 	 * @param {Array} array - Массив который требуется уникализировать
 	 * @returns {Array} - Массив состоящий из уникальных значений
 	 */
@@ -146,6 +156,7 @@ export class ArrayUtils {
 
 	/**
 	 * Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
+	 *
 	 * @param array - входной массив
 	 * @returns {Array} - Массив состоящий из реальных значений
 	 */

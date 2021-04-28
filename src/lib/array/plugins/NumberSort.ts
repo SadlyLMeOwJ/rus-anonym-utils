@@ -23,7 +23,9 @@ class NumberSort {
 
 	/**
 	 * Пузырьковая сортировка
+	 *
 	 * @param inputArray {Array} - массив с числами
+	 * @param operator
 	 * @returns отсортированный массив с числами
 	 */
 	public bubble(
@@ -50,6 +52,7 @@ class NumberSort {
 
 	/**
 	 * Сортировка выбором
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -75,6 +78,7 @@ class NumberSort {
 
 	/**
 	 * Сортировка вставками
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -98,6 +102,7 @@ class NumberSort {
 
 	/**
 	 * Сортировка Шелла
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -125,6 +130,7 @@ class NumberSort {
 
 	/**
 	 * Сортировка подсчётом
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -152,6 +158,7 @@ class NumberSort {
 
 	/**
 	 * Сортировка расчёской
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -177,6 +184,7 @@ class NumberSort {
 
 	/**
 	 * Сортировка слиянием
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -189,6 +197,10 @@ class NumberSort {
 		const arrLeft = inputArray.slice(0, middle);
 		const arrRight = inputArray.slice(middle);
 
+		/**
+		 * @param firstArray
+		 * @param secondArray
+		 */
 		function mergeArray(firstArray: number[], secondArray: number[]): number[] {
 			const arrSort = [];
 			let i = 0;
@@ -206,6 +218,7 @@ class NumberSort {
 
 	/**
 	 * Пирамидальная сортировка
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -248,6 +261,7 @@ class NumberSort {
 
 	/**
 	 * Быстрая сортировка
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -267,6 +281,7 @@ class NumberSort {
 
 	/**
 	 * Сортировка перемешиванием
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -304,6 +319,7 @@ class NumberSort {
 
 	/**
 	 * Гномья сортировка
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -331,6 +347,7 @@ class NumberSort {
 
 	/**
 	 * Натуральная сортировка
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns отсортированный массив с числами
 	 */
@@ -342,7 +359,9 @@ class NumberSort {
 
 	/**
 	 * Сравнивает все методы сортировок
+	 *
 	 * @param inputArray {Array} - массив с числами, либо число из которого нужно сгенерировать массив
+	 * @param input
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
 	public benchmark(input: number[] | number): SortingBenchmarkResponse {

@@ -1,13 +1,24 @@
 import { logical } from "../../logical/core";
 
+/**
+ * @param a
+ * @param b
+ */
 function __naturalSortingCompare(a: number, b: number) {
 	return a < b ? -1 : a > b ? 1 : 0;
 }
 
+/**
+ * @param array
+ * @param extractor
+ */
 export default function naturalStringSorter<T>(
 	array: T[],
 	extractor?: (input: T) => string,
 ): T[] {
+	/**
+	 * @param item
+	 */
 	function createSplitter(item: T): Splitter {
 		return new Splitter(item);
 	}

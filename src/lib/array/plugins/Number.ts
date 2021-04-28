@@ -3,6 +3,7 @@ import Sort from "./NumberSort";
 class Number {
 	/**
 	 * Вывод минимального значения в массиве
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns - минимальное значение
 	 */
@@ -12,6 +13,7 @@ class Number {
 
 	/**
 	 * Вывод максимального значения в массиве
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns максимальное значение
 	 */
@@ -21,6 +23,7 @@ class Number {
 
 	/**
 	 * Вывод среднего значения в массиве
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns среднее значение
 	 */
@@ -30,6 +33,7 @@ class Number {
 
 	/**
 	 * Подсчёт суммы массива
+	 *
 	 * @param inputArray {Array} - массив с числами
 	 * @returns среднее значение
 	 */
@@ -42,9 +46,10 @@ class Number {
 
 	/**
 	 * Генерирует массив заполненный выбранной цифрой, либо нулями
-	 * @param {Number} length - Длина выходного массива
-	 * @param {Number} customNumber - Цифра, которой нужно заполнить массив, или функция её генерирующая
-	 * @returns {Array.<Number>} - Массив заполнный нулями
+	 *
+	 * @param {number} length - Длина выходного массива
+	 * @param {number} customNumber - Цифра, которой нужно заполнить массив, или функция её генерирующая
+	 * @returns {Array.<number>} - Массив заполнный нулями
 	 */
 	public generate(
 		length: number,
