@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation lib/vk/plugins/user.ts</title>
+  <title>Documentation lib/IP/core.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#list">list</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>lib/vk/plugins/user.ts</h1>
+                    <h1>lib/IP/core.ts</h1>
                 </header>
                 
 
@@ -93,71 +93,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from "axios";
+            <pre class="prettyprint source linenums"><code>import { regular } from "./../regular/core";
 
-export class VK_User {
+import IPv4 from "./plugins/v4";
+import IPv6 from "./plugins/v6";
+
+/**
+ * @category IP
+ * @classdesc Класс для работы с IP
+ * @hideconstructor
+ */
+export class IPUtils {
 	/**
-	 * Получить стикеры пользователя
-	 * @param token - Токен от аккаунта пользователя
-	 * @param user_id - Идентификатор пользователя чьи стикеры требуется получить
-	 * @return Массив со стикерами пользователя
+	 * Проверка является ли переданная строка IP адресом
+	 *
+	 * @param {string} IP IP адрес
+	 * @returns {boolean} является ли переданный IP адрес валидным
 	 */
-	public async getUserStickers(
-		token: string,
-		user_id: number,
-	): Promise&lt;
-		Array&lt;{
-			id: number;
-			name: string;
-			description: string;
-		}>
-	> {
-		const userGifts = await axios.get(
-			`https://api.vk.com/method/gifts.getCatalog`,
-			{
-				params: { access_token: token, user_id: user_id, v: "5.103" },
-			},
-		);
-		const parseStickers: Array&lt;{
-			id: number;
-			name: string;
-			description: string;
-		}> = [];
-		if (userGifts.data.error) {
-			if (userGifts.data.error.error_code === 3) {
-				throw new Error(`Need token from VK Me\nApp ID: 6146827`);
-			} else {
-				throw new Error(userGifts.data.error.error_msg);
-			}
-		} else {
-			userGifts.data.response.map(async function (currentStickersSet: {
-				items: Array&lt;{
-					disabled: number;
-					gift: { stickers_product_id: number };
-					sticker_pack: { title: string; description: string };
-				}>;
-			}) {
-				currentStickersSet.items.map(async function (currentStickerPack) {
-					if (
-						currentStickerPack.disabled === 1 &amp;&amp;
-						!parseStickers.find(
-							(x) => x.id === currentStickerPack.gift.stickers_product_id,
-						)
-					) {
-						parseStickers.push({
-							id: currentStickerPack.gift.stickers_product_id,
-							name: currentStickerPack.sticker_pack.title,
-							description: currentStickerPack.sticker_pack.description,
-						});
-					}
-				});
-			});
-		}
-		return parseStickers;
+	public is(IP: string): boolean {
+		return regular.isIP(IP);
 	}
+
+	/**
+	 * Секция для работы с IPv4 адресами
+	 *
+	 * @type {IPv4}
+	 * @memberof IPUtils
+	 */
+	public v4: IPv4 = new IPv4();
+
+	/**
+	 * Секция для работы с IPv6 адресами
+	 *
+	 * @type {IPv6}
+	 */
+	public v6: IPv6 = new IPv6();
 }
 
-export const user = new VK_User();
+export const IP = new IPUtils();
 </code></pre>
         </article>
     </section>
@@ -166,6 +139,16 @@ export const user = new VK_User();
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

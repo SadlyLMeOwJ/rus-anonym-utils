@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation lib/vk/plugins/article.ts</title>
+  <title>Documentation lib/VK/plugins/article.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#list">list</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>lib/vk/plugins/article.ts</h1>
+                    <h1>lib/VK/plugins/article.ts</h1>
                 </header>
                 
 
@@ -93,52 +93,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from "axios";
+            <pre class="prettyprint source linenums"><code>import { IArticleGetByUrl } from "../typings";
+import axios from "axios";
 import { regular } from "./../../regular/core";
+import UtilsError from "../../../utils/error";
 
+/**
+ * @category VK
+ * @description Класс для работы с статьями
+ * @hideconstructor
+ */
 export class VK_Article {
 	/**
-	 * Получить данные о статье по ссылке
-	 * @param articleLink - Ссылка на статью
-	 * @return данные статьи
+	 * @description Получить данные о статье по ссылке
+	 * @param {string} articleLink Ссылка на статью
+	 * @returns {Promise} Данные статьи
 	 */
-	public async getByURL(
-		articleLink: string,
-	): Promise&lt;{
-		id: number;
-		owner_id: number;
-		access_hash: string;
-		title: string;
-		subtitle: string;
-		published: Date;
-		views: number;
-		shares: number;
-	}> {
+	public async getByURL(articleLink: string): Promise&lt;IArticleGetByUrl> {
 		articleLink = articleLink.replace("https://m.", "https://");
 		if (regular.isURL(articleLink) === false) {
-			throw new Error(`Invalid article link`);
+			throw new UtilsError(`Invalid article link`);
 		} else {
 			try {
-				let data = await (await axios.get(articleLink)).data;
-				let position1 = await data.indexOf(`Article.init({"id":`);
-				let position2 = await data.indexOf(`&lt;/script>&lt;/div>`, position1);
+				let data: string = (await axios.get(articleLink)).data;
+				let position1 = data.indexOf(`Article.init({"id":`);
+				let position2 = data.indexOf(`&lt;/script>&lt;/div>`, position1);
 				data = data.substring(position1, position2);
 				position1 = 13;
-				position2 = await data.indexOf(`, {`);
+				position2 = data.indexOf(`, {`);
 				data = data.substring(position1, position2);
 				const articleData = JSON.parse(data);
 				return {
 					id: articleData.id,
 					owner_id: articleData.owner_id,
+					raw_id: articleData.raw_id,
 					access_hash: articleData.access_hash,
 					title: articleData.title,
 					subtitle: articleData.subtitle,
 					published: new Date(articleData.published_date * 1000),
 					views: articleData.views,
+					views_formatted: articleData.views_formatted,
 					shares: articleData.shares,
+					shares_formatted: articleData.shares_formatted,
+					url: "https://vk.com/" + articleData.url,
 				};
 			} catch (error) {
-				throw new Error(`Invalid article`);
+				throw new UtilsError(`Invalid article`);
 			}
 		}
 	}
@@ -153,6 +153,16 @@ export const article = new VK_Article();
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

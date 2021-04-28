@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation lib/regular/core.ts</title>
+  <title>Documentation utils/main.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>lib/regular/core.ts</h1>
+                    <h1>utils/main.ts</h1>
                 </header>
                 
 
@@ -93,110 +93,103 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import regularList from "./DB/regularTemplate";
+            <pre class="prettyprint source linenums"><code>import { IPUtils } from "./../lib/IP/core";
+import { VK } from "./../lib/VK/core";
+import { TimeUtils } from "./../lib/time/core";
+import { StringUtils } from "./../lib/string/core";
+import { RegularUtils } from "./../lib/regular/core";
+import { NumberUtils } from "./../lib/number/core";
+import { LogicalUtils } from "./../lib/logical/core";
+
+import { array, ArrayUtils } from "../lib/array/core";
+import { logical } from "../lib/logical/core";
+import { number } from "../lib/number/core";
+import { regular } from "../lib/regular/core";
+import { string } from "../lib/string/core";
+import { time } from "../lib/time/core";
+import { vk } from "../lib/VK/core";
+import { IP } from "../lib/IP/core";
 
 /**
- * @category Regular
- * @description Шаблоны для регулярных выражений
- * @type {Object.&lt;string, RegExp>}
- */
-const list = {
-	/**
-	 * Шаблон для E-Mail адресов
-	 */
-	email: regularList.email,
-	/**
-	 * Шаблон для IPv4 адресов
-	 */
-	IPv4: regularList.IPv4,
-	/**
-	 * Шаблон для IPv6 адресов
-	 */
-	IPv6: regularList.IPv6,
-	/**
-	 * Шаблон для любых IP адресов
-	 */
-	ip: regularList.ip,
-	/**
-	 * Шаблон для ссылок
-	 */
-	url: regularList.url,
-	/**
-	 * Шаблон для номеров
-	 */
-	number: regularList.phone,
-};
-
-/**
- * @category Regular
- * @description Класс для работы с регулярными выражениями
+ * @description Класс функций
+ * @class
  * @hideconstructor
  */
-export class RegularUtils {
+class RusAnonymUtils {
 	/**
-	 * @description Проверка является ли переданная строка E-Mail адресом
-	 * @param {string} email E-Mail адрес
-	 * @returns {boolean} является ли переданная строка E-Mail адресом
+	 * @description Секция для работы с массивами
+	 * @type {ArrayUtils}
 	 */
-	public isEmail(email: string): boolean {
-		return new RegExp(regularList.email, "").test(email);
+	public readonly array: ArrayUtils;
+
+	/**
+	 * @description Секция для работы с логическими функциями
+	 * @type {LogicalUtils}
+	 */
+	public readonly logical: LogicalUtils;
+
+	/**
+	 * @description Секция для работы с числами
+	 * @type {NumberUtils}
+	 */
+	public readonly number: NumberUtils;
+
+	/**
+	 * @description Секция для работы с регулярными выражениями
+	 * @type {RegularUtils}
+	 */
+	public readonly regular: RegularUtils;
+
+	/**
+	 * @description Секция для работы с строками
+	 * @type {StringUtils}
+	 */
+	public readonly string: StringUtils;
+
+	/**
+	 * @description Секция для работы с временем
+	 * @type {TimeUtils}
+	 */
+	public readonly time: TimeUtils;
+
+	/**
+	 * @description Секция для работы с VK
+	 * @type {VK}
+	 */
+	public readonly vk: VK;
+
+	/**
+	 * @description Секция для работы с IP
+	 * @type {IPUtils}
+	 */
+	public readonly IP: IPUtils;
+
+	constructor() {
+		this.array = array;
+		this.logical = logical;
+		this.number = number;
+		this.regular = regular;
+		this.string = string;
+		this.time = time;
+		this.vk = vk;
+		this.IP = IP;
 	}
 
 	/**
-	 * @description Проверка является ли переданная строка IPv4 адресом
-	 * @param {string} address IPv4 адрес
-	 * @returns {boolean} является ли переданная строка IPv4 адресом
-	 */
-	public isIPv4(address: string): boolean {
-		return new RegExp(regularList.IPv4, "").test(address);
-	}
-
-	/**
-	 * @description Проверка является ли переданная строка IPv6 адресом
-	 * @param {string} address IPv6 адрес
-	 * @returns {boolean} является ли переданная строка IPv6 адресом
-	 */
-	public isIPv6(address: string): boolean {
-		return new RegExp(regularList.IPv6, "").test(address);
-	}
-
-	/**
-	 * @description Проверка является ли переданная строка IP адресом
-	 * @param {string} address IP адрес
-	 * @returns {boolean} является ли переданная строка IP адресом
-	 */
-	public isIP(address: string): boolean {
-		return new RegExp(regularList.ip, "").test(address);
-	}
-
-	/**
-	 * @description Проверка является ли переданная строка ccылкой
-	 * @param {string} url URL
-	 * @returns {boolean} является ли переданная строка ccылкой
-	 */
-	public isURL(url: string): boolean {
-		return new RegExp(regularList.url, "").test(url);
-	}
-
-	/**
-	 * @description Проверка является ли переданная строка номером
-	 * @param {number} number Номер телефона
-	 * @returns {boolean} является ли переданная строка номером
-	 */
-	public isPhoneNumber(number: string): boolean {
-		return new RegExp(regularList.number, "i").test(number);
-	}
-
-	/**
-	 * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
+	 * @description Приостанавливает работу скрипта на выбранное время
+	 * @param {number} ms Время в ms
 	 * @example
-	 * // => RegExp
-	 * new RegExp(utils.regular.list.email, "g");
+	 * import utils from "rus-anonym-utils";
+	 * await utils.sleep(1000); // Приостановит скрипт на 1 секунду
+	 *
+	 * @returns {Promise} Промис
 	 */
-	public list = list;
+	public sleep(ms: number): Promise&lt;void> {
+		return new Promise((resolve) => setTimeout(resolve, ms));
+	}
 }
 
-export const regular = new RegularUtils();
+export default RusAnonymUtils;
 </code></pre>
         </article>
     </section>

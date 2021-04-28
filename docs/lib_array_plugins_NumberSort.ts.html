@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul><h3>Global</h3><ul><li><a href="global.html#list">list</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -93,7 +93,11 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { SortingBenchmarkResponse, sortingAlgorithm } from "../types";
+            <pre class="prettyprint source linenums"><code>import {
+	SortingBenchmarkResponse,
+	sortingAlgorithm,
+	TComparisonOperators,
+} from "../typings";
 
 import { performance } from "perf_hooks";
 
@@ -104,19 +108,33 @@ import naturalStringSorter from "../lib/naturalStringSorter";
 const Clone = new CloneClass();
 
 class NumberSort {
+	private __operators: Record&lt;
+		TComparisonOperators,
+		(x: number, y: number) => boolean
+	> = {
+		">": (x: number, y: number): boolean => x > y,
+		"&lt;": (x: number, y: number): boolean => x &lt; y,
+	};
+
 	/**
-	 * Пузырьковая сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Пузырьковая сортировка
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @param {string=} operator Оператор сравнения
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
-	public bubble(inputArray: number[]): number[] {
+	public bubble(
+		inputArray: number[],
+		operator?: TComparisonOperators,
+	): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
 		if (inputArray.length &lt;= 1) {
 			return inputArray;
 		}
 		for (let i = 0, endI = inputArray.length - 1; i &lt; endI; i++) {
 			for (let j = 0, endJ = endI - i; j &lt; endJ; j++) {
-				if (inputArray[j] > inputArray[j + 1]) {
+				if (
+					this.__operators[operator || ">"](inputArray[j], inputArray[j + 1])
+				) {
 					const currentElement = inputArray[j];
 					inputArray[j] = inputArray[j + 1];
 					inputArray[j + 1] = currentElement;
@@ -127,9 +145,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка выбором
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка выбором
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public selection(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -152,9 +170,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка вставками
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка вставками
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public insertion(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -175,9 +193,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка Шелла
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка Шелла
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public Shell(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -202,9 +220,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка подсчётом
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка подсчётом
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public simpleCounting(inputArray: number[]): number[] {
 		if (inputArray.length &lt;= 1) {
@@ -229,9 +247,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка расчёской
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка расчёской
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public comb(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -254,9 +272,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка слиянием
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка слиянием
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public merge(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -267,6 +285,7 @@ class NumberSort {
 		const arrLeft = inputArray.slice(0, middle);
 		const arrRight = inputArray.slice(middle);
 
+		// eslint-disable-next-line jsdoc/require-jsdoc
 		function mergeArray(firstArray: number[], secondArray: number[]): number[] {
 			const arrSort = [];
 			let i = 0;
@@ -283,9 +302,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Пирамидальная сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Пирамидальная сортировка
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public heap(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -325,9 +344,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Быстрая сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Быстрая сортировка
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public quick(inputArray: number[]): number[] {
 		if (inputArray.length &lt;= 1) {
@@ -344,9 +363,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка перемешиванием
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка перемешиванием
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public shaker(inputArray: number[]): number[] {
 		let i = 0,
@@ -381,9 +400,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Гномья сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Гномья сортировка
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public gnome(inputArray: number[]): number[] {
 		const n = inputArray.length;
@@ -408,9 +427,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Натуральная сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Натуральная сортировка
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {Array.&lt;number>} отсортированный массив с числами
 	 */
 	public naturalStringSorter(inputArray: number[]): number[] {
 		return naturalStringSorter(inputArray, function (element: number): string {
@@ -419,20 +438,11 @@ class NumberSort {
 	}
 
 	/**
-	 * Сравнивает все методы сортировок
-	 * @param inputArray {Array} - массив с числами, либо число из которого нужно сгенерировать массив
+	 * @description Сравнивает все методы сортировок
+	 * @param {Array.&lt;number>} inputArray массив с числами
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public benchmark(input: number[] | number): SortingBenchmarkResponse {
-		let inputArray: number[] = [];
-		if (Number.isInteger(input) === true) {
-			inputArray = Array.from({ length: Number(input) }, () =>
-				Math.floor(Math.random() * Number(input)),
-			);
-		} else if (Array.isArray(input)) {
-			inputArray = input;
-		}
-
+	public benchmark(inputArray: number[]): SortingBenchmarkResponse {
 		const sortingAlgorithms: sortingAlgorithm[] = [
 			"bubble",
 			"selection",
@@ -509,6 +519,16 @@ export default NumberSort;
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

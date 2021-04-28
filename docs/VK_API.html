@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation lib/regular/core.ts</title>
+  <title>Documentation VK_API</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -83,123 +81,440 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Source</p>
-                    <h1>lib/regular/core.ts</h1>
+                    <p>Class</p>
+                    <h1>VK_API</h1>
                 </header>
                 
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import regularList from "./DB/regularTemplate";
+        <h2><span class="attribs"><span class="type-signature"></span></span>VK_API</h2>
+        
+    
+</header>
 
-/**
- * @category Regular
- * @description Шаблоны для регулярных выражений
- * @type {Object.&lt;string, RegExp>}
- */
-const list = {
-	/**
-	 * Шаблон для E-Mail адресов
-	 */
-	email: regularList.email,
-	/**
-	 * Шаблон для IPv4 адресов
-	 */
-	IPv4: regularList.IPv4,
-	/**
-	 * Шаблон для IPv6 адресов
-	 */
-	IPv6: regularList.IPv6,
-	/**
-	 * Шаблон для любых IP адресов
-	 */
-	ip: regularList.ip,
-	/**
-	 * Шаблон для ссылок
-	 */
-	url: regularList.url,
-	/**
-	 * Шаблон для номеров
-	 */
-	number: regularList.phone,
-};
+<article>
+    <div class="container-overview">
+    
+        
+            
 
-/**
- * @category Regular
- * @description Класс для работы с регулярными выражениями
- * @hideconstructor
- */
-export class RegularUtils {
-	/**
-	 * @description Проверка является ли переданная строка E-Mail адресом
-	 * @param {string} email E-Mail адрес
-	 * @returns {boolean} является ли переданная строка E-Mail адресом
-	 */
-	public isEmail(email: string): boolean {
-		return new RegExp(regularList.email, "").test(email);
-	}
 
-	/**
-	 * @description Проверка является ли переданная строка IPv4 адресом
-	 * @param {string} address IPv4 адрес
-	 * @returns {boolean} является ли переданная строка IPv4 адресом
-	 */
-	public isIPv4(address: string): boolean {
-		return new RegExp(regularList.IPv4, "").test(address);
-	}
 
-	/**
-	 * @description Проверка является ли переданная строка IPv6 адресом
-	 * @param {string} address IPv6 адрес
-	 * @returns {boolean} является ли переданная строка IPv6 адресом
-	 */
-	public isIPv6(address: string): boolean {
-		return new RegExp(regularList.IPv6, "").test(address);
-	}
 
-	/**
-	 * @description Проверка является ли переданная строка IP адресом
-	 * @param {string} address IP адрес
-	 * @returns {boolean} является ли переданная строка IP адресом
-	 */
-	public isIP(address: string): boolean {
-		return new RegExp(regularList.ip, "").test(address);
-	}
 
-	/**
-	 * @description Проверка является ли переданная строка ccылкой
-	 * @param {string} url URL
-	 * @returns {boolean} является ли переданная строка ccылкой
-	 */
-	public isURL(url: string): boolean {
-		return new RegExp(regularList.url, "").test(url);
-	}
 
-	/**
-	 * @description Проверка является ли переданная строка номером
-	 * @param {number} number Номер телефона
-	 * @returns {boolean} является ли переданная строка номером
-	 */
-	public isPhoneNumber(number: string): boolean {
-		return new RegExp(regularList.number, "i").test(number);
-	}
 
-	/**
-	 * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
-	 * @example
-	 * // => RegExp
-	 * new RegExp(utils.regular.list.email, "g");
-	 */
-	public list = list;
-}
 
-export const regular = new RegularUtils();
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_plugins_api.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_plugins_api.ts.html">lib/VK/plugins/api.ts</a>, <a href="lib_VK_plugins_api.ts.html#line11">line 11</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="checkToken">
+        <a class="href-link" href="#checkToken">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                checkToken<span class="signature">(token)</span><span class="type-signature"> &rarr; {Promise}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Проверка токена</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>token</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Проверяемый токен</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_plugins_api.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_plugins_api.ts.html">lib/VK/plugins/api.ts</a>, <a href="lib_VK_plugins_api.ts.html#line40">line 40</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>данные токена</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="status">
+        <a class="href-link" href="#status">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                status<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Получить текущее состоянии API VK</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_plugins_api.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_plugins_api.ts.html">lib/VK/plugins/api.ts</a>, <a href="lib_VK_plugins_api.ts.html#line16">line 16</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Текущее состоянии API VK</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
