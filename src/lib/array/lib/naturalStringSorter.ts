@@ -1,24 +1,15 @@
+/* eslint-disable jsdoc/require-jsdoc */
+
 import { logical } from "../../logical/core";
 
-/**
- * @param a
- * @param b
- */
 function __naturalSortingCompare(a: number, b: number) {
 	return a < b ? -1 : a > b ? 1 : 0;
 }
 
-/**
- * @param array
- * @param extractor
- */
 export default function naturalStringSorter<T>(
 	array: T[],
 	extractor?: (input: T) => string,
 ): T[] {
-	/**
-	 * @param item
-	 */
 	function createSplitter(item: T): Splitter {
 		return new Splitter(item);
 	}
@@ -109,10 +100,7 @@ export default function naturalStringSorter<T>(
 						}
 					}
 				} else {
-					return __naturalSortingCompare(
-						sp1.elementsCount,
-						sp2.elementsCount,
-					);
+					return __naturalSortingCompare(sp1.elementsCount, sp2.elementsCount);
 				}
 			} while (++i);
 			return 0;

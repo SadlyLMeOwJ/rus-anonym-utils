@@ -2,40 +2,36 @@ import Sort from "./NumberSort";
 
 class Number {
 	/**
-	 * Вывод минимального значения в массиве
-	 *
-	 * @param inputArray {Array} - массив с числами
-	 * @returns - минимальное значение
+	 * @description Вывод минимального значения в массиве
+	 * @param {Array.<number>} inputArray Массив с числами
+	 * @returns {number} Минимальное значение
 	 */
 	public min(inputArray: number[]): number {
 		return Math.min.apply(null, inputArray);
 	}
 
 	/**
-	 * Вывод максимального значения в массиве
-	 *
-	 * @param inputArray {Array} - массив с числами
-	 * @returns максимальное значение
+	 * @description Вывод максимального значения в массиве
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {number} максимальное значение
 	 */
 	public max(inputArray: number[]): number {
 		return Math.max.apply(null, inputArray);
 	}
 
 	/**
-	 * Вывод среднего значения в массиве
-	 *
-	 * @param inputArray {Array} - массив с числами
-	 * @returns среднее значение
+	 * @description Вывод среднего значения в массиве
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {number} среднее значение
 	 */
 	public average(inputArray: number[]): number {
 		return inputArray.reduce((a, b) => a + b) / inputArray.length;
 	}
 
 	/**
-	 * Подсчёт суммы массива
-	 *
-	 * @param inputArray {Array} - массив с числами
-	 * @returns среднее значение
+	 * @description Подсчёт суммы массива
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {number} среднее значение
 	 */
 	public total(inputArray: number[]): number {
 		return inputArray.reduce(
@@ -45,8 +41,7 @@ class Number {
 	}
 
 	/**
-	 * Генерирует массив заполненный выбранной цифрой, либо нулями
-	 *
+	 * @description Генерирует массив заполненный выбранной цифрой, либо нулями
 	 * @param {number} length - Длина выходного массива
 	 * @param {number} customNumber - Цифра, которой нужно заполнить массив, или функция её генерирующая
 	 * @returns {Array.<number>} - Массив заполнный нулями
