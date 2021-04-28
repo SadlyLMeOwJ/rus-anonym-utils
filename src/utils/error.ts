@@ -1,4 +1,4 @@
-export default class UtilsError extends Error {
+class UtilsError extends Error {
 	public constructor(message: string) {
 		super(message);
 	}
@@ -8,7 +8,8 @@ export default class UtilsError extends Error {
 	}
 
 	/**
-	 * Возвращает содержимое ошибки в JSON
+	 * @description Возвращает содержимое ошибки в JSON
+	 * @returns {Object} JSON состав ошибки
 	 */
 	public toJSON(): Pick<this, keyof this> {
 		const json = {} as Pick<this, keyof this>;
@@ -20,3 +21,5 @@ export default class UtilsError extends Error {
 		return json;
 	}
 }
+
+export default UtilsError;

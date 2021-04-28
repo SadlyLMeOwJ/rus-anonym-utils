@@ -1,17 +1,18 @@
 /**
- * @module String
+ * @category String
+ * @description Класс для работы с строками
+ * @hideconstructor
  */
-
 export class StringUtils {
 	/**
-	 * Метод для нахождения разницы между 2 строками
-	 * @param firstString - Первая строка
-	 * @param secondString - Вторая строка
-	 * @param costs - Набор параметров
-	 * @param costs.replace - Цена замены
-	 * @param costs.replaceCase - Цена замены с учётом кейса
-	 * @param costs.insert - Цена присутствия
-	 * @param costs.remove - Цена отсутствия
+	 * @description Метод для нахождения разницы между 2 строками
+	 * @param {string} firstString - Первая строка
+	 * @param {string} secondString - Вторая строка
+	 * @param {Object} costs - Набор параметров
+	 * @param {number} costs.replace - Цена замены
+	 * @param {number} costs.replaceCase - Цена замены с учётом кейса
+	 * @param {number} costs.insert - Цена присутствия
+	 * @param {number} costs.remove - Цена отсутствия
 	 * @returns {number} - Разница между строками
 	 */
 	public levenshtein(
@@ -88,9 +89,10 @@ export class StringUtils {
 
 	/**
 	 * Функция для корректного склонения чисел
-	 * @param n {number} - Число
-	 * @param titles_array {string[]} - Строки для склонения
-	 * @return {string} корректное название
+	 *
+	 * @param {number} inputNumber Число
+	 * @param {string[]} titlesArray Строки для склонения
+	 * @returns {string} корректное название
 	 * @example
 	 * // => помидора
 	 * string.declOfNum(3, ["помидор", "помидора", "помидоров"]);
@@ -108,9 +110,9 @@ export class StringUtils {
 	}
 
 	/**
-	 * Возвращает строку без Zalgo
-	 * @param string {string} - строка из которой необходимо убрать Zalgo
-	 * @return {string} - Чистая строка
+	 * @description Возвращает строку без Zalgo
+	 * @param {string} string строка из которой необходимо убрать Zalgo
+	 * @returns {string} - Чистая строка
 	 */
 	public removeZalgo(string: string): string {
 		return string.replace(

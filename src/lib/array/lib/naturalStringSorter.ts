@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-jsdoc */
+
 import { logical } from "../../logical/core";
 
 function __naturalSortingCompare(a: number, b: number) {
@@ -98,10 +100,7 @@ export default function naturalStringSorter<T>(
 						}
 					}
 				} else {
-					return __naturalSortingCompare(
-						sp1.elementsCount,
-						sp2.elementsCount,
-					);
+					return __naturalSortingCompare(sp1.elementsCount, sp2.elementsCount);
 				}
 			} while (++i);
 			return 0;

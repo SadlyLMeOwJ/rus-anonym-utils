@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -93,11 +93,16 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { cloneMethod, CloneBenchmarkResponse } from "../types";
+            <pre class="prettyprint source linenums"><code>import { cloneMethod, CloneBenchmarkResponse } from "../typings";
 
 import { performance } from "perf_hooks";
 
-class Clone {
+/**
+ * @category Array
+ * @description Класс для работы с клонированием
+ * @hideconstructor
+ */
+class CloneArray {
 	private methods: cloneMethod[] = [
 		"slice",
 		"concat",
@@ -114,8 +119,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью slice
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public slice&lt;T>(inputArray: T[]): T[] {
 		return inputArray.slice() as T[];
@@ -123,8 +129,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью concat
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public concat&lt;T>(inputArray: T[]): T[] {
 		return ([] as T[]).concat(inputArray) as T[];
@@ -132,8 +139,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью unshift
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array}новый массив
 	 */
 	public unshift&lt;T>(inputArray: T[]): T[] {
 		const output: T[] = [];
@@ -145,8 +153,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью push
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public push&lt;T>(inputArray: T[]): T[] {
 		const output: T[] = [];
@@ -158,8 +167,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью index
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public index&lt;T>(inputArray: T[]): T[] {
 		const output: T[] = new Array(inputArray.length);
@@ -171,8 +181,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью apply
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public apply&lt;T>(inputArray: T[]): T[] {
 		// eslint-disable-next-line prefer-spread
@@ -181,8 +192,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью map
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public map&lt;T>(inputArray: T[]): T[] {
 		return inputArray.map(function (element) {
@@ -192,8 +204,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью JSON
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public json&lt;T>(inputArray: T[]): T[] {
 		return JSON.parse(JSON.stringify(inputArray)) as T[];
@@ -201,8 +214,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью spread
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray - массив
+	 * @returns {Array} новый массив
 	 */
 	public spread&lt;T>(inputArray: T[]): T[] {
 		return [...inputArray] as T[];
@@ -210,8 +224,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью Array.from
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public from&lt;T>(inputArray: T[]): T[] {
 		return Array.from(inputArray) as T[];
@@ -219,8 +234,9 @@ class Clone {
 
 	/**
 	 * Рекурсивное глубокое копирование массива (копирует подмассив)
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public recursionDeep&lt;T>(inputArray: T[]): T[] {
 		const output = inputArray.map((element: T | T[]) => {
@@ -237,7 +253,8 @@ class Clone {
 
 	/**
 	 * Сравнивает все методы копирования
-	 * @param inputArray {Array} - массив
+	 *
+	 * @param {Array} input Исходный массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
 	public benchmark&lt;T>(input: T[]): CloneBenchmarkResponse&lt;T> {
@@ -294,25 +311,20 @@ class Clone {
 
 	/**
 	 * Выполняет копирование наиболее быстрым методом (не всегда корректно работает)
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} input Исходный массив
+	 * @returns {Array} новый массив
 	 */
 	public faster&lt;T>(input: T[]): Promise&lt;T[]> {
-		return new Promise((resolve) => {
-			Promise.race(
-				this.methods.map((method) => {
-					return new Promise((raceResolver) => {
-						raceResolver(this[method](input));
-					});
-				}),
-			).then((value) => {
-				return resolve(value as T[]);
-			});
-		});
+		return Promise.any(
+			this.methods.map((method) => {
+				return this[method](input);
+			}),
+		);
 	}
 }
 
-export default Clone;
+export default CloneArray;
 </code></pre>
         </article>
     </section>
@@ -321,6 +333,16 @@ export default Clone;
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

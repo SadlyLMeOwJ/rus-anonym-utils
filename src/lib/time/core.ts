@@ -1,14 +1,16 @@
-/**
- * @module Time
- */
-
 import moment from "moment";
 import "moment-precise-range-plugin";
 import { string } from "../string/core";
+
+/**
+ * @category Time
+ * @description Класс для работы с временем
+ * @hideconstructor
+ */
 export class TimeUtils {
 	/**
-	 * Получить время до нового года
-	 * @return возвращает строку с временем до нового года
+	 * @description Получить время до нового года
+	 * @returns {string} возвращает строку с временем до нового года
 	 * @example
 	 * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
 	 * utils.time.getTimeUntilNewYear();
@@ -73,7 +75,19 @@ export class TimeUtils {
 
 	/**
 	 * Получить время до выбранной даты
-	 * @return возвращает строку с временем до даты
+	 *
+	 * @param {Object} root0 Обьект с данными
+	 * @param {Date} root0.firstDate Дата
+	 * @param {Date} root0.secondDate Вторая дата
+	 * @param {boolean} root0.json Вывести в JSON
+	 * @param {Object} root0.i18n Обьект локали
+	 * @param {string} root0.i18n.year год в локали
+	 * @param {string} root0.i18n.month месяц в локали
+	 * @param {string} root0.i18n.day день в локали
+	 * @param {string} root0.i18n.hour час в локали
+	 * @param {string} root0.i18n.minute минута в локали
+	 * @param {string} root0.i18n.second секунда в локали
+	 * @returns {string|JSON} возвращает строку с временем до даты
 	 * @example
 	 * //return 1 месяц, 2 дня, 3 часа, 4 минуты, 5 секунд
 	 * utils.time.getPrecizeDiff(new Date(), new Date(Number(new Date()) + 2813645000));

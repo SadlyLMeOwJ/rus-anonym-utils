@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -93,21 +93,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @module Array
- * @description Функции для работы с массивами
- */
-
-import { number } from "../number/core";
+            <pre class="prettyprint source linenums"><code>import { number } from "../number/core";
 import naturalStringSorter from "./lib/naturalStringSorter";
 
 import CloneArray from "./plugins/Clone";
 import NumberArray from "./plugins/Number";
+
+/**
+ * @category Array
+ * @description Класс для работы с массивами
+ * @hideconstructor
+ */
 export class ArrayUtils {
 	/**
-	 * Возвращает рандомный элемент из массива
-	 * @param inputArray {Array} - массив
-	 * @returns элемент из массива
+	 * @description Класс для работы с методами клонирования массивов
+	 * @type {CloneArray}
+	 */
+	public clone: CloneArray;
+
+	/**
+	 * @description Класс для работы с числовыми массивами
+	 * @type {NumberArray}
+	 */
+	public number: NumberArray;
+
+	constructor() {
+		this.clone = new CloneArray();
+		this.number = new NumberArray();
+	}
+
+	/**
+	 * @description Возвращает рандомный элемент из массива
+	 * @param {Array} inputArray - массив
+	 * @returns {any} элемент из массива
 	 *
 	 * @example
 	 * // Return 2
@@ -118,33 +136,36 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Режет массив по чанкам
-	 * @param inputArray {Array} - массив
-	 * @param chunks {Array.&lt;Array>} - общее количество чанков, которое должно получиться
-	 * @returns итоговый массив
+	 * @description Режет массив по чанкам
+	 * @param {Array} inputArray массив
+	 * @param {number} chunks общее количество чанков, которое должно получиться
+	 * @returns {Array.&lt;Array>} итоговый массив
 	 *
 	 * @example
 	 * // Return [[1, 2], [3]]
 	 * array.splitOn([1, 2, 3], 2);
 	 */
-	public splitOn&lt;T>(array: T[], chunks: number): T[][] {
-		return array.reduce(
-			(acc, n, i) => (
-				((acc[i % chunks] = acc[i % chunks] || []) as T[]).push(n), acc
-			),
-			[],
-		);
+	public splitOn&lt;T>(inputArray: T[], chunks: number): T[][] {
+		const outputArray: T[][] = [];
+		const maxIteration = Math.floor(inputArray.length / chunks) * chunks;
+		for (let i = 0; i &lt; maxIteration; i += chunks) {
+			outputArray.push(inputArray.slice(i, i + chunks));
+		}
+		if (inputArray[maxIteration]) {
+			outputArray.push(inputArray.slice(maxIteration));
+		}
+		return outputArray;
 	}
 
 	/**
-	 * Режет массив по элементам в чанке
-	 * @param inputArray {Array} - массив
-	 * @param elementsInChunk - количество элементов в одном чанке
-	 * @returns итоговый массив
+	 * @description Режет массив по элементам в чанке
+	 * @param {Array} inputArray массив
+	 * @param {number} elementsInChunk количество элементов в одном чанке
+	 * @returns {Array.&lt;Array>} итоговый массив
 	 *
 	 * @example
 	 * // Return [[1], [2], [3]]
-	 * array.splitTo([1, 2, 3], 3);
+	 * array.splitTo([1, 2, 3], 1);
 	 */
 	public splitTo&lt;T>(inputArray: T[], elementsInChunk: number): T[][] {
 		const outputArray: T[][] = [];
@@ -157,9 +178,9 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Перемешивает массив
-	 * @param inputArray {Array} - массив
-	 * @returns перемешанный массив
+	 * @description Перемешивает массив
+	 * @param {Array} inputArray массив
+	 * @returns {Array} перемешанный массив
 	 *
 	 * @example
 	 * // Return [5, 1, 4, 2, 3]
@@ -175,11 +196,11 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Вставляет элемент в массив
-	 * @param inputArray {Array} - массив
-	 * @param index {Number} - Индекс добавляемого элемента
-	 * @param element {any} - Новый элемент
-	 * @returns итоговый массив
+	 * @description Вставляет элемент в массив
+	 * @param {Array} inputArray массив
+	 * @param {number} index Индекс добавляемого элемента
+	 * @param {any} element Новый элемент
+	 * @returns {Array} итоговый массив
 	 *
 	 * @example
 	 * // Return [1, 2, 3, 4, 5]
@@ -192,9 +213,9 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Убирает пустые элементы из массива
-	 * @param inputArray {Array} - массив
-	 * @returns отсортированный массив
+	 * @description Убирает пустые элементы из массива
+	 * @param {Array} inputArray массив
+	 * @returns {Array} отсортированный массив
 	 *
 	 * @example
 	 * // Return [1, 3, 5]
@@ -207,18 +228,18 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Естественная сортировка строк
+	 * @description Естественная сортировка строк
 	 * @param {Array} array - Массив который требуется отсортировать
 	 * @param {Function=} extractor - Функция переводящая элемент массива в строку
 	 * @returns {Array} Отсортированный массив
 	 *
 	 * @example
 	 * // Return [1, 2, 3]
-	 * array.universalStringSorter([1, 3, 2], function (element) {
-	 * 	element.toString()
+	 * array.naturalStringSorter([1, 3, 2], function (element) {
+	 * 	return element.toString();
 	 * });
-	 * // Return [1, 3, 2]
-	 * array.universalStringSorter([1, 3, 2]);
+	 * // Return [1, 2, 3]
+	 * array.naturalStringSorter([1, 3, 2]);
 	 */
 	public naturalStringSorter&lt;T>(
 		array: T[],
@@ -228,19 +249,24 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Класс для работы с методами клонирования массивов
+	 * @description Убирает из массива неуникальные значения (работает только с примитивами)
+	 * @param {Array} array Массив который требуется уникализировать
+	 * @returns {Array} Массив состоящий из уникальных значений
 	 */
-	public clone: CloneArray = new CloneArray();
+	public makeUnique&lt;T>(array: T[]): T[] {
+		return Array.from(new Set(array));
+	}
 
 	/**
-	 * Класс для работы с числовыми массивами
+	 * @description Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
+	 * @param {Array} array Входной массив
+	 * @returns {Array} Массив состоящий из реальных значений
 	 */
-	public number: NumberArray = new NumberArray();
+	public removeFalseValues&lt;T>(array: T[]): T[] {
+		return array.filter(Boolean);
+	}
 }
 
-/**
- * Класс для работы с массивами
- */
 export const array = new ArrayUtils();
 </code></pre>
         </article>
@@ -250,6 +276,16 @@ export const array = new ArrayUtils();
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

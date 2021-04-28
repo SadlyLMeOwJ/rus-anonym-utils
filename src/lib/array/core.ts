@@ -1,18 +1,36 @@
-/**
- * @module Array
- * @description Функции для работы с массивами
- */
-
 import { number } from "../number/core";
 import naturalStringSorter from "./lib/naturalStringSorter";
 
 import CloneArray from "./plugins/Clone";
 import NumberArray from "./plugins/Number";
+
+/**
+ * @category Array
+ * @description Класс для работы с массивами
+ * @hideconstructor
+ */
 export class ArrayUtils {
 	/**
-	 * Возвращает рандомный элемент из массива
-	 * @param inputArray {Array} - массив
-	 * @returns элемент из массива
+	 * @description Класс для работы с методами клонирования массивов
+	 * @type {CloneArray}
+	 */
+	public clone: CloneArray;
+
+	/**
+	 * @description Класс для работы с числовыми массивами
+	 * @type {NumberArray}
+	 */
+	public number: NumberArray;
+
+	constructor() {
+		this.clone = new CloneArray();
+		this.number = new NumberArray();
+	}
+
+	/**
+	 * @description Возвращает рандомный элемент из массива
+	 * @param {Array} inputArray - массив
+	 * @returns {any} элемент из массива
 	 *
 	 * @example
 	 * // Return 2
@@ -23,32 +41,32 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Режет массив по чанкам
-	 * @param inputArray {Array} - массив
-	 * @param chunks {Array.<Array>} - общее количество чанков, которое должно получиться
-	 * @returns итоговый массив
+	 * @description Режет массив по чанкам
+	 * @param {Array} inputArray массив
+	 * @param {number} chunks общее количество чанков, которое должно получиться
+	 * @returns {Array.<Array>} итоговый массив
 	 *
 	 * @example
 	 * // Return [[1, 2], [3]]
 	 * array.splitOn([1, 2, 3], 2);
 	 */
-	public splitOn<T>(array: T[], chunks: number): T[][] {
+	public splitOn<T>(inputArray: T[], chunks: number): T[][] {
 		const outputArray: T[][] = [];
-		const maxIteration = Math.floor(array.length / chunks) * chunks;
+		const maxIteration = Math.floor(inputArray.length / chunks) * chunks;
 		for (let i = 0; i < maxIteration; i += chunks) {
-			outputArray.push(array.slice(i, i + chunks));
+			outputArray.push(inputArray.slice(i, i + chunks));
 		}
-		if (array[maxIteration]) {
-			outputArray.push(array.slice(maxIteration));
+		if (inputArray[maxIteration]) {
+			outputArray.push(inputArray.slice(maxIteration));
 		}
 		return outputArray;
 	}
 
 	/**
-	 * Режет массив по элементам в чанке
-	 * @param inputArray {Array} - массив
-	 * @param elementsInChunk - количество элементов в одном чанке
-	 * @returns итоговый массив
+	 * @description Режет массив по элементам в чанке
+	 * @param {Array} inputArray массив
+	 * @param {number} elementsInChunk количество элементов в одном чанке
+	 * @returns {Array.<Array>} итоговый массив
 	 *
 	 * @example
 	 * // Return [[1], [2], [3]]
@@ -65,9 +83,9 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Перемешивает массив
-	 * @param inputArray {Array} - массив
-	 * @returns перемешанный массив
+	 * @description Перемешивает массив
+	 * @param {Array} inputArray массив
+	 * @returns {Array} перемешанный массив
 	 *
 	 * @example
 	 * // Return [5, 1, 4, 2, 3]
@@ -83,11 +101,11 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Вставляет элемент в массив
-	 * @param inputArray {Array} - массив
-	 * @param index {Number} - Индекс добавляемого элемента
-	 * @param element {any} - Новый элемент
-	 * @returns итоговый массив
+	 * @description Вставляет элемент в массив
+	 * @param {Array} inputArray массив
+	 * @param {number} index Индекс добавляемого элемента
+	 * @param {any} element Новый элемент
+	 * @returns {Array} итоговый массив
 	 *
 	 * @example
 	 * // Return [1, 2, 3, 4, 5]
@@ -100,9 +118,9 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Убирает пустые элементы из массива
-	 * @param inputArray {Array} - массив
-	 * @returns отсортированный массив
+	 * @description Убирает пустые элементы из массива
+	 * @param {Array} inputArray массив
+	 * @returns {Array} отсортированный массив
 	 *
 	 * @example
 	 * // Return [1, 3, 5]
@@ -115,7 +133,7 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Естественная сортировка строк
+	 * @description Естественная сортировка строк
 	 * @param {Array} array - Массив который требуется отсортировать
 	 * @param {Function=} extractor - Функция переводящая элемент массива в строку
 	 * @returns {Array} Отсортированный массив
@@ -136,32 +154,22 @@ export class ArrayUtils {
 	}
 
 	/**
-	 * Убирает из массива неуникальные значения (работает только с примитивами)
-	 * @param {Array} array - Массив который требуется уникализировать
-	 * @returns {Array} - Массив состоящий из уникальных значений
+	 * @description Убирает из массива неуникальные значения (работает только с примитивами)
+	 * @param {Array} array Массив который требуется уникализировать
+	 * @returns {Array} Массив состоящий из уникальных значений
 	 */
 	public makeUnique<T>(array: T[]): T[] {
 		return Array.from(new Set(array));
 	}
 
 	/**
-	 * Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
-	 * @param array - входной массив
-	 * @returns {Array} - Массив состоящий из реальных значений
+	 * @description Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
+	 * @param {Array} array Входной массив
+	 * @returns {Array} Массив состоящий из реальных значений
 	 */
 	public removeFalseValues<T>(array: T[]): T[] {
 		return array.filter(Boolean);
 	}
-
-	/**
-	 * Класс для работы с методами клонирования массивов
-	 */
-	public clone: CloneArray = new CloneArray();
-
-	/**
-	 * Класс для работы с числовыми массивами
-	 */
-	public number: NumberArray = new NumberArray();
 }
 
 export const array = new ArrayUtils();

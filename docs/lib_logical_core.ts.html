@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -94,7 +94,9 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @module Logical
+ * @category Logical
+ * @description Класс для работы с логическими функциями
+ * @hideconstructor
  */
 export class LogicalUtils {
 	/**
@@ -102,9 +104,10 @@ export class LogicalUtils {
 	 * Конъюнкция
 	 * Логическое умножение, выражение «AND».
 	 * Конъюнкция возвращает true только тогда, когда оба аргумента равны true, иначе false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public AND(a: boolean, b: boolean): boolean {
 		return a &amp;&amp; b;
@@ -115,9 +118,10 @@ export class LogicalUtils {
 	 * Дизъюнкция
 	 * Логическое сложение, выражение «OR». Также называется «слабой дизъюнкцией».
 	 * Возвращает false только тогда, когда оба аргумента равны false, иначе true.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public OR(a: boolean, b: boolean): boolean {
 		return a || b;
@@ -126,9 +130,10 @@ export class LogicalUtils {
 	/**
 	 * Логическое И-НЕ
 	 * Возвращает true только тогда, когда оба аргумента равны true, иначе false
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public ANOT(a: boolean, b: boolean): boolean {
 		return a === true &amp;&amp; b === true;
@@ -138,9 +143,10 @@ export class LogicalUtils {
 	 * Логическое ИЛИ-НЕ
 	 * Иначе стрелка Пирса, выражение «NOR».
 	 * Возвращает true только тогда, когда оба аргумента одновременно равны false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public NOR(a: boolean, b: boolean): boolean {
 		return a === false &amp;&amp; b === false;
@@ -151,9 +157,10 @@ export class LogicalUtils {
 	 * Сильная дизъюнкция
 	 * Исключающая дизъюнкция, выражение «XOR».
 	 * Возвращает true только тогда, когда только один из них равен true, а второй равен false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public XOR(a: boolean, b: boolean): boolean {
 		return a ? !b : b;
@@ -164,8 +171,9 @@ export class LogicalUtils {
 	 * Отрицание
 	 * Инверсия, негация, выражение «NOT».
 	 * Возвращает противоположное значение: для false — true, для true — false.
+	 *
 	 * @param {boolean} a - 1 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public NOT(a: boolean): boolean {
 		return !a;
@@ -176,9 +184,10 @@ export class LogicalUtils {
 	 * Эквивалентность
 	 * Тождество, равенство, выражение «EQ».
 	 * Возвращает true только тогда, когда оба аргумента равны одновременно false или true.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public EQ(a: boolean, b: boolean): boolean {
 		return a === b;
@@ -188,18 +197,16 @@ export class LogicalUtils {
 	 * Импликация
 	 * Выражает зависимость причины и следствия.
 	 * То есть возвращает ложь только тогда, когда первый аргумент равен true, а второй аргумент — false.
+	 *
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
-	 * @return {boolean} - результат
+	 * @returns {boolean} - результат
 	 */
 	public IMP(a: boolean, b: boolean): boolean {
 		return a === true &amp;&amp; b === false ? false : true;
 	}
 }
 
-/**
- * Класс для работы с логическими функциями
- */
 export const logical = new LogicalUtils();
 </code></pre>
         </article>
@@ -209,6 +216,16 @@ export const logical = new LogicalUtils();
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

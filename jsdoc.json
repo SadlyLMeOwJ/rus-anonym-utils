@@ -2,9 +2,10 @@
 	"tags": {
 		"allowUnknownTags": ["category", "subcategory"]
 	},
+	"sourceType": "module",
 	"source": {
 		"include": ["./src"],
-		"includePattern": "\\.(ts|js)$"
+		"includePattern": "\\.(ts)$"
 	},
 	"plugins": [
 		"node_modules/better-docs/typescript",
@@ -25,9 +26,8 @@
 		"monospaceLinks": false,
 		"better-docs": {
 			"name": "RusAnonym Utils documentation",
-			"title": "Documentation",
-			"hideGenerator": true
-		},	
+			"title": "Documentation"
+		},
 		"search": true
 	}
 }

@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation lib/string/core.ts</title>
+  <title>Documentation lib/IP/plugins/v4.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>lib/string/core.ts</h1>
+                    <h1>lib/IP/plugins/v4.ts</h1>
                 </header>
                 
 
@@ -93,131 +93,143 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @category String
- * @description Класс для работы с строками
+            <pre class="prettyprint source linenums"><code>import { regular } from "../../regular/core";
+
+/**
+ * @category IP
+ * @description Класс для работы с IPv4
  * @hideconstructor
  */
-export class StringUtils {
-	/**
-	 * @description Метод для нахождения разницы между 2 строками
-	 * @param {string} firstString - Первая строка
-	 * @param {string} secondString - Вторая строка
-	 * @param {Object} costs - Набор параметров
-	 * @param {number} costs.replace - Цена замены
-	 * @param {number} costs.replaceCase - Цена замены с учётом кейса
-	 * @param {number} costs.insert - Цена присутствия
-	 * @param {number} costs.remove - Цена отсутствия
-	 * @returns {number} - Разница между строками
-	 */
-	public levenshtein(
-		firstString: string,
-		secondString: string,
-		costs: {
-			replace?: number;
-			replaceCase?: number;
-			insert?: number;
-			remove?: number;
-		} = {
-			replace: 1,
-			replaceCase: 1,
-			insert: 1,
-			remove: 1,
-		},
-	): number {
-		let flip: number,
-			ch: string,
-			chl: string,
-			ii: number,
-			ii2: number,
-			cost: number;
-		const firstStringLength = firstString.length;
-		const secondStringLength = secondString.length;
-
-		costs.replace === undefined ? (costs.replace = 1) : null;
-		costs.replaceCase === undefined ? (costs.replaceCase = 1) : null;
-		costs.insert === undefined ? (costs.insert = 1) : null;
-		costs.remove === undefined ? (costs.remove = 1) : null;
-
-		const cutHalf = (flip = Math.max(firstStringLength, secondStringLength));
-
-		const minCost = Math.min(costs.remove, costs.insert, costs.replace);
-		const minD = Math.max(
-			minCost,
-			(firstStringLength - secondStringLength) * costs.remove,
-		);
-		const minI = Math.max(
-			minCost,
-			(secondStringLength - firstStringLength) * costs.insert,
-		);
-		const buf = new Array(cutHalf * 2 - 1);
-
-		for (let i = 0; i &lt;= secondStringLength; ++i) {
-			buf[i] = i * minD;
-		}
-
-		for (let i = 0; i &lt; firstStringLength; ++i, flip = cutHalf - flip) {
-			ch = firstString[i];
-			chl = ch.toLowerCase();
-
-			buf[flip] = (i + 1) * minI;
-
-			ii = flip;
-			ii2 = cutHalf - flip;
-
-			for (let j = 0; j &lt; secondStringLength; ++j, ++ii, ++ii2) {
-				cost =
-					ch === secondString[j]
-						? 0
-						: chl === secondString[j].toLowerCase()
-						? costs.replaceCase
-						: costs.replace;
-				buf[ii + 1] = Math.min(
-					buf[ii2 + 1] + costs.remove,
-					buf[ii] + costs.insert,
-					buf[ii2] + cost,
-				);
+class IPv4 {
+	private _toBinary(IP: string): string[] {
+		const splittedIP = IP.split(".");
+		const binaryIP = [];
+		for (let i = 0; i &lt; splittedIP.length; i++) {
+			const binaryNo = parseInt(splittedIP[i]).toString(2);
+			if (binaryNo.length == 8) {
+				binaryIP.push(binaryNo);
+			} else {
+				const diffNo = 8 - binaryNo.length;
+				let createBinary = "";
+				for (let j = 0; j &lt; diffNo; j++) {
+					createBinary += "0";
+				}
+				createBinary += binaryNo;
+				binaryIP.push(createBinary);
 			}
 		}
-		return buf[secondStringLength + cutHalf - flip];
+		return binaryIP;
+	}
+
+	public _toIP(IP: string[]): number[] {
+		const broadcastIP = [];
+		for (let i = 0; i &lt; IP.length; i++) {
+			broadcastIP.push(parseInt(parseInt(IP[i]).toString(), 2));
+		}
+		return broadcastIP;
+	}
+
+	private _bitwise(
+		firstBinary: string,
+		secondBinary: string,
+		operator: "AND" | "OR",
+	): string {
+		const firstArr = firstBinary.split("");
+		const secondArr = secondBinary.split("");
+		let newAdded = "";
+		for (let i = 0; i &lt; firstArr.length; i++) {
+			if (firstArr[i] + "+" + secondArr[i] == "1+0") {
+				newAdded += operator === "AND" ? "0" : "1";
+			} else if (firstArr[i] + "+" + secondArr[i] == "0+1") {
+				newAdded += operator === "AND" ? "0" : "1";
+			} else if (firstArr[i] + "+" + secondArr[i] == "1+1") {
+				newAdded += "1";
+			} else if (firstArr[i] + "+" + secondArr[i] == "0+0") {
+				newAdded += "0";
+			}
+		}
+		return newAdded;
+	}
+
+	private _invertedBinary(number: string): string {
+		const noArr = number.toString().split("");
+		let newNo = "";
+		for (let i = 0; i &lt; noArr.length; i++) {
+			if (noArr[i] == "0") {
+				newNo += "1";
+			} else {
+				newNo += "0";
+			}
+		}
+		return newNo;
 	}
 
 	/**
-	 * Функция для корректного склонения чисел
+	 * Проверка является ли переданная строка IPv4 адресом
 	 *
-	 * @param {number} inputNumber Число
-	 * @param {string[]} titlesArray Строки для склонения
-	 * @returns {string} корректное название
-	 * @example
-	 * // => помидора
-	 * string.declOfNum(3, ["помидор", "помидора", "помидоров"]);
+	 * @param {string} IP IP адрес
+	 * @returns {boolean} является ли переданный IP адрес IPv4
 	 */
-	public declOfNum(inputNumber: number, titlesArray: string[]): string {
-		return titlesArray[
-			inputNumber % 10 === 1 &amp;&amp; inputNumber % 100 !== 11
-				? 0
-				: inputNumber % 10 >= 2 &amp;&amp;
-				  inputNumber % 10 &lt;= 4 &amp;&amp;
-				  (inputNumber % 100 &lt; 10 || inputNumber % 100 >= 20)
-				? 1
-				: 2
-		];
+	public is(IP: string): boolean {
+		return regular.isIPv4(IP);
 	}
 
 	/**
-	 * @description Возвращает строку без Zalgo
-	 * @param {string} string строка из которой необходимо убрать Zalgo
-	 * @returns {string} - Чистая строка
+	 * Возвращает адрес сети
+	 *
+	 * @param {string} IP IP адрес
+	 * @param {string} maskIP маска подсети
+	 * @returns {string} IP сети
 	 */
-	public removeZalgo(string: string): string {
-		return string.replace(
-			/(̖|̗|̘|̙|̜|̝|̞|̟|̠|̤|̥|̦|̩|̪|̫|̬|̭|̮|̯|̰|̱|̲|̳|̹|̺|̻|̼|ͅ|͇|͈|͉|͍|͎|͓|͔|͕|͖|͙|͚|̣|̕|̛|̀|́|͘|̡|̢|̧|̨|̴|̵|̶|͏|͜|͝|͞|͟|͠|͢|̸|̷|͡|҉|̍|̎|̄|̅|̿|̑|̆|̐|͒|͗|͑|̇|̈|̊|͂|̓|̈́|͊|͋|͌|̃|̂|̌|͐|̀|́|̋|̏|̒|̓|̔|̽|̉|ͣ|ͤ|ͥ|ͦ|ͧ|ͨ|ͩ|ͪ|ͫ|ͬ|ͭ|ͮ|ͯ|̾|͛|͆|̚)/gi,
-			"",
-		);
+	public calculateNetworkIP(IP: string, maskIP: string): string {
+		const binaryIP = this._toBinary(IP);
+		const maskBinaryIP = this._toBinary(maskIP);
+
+		const binaryNetwork = [];
+		for (let j = 0; j &lt; maskBinaryIP.length; j++) {
+			binaryNetwork.push(this._bitwise(binaryIP[j], maskBinaryIP[j], "AND"));
+		}
+
+		const NetworkIPArr = this._toIP(binaryNetwork);
+
+		let NetworkIPStr = "";
+		for (let k = 0; k &lt; NetworkIPArr.length; k++) {
+			NetworkIPStr += NetworkIPArr[k] + ".";
+		}
+		return NetworkIPStr.slice(0, -1);
+	}
+
+	/**
+	 * Возвращает broadcast адрес
+	 *
+	 * @param {string} IP IP адрес
+	 * @param {string} maskIP маска подсети
+	 * @returns {string} Broadcast IP
+	 */
+	public calculateBroadcastIP(IP: string, maskIP: string): string {
+		const binaryIP = this._toBinary(IP);
+		const maskBinaryIP = this._toBinary(maskIP);
+		const invertedMark = [];
+		for (let i = 0; i &lt; maskBinaryIP.length; i++) {
+			invertedMark.push(this._invertedBinary(maskBinaryIP[i]));
+		}
+
+		const binaryBroadcast = [];
+		for (let j = 0; j &lt; maskBinaryIP.length; j++) {
+			binaryBroadcast.push(this._bitwise(binaryIP[j], invertedMark[j], "OR"));
+		}
+
+		const broadcastIPArr = this._toIP(binaryBroadcast);
+
+		let broadcastIPStr = "";
+		for (let k = 0; k &lt; broadcastIPArr.length; k++) {
+			broadcastIPStr += broadcastIPArr[k] + ".";
+		}
+		return broadcastIPStr.slice(0, -1);
 	}
 }
 
-export const string = new StringUtils();
+export default IPv4;
 </code></pre>
         </article>
     </section>

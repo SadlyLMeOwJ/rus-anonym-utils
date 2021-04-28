@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -93,40 +93,82 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import Sort from "./NumberSort";
+            <pre class="prettyprint source linenums"><code>import NumberArraySort from "./NumberSort";
 
-class Number {
+/**
+ * @category Array
+ * @description Класс для работы с числовыми массивами
+ * @hideconstructor
+ */
+class NumberArray {
 	/**
-	 * Вывод минимального значения в массиве
-	 * @param inputArray {Array} - массив с числами
-	 * @returns - минимальное значение
+	 * @description Сортировка
+	 * @type {NumberArraySort}
+	 */
+	public sort: NumberArraySort;
+
+	constructor() {
+		this.sort = new NumberArraySort();
+	}
+
+	/**
+	 * @description Вывод минимального значения в массиве
+	 * @param {Array.&lt;number>} inputArray Массив с числами
+	 * @returns {number} Минимальное значение
 	 */
 	public min(inputArray: number[]): number {
 		return Math.min.apply(null, inputArray);
 	}
 
 	/**
-	 * Вывод максимального значения в массиве
-	 * @param inputArray {Array} - массив с числами
-	 * @returns максимальное значение
+	 * @description Вывод максимального значения в массиве
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {number} максимальное значение
 	 */
 	public max(inputArray: number[]): number {
 		return Math.max.apply(null, inputArray);
 	}
 
 	/**
-	 * Вывод среднего значения в массиве
-	 * @param inputArray {Array} - массив с числами
-	 * @returns среднее значение
+	 * @description Вывод среднего значения в массиве
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {number} среднее значение
 	 */
 	public average(inputArray: number[]): number {
 		return inputArray.reduce((a, b) => a + b) / inputArray.length;
 	}
 
-	public sort = new Sort();
+	/**
+	 * @description Подсчёт суммы массива
+	 * @param {Array.&lt;number>} inputArray массив с числами
+	 * @returns {number} среднее значение
+	 */
+	public total(inputArray: number[]): number {
+		return inputArray.reduce(
+			(totalPrice, tempPrice) => totalPrice + tempPrice,
+			0,
+		);
+	}
+
+	/**
+	 * @description Генерирует массив заполненный выбранной цифрой, либо нулями
+	 * @param {number} length - Длина выходного массива
+	 * @param {number} customNumber - Цифра, которой нужно заполнить массив, или функция её генерирующая
+	 * @returns {Array.&lt;number>} - Массив заполнный нулями
+	 */
+	public generate(
+		length: number,
+		customNumber?: number | (() => number),
+	): number[] {
+		if (typeof customNumber === "function") {
+			return Array.from({ length: length }, () => customNumber());
+		} else {
+			return Array.from({ length: length }, () => customNumber || 0);
+		}
+	}
 }
 
-export default Number;
+export default NumberArray;
 </code></pre>
         </article>
     </section>
@@ -135,6 +177,16 @@ export default Number;
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

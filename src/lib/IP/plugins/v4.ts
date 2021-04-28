@@ -1,6 +1,11 @@
 import { regular } from "../../regular/core";
 
-export default class V4 {
+/**
+ * @category IP
+ * @description Класс для работы с IPv4
+ * @hideconstructor
+ */
+class IPv4 {
 	private _toBinary(IP: string): string[] {
 		const splittedIP = IP.split(".");
 		const binaryIP = [];
@@ -66,8 +71,9 @@ export default class V4 {
 
 	/**
 	 * Проверка является ли переданная строка IPv4 адресом
-	 * @param IP IP адрес
-	 * @returns является ли переданный IP адрес IPv4
+	 *
+	 * @param {string} IP IP адрес
+	 * @returns {boolean} является ли переданный IP адрес IPv4
 	 */
 	public is(IP: string): boolean {
 		return regular.isIPv4(IP);
@@ -75,9 +81,10 @@ export default class V4 {
 
 	/**
 	 * Возвращает адрес сети
-	 * @param IP IP адрес
-	 * @param maskIP маска подсети
-	 * @returns IP сети
+	 *
+	 * @param {string} IP IP адрес
+	 * @param {string} maskIP маска подсети
+	 * @returns {string} IP сети
 	 */
 	public calculateNetworkIP(IP: string, maskIP: string): string {
 		const binaryIP = this._toBinary(IP);
@@ -99,9 +106,10 @@ export default class V4 {
 
 	/**
 	 * Возвращает broadcast адрес
-	 * @param IP IP адрес
-	 * @param maskIP маска подсети
-	 * @returns Broadcast IP
+	 *
+	 * @param {string} IP IP адрес
+	 * @param {string} maskIP маска подсети
+	 * @returns {string} Broadcast IP
 	 */
 	public calculateBroadcastIP(IP: string, maskIP: string): string {
 		const binaryIP = this._toBinary(IP);
@@ -125,3 +133,5 @@ export default class V4 {
 		return broadcastIPStr.slice(0, -1);
 	}
 }
+
+export default IPv4;

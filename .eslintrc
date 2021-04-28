@@ -5,7 +5,8 @@
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
-		"plugin:@typescript-eslint/recommended"
+		"plugin:@typescript-eslint/recommended",
+		"plugin:jsdoc/recommended"
 	],
 	"settings": {
 		"import/extensions": [".js", ".jsx", ".ts", ".tsx"],
@@ -16,9 +17,13 @@
 			"node": {
 				"extensions": [".js", ".jsx", ".ts", ".tsx"]
 			}
+		},
+		"jsdoc": {
+			"mode": "typescript"
 		}
 	},
 	"rules": {
-		"no-mixed-spaces-and-tabs": "off"
+		"no-mixed-spaces-and-tabs": "off",
+		"jsdoc/check-tag-names": "off"
 	}
 }

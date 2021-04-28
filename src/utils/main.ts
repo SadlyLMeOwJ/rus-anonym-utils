@@ -1,63 +1,93 @@
-/**
- * @module Utils
- */
+import { IPUtils } from "./../lib/IP/core";
+import { VK } from "./../lib/VK/core";
+import { TimeUtils } from "./../lib/time/core";
+import { StringUtils } from "./../lib/string/core";
+import { RegularUtils } from "./../lib/regular/core";
+import { NumberUtils } from "./../lib/number/core";
+import { LogicalUtils } from "./../lib/logical/core";
 
-import { array } from "../lib/array/core";
+import { array, ArrayUtils } from "../lib/array/core";
 import { logical } from "../lib/logical/core";
 import { number } from "../lib/number/core";
 import { regular } from "../lib/regular/core";
 import { string } from "../lib/string/core";
 import { time } from "../lib/time/core";
-import { vk } from "../lib/vk/core";
+import { vk } from "../lib/VK/core";
 import { IP } from "../lib/IP/core";
 
+/**
+ * @description Класс функций
+ * @class
+ * @hideconstructor
+ */
 class RusAnonymUtils {
 	/**
-	 * Класс для работы с массивами
+	 * @description Секция для работы с массивами
+	 * @type {ArrayUtils}
 	 */
-	public array = array;
+	public readonly array: ArrayUtils;
 
 	/**
-	 * Класс для работы с логическими функциями
+	 * @description Секция для работы с логическими функциями
+	 * @type {LogicalUtils}
 	 */
-	public logical = logical;
+	public readonly logical: LogicalUtils;
 
 	/**
-	 * Класс для работы с числами
+	 * @description Секция для работы с числами
+	 * @type {NumberUtils}
 	 */
-	public number = number;
+	public readonly number: NumberUtils;
 
 	/**
-	 * Класс для работы с регулярными выражениями
+	 * @description Секция для работы с регулярными выражениями
+	 * @type {RegularUtils}
 	 */
-	public regular = regular;
+	public readonly regular: RegularUtils;
 
 	/**
-	 * Класс для работы с строками
+	 * @description Секция для работы с строками
+	 * @type {StringUtils}
 	 */
-	public string = string;
+	public readonly string: StringUtils;
 
 	/**
-	 * Класс для работы со временем
+	 * @description Секция для работы с временем
+	 * @type {TimeUtils}
 	 */
-	public time = time;
+	public readonly time: TimeUtils;
 
 	/**
-	 * Секция для работы с методами VK
+	 * @description Секция для работы с VK
+	 * @type {VK}
 	 */
-	public vk = vk;
+	public readonly vk: VK;
 
 	/**
-	 * Класс для работы с IP адресами
+	 * @description Секция для работы с IP
+	 * @type {IPUtils}
 	 */
-	public IP = IP;
+	public readonly IP: IPUtils;
+
+	constructor() {
+		this.array = array;
+		this.logical = logical;
+		this.number = number;
+		this.regular = regular;
+		this.string = string;
+		this.time = time;
+		this.vk = vk;
+		this.IP = IP;
+	}
 
 	/**
-	 * Приостанавливает работу скрипта на выбранное время
-	 * @param ms Время в ms
+	 * @description Приостанавливает работу скрипта на выбранное время
+	 * @param {number} ms Время в ms
 	 * @example
 	 * import utils from "rus-anonym-utils";
 	 * await utils.sleep(1000); // Приостановит скрипт на 1 секунду
+	 *
+	 * @returns {Promise} Промис
 	 */
 	public sleep(ms: number): Promise<void> {
 		return new Promise((resolve) => setTimeout(resolve, ms));

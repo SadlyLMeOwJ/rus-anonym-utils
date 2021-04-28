@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -93,11 +93,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @module Regular
- */
-
-import regularList from "./DB/regularTemplate";
+            <pre class="prettyprint source linenums"><code>import regularList from "./DB/regularTemplate";
 
 const list = {
 	/**
@@ -123,76 +119,82 @@ const list = {
 	/**
 	 * Шаблон для номеров
 	 */
-	number: regularList.email,
+	number: regularList.phone,
 };
 
+/**
+ * @category Regular
+ * @description Класс для работы с регулярными выражениями
+ * @hideconstructor
+ */
 export class RegularUtils {
-	/**
-	 * Проверка является ли переданная строка E-Mail адресом
-	 * @param email {string} - E-Mail адрес
-	 * @returns {boolean}
-	 */
-	public isEmail(email: string): boolean {
-		return new RegExp(regularList.email, "").test(email);
-	}
-
-	/**
-	 *  Проверка является ли переданная строка IPv4 адресом
-	 * @param address {string} - IPv4 адрес
-	 * @returns {boolean}
-	 */
-	public isIPv4(address: string): boolean {
-		return new RegExp(regularList.IPv4, "").test(address);
-	}
-
-	/**
-	 *  Проверка является ли переданная строка IPv6 адресом
-	 * @param address {string} - IPv6 адрес
-	 * @returns {boolean}
-	 */
-	public isIPv6(address: string): boolean {
-		return new RegExp(regularList.IPv6, "").test(address);
-	}
-
-	/**
-	 *  Проверка является ли переданная строка IP адресом
-	 * @param address {string} - IP адрес
-	 * @returns {boolean}
-	 */
-	public isIP(address: string): boolean {
-		return new RegExp(regularList.ip, "").test(address);
-	}
-
-	/**
-	 *  Проверка является ли переданная строка ccылкой
-	 * @param url {string} - URL
-	 * @returns {boolean}
-	 */
-	public isURL(url: string): boolean {
-		return new RegExp(regularList.url, "").test(url);
-	}
-
-	/**
-	 * Проверка является ли переданная строка номером
-	 * @param email {string} - E-Mail адрес
-	 * @returns {boolean}
-	 */
-	public isNumber(number: string): boolean {
-		return new RegExp(regularList.number, "i").test(number);
-	}
-
 	/**
 	 * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
 	 * @example
 	 * // => RegExp
 	 * new RegExp(utils.regular.list.email, "g");
 	 */
-	public list = list;
+	public list;
+
+	constructor() {
+		this.list = list;
+	}
+
+	/**
+	 * @description Проверка является ли переданная строка E-Mail адресом
+	 * @param {string} email E-Mail адрес
+	 * @returns {boolean} является ли переданная строка E-Mail адресом
+	 */
+	public isEmail(email: string): boolean {
+		return new RegExp(regularList.email, "").test(email);
+	}
+
+	/**
+	 * @description Проверка является ли переданная строка IPv4 адресом
+	 * @param {string} address IPv4 адрес
+	 * @returns {boolean} является ли переданная строка IPv4 адресом
+	 */
+	public isIPv4(address: string): boolean {
+		return new RegExp(regularList.IPv4, "").test(address);
+	}
+
+	/**
+	 * @description Проверка является ли переданная строка IPv6 адресом
+	 * @param {string} address IPv6 адрес
+	 * @returns {boolean} является ли переданная строка IPv6 адресом
+	 */
+	public isIPv6(address: string): boolean {
+		return new RegExp(regularList.IPv6, "").test(address);
+	}
+
+	/**
+	 * @description Проверка является ли переданная строка IP адресом
+	 * @param {string} address IP адрес
+	 * @returns {boolean} является ли переданная строка IP адресом
+	 */
+	public isIP(address: string): boolean {
+		return new RegExp(regularList.ip, "").test(address);
+	}
+
+	/**
+	 * @description Проверка является ли переданная строка ccылкой
+	 * @param {string} url URL
+	 * @returns {boolean} является ли переданная строка ccылкой
+	 */
+	public isURL(url: string): boolean {
+		return new RegExp(regularList.url, "").test(url);
+	}
+
+	/**
+	 * @description Проверка является ли переданная строка номером
+	 * @param {number} number Номер телефона
+	 * @returns {boolean} является ли переданная строка номером
+	 */
+	public isPhoneNumber(number: string): boolean {
+		return new RegExp(regularList.number, "i").test(number);
+	}
 }
 
-/**
- * Класс для работы с регулярными выражениями
- */
 export const regular = new RegularUtils();
 </code></pre>
         </article>
@@ -202,6 +204,16 @@ export const regular = new RegularUtils();
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

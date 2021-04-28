@@ -2,7 +2,12 @@ import { cloneMethod, CloneBenchmarkResponse } from "../typings";
 
 import { performance } from "perf_hooks";
 
-class Clone {
+/**
+ * @category Array
+ * @description Класс для работы с клонированием
+ * @hideconstructor
+ */
+class CloneArray {
 	private methods: cloneMethod[] = [
 		"slice",
 		"concat",
@@ -19,8 +24,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью slice
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public slice<T>(inputArray: T[]): T[] {
 		return inputArray.slice() as T[];
@@ -28,8 +34,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью concat
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public concat<T>(inputArray: T[]): T[] {
 		return ([] as T[]).concat(inputArray) as T[];
@@ -37,8 +44,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью unshift
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array}новый массив
 	 */
 	public unshift<T>(inputArray: T[]): T[] {
 		const output: T[] = [];
@@ -50,8 +58,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью push
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public push<T>(inputArray: T[]): T[] {
 		const output: T[] = [];
@@ -63,8 +72,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью index
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public index<T>(inputArray: T[]): T[] {
 		const output: T[] = new Array(inputArray.length);
@@ -76,8 +86,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью apply
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public apply<T>(inputArray: T[]): T[] {
 		// eslint-disable-next-line prefer-spread
@@ -86,8 +97,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью map
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public map<T>(inputArray: T[]): T[] {
 		return inputArray.map(function (element) {
@@ -97,8 +109,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью JSON
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public json<T>(inputArray: T[]): T[] {
 		return JSON.parse(JSON.stringify(inputArray)) as T[];
@@ -106,8 +119,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью spread
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray - массив
+	 * @returns {Array} новый массив
 	 */
 	public spread<T>(inputArray: T[]): T[] {
 		return [...inputArray] as T[];
@@ -115,8 +129,9 @@ class Clone {
 
 	/**
 	 * Клонирование массива с помощью Array.from
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public from<T>(inputArray: T[]): T[] {
 		return Array.from(inputArray) as T[];
@@ -124,8 +139,9 @@ class Clone {
 
 	/**
 	 * Рекурсивное глубокое копирование массива (копирует подмассив)
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} inputArray {Array} - массив
+	 * @returns {Array} новый массив
 	 */
 	public recursionDeep<T>(inputArray: T[]): T[] {
 		const output = inputArray.map((element: T | T[]) => {
@@ -142,7 +158,8 @@ class Clone {
 
 	/**
 	 * Сравнивает все методы копирования
-	 * @param inputArray {Array} - массив
+	 *
+	 * @param {Array} input Исходный массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
 	public benchmark<T>(input: T[]): CloneBenchmarkResponse<T> {
@@ -199,8 +216,9 @@ class Clone {
 
 	/**
 	 * Выполняет копирование наиболее быстрым методом (не всегда корректно работает)
-	 * @param inputArray {Array} - массив
-	 * @returns новый массив
+	 *
+	 * @param {Array} input Исходный массив
+	 * @returns {Array} новый массив
 	 */
 	public faster<T>(input: T[]): Promise<T[]> {
 		return Promise.any(
@@ -211,4 +229,4 @@ class Clone {
 	}
 }
 
-export default Clone;
+export default CloneArray;

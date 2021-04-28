@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation lib/vk/plugins/api.ts</title>
+  <title>Documentation lib/VK/plugins/api.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Modules</h3><ul><li><a href="module-Array.html">Array</a></li><li><a href="module-Logical.html">Logical</a></li><li><a href="module-Number.html">Number</a></li><li><a href="module-Regular.html">Regular</a></li><li><a href="module-String.html">String</a></li><li><a href="module-Time.html">Time</a></li><li><a href="module-Utils.html">Utils</a></li><li><a href="module-VK.html">VK</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
                 
             </nav>
         </div>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>lib/vk/plugins/api.ts</h1>
+                    <h1>lib/VK/plugins/api.ts</h1>
                 </header>
                 
 
@@ -93,63 +93,57 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { accessRights } from "./../DB/accessRights";
-import { accessRightType } from "./../types";
+            <pre class="prettyprint source linenums"><code>import { accessRights as AccessRights } from "./../DB/accessRights";
+import { ICheckToken, IVKAPIStatus } from "../typings";
 
 import axios from "axios";
 import { VK } from "vk-io";
+import UtilsError from "../../../utils/error";
 
+/**
+ * @category VK
+ * @description Класс для работы с API
+ * @hideconstructor
+ */
 export class VK_API {
 	/**
-	 * Получить текущее состоянии API VK
-	 * @return Текущее состоянии API VK
+	 * @description Получить текущее состоянии API VK
+	 * @returns {Promise} Текущее состоянии API VK
 	 */
-	public async status(): Promise&lt;
-		Array&lt;{
-			section: string;
-			performance: number;
-			uptime: number;
-		}>
-	> {
-		let data = await (await axios.get(`https://vk.com/dev/health`)).data;
+	public async status(): Promise&lt;IVKAPIStatus[]> {
+		let data: string = (await axios.get(`https://vk.com/dev/health`)).data;
 		data = data.toString();
-		let position1 = await data.indexOf(`var content = {`);
-		let position2 = await data.indexOf(`'header': ['`);
+		let position1 = data.indexOf(`var content = {`);
+		let position2 = data.indexOf(`'header': ['`);
 		const newData = data.substring(position1, position2);
 		position1 = newData.indexOf(`[[`);
 		position2 = newData.indexOf(`]]`);
 		const arrayWithSections = JSON.parse(
 			newData.substring(position1, position2 + 2),
 		);
-		const outputArray = [];
+		const OutputArray = [];
 		for (const sectionData of arrayWithSections) {
-			outputArray.push({
+			OutputArray.push({
 				section: sectionData[0],
 				performance: sectionData[2],
 				uptime: sectionData[3],
 			});
 		}
-		return outputArray;
+		return OutputArray;
 	}
 
 	/**
-	 * Проверка токена
-	 * @param token {string} - Проверяемый токен
-	 * @return данные токена
+	 * @description Проверка токена
+	 * @param {string} token Проверяемый токен
+	 * @returns {Promise} данные токена
 	 */
-	public async checkToken(
-		token: string,
-	): Promise&lt;{
-		type: "user" | "group";
-		id: number;
-		accessRights: accessRightType[];
-	}> {
+	public async checkToken(token: string): Promise&lt;ICheckToken> {
 		if (token.length !== 85) {
-			throw new Error("Invalid token length");
+			throw new UtilsError("Invalid token length");
 		}
 
-		const splitToken = token.split("");
-		const allowedWord = [
+		const TokenWords = token.split("");
+		const AllowedWordSet = new Set([
 			"d",
 			"e",
 			"f",
@@ -166,24 +160,20 @@ export class VK_API {
 			"7",
 			"8",
 			"9",
-		];
+		]);
 
-		for (const tempWord of splitToken) {
-			if (!allowedWord.find((x) => x === tempWord)) {
-				throw new Error("Invalid token symbols");
+		for (const tempWord of TokenWords) {
+			if (!AllowedWordSet.has(tempWord.toLowerCase())) {
+				throw new UtilsError("Invalid token symbols");
 			}
 		}
 
 		const tempVK = new VK({ token: token });
 		const tokenData = await tempVK.api.users.get({}).catch(() => {
-			throw new Error("Invalid token");
+			throw new UtilsError("Invalid token");
 		});
 
-		const outputData: {
-			type: "user" | "group";
-			id: number;
-			accessRights: accessRightType[];
-		} = {
+		const OutputData: ICheckToken = {
 			type: "user",
 			id: 0,
 			accessRights: [],
@@ -191,31 +181,34 @@ export class VK_API {
 
 		if (tokenData.length === 0) {
 			const [secondTokenData] = await tempVK.api.groups.getById({});
-			outputData.type = "group";
-			outputData.id = secondTokenData.id;
+			OutputData.type = "group";
+			OutputData.id = secondTokenData.id;
 			const currentPermissions = await tempVK.api.groups.getTokenPermissions(
 				{},
 			);
-			for (const i in accessRights.group) {
+			for (const right in AccessRights.group) {
 				if (
-					Boolean(currentPermissions.mask &amp; accessRights.group[i].mask) === true
+					Boolean(currentPermissions.mask &amp; AccessRights.group[right].mask) ===
+					true
 				) {
-					outputData.accessRights.push(accessRights.group[i].right);
+					OutputData.accessRights.push(AccessRights.group[right].right);
 				}
 			}
 		} else {
-			outputData.id = tokenData[0].id;
+			OutputData.id = tokenData[0].id;
 			const currentPermissions = await tempVK.api.account.getAppPermissions({
-				user_id: outputData.id,
+				user_id: OutputData.id,
 			});
-			for (const i in accessRights.user) {
-				if (Boolean(currentPermissions &amp; accessRights.user[i].mask) === true) {
-					outputData.accessRights.push(accessRights.user[i].right);
+			for (const right in AccessRights.user) {
+				if (
+					Boolean(currentPermissions &amp; AccessRights.user[right].mask) === true
+				) {
+					OutputData.accessRights.push(AccessRights.user[right].right);
 				}
 			}
 		}
 
-		return outputData;
+		return OutputData;
 	}
 }
 
@@ -228,6 +221,16 @@ export const api = new VK_API();
 
 
             </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
             
         </div>
         <div id="side-nav" class="side-nav">

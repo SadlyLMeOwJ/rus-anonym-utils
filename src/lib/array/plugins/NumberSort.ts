@@ -12,7 +12,12 @@ import naturalStringSorter from "../lib/naturalStringSorter";
 
 const Clone = new CloneClass();
 
-class NumberSort {
+/**
+ * @category Array
+ * @description Класс для сортировки числовых массивов
+ * @hideconstructor
+ */
+class NumberArraySort {
 	private __operators: Record<
 		TComparisonOperators,
 		(x: number, y: number) => boolean
@@ -22,9 +27,10 @@ class NumberSort {
 	};
 
 	/**
-	 * Пузырьковая сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Пузырьковая сортировка
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @param {string=} operator Оператор сравнения
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public bubble(
 		inputArray: number[],
@@ -49,9 +55,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка выбором
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка выбором
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public selection(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -74,9 +80,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка вставками
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка вставками
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public insertion(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -97,9 +103,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка Шелла
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка Шелла
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public Shell(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -124,9 +130,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка подсчётом
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка подсчётом
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public simpleCounting(inputArray: number[]): number[] {
 		if (inputArray.length <= 1) {
@@ -151,9 +157,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка расчёской
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка расчёской
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public comb(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -176,9 +182,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка слиянием
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка слиянием
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public merge(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -189,6 +195,7 @@ class NumberSort {
 		const arrLeft = inputArray.slice(0, middle);
 		const arrRight = inputArray.slice(middle);
 
+		// eslint-disable-next-line jsdoc/require-jsdoc
 		function mergeArray(firstArray: number[], secondArray: number[]): number[] {
 			const arrSort = [];
 			let i = 0;
@@ -205,9 +212,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Пирамидальная сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Пирамидальная сортировка
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public heap(inputArray: number[]): number[] {
 		inputArray = ([] as number[]).concat(inputArray);
@@ -247,9 +254,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Быстрая сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Быстрая сортировка
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public quick(inputArray: number[]): number[] {
 		if (inputArray.length <= 1) {
@@ -266,9 +273,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Сортировка перемешиванием
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Сортировка перемешиванием
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public shaker(inputArray: number[]): number[] {
 		let i = 0,
@@ -303,9 +310,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Гномья сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Гномья сортировка
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public gnome(inputArray: number[]): number[] {
 		const n = inputArray.length;
@@ -330,9 +337,9 @@ class NumberSort {
 	}
 
 	/**
-	 * Натуральная сортировка
-	 * @param inputArray {Array} - массив с числами
-	 * @returns отсортированный массив с числами
+	 * @description Натуральная сортировка
+	 * @param {Array.<number>} inputArray массив с числами
+	 * @returns {Array.<number>} отсортированный массив с числами
 	 */
 	public naturalStringSorter(inputArray: number[]): number[] {
 		return naturalStringSorter(inputArray, function (element: number): string {
@@ -341,20 +348,11 @@ class NumberSort {
 	}
 
 	/**
-	 * Сравнивает все методы сортировок
-	 * @param inputArray {Array} - массив с числами, либо число из которого нужно сгенерировать массив
+	 * @description Сравнивает все методы сортировок
+	 * @param {Array.<number>} inputArray массив с числами
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public benchmark(input: number[] | number): SortingBenchmarkResponse {
-		let inputArray: number[] = [];
-		if (Number.isInteger(input) === true) {
-			inputArray = Array.from({ length: Number(input) }, () =>
-				Math.floor(Math.random() * Number(input)),
-			);
-		} else if (Array.isArray(input)) {
-			inputArray = input;
-		}
-
+	public benchmark(inputArray: number[]): SortingBenchmarkResponse {
 		const sortingAlgorithms: sortingAlgorithm[] = [
 			"bubble",
 			"selection",
@@ -422,4 +420,4 @@ class NumberSort {
 	}
 }
 
-export default NumberSort;
+export default NumberArraySort;
