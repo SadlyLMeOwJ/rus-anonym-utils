@@ -1,6 +1,12 @@
-/* eslint-disable jsdoc/no-undefined-types */
+import { IPUtils } from "./../lib/IP/core";
+import { VK } from "./../lib/VK/core";
+import { TimeUtils } from "./../lib/time/core";
+import { StringUtils } from "./../lib/string/core";
+import { RegularUtils } from "./../lib/regular/core";
+import { NumberUtils } from "./../lib/number/core";
+import { LogicalUtils } from "./../lib/logical/core";
 
-import { array } from "../lib/array/core";
+import { array, ArrayUtils } from "../lib/array/core";
 import { logical } from "../lib/logical/core";
 import { number } from "../lib/number/core";
 import { regular } from "../lib/regular/core";
@@ -15,62 +21,62 @@ import { IP } from "../lib/IP/core";
  * @hideconstructor
  */
 class RusAnonymUtils {
-	public readonly array;
-	public readonly logical;
-	public readonly number;
-	public readonly regular;
-	public readonly string;
-	public readonly time;
-	public readonly vk;
-	public readonly IP;
+	/**
+	 * @description Секция для работы с массивами
+	 * @type {ArrayUtils}
+	 */
+	public readonly array: ArrayUtils;
+
+	/**
+	 * @description Секция для работы с логическими функциями
+	 * @type {LogicalUtils}
+	 */
+	public readonly logical: LogicalUtils;
+
+	/**
+	 * @description Секция для работы с числами
+	 * @type {NumberUtils}
+	 */
+	public readonly number: NumberUtils;
+
+	/**
+	 * @description Секция для работы с регулярными выражениями
+	 * @type {RegularUtils}
+	 */
+	public readonly regular: RegularUtils;
+
+	/**
+	 * @description Секция для работы с строками
+	 * @type {StringUtils}
+	 */
+	public readonly string: StringUtils;
+
+	/**
+	 * @description Секция для работы с временем
+	 * @type {TimeUtils}
+	 */
+	public readonly time: TimeUtils;
+
+	/**
+	 * @description Секция для работы с VK
+	 * @type {VK}
+	 */
+	public readonly vk: VK;
+
+	/**
+	 * @description Секция для работы с IP
+	 * @type {IPUtils}
+	 */
+	public readonly IP: IPUtils;
 
 	constructor() {
-		/**
-		 * @description Секция для работы с массивами
-		 * @type {ArrayUtils}
-		 */
 		this.array = array;
-
-		/**
-		 * @description Секция для работы с логическими функциями
-		 * @type {LogicalUtils}
-		 */
 		this.logical = logical;
-
-		/**
-		 * @description Секция для работы с числами
-		 * @type {NumberUtils}
-		 */
 		this.number = number;
-
-		/**
-		 * @description Секция для работы с регулярными выражениями
-		 * @type {RegularUtils}
-		 */
 		this.regular = regular;
-
-		/**
-		 * @description Секция для работы с строками
-		 * @type {StringUtils}
-		 */
 		this.string = string;
-
-		/**
-		 * @description Секция для работы с временем
-		 * @type {TimeUtils}
-		 */
 		this.time = time;
-
-		/**
-		 * @description Секция для работы с VK
-		 * @type {VK}
-		 */
 		this.vk = vk;
-
-		/**
-		 * @description Секция для работы с IP
-		 * @type {IPUtils}
-		 */
 		this.IP = IP;
 	}
 
