@@ -167,7 +167,4 @@ export class TimeUtils {
 	}
 }
 
-/**
- * Класс для работы со временем
- */
 export const time = new TimeUtils();

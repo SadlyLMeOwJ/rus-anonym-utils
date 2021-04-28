@@ -26,7 +26,4 @@ export class VK {
 	public group: VK_Group = group;
 }
 
-/**
- * Секция для работы с методами VK
- */
 export const vk = new VK();

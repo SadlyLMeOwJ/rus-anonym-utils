@@ -1,15 +1,26 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "2.2.8",
+	"version": "2.2.9",
 	"description": "Personal set of utilities from RusAnonym",
 	"main": "./dist/main.js",
 	"module": "./dist/main.js",
 	"files": [
 		"dist/"
 	],
+	"exports": {
+		"default": "./dist/main.js"
+	},
 	"directories": {
 		"dist": "dist"
 	},
+	"engines": {
+		"node": "*"
+	},
+	"keywords": [
+		"utils",
+		"util",
+		"function"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/RusAnonym/rus-anonym-utils.git"
