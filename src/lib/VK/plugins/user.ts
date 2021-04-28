@@ -11,6 +11,11 @@ import { VK } from "vk-io";
 import UtilsError from "../../../utils/error";
 import { IGiftsGetCatalogResponse } from "../typings";
 
+/**
+ * @category VK
+ * @description Класс для работы с методами требующими токена польщователя
+ * @hideconstructor
+ */
 export class VK_User {
 	private async __parseUserGifts(
 		token: string,

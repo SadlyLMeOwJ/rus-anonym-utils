@@ -1,12 +1,13 @@
-/**
- * @module VK
- */
-
 import { VK_User, user } from "./plugins/user";
 import { VK_Group, group } from "./plugins/group";
 import { VK_Article, article } from "./plugins/article";
 import { VK_API, api } from "./plugins/api";
 
+/**
+ * @category VK
+ * @description Класс для работы с VK
+ * @hideconstructor
+ */
 export class VK {
 	/**
 	 * Секция для работы с API

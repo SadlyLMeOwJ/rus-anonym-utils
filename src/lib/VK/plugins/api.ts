@@ -5,6 +5,11 @@ import axios from "axios";
 import { VK } from "vk-io";
 import UtilsError from "../../../utils/error";
 
+/**
+ * @category VK
+ * @description Класс для работы с API
+ * @hideconstructor
+ */
 export class VK_API {
 	/**
 	 * @description Получить текущее состоянии API VK

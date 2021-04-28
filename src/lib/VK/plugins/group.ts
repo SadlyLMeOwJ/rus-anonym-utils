@@ -1,5 +1,10 @@
 import { VK } from "vk-io";
 
+/**
+ * @category VK
+ * @description Класс для работы с методами требующими токена группы
+ * @hideconstructor
+ */
 export class VK_Group {
 	private async __checkConversationID(
 		instanceVK: VK,

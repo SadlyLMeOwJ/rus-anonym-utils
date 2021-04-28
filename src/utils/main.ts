@@ -1,6 +1,4 @@
-/**
- * @category Utils
- */
+/* eslint-disable jsdoc/no-undefined-types */
 
 import { array } from "../lib/array/core";
 import { logical } from "../lib/logical/core";
@@ -13,48 +11,68 @@ import { IP } from "../lib/IP/core";
 
 /**
  * @description Класс функций
+ * @class
  * @hideconstructor
  */
 class RusAnonymUtils {
-	/**
-	 * Секция для работы с массивами
-	 */
-	public array = array;
+	public readonly array;
+	public readonly logical;
+	public readonly number;
+	public readonly regular;
+	public readonly string;
+	public readonly time;
+	public readonly vk;
+	public readonly IP;
 
-	/**
-	 * Секция для работы с логическими функциями
-	 */
-	public logical = logical;
+	constructor() {
+		/**
+		 * @description Секция для работы с массивами
+		 * @type {ArrayUtils}
+		 */
+		this.array = array;
 
-	/**
-	 * Секция для работы с числами
-	 */
-	public number = number;
+		/**
+		 * @description Секция для работы с логическими функциями
+		 * @type {LogicalUtils}
+		 */
+		this.logical = logical;
 
-	/**
-	 * Секция для работы с регулярными выражениями
-	 */
-	public regular = regular;
+		/**
+		 * @description Секция для работы с числами
+		 * @type {NumberUtils}
+		 */
+		this.number = number;
 
-	/**
-	 * Секция для работы с строками
-	 */
-	public string = string;
+		/**
+		 * @description Секция для работы с регулярными выражениями
+		 * @type {RegularUtils}
+		 */
+		this.regular = regular;
 
-	/**
-	 * Секция для работы со временем
-	 */
-	public time = time;
+		/**
+		 * @description Секция для работы с строками
+		 * @type {StringUtils}
+		 */
+		this.string = string;
 
-	/**
-	 * Секция для работы с методами VK
-	 */
-	public vk = vk;
+		/**
+		 * @description Секция для работы с временем
+		 * @type {TimeUtils}
+		 */
+		this.time = time;
 
-	/**
-	 * Секция для работы с IP адресами
-	 */
-	public IP = IP;
+		/**
+		 * @description Секция для работы с VK
+		 * @type {VK}
+		 */
+		this.vk = vk;
+
+		/**
+		 * @description Секция для работы с IP
+		 * @type {IPUtils}
+		 */
+		this.IP = IP;
+	}
 
 	/**
 	 * @description Приостанавливает работу скрипта на выбранное время

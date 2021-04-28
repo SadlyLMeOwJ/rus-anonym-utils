@@ -3,6 +3,11 @@ import axios from "axios";
 import { regular } from "./../../regular/core";
 import UtilsError from "../../../utils/error";
 
+/**
+ * @category VK
+ * @description Класс для работы с статьями
+ * @hideconstructor
+ */
 export class VK_Article {
 	/**
 	 * @description Получить данные о статье по ссылке
