@@ -10,21 +10,31 @@ import { VK_API, api } from "./plugins/api";
  */
 export class VK {
 	/**
-	 * Секция для работы с API
+	 * @description Секция для работы с API
 	 */
-	public api: VK_API = api;
+	public api: VK_API;
+
 	/**
-	 * Секция для работы с статьями
+	 * @description Секция для работы с статьями
 	 */
-	public article: VK_Article = article;
+	public article: VK_Article;
+
 	/**
-	 * Секция требующая токена пользователя
+	 * @description Секция требующая токена пользователя
 	 */
-	public user: VK_User = user;
+	public user: VK_User;
+
 	/**
-	 * Секция требующая токена группы
+	 * @description Секция требующая токена группы
 	 */
-	public group: VK_Group = group;
+	public group: VK_Group;
+
+	constructor() {
+		this.api = api;
+		this.article = article;
+		this.user = user;
+		this.group = group;
+	}
 }
 
 export const vk = new VK();
