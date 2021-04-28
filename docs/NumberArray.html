@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation RegularUtils</title>
+  <title>Documentation NumberArray</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -82,7 +82,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Class</p>
-                    <h1>RegularUtils</h1>
+                    <h1>NumberArray</h1>
                 </header>
                 
 
@@ -93,7 +93,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>RegularUtils</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>NumberArray</h2>
         
     
 </header>
@@ -150,9 +150,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line34">line 34</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line8">line 8</a>
             </span>
         </p>
     
@@ -188,13 +188,6 @@
     
 
     
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="RegularUtils.html">RegularUtils</a></dt>
-            <dd></dd>
-        </dl>
-    
 
     
 
@@ -209,11 +202,19 @@
             
                 <div class="member">
 
-<h4 class="name" id="list">
-    <a class="href-link" href="#list">#</a>
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="NumberArraySort.html">NumberArraySort</a></span>
+
+
+    </span>
+
+<h4 class="name" id="sort">
+    <a class="href-link" href="#sort">#</a>
     
     <span class="code-name">
-        list
+        sort
     </span>
     
 </h4>
@@ -222,7 +223,7 @@
 
 
 <div class="description">
-    <p>Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp</p>
+    <p>Сортировка</p>
 </div>
 
 
@@ -262,9 +263,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line99">line 99</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line69">line 69</a>
             </span>
         </p>
     
@@ -272,13 +273,6 @@
 
 
 
-
-
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>// => RegExpnew RegExp(utils.regular.list.email, "g");</code></pre>
-    
 
 
 </div>
@@ -296,12 +290,12 @@
 
 
     
-    <h4 class="name" id="isEmail">
-        <a class="href-link" href="#isEmail">#</a>
+    <h4 class="name" id="average">
+        <a class="href-link" href="#average">#</a>
         
         <span class="code-name">
             
-                isEmail<span class="signature">(email)</span><span class="type-signature"> &rarr; {boolean}</span>
+                average<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {number}</span>
             
         </span>
     </h4>
@@ -310,7 +304,7 @@
     
     
     <div class="description">
-        <p>Проверка является ли переданная строка E-Mail адресом</p>
+        <p>Вывод среднего значения в массиве</p>
     </div>
     
 
@@ -348,13 +342,13 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>email</code></td>
+      <td class="name"><code>inputArray</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">string</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -364,7 +358,7 @@
 
   
 
-  <td class="description last"><p>E-Mail адрес</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -410,9 +404,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line43">line 43</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line33">line 33</a>
             </span>
         </p>
     
@@ -443,13 +437,13 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>является ли переданная строка E-Mail адресом</p></div>
+    <div class='param-desc column is-7'><p>среднее значение</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">boolean</span>
+<span class="param-type">number</span>
 
 
     </div>
@@ -469,12 +463,12 @@
 
 
     
-    <h4 class="name" id="isIP">
-        <a class="href-link" href="#isIP">#</a>
+    <h4 class="name" id="generate">
+        <a class="href-link" href="#generate">#</a>
         
         <span class="code-name">
             
-                isIP<span class="signature">(address)</span><span class="type-signature"> &rarr; {boolean}</span>
+                generate<span class="signature">(length, customNumber)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
             
         </span>
     </h4>
@@ -483,7 +477,7 @@
     
     
     <div class="description">
-        <p>Проверка является ли переданная строка IP адресом</p>
+        <p>Генерирует массив заполненный выбранной цифрой, либо нулями</p>
     </div>
     
 
@@ -521,526 +515,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>address</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>IP адрес</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line67">line 67</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>является ли переданная строка IP адресом</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">boolean</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="isIPv4">
-        <a class="href-link" href="#isIPv4">#</a>
-        
-        <span class="code-name">
-            
-                isIPv4<span class="signature">(address)</span><span class="type-signature"> &rarr; {boolean}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Проверка является ли переданная строка IPv4 адресом</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>address</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>IPv4 адрес</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line51">line 51</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>является ли переданная строка IPv4 адресом</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">boolean</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="isIPv6">
-        <a class="href-link" href="#isIPv6">#</a>
-        
-        <span class="code-name">
-            
-                isIPv6<span class="signature">(address)</span><span class="type-signature"> &rarr; {boolean}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Проверка является ли переданная строка IPv6 адресом</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>address</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">string</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>IPv6 адрес</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line59">line 59</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>является ли переданная строка IPv6 адресом</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">boolean</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="isPhoneNumber">
-        <a class="href-link" href="#isPhoneNumber">#</a>
-        
-        <span class="code-name">
-            
-                isPhoneNumber<span class="signature">(number)</span><span class="type-signature"> &rarr; {boolean}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Проверка является ли переданная строка номером</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>number</code></td>
+      <td class="name"><code>length</code></td>
   
 
   <td class="type">
@@ -1056,7 +531,32 @@
 
   
 
-  <td class="description last"><p>Номер телефона</p></td>
+  <td class="description last"><p>Длина выходного массива</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>customNumber</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Цифра, которой нужно заполнить массив, или функция её генерирующая</p></td>
 </tr>
 
 
@@ -1102,9 +602,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line83">line 83</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line50">line 50</a>
             </span>
         </p>
     
@@ -1135,13 +635,15 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>является ли переданная строка номером</p></div>
+    <div class='param-desc column is-7'><ul>
+<li>Массив заполнный нулями</li>
+</ul></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">boolean</span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </div>
@@ -1161,12 +663,12 @@
 
 
     
-    <h4 class="name" id="isURL">
-        <a class="href-link" href="#isURL">#</a>
+    <h4 class="name" id="max">
+        <a class="href-link" href="#max">#</a>
         
         <span class="code-name">
             
-                isURL<span class="signature">(url)</span><span class="type-signature"> &rarr; {boolean}</span>
+                max<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {number}</span>
             
         </span>
     </h4>
@@ -1175,7 +677,7 @@
     
     
     <div class="description">
-        <p>Проверка является ли переданная строка ccылкой</p>
+        <p>Вывод максимального значения в массиве</p>
     </div>
     
 
@@ -1213,13 +715,13 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>url</code></td>
+      <td class="name"><code>inputArray</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">string</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -1229,7 +731,7 @@
 
   
 
-  <td class="description last"><p>URL</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -1275,9 +777,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_regular_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line75">line 75</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line25">line 25</a>
             </span>
         </p>
     
@@ -1308,13 +810,359 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>является ли переданная строка ccылкой</p></div>
+    <div class='param-desc column is-7'><p>максимальное значение</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">boolean</span>
+<span class="param-type">number</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="min">
+        <a class="href-link" href="#min">#</a>
+        
+        <span class="code-name">
+            
+                min<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {number}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Вывод минимального значения в массиве</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line17">line 17</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>Минимальное значение</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">number</span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="total">
+        <a class="href-link" href="#total">#</a>
+        
+        <span class="code-name">
+            
+                total<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {number}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Подсчёт суммы массива</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line41">line 41</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>среднее значение</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">number</span>
 
 
     </div>

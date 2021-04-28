@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation ArrayUtils</title>
+  <title>Documentation NumberArraySort</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -82,7 +82,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Class</p>
-                    <h1>ArrayUtils</h1>
+                    <h1>NumberArraySort</h1>
                 </header>
                 
 
@@ -93,7 +93,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>ArrayUtils</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>NumberArraySort</h2>
         
     
 </header>
@@ -150,9 +150,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line11">line 11</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line11">line 11</a>
             </span>
         </p>
     
@@ -188,13 +188,6 @@
     
 
     
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="ArrayUtils.html">ArrayUtils</a></dt>
-            <dd></dd>
-        </dl>
-    
 
     
 
@@ -202,167 +195,6 @@
 
     
 
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type"><a href="CloneArray.html">CloneArray</a></span>
-
-
-    </span>
-
-<h4 class="name" id="clone">
-    <a class="href-link" href="#clone">#</a>
-    
-    <span class="code-name">
-        clone
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Класс для работы с методами клонирования массивов</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line160">line 160</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type"><a href="NumberArray.html">NumberArray</a></span>
-
-
-    </span>
-
-<h4 class="name" id="number">
-    <a class="href-link" href="#number">#</a>
-    
-    <span class="code-name">
-        number
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Класс для работы с числовыми массивами</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line167">line 167</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
     
 
     
@@ -374,12 +206,12 @@
 
 
     
-    <h4 class="name" id="insert">
-        <a class="href-link" href="#insert">#</a>
+    <h4 class="name" id="benchmark">
+        <a class="href-link" href="#benchmark">#</a>
         
         <span class="code-name">
             
-                insert<span class="signature">(inputArray, index, element)</span><span class="type-signature"> &rarr; {Array}</span>
+                benchmark<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Object}</span>
             
         </span>
     </h4>
@@ -388,7 +220,7 @@
     
     
     <div class="description">
-        <p>Вставляет элемент в массив</p>
+        <p>Сравнивает все методы сортировок</p>
     </div>
     
 
@@ -432,7 +264,7 @@
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -442,57 +274,7 @@
 
   
 
-  <td class="description last"><p>массив</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>index</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">number</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Индекс добавляемого элемента</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>element</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">any</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Новый элемент</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -538,9 +320,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line94">line 94</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line320">line 320</a>
             </span>
         </p>
     
@@ -571,194 +353,13 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>итоговый массив</p></div>
+    <div class='param-desc column is-7'><p>benchmark - Объект с выполнеными тестами</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Array</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>// Return [1, 2, 3, 4, 5]
-array.insert([1, 2, 4, 5], 2, 3);</code></pre>
-    
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="makeUnique">
-        <a class="href-link" href="#makeUnique">#</a>
-        
-        <span class="code-name">
-            
-                makeUnique<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Убирает из массива неуникальные значения (работает только с примитивами)</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>array</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Массив который требуется уникализировать</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line135">line 135</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Массив состоящий из уникальных значений</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Array</span>
+<span class="param-type">Object</span>
 
 
     </div>
@@ -778,12 +379,12 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
 
 
     
-    <h4 class="name" id="naturalStringSorter">
-        <a class="href-link" href="#naturalStringSorter">#</a>
+    <h4 class="name" id="bubble">
+        <a class="href-link" href="#bubble">#</a>
         
         <span class="code-name">
             
-                naturalStringSorter<span class="signature">(array, extractor<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span>
+                bubble<span class="signature">(inputArray, operator<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
             
         </span>
     </h4>
@@ -792,7 +393,7 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
     
     
     <div class="description">
-        <p>Естественная сортировка строк</p>
+        <p>Пузырьковая сортировка</p>
     </div>
     
 
@@ -832,13 +433,13 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>array</code></td>
+      <td class="name"><code>inputArray</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -856,7 +457,7 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
 
   
 
-  <td class="description last"><p>Массив который требуется отсортировать</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -865,13 +466,13 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>extractor</code></td>
+      <td class="name"><code>operator</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">function</span>
+<span class="param-type">string</span>
 
 
   
@@ -891,7 +492,7 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
 
   
 
-  <td class="description last"><p>Функция переводящая элемент массива в строку</p></td>
+  <td class="description last"><p>Оператор сравнения</p></td>
 </tr>
 
 
@@ -937,9 +538,9 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line127">line 127</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line24">line 24</a>
             </span>
         </p>
     
@@ -970,13 +571,13 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>Отсортированный массив</p></div>
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </div>
@@ -990,30 +591,18 @@ array.insert([1, 2, 4, 5], 2, 3);</code></pre>
 
 
 
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>// Return [1, 2, 3]
-array.naturalStringSorter([1, 3, 2], function (element) {
-	return element.toString();
-});
-// Return [1, 2, 3]
-array.naturalStringSorter([1, 3, 2]);</code></pre>
-    
-
-
 </div>
             
                 <div class="member">
 
 
     
-    <h4 class="name" id="random">
-        <a class="href-link" href="#random">#</a>
+    <h4 class="name" id="comb">
+        <a class="href-link" href="#comb">#</a>
         
         <span class="code-name">
             
-                random<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {any}</span>
+                comb<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
             
         </span>
     </h4>
@@ -1022,7 +611,7 @@ array.naturalStringSorter([1, 3, 2]);</code></pre>
     
     
     <div class="description">
-        <p>Возвращает рандомный элемент из массива</p>
+        <p>Сортировка расчёской</p>
     </div>
     
 
@@ -1066,7 +655,7 @@ array.naturalStringSorter([1, 3, 2]);</code></pre>
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -1076,7 +665,7 @@ array.naturalStringSorter([1, 3, 2]);</code></pre>
 
   
 
-  <td class="description last"><p>массив</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -1122,9 +711,9 @@ array.naturalStringSorter([1, 3, 2]);</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line25">line 25</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line143">line 143</a>
             </span>
         </p>
     
@@ -1155,13 +744,13 @@ array.naturalStringSorter([1, 3, 2]);</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>элемент из массива</p></div>
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">any</span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </div>
@@ -1175,26 +764,18 @@ array.naturalStringSorter([1, 3, 2]);</code></pre>
 
 
 
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>// Return 2
-array.random([1, 2, 3, 4]);</code></pre>
-    
-
-
 </div>
             
                 <div class="member">
 
 
     
-    <h4 class="name" id="removeEmptyElements">
-        <a class="href-link" href="#removeEmptyElements">#</a>
+    <h4 class="name" id="gnome">
+        <a class="href-link" href="#gnome">#</a>
         
         <span class="code-name">
             
-                removeEmptyElements<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array}</span>
+                gnome<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
             
         </span>
     </h4>
@@ -1203,7 +784,7 @@ array.random([1, 2, 3, 4]);</code></pre>
     
     
     <div class="description">
-        <p>Убирает пустые элементы из массива</p>
+        <p>Гномья сортировка</p>
     </div>
     
 
@@ -1247,7 +828,7 @@ array.random([1, 2, 3, 4]);</code></pre>
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -1257,7 +838,7 @@ array.random([1, 2, 3, 4]);</code></pre>
 
   
 
-  <td class="description last"><p>массив</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -1303,9 +884,9 @@ array.random([1, 2, 3, 4]);</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line108">line 108</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line283">line 283</a>
             </span>
         </p>
     
@@ -1336,194 +917,13 @@ array.random([1, 2, 3, 4]);</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>отсортированный массив</p></div>
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Array</span>
-
-
-    </div>
-    
-</div>
-
-                
-        </div>
-    </div>
-
-
-
-
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>// Return [1, 3, 5]
-array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
-    
-
-
-</div>
-            
-                <div class="member">
-
-
-    
-    <h4 class="name" id="removeFalseValues">
-        <a class="href-link" href="#removeFalseValues">#</a>
-        
-        <span class="code-name">
-            
-                removeFalseValues<span class="signature">(array)</span><span class="type-signature"> &rarr; {Array}</span>
-            
-        </span>
-    </h4>
-    
-
-    
-    
-    <div class="description">
-        <p>Удаляет из массива ложные значения (0, &quot;&quot;, false, null, undefined, NaN)</p>
-    </div>
-    
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-<div class="table-container">
-    <table class="params table">
-        <thead>
-        <tr>
-            
-            <th>Name</th>
-            
-
-            <th>Type</th>
-
-            
-
-            
-
-            <th class="last">Description</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>array</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">Array</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>Входной массив</p></td>
-</tr>
-
-
-        
-        </tbody>
-    </table>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line143">line 143</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class='columns method-parameter'>
-        <div class="column is-2"><label>Returns:</label></div>
-        <div class="column is-10">
-            
-                    
-
-<div class="columns">
-    
-    <div class='param-desc column is-7'><p>Массив состоящий из реальных значений</p></div>
-    
-    
-    <div class='column is-5 has-text-left'>
-        <label>Type: </label>
-        
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </div>
@@ -1543,12 +943,12 @@ array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
 
 
     
-    <h4 class="name" id="shuffle">
-        <a class="href-link" href="#shuffle">#</a>
+    <h4 class="name" id="heap">
+        <a class="href-link" href="#heap">#</a>
         
         <span class="code-name">
             
-                shuffle<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array}</span>
+                heap<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
             
         </span>
     </h4>
@@ -1557,7 +957,7 @@ array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
     
     
     <div class="description">
-        <p>Перемешивает массив</p>
+        <p>Пирамидальная сортировка</p>
     </div>
     
 
@@ -1601,7 +1001,7 @@ array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -1611,7 +1011,7 @@ array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
 
   
 
-  <td class="description last"><p>массив</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -1657,9 +1057,9 @@ array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line75">line 75</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line192">line 192</a>
             </span>
         </p>
     
@@ -1690,13 +1090,13 @@ array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>перемешанный массив</p></div>
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </div>
@@ -1710,26 +1110,18 @@ array.removeEmptyElements([1, null, 3, null, 5]);</code></pre>
 
 
 
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>// Return [5, 1, 4, 2, 3]
-array.shuffle([1, 2, 3, 4, 5]);</code></pre>
-    
-
-
 </div>
             
                 <div class="member">
 
 
     
-    <h4 class="name" id="splitOn">
-        <a class="href-link" href="#splitOn">#</a>
+    <h4 class="name" id="insertion">
+        <a class="href-link" href="#insertion">#</a>
         
         <span class="code-name">
             
-                splitOn<span class="signature">(inputArray, chunks)</span><span class="type-signature"> &rarr; {Array.&lt;Array>}</span>
+                insertion<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
             
         </span>
     </h4>
@@ -1738,7 +1130,7 @@ array.shuffle([1, 2, 3, 4, 5]);</code></pre>
     
     
     <div class="description">
-        <p>Режет массив по чанкам</p>
+        <p>Сортировка вставками</p>
     </div>
     
 
@@ -1782,7 +1174,7 @@ array.shuffle([1, 2, 3, 4, 5]);</code></pre>
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -1792,32 +1184,7 @@ array.shuffle([1, 2, 3, 4, 5]);</code></pre>
 
   
 
-  <td class="description last"><p>массив</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>chunks</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">number</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>общее количество чанков, которое должно получиться</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -1863,9 +1230,9 @@ array.shuffle([1, 2, 3, 4, 5]);</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line38">line 38</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line69">line 69</a>
             </span>
         </p>
     
@@ -1896,13 +1263,13 @@ array.shuffle([1, 2, 3, 4, 5]);</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>итоговый массив</p></div>
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Array.&lt;Array></span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </div>
@@ -1916,26 +1283,18 @@ array.shuffle([1, 2, 3, 4, 5]);</code></pre>
 
 
 
-    <h5>Example</h5>
-    
-    
-        <pre class="prettyprint"><code>// Return [[1, 2], [3]]
-array.splitOn([1, 2, 3], 2);</code></pre>
-    
-
-
 </div>
             
                 <div class="member">
 
 
     
-    <h4 class="name" id="splitTo">
-        <a class="href-link" href="#splitTo">#</a>
+    <h4 class="name" id="merge">
+        <a class="href-link" href="#merge">#</a>
         
         <span class="code-name">
             
-                splitTo<span class="signature">(inputArray, elementsInChunk)</span><span class="type-signature"> &rarr; {Array.&lt;Array>}</span>
+                merge<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
             
         </span>
     </h4>
@@ -1944,7 +1303,7 @@ array.splitOn([1, 2, 3], 2);</code></pre>
     
     
     <div class="description">
-        <p>Режет массив по элементам в чанке</p>
+        <p>Сортировка слиянием</p>
     </div>
     
 
@@ -1988,7 +1347,7 @@ array.splitOn([1, 2, 3], 2);</code></pre>
   <td class="type">
   
       
-<span class="param-type">Array</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -1998,32 +1357,7 @@ array.splitOn([1, 2, 3], 2);</code></pre>
 
   
 
-  <td class="description last"><p>массив</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>elementsInChunk</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">number</span>
-
-
-  
-  </td>
-
-  
-
-  
-
-  <td class="description last"><p>количество элементов в одном чанке</p></td>
+  <td class="description last"><p>массив с числами</p></td>
 </tr>
 
 
@@ -2069,9 +1403,9 @@ array.splitOn([1, 2, 3], 2);</code></pre>
 
     
         <p class="tag-source">
-            <a href="lib_array_core.ts.html" class="button">View Source</a>
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_core.ts.html">lib/array/core.ts</a>, <a href="lib_array_core.ts.html#line59">line 59</a>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line167">line 167</a>
             </span>
         </p>
     
@@ -2102,13 +1436,13 @@ array.splitOn([1, 2, 3], 2);</code></pre>
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>итоговый массив</p></div>
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">Array.&lt;Array></span>
+<span class="param-type">Array.&lt;number></span>
 
 
     </div>
@@ -2122,12 +1456,1042 @@ array.splitOn([1, 2, 3], 2);</code></pre>
 
 
 
-    <h5>Example</h5>
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="naturalStringSorter">
+        <a class="href-link" href="#naturalStringSorter">#</a>
+        
+        <span class="code-name">
+            
+                naturalStringSorter<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
-        <pre class="prettyprint"><code>// Return [[1], [2], [3]]
-array.splitTo([1, 2, 3], 1);</code></pre>
+    <div class="description">
+        <p>Натуральная сортировка</p>
+    </div>
     
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line310">line 310</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="quick">
+        <a class="href-link" href="#quick">#</a>
+        
+        <span class="code-name">
+            
+                quick<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Быстрая сортировка</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line232">line 232</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="selection">
+        <a class="href-link" href="#selection">#</a>
+        
+        <span class="code-name">
+            
+                selection<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Сортировка выбором</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line45">line 45</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="shaker">
+        <a class="href-link" href="#shaker">#</a>
+        
+        <span class="code-name">
+            
+                shaker<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Сортировка перемешиванием</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line250">line 250</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="Shell">
+        <a class="href-link" href="#Shell">#</a>
+        
+        <span class="code-name">
+            
+                Shell<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Сортировка Шелла</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line91">line 91</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="simpleCounting">
+        <a class="href-link" href="#simpleCounting">#</a>
+        
+        <span class="code-name">
+            
+                simpleCounting<span class="signature">(inputArray)</span><span class="type-signature"> &rarr; {Array.&lt;number>}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Сортировка подсчётом</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>inputArray</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Array.&lt;number></span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>массив с числами</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_array_plugins_NumberSort.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_array_plugins_NumberSort.ts.html">lib/array/plugins/NumberSort.ts</a>, <a href="lib_array_plugins_NumberSort.ts.html#line117">line 117</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>отсортированный массив с числами</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;number></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
 
 
 </div>
