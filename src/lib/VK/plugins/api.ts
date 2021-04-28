@@ -7,8 +7,8 @@ import UtilsError from "../../../utils/error";
 
 export class VK_API {
 	/**
-	 * Получить текущее состоянии API VK
-	 * @return Текущее состоянии API VK
+	 * @description Получить текущее состоянии API VK
+	 * @returns {Promise} Текущее состоянии API VK
 	 */
 	public async status(): Promise<IVKAPIStatus[]> {
 		let data: string = (await axios.get(`https://vk.com/dev/health`)).data;
@@ -33,9 +33,9 @@ export class VK_API {
 	}
 
 	/**
-	 * Проверка токена
-	 * @param token {string} - Проверяемый токен
-	 * @return данные токена
+	 * @description Проверка токена
+	 * @param {string} token Проверяемый токен
+	 * @returns {Promise} данные токена
 	 */
 	public async checkToken(token: string): Promise<ICheckToken> {
 		if (token.length !== 85) {
