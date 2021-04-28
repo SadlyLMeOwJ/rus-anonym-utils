@@ -11,6 +11,23 @@ import NumberArray from "./plugins/Number";
  */
 export class ArrayUtils {
 	/**
+	 * @description Класс для работы с методами клонирования массивов
+	 * @type {CloneArray}
+	 */
+	public clone: CloneArray;
+
+	/**
+	 * @description Класс для работы с числовыми массивами
+	 * @type {NumberArray}
+	 */
+	public number: NumberArray;
+
+	constructor() {
+		this.clone = new CloneArray();
+		this.number = new NumberArray();
+	}
+
+	/**
 	 * @description Возвращает рандомный элемент из массива
 	 * @param {Array} inputArray - массив
 	 * @returns {any} элемент из массива
@@ -153,16 +170,6 @@ export class ArrayUtils {
 	public removeFalseValues<T>(array: T[]): T[] {
 		return array.filter(Boolean);
 	}
-
-	/**
-	 * Класс для работы с методами клонирования массивов
-	 */
-	public clone: CloneArray = new CloneArray();
-
-	/**
-	 * Класс для работы с числовыми массивами
-	 */
-	public number: NumberArray = new NumberArray();
 }
 
 export const array = new ArrayUtils();

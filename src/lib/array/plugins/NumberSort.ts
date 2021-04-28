@@ -12,7 +12,12 @@ import naturalStringSorter from "../lib/naturalStringSorter";
 
 const Clone = new CloneClass();
 
-class NumberSort {
+/**
+ * @category Array
+ * @description Класс для сортировки числовых массивов
+ * @hideconstructor
+ */
+class NumberArraySort {
 	private __operators: Record<
 		TComparisonOperators,
 		(x: number, y: number) => boolean
@@ -415,4 +420,4 @@ class NumberSort {
 	}
 }
 
-export default NumberSort;
+export default NumberArraySort;

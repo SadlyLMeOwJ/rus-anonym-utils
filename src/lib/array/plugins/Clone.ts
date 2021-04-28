@@ -2,7 +2,12 @@ import { cloneMethod, CloneBenchmarkResponse } from "../typings";
 
 import { performance } from "perf_hooks";
 
-class Clone {
+/**
+ * @category Array
+ * @description Класс для работы с клонированием
+ * @hideconstructor
+ */
+class CloneArray {
 	private methods: cloneMethod[] = [
 		"slice",
 		"concat",
@@ -224,4 +229,4 @@ class Clone {
 	}
 }
 
-export default Clone;
+export default CloneArray;

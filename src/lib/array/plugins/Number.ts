@@ -1,6 +1,21 @@
-import Sort from "./NumberSort";
+import NumberArraySort from "./NumberSort";
 
-class Number {
+/**
+ * @category Array
+ * @description Класс для работы с числовыми массивами
+ * @hideconstructor
+ */
+class NumberArray {
+	/**
+	 * @description Сортировка
+	 * @type {NumberArraySort}
+	 */
+	public sort: NumberArraySort;
+
+	constructor() {
+		this.sort = new NumberArraySort();
+	}
+
 	/**
 	 * @description Вывод минимального значения в массиве
 	 * @param {Array.<number>} inputArray Массив с числами
@@ -56,8 +71,6 @@ class Number {
 			return Array.from({ length: length }, () => customNumber || 0);
 		}
 	}
-
-	public sort = new Sort();
 }
 
-export default Number;
+export default NumberArray;
