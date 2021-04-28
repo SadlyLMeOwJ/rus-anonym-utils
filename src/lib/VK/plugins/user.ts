@@ -130,10 +130,9 @@ export class VK_User {
 
 	/**
 	 * Получить стикеры пользователя
-	 *
 	 * @param token - Токен от аккаунта пользователя
 	 * @param user_id - Идентификатор пользователя чьи стикеры требуется получить
-	 * @returns Массив со стикерами пользователя
+	 * @return Массив со стикерами пользователя
 	 */
 	public async getUserStickerPacks(
 		token: string,
@@ -180,14 +179,10 @@ export class VK_User {
 
 	/**
 	 *
-	 * @param token.token
 	 * @param token - Токен от аккаунта пользователя
 	 * @param steps - Количество шагов
 	 * @param distance - Дистанция в метрах
 	 * @param date - Дата в формате YYYY-MM-DD или Date
-	 * @param token.steps
-	 * @param token.distance
-	 * @param token.date
 	 * @returns обьект с полями steps и distance
 	 */
 	public async setSteps({

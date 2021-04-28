@@ -17,9 +17,8 @@ export class VK_Group {
 	}
 	/**
 	 * Получить идентификатор последней беседы в группе.
-	 *
 	 * @param token - Токен группы
-	 * @returns Идентификатор беседы.
+	 * @return Идентификатор беседы.
 	 */
 	public async getLastConversation(token: string): Promise<number> {
 		const instanceVK = new VK({ token: token });

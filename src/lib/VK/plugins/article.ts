@@ -6,9 +6,8 @@ import UtilsError from "../../../utils/error";
 export class VK_Article {
 	/**
 	 * Получить данные о статье по ссылке
-	 *
 	 * @param articleLink - Ссылка на статью
-	 * @returns данные статьи
+	 * @return данные статьи
 	 */
 	public async getByURL(articleLink: string): Promise<IArticleGetByUrl> {
 		articleLink = articleLink.replace("https://m.", "https://");
