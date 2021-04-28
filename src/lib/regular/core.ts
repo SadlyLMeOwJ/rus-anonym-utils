@@ -1,10 +1,5 @@
 import regularList from "./DB/regularTemplate";
 
-/**
- * @category Regular
- * @description Шаблоны для регулярных выражений
- * @type {Object.<string, RegExp>}
- */
 const list = {
 	/**
 	 * Шаблон для E-Mail адресов
@@ -38,6 +33,18 @@ const list = {
  * @hideconstructor
  */
 export class RegularUtils {
+	/**
+	 * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
+	 * @example
+	 * // => RegExp
+	 * new RegExp(utils.regular.list.email, "g");
+	 */
+	public list;
+
+	constructor() {
+		this.list = list;
+	}
+
 	/**
 	 * @description Проверка является ли переданная строка E-Mail адресом
 	 * @param {string} email E-Mail адрес
@@ -91,14 +98,6 @@ export class RegularUtils {
 	public isPhoneNumber(number: string): boolean {
 		return new RegExp(regularList.number, "i").test(number);
 	}
-
-	/**
-	 * @description Шаблоны для создания своих регулярных выражений при помощи конструктора RegExp
-	 * @example
-	 * // => RegExp
-	 * new RegExp(utils.regular.list.email, "g");
-	 */
-	public list = list;
 }
 
 export const regular = new RegularUtils();
