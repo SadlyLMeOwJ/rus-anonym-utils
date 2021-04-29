@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-example */
+
 import { cloneMethod, CloneBenchmarkResponse } from "../typings";
 
 import { performance } from "perf_hooks";

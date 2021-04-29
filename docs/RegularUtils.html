@@ -264,7 +264,7 @@
         <p class="tag-source">
             <a href="lib_regular_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line99">line 99</a>
+                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line124">line 124</a>
             </span>
         </p>
     
@@ -277,7 +277,8 @@
     <h5>Example</h5>
     
     
-        <pre class="prettyprint"><code>// => RegExpnew RegExp(utils.regular.list.email, "g");</code></pre>
+        <pre class="prettyprint"><code>// => RegExp
+new RegExp(utils.regular.list.email, "g");</code></pre>
     
 
 
@@ -412,7 +413,7 @@
         <p class="tag-source">
             <a href="lib_regular_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line43">line 43</a>
+                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line46">line 46</a>
             </span>
         </p>
     
@@ -461,6 +462,13 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>regular.isEmail("alexandrsemin2033@gmail.com"); // => true</code></pre>
+    
 
 
 </div>
@@ -585,7 +593,7 @@
         <p class="tag-source">
             <a href="lib_regular_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line67">line 67</a>
+                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line83">line 83</a>
             </span>
         </p>
     
@@ -634,6 +642,15 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>regular.isIP("192.168.0.1"); // => true
+regular.isIP("2001:0db8:85a3:0000:0000:8a2e:0370:7334"); // => true
+regular.isIP("test"); // => false</code></pre>
+    
 
 
 </div>
@@ -758,7 +775,7 @@
         <p class="tag-source">
             <a href="lib_regular_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line51">line 51</a>
+                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line58">line 58</a>
             </span>
         </p>
     
@@ -807,6 +824,14 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>regular.isIPv4("192.168.0.1"); // => true
+regular.isIPv4("test"); // => false</code></pre>
+    
 
 
 </div>
@@ -931,7 +956,7 @@
         <p class="tag-source">
             <a href="lib_regular_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line59">line 59</a>
+                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line70">line 70</a>
             </span>
         </p>
     
@@ -980,6 +1005,14 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>regular.isIPv6("2001:0db8:85a3:0000:0000:8a2e:0370:7334"); // => true
+regular.isIPv6("test"); // => false</code></pre>
+    
 
 
 </div>
@@ -1104,7 +1137,7 @@
         <p class="tag-source">
             <a href="lib_regular_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line83">line 83</a>
+                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line108">line 108</a>
             </span>
         </p>
     
@@ -1277,7 +1310,7 @@
         <p class="tag-source">
             <a href="lib_regular_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line75">line 75</a>
+                <a href="lib_regular_core.ts.html">lib/regular/core.ts</a>, <a href="lib_regular_core.ts.html#line99">line 99</a>
             </span>
         </p>
     
@@ -1326,6 +1359,18 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>regular.isURL("google.com"); // => true
+regular.isURL("http://google.com"); // => true
+regular.isURL("https://google.com"); // => true
+regular.isURL("https://google.com/test"); // => true
+regular.isURL("https://google.com/test?act=test"); // => true
+regular.isURL("test"); // => false</code></pre>
+    
 
 
 </div>

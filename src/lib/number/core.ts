@@ -12,6 +12,9 @@ export class NumberUtils {
 	 * @param {number} min Минимальное значение
 	 * @param {number} max Максимальное значение
 	 * @returns {number} Возвращает случайное число в заданном интервале. Возвращаемое значение не менее (и может быть равно) min и не более (и не равно) max.
+	 *
+	 * @example
+	 * number.getRandomArbitrary(1, 5); // => 2.8043424354010273
 	 */
 	public getRandomArbitrary(min: number, max: number): number {
 		return Math.random() * (max - min) + min;
@@ -49,6 +52,9 @@ export class NumberUtils {
 	 * @param {number} min Минимальное значение
 	 * @param {number} max Максимальное значение
 	 * @returns {number} Возвращает случайное целое число в заданном интервале. Возвращаемое значение не менее min (или следующее целое число, которое больше min, если min не целое) и не более (но не равно) max включительно
+	 *
+	 * @example
+	 * number.getRandomIntInclusive(1, 5); // => 1
 	 */
 	public getRandomIntInclusive(min: number, max: number): number {
 		min = Math.ceil(min);
@@ -60,6 +66,10 @@ export class NumberUtils {
 	 * @description Проверяет, является ли число целым
 	 * @param {number} number Число
 	 * @returns {boolean} Возвращает true, если число целое, и false если оно не является целым
+	 *
+	 * @example
+	 * number.isInteger(1); // => true
+	 * number.isInteger(1.5); // => false
 	 */
 	public isInteger(number: number): boolean {
 		return (number ^ 0) === number;
@@ -70,6 +80,9 @@ export class NumberUtils {
 	 * @param {number} number Число
 	 * @param {string} separator Разделитель
 	 * @returns {string} Итоговую строку
+	 *
+	 * @example
+	 * number.separator(100000, "."); // => 100.000
 	 */
 	public separator(number: number, separator: string): string {
 		const output = number.toString();

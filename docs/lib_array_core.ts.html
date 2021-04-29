@@ -252,6 +252,10 @@ export class ArrayUtils {
 	 * @description Убирает из массива неуникальные значения (работает только с примитивами)
 	 * @param {Array} array Массив который требуется уникализировать
 	 * @returns {Array} Массив состоящий из уникальных значений
+	 *
+	 * @example
+	 * // Return [1, 2]
+	 * array.makeUnique([1, 2, 1, 1, 2]);
 	 */
 	public makeUnique&lt;T>(array: T[]): T[] {
 		return Array.from(new Set(array));
@@ -261,6 +265,10 @@ export class ArrayUtils {
 	 * @description Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
 	 * @param {Array} array Входной массив
 	 * @returns {Array} Массив состоящий из реальных значений
+	 *
+	 * @example
+	 * // Return ["test"]
+	 * array.removeFalseValues([0, NaN, false, null, undefined, "", "test"])
 	 */
 	public removeFalseValues&lt;T>(array: T[]): T[] {
 		return array.filter(Boolean);

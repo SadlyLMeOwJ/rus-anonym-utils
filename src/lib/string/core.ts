@@ -14,6 +14,10 @@ export class StringUtils {
 	 * @param {number} costs.insert - Цена присутствия
 	 * @param {number} costs.remove - Цена отсутствия
 	 * @returns {number} - Разница между строками
+	 *
+	 * @example
+	 * string.levenshtein("test", "test1"); // => 1
+	 * string.levenshtein("test", "test123"); // => 3
 	 */
 	public levenshtein(
 		firstString: string,
@@ -109,6 +113,7 @@ export class StringUtils {
 		];
 	}
 
+	// eslint-disable-next-line jsdoc/require-example
 	/**
 	 * @description Возвращает строку без Zalgo
 	 * @param {string} string строка из которой необходимо убрать Zalgo

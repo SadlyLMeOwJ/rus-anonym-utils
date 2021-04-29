@@ -7,6 +7,7 @@ class UtilsError extends Error {
 		return this.constructor.name;
 	}
 
+	// eslint-disable-next-line jsdoc/require-example
 	/**
 	 * @description Возвращает содержимое ошибки в JSON
 	 * @returns {Object} JSON состав ошибки
