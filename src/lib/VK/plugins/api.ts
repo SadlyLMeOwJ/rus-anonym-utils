@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-example */
+
 import { accessRights as AccessRights } from "./../DB/accessRights";
 import { ICheckToken, IVKAPIStatus } from "../typings";
 

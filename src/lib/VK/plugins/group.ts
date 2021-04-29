@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-example */
+
 import { VK } from "vk-io";
 
 /**
