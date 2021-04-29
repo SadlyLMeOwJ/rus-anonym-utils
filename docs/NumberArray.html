@@ -265,7 +265,7 @@
         <p class="tag-source">
             <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line69">line 69</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line98">line 98</a>
             </span>
         </p>
     
@@ -406,7 +406,7 @@
         <p class="tag-source">
             <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line33">line 33</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line45">line 45</a>
             </span>
         </p>
     
@@ -455,6 +455,14 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>// Return 3
+array.number.average([1, 2, 3, 4, 5]);</code></pre>
+    
 
 
 </div>
@@ -604,7 +612,7 @@
         <p class="tag-source">
             <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line50">line 50</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line79">line 79</a>
             </span>
         </p>
     
@@ -636,7 +644,7 @@
 <div class="columns">
     
     <div class='param-desc column is-7'><ul>
-<li>Массив заполнный нулями</li>
+<li>Массив</li>
 </ul></div>
     
     
@@ -655,6 +663,25 @@
     </div>
 
 
+
+
+    <h5>Examples</h5>
+    
+    
+        <pre class="prettyprint"><code>// Return [0, 0, 0, 0, 0]
+array.number.generate(5);</code></pre>
+    
+
+    
+        <pre class="prettyprint"><code>// Return [5, 5, 5, 5, 5]
+array.number.generate(5, 5);</code></pre>
+    
+
+    
+        <pre class="prettyprint"><code>// Return [1, 2, 3, 4, 5]
+let i = 1;
+array.number.generate(5, () => ++i);</code></pre>
+    
 
 
 </div>
@@ -779,7 +806,7 @@
         <p class="tag-source">
             <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line25">line 25</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line33">line 33</a>
             </span>
         </p>
     
@@ -828,6 +855,14 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>// Return 6
+array.number.min([1, 2, 3, 4, 5, 6, -50]);</code></pre>
+    
 
 
 </div>
@@ -952,7 +987,7 @@
         <p class="tag-source">
             <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line17">line 17</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line21">line 21</a>
             </span>
         </p>
     
@@ -1001,6 +1036,14 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>// Return -50
+array.number.min([1, 2, 3, 4, 5, 6, -50]);</code></pre>
+    
 
 
 </div>
@@ -1125,7 +1168,7 @@
         <p class="tag-source">
             <a href="lib_array_plugins_Number.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line41">line 41</a>
+                <a href="lib_array_plugins_Number.ts.html">lib/array/plugins/Number.ts</a>, <a href="lib_array_plugins_Number.ts.html#line57">line 57</a>
             </span>
         </p>
     
@@ -1156,7 +1199,7 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>среднее значение</p></div>
+    <div class='param-desc column is-7'><p>сумма массива</p></div>
     
     
     <div class='column is-5 has-text-left'>
@@ -1174,6 +1217,14 @@
     </div>
 
 
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>// Return 15
+array.number.total([1, 2, 3, 4, 5]);</code></pre>
+    
 
 
 </div>
