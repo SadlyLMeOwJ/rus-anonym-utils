@@ -13,6 +13,12 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.AND(true, true) // => true
+	 * logical.AND(true, false); // => true
+	 * logical.AND(false, false); // => false
+	 * logical.AND(false, true); // => true
 	 */
 	public AND(a: boolean, b: boolean): boolean {
 		return a && b;
@@ -27,6 +33,12 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.OR(true, true) // => true
+	 * logical.OR(true, false); // => true
+	 * logical.OR(false, false); // => false
+	 * logical.OR(false, true); // => true
 	 */
 	public OR(a: boolean, b: boolean): boolean {
 		return a || b;
@@ -39,6 +51,12 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.ANOT(true, true) // => true
+	 * logical.ANOT(true, false); // => false
+	 * logical.ANOT(false, true); // => false
+	 * logical.ANOT(false, false); // => false
 	 */
 	public ANOT(a: boolean, b: boolean): boolean {
 		return a === true && b === true;
@@ -52,6 +70,12 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.NOR(true, true) // => false
+	 * logical.NOR(true, false); // => false
+	 * logical.NOR(false, false); // => true
+	 * logical.NOR(false, true); // => false
 	 */
 	public NOR(a: boolean, b: boolean): boolean {
 		return a === false && b === false;
@@ -66,6 +90,12 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.XOR(true, true) // => false
+	 * logical.XOR(true, false); // => true
+	 * logical.XOR(false, false); // => false
+	 * logical.XOR(false, true); // => true
 	 */
 	public XOR(a: boolean, b: boolean): boolean {
 		return a ? !b : b;
@@ -79,6 +109,10 @@ export class LogicalUtils {
 	 *
 	 * @param {boolean} a - 1 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.NOT(true) // => false
+	 * logical.NOT(false); // => true
 	 */
 	public NOT(a: boolean): boolean {
 		return !a;
@@ -93,6 +127,12 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.EQ(true, true) // => false
+	 * logical.EQ(true, false); // => false
+	 * logical.EQ(false, false); // => true
+	 * logical.EQ(false, true); // => true
 	 */
 	public EQ(a: boolean, b: boolean): boolean {
 		return a === b;
@@ -106,6 +146,12 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
+	 *
+	 * @example
+	 * logical.IMP(true, true) // => true
+	 * logical.IMP(true, false); // => false
+	 * logical.IMP(false, false); // => true
+	 * logical.IMP(false, true); // => true
 	 */
 	public IMP(a: boolean, b: boolean): boolean {
 		return a === true && b === false ? false : true;
