@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation utils/main.ts</title>
+  <title>Documentation lib/torrent/core.ts</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -84,7 +84,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>utils/main.ts</h1>
+                    <h1>lib/torrent/core.ts</h1>
                 </header>
                 
 
@@ -93,112 +93,64 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { IPUtils } from "./../lib/IP/core";
-import { VK } from "./../lib/VK/core";
-import { TimeUtils } from "./../lib/time/core";
-import { StringUtils } from "./../lib/string/core";
-import { RegularUtils } from "./../lib/regular/core";
-import { NumberUtils } from "./../lib/number/core";
-import { LogicalUtils } from "./../lib/logical/core";
-import { TorrentUtils } from "../lib/torrent/core";
+            <pre class="prettyprint source linenums"><code>/* eslint-disable jsdoc/require-example */
 
-import { array, ArrayUtils } from "../lib/array/core";
-import { logical } from "../lib/logical/core";
-import { number } from "../lib/number/core";
-import { regular } from "../lib/regular/core";
-import { string } from "../lib/string/core";
-import { time } from "../lib/time/core";
-import { vk } from "../lib/VK/core";
-import { IP } from "../lib/IP/core";
-import { torrent } from "../lib/torrent/core";
+import axios from "axios";
+import cheerio from "cheerio";
 
-/**
- * @description Класс функций
- * @class
- * @hideconstructor
- */
-class RusAnonymUtils {
+import UtilsError from "../../utils/error";
+import { regular } from "./../regular/core";
+
+import { IPDownload } from "./types";
+
+export class TorrentUtils {
 	/**
-	 * @description Секция для работы с массивами
-	 * @type {ArrayUtils}
+	 * @description Позволяет узнать загрузки в торрент сети с этого IP
+	 * @param {string} IP IP адрес
+	 * @param {string=} locale  локаль, по умолчанию en
+	 * @returns {Promise.&lt;Array.&lt;IPDownload>>} массив с данными
 	 */
-	public readonly array: ArrayUtils;
+	public async getDownloads(IP: string, locale = "en"): Promise&lt;IPDownload[]> {
+		if (!regular.isIP(IP)) {
+			throw new UtilsError("IP is not valid");
+		}
 
-	/**
-	 * @description Секция для работы с логическими функциями
-	 * @type {LogicalUtils}
-	 */
-	public readonly logical: LogicalUtils;
+		const IPDownloads = await axios.get(
+			`https://iknowwhatyoudownload.com/${locale}/peer/?ip=${IP}`,
+		);
 
-	/**
-	 * @description Секция для работы с числами
-	 * @type {NumberUtils}
-	 */
-	public readonly number: NumberUtils;
+		const $ = cheerio.load(await IPDownloads.data);
 
-	/**
-	 * @description Секция для работы с регулярными выражениями
-	 * @type {RegularUtils}
-	 */
-	public readonly regular: RegularUtils;
+		const downloadsList = $(
+			"#main > div > div > div > div:nth-child(5) > table > tbody",
+		);
 
-	/**
-	 * @description Секция для работы с строками
-	 * @type {StringUtils}
-	 */
-	public readonly string: StringUtils;
+		const downloads: IPDownload[] = [];
 
-	/**
-	 * @description Секция для работы с временем
-	 * @type {TimeUtils}
-	 */
-	public readonly time: TimeUtils;
+		downloadsList.children().each(function downloadParser(_index, element) {
+			const selectedDownload = $(element);
 
-	/**
-	 * @description Секция для работы с VK
-	 * @type {VK}
-	 */
-	public readonly vk: VK;
+			const parsedDownload: IPDownload = {
+				first: $(selectedDownload.children()[0]).text(),
+				last: $(selectedDownload.children()[1]).text(),
+				name: $(selectedDownload.children()[3]).text().trim(),
+				size: $(selectedDownload.children()[4]).text(),
+			};
 
-	/**
-	 * @description Секция для работы с IP
-	 * @type {IPUtils}
-	 */
-	public readonly IP: IPUtils;
+			const downloadType = $(selectedDownload.children()[2]).text();
 
-	/**
-	 * @description Секция для работы с торрент сетями
-	 * @type {TorrentUtils}
-	 */
-	public readonly torrent: TorrentUtils;
+			if (downloadType !== "") {
+				parsedDownload.type = $(selectedDownload.children()[2]).text();
+			}
 
-	constructor() {
-		this.array = array;
-		this.logical = logical;
-		this.number = number;
-		this.regular = regular;
-		this.string = string;
-		this.time = time;
-		this.vk = vk;
-		this.IP = IP;
-		this.torrent = torrent;
-	}
+			downloads.push(parsedDownload);
+		});
 
-	/**
-	 * @description Приостанавливает работу скрипта на выбранное время
-	 * @param {number} ms Время в ms
-	 * @example
-	 * import utils from "rus-anonym-utils";
-	 * await utils.sleep(1000); // Приостановит скрипт на 1 секунду
-	 *
-	 * @returns {Promise} Промис
-	 */
-	public sleep(ms: number): Promise&lt;void> {
-		return new Promise((resolve) => setTimeout(resolve, ms));
+		return downloads;
 	}
 }
 
-export default RusAnonymUtils;
+export const torrent = new TorrentUtils();
 </code></pre>
         </article>
     </section>
