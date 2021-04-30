@@ -1,4 +1,4 @@
-type sortingAlgorithm =
+type TSortingAlgorithm =
 	| "bubble"
 	| "selection"
 	| "insertion"
@@ -12,7 +12,7 @@ type sortingAlgorithm =
 	| "gnome"
 	| "naturalStringSorter";
 
-type cloneMethod =
+type TCloneMethod =
 	| "slice"
 	| "concat"
 	| "unshift"
@@ -25,31 +25,31 @@ type cloneMethod =
 	| "from"
 	| "recursionDeep";
 
-interface SortingBenchmarkResponse {
+interface ISortingBenchmarkResponse {
 	fastest: {
-		algorithm: sortingAlgorithm;
+		algorithm: TSortingAlgorithm;
 		rate: number;
 	};
 	slowest: {
-		algorithm: sortingAlgorithm;
+		algorithm: TSortingAlgorithm;
 		rate: number;
 	};
-	summary: Record<sortingAlgorithm, number>;
+	summary: Record<TSortingAlgorithm, number>;
 	totalTime: number;
 	sourceArray: number[];
 	sortedArray: number[];
 }
 
-interface CloneBenchmarkResponse<T> {
+interface ICloneBenchmarkResponse<T> {
 	fastest: {
-		method: cloneMethod;
+		method: TCloneMethod;
 		rate: number;
 	};
 	slowest: {
-		method: cloneMethod;
+		method: TCloneMethod;
 		rate: number;
 	};
-	summary: Record<cloneMethod, number>;
+	summary: Record<TCloneMethod, number>;
 	totalTime: number;
 	sourceArray: T[] | number[];
 	copiedArray: T[] | number[];
@@ -58,9 +58,9 @@ interface CloneBenchmarkResponse<T> {
 type TComparisonOperators = ">" | "<";
 
 export {
-	sortingAlgorithm,
-	cloneMethod,
-	SortingBenchmarkResponse,
-	CloneBenchmarkResponse,
+	TSortingAlgorithm,
+	TCloneMethod,
+	ISortingBenchmarkResponse,
+	ICloneBenchmarkResponse,
 	TComparisonOperators,
 };

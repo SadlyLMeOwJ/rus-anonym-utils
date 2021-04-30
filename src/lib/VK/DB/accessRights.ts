@@ -1,4 +1,4 @@
-import { IAccessRights } from "../typings";
+import { IAccessRights } from "../types";
 
 export const accessRights: IAccessRights = {
 	user: [

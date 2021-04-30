@@ -1,10 +1,10 @@
 /* eslint-disable jsdoc/require-example */
 
 import {
-	SortingBenchmarkResponse,
-	sortingAlgorithm,
+	ISortingBenchmarkResponse,
+	TSortingAlgorithm,
 	TComparisonOperators,
-} from "../typings";
+} from "../types";
 
 import { performance } from "perf_hooks";
 
@@ -354,8 +354,8 @@ class NumberArraySort {
 	 * @param {Array.<number>} inputArray массив с числами
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public benchmark(inputArray: number[]): SortingBenchmarkResponse {
-		const sortingAlgorithms: sortingAlgorithm[] = [
+	public benchmark(inputArray: number[]): ISortingBenchmarkResponse {
+		const sortingAlgorithms: TSortingAlgorithm[] = [
 			"bubble",
 			"selection",
 			"insertion",
@@ -370,7 +370,7 @@ class NumberArraySort {
 			"naturalStringSorter",
 		];
 
-		const response: SortingBenchmarkResponse = {
+		const response: ISortingBenchmarkResponse = {
 			fastest: {
 				algorithm: "Shell",
 				rate: Number.MAX_VALUE,
@@ -404,7 +404,7 @@ class NumberArraySort {
 			response.summary[algorithm] = performance.now() - sortStart;
 		}
 
-		let tempKey: sortingAlgorithm;
+		let tempKey: TSortingAlgorithm;
 
 		for (tempKey in response.summary) {
 			if (response.fastest.rate > response.summary[tempKey]) {

@@ -1,6 +1,6 @@
 /* eslint-disable jsdoc/require-example */
 
-import { cloneMethod, CloneBenchmarkResponse } from "../typings";
+import { TCloneMethod, ICloneBenchmarkResponse } from "../types";
 
 import { performance } from "perf_hooks";
 
@@ -10,7 +10,7 @@ import { performance } from "perf_hooks";
  * @hideconstructor
  */
 class CloneArray {
-	private methods: cloneMethod[] = [
+	private methods: TCloneMethod[] = [
 		"slice",
 		"concat",
 		"unshift",
@@ -164,8 +164,8 @@ class CloneArray {
 	 * @param {Array} input Исходный массив
 	 * @returns {Object} benchmark - Объект с выполнеными тестами
 	 */
-	public benchmark<T>(input: T[]): CloneBenchmarkResponse<T> {
-		const response: CloneBenchmarkResponse<T> = {
+	public benchmark<T>(input: T[]): ICloneBenchmarkResponse<T> {
+		const response: ICloneBenchmarkResponse<T> = {
 			fastest: {
 				method: "slice",
 				rate: Number.MAX_VALUE,
@@ -199,7 +199,7 @@ class CloneArray {
 			response.summary[method] = performance.now() - sortStart;
 		}
 
-		let tempKey: cloneMethod;
+		let tempKey: TCloneMethod;
 
 		for (tempKey in response.summary) {
 			if (response.fastest.rate > response.summary[tempKey]) {
