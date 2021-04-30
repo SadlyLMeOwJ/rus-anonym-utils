@@ -6,4 +6,18 @@ interface IPDownload {
 	type?: string;
 }
 
-export { IPDownload };
+interface DayStat {
+	peopleDownloadingTorrents: number;
+	populationHaveInternetPercents: number;
+	populationDownloadingTorrentsPercents: number;
+	top: {
+		torrents: string[];
+		movies: string[];
+		porno: string[];
+		games: string[];
+		software: string[];
+		music: string[];
+	};
+}
+
+export { IPDownload, DayStat };

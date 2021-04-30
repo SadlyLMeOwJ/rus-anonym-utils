@@ -1,12 +1,14 @@
+import { array } from "./../array/core";
 /* eslint-disable jsdoc/require-example */
 
 import axios from "axios";
 import cheerio from "cheerio";
+import moment from "moment";
 
 import UtilsError from "../../utils/error";
 import { regular } from "./../regular/core";
 
-import { IPDownload } from "./types";
+import { DayStat, IPDownload } from "./types";
 
 export class TorrentUtils {
 	/**
@@ -52,6 +54,107 @@ export class TorrentUtils {
 		});
 
 		return downloads;
+	}
+
+	/**
+	 * @description Позволяет получить статистику торрент сети по дню
+	 * @param {string} countryCode код страны
+	 * @param {Date=} date дата на которую нужна статистика
+	 * @param {string=} locale локаль
+	 * @returns {Promise.<Array.<DayStat>>} данные статистики за день
+	 */
+	public async dayStat(
+		countryCode: string,
+		date = new Date(),
+		locale = "en",
+	): Promise<DayStat> {
+		const selectedDate = moment(date).format("YYYY-MM-DD");
+		const dayStat = await axios.get(
+			`https://iknowwhatyoudownload.com/${locale}/stat/${countryCode}/daily/q?statDate=${selectedDate}`,
+		);
+		const dayStatHTML = await dayStat.data;
+
+		if (dayStatHTML === "") {
+			throw new UtilsError("As of this date, there are no statistics yet");
+		}
+
+		const $ = cheerio.load(dayStatHTML);
+
+		const peopleDownloadingTorrents = $(
+			"body > div.container > div.row.paddingBottom > div:nth-child(1) > span.usePercent",
+		)
+			.text()
+			.trim();
+
+		const populationHaveInternetPercents = $(
+			"body > div.container > div.row.paddingBottom > div:nth-child(2) > span.usePercent",
+		)
+			.text()
+			.trim();
+
+		const populationDownloadingTorrentsPercents = $(
+			"body > div.container > div.row.paddingBottom > div:nth-child(3) > span.usePercent",
+		)
+			.text()
+			.trim();
+
+		const topTorrents = array.removeFalseValues(
+			$("#general")
+				.text()
+				.split("\n")
+				.map((x) => x.trim()),
+		);
+
+		const topMovies = array.removeFalseValues(
+			$("#movie")
+				.text()
+				.split("\n")
+				.map((x) => x.trim()),
+		);
+
+		const topPorno = array.removeFalseValues(
+			$("#xxx")
+				.text()
+				.split("\n")
+				.map((x) => x.trim()),
+		);
+
+		const topGames = array.removeFalseValues(
+			$("#games")
+				.text()
+				.split("\n")
+				.map((x) => x.trim()),
+		);
+
+		const topSoftware = array.removeFalseValues(
+			$("#software")
+				.text()
+				.split("\n")
+				.map((x) => x.trim()),
+		);
+
+		const topMusic = array.removeFalseValues(
+			$("#music")
+				.text()
+				.split("\n")
+				.map((x) => x.trim()),
+		);
+
+		return {
+			peopleDownloadingTorrents: Number(peopleDownloadingTorrents),
+			populationHaveInternetPercents: Number(populationHaveInternetPercents),
+			populationDownloadingTorrentsPercents: Number(
+				populationDownloadingTorrentsPercents,
+			),
+			top: {
+				torrents: topTorrents,
+				movies: topMovies,
+				porno: topPorno,
+				games: topGames,
+				software: topSoftware,
+				music: topMusic,
+			},
+		};
 	}
 }
 
