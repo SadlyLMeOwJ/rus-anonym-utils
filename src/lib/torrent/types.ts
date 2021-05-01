@@ -7,6 +7,7 @@ interface IPDownload {
 }
 
 interface DayStat {
+	country: string;
 	peopleDownloadingTorrents: number;
 	populationHaveInternetPercents: number;
 	populationDownloadingTorrentsPercents: number;

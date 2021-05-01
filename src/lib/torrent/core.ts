@@ -80,6 +80,12 @@ export class TorrentUtils {
 
 		const $ = cheerio.load(dayStatHTML);
 
+		const country = $(
+			"body > div.container > div:nth-child(1) > div > h3 > a:nth-child(1)",
+		)
+			.text()
+			.trim();
+
 		const peopleDownloadingTorrents = $(
 			"body > div.container > div.row.paddingBottom > div:nth-child(1) > span.usePercent",
 		)
@@ -141,9 +147,12 @@ export class TorrentUtils {
 		);
 
 		return {
+			country,
 			peopleDownloadingTorrents: Number(peopleDownloadingTorrents),
-			populationHaveInternetPercents: Number(populationHaveInternetPercents),
-			populationDownloadingTorrentsPercents: Number(
+			populationHaveInternetPercents: parseFloat(
+				populationHaveInternetPercents,
+			),
+			populationDownloadingTorrentsPercents: parseFloat(
 				populationDownloadingTorrentsPercents,
 			),
 			top: {
