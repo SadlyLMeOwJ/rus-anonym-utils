@@ -1,6 +1,6 @@
 /* eslint-disable jsdoc/require-example */
 
-import { IArticleGetByUrl } from "../typings";
+import { IArticleGetByUrl } from "../types";
 import axios from "axios";
 import { regular } from "./../../regular/core";
 import UtilsError from "../../../utils/error";

@@ -1,4 +1,4 @@
-export type AccessRightType =
+export type TAccessRightType =
 	| "notify"
 	| "friends"
 	| "photos"
@@ -31,16 +31,16 @@ export interface IVKAPIStatus {
 export interface ICheckToken {
 	type: "user" | "group";
 	id: number;
-	accessRights: AccessRightType[];
+	accessRights: TAccessRightType[];
 }
 
 export interface IAccessRights {
 	user: Array<{
-		right: AccessRightType;
+		right: TAccessRightType;
 		mask: number;
 	}>;
 	group: Array<{
-		right: AccessRightType;
+		right: TAccessRightType;
 		mask: number;
 	}>;
 }

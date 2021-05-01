@@ -7,11 +7,11 @@ import {
 	IStoreGetStickersKeywordsNumber,
 	IStoreGetStickersKeywordsWord,
 	IUserStickerPack,
-} from "../typings";
+} from "../types";
 import { VK } from "vk-io";
 
 import UtilsError from "../../../utils/error";
-import { IGiftsGetCatalogResponse } from "../typings";
+import { IGiftsGetCatalogResponse } from "../types";
 
 /**
  * @category VK
