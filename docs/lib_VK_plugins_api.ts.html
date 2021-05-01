@@ -96,7 +96,7 @@
             <pre class="prettyprint source linenums"><code>/* eslint-disable jsdoc/require-example */
 
 import { accessRights as AccessRights } from "./../DB/accessRights";
-import { ICheckToken, IVKAPIStatus } from "../typings";
+import { ICheckToken, IVKAPIStatus } from "../types";
 
 import axios from "axios";
 import { VK } from "vk-io";
@@ -123,15 +123,15 @@ export class VK_API {
 		const arrayWithSections = JSON.parse(
 			newData.substring(position1, position2 + 2),
 		);
-		const OutputArray = [];
+		const outputArray = [];
 		for (const sectionData of arrayWithSections) {
-			OutputArray.push({
+			outputArray.push({
 				section: sectionData[0],
 				performance: sectionData[2],
 				uptime: sectionData[3],
 			});
 		}
-		return OutputArray;
+		return outputArray as IVKAPIStatus[];
 	}
 
 	/**
