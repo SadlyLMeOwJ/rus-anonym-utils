@@ -8,7 +8,7 @@ import { VK_API, api } from "./plugins/api";
  * @description Класс для работы с VK
  * @hideconstructor
  */
-export class VK {
+export class VKUtils {
 	/**
 	 * @description Секция для работы с API
 	 */
@@ -37,4 +37,4 @@ export class VK {
 	}
 }
 
-export const vk = new VK();
+export const vk = new VKUtils();

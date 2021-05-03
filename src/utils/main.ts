@@ -1,5 +1,5 @@
 import { IPUtils } from "./../lib/IP/core";
-import { VK } from "./../lib/VK/core";
+import { VKUtils } from "./../lib/VK/core";
 import { TimeUtils } from "./../lib/time/core";
 import { StringUtils } from "./../lib/string/core";
 import { RegularUtils } from "./../lib/regular/core";
@@ -61,9 +61,9 @@ class RusAnonymUtils {
 
 	/**
 	 * @description Секция для работы с VK
-	 * @type {VK}
+	 * @type {VKUtils}
 	 */
-	public readonly vk: VK;
+	public readonly vk: VKUtils;
 
 	/**
 	 * @description Секция для работы с IP

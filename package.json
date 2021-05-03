@@ -1,6 +1,6 @@
 {
 	"name": "rus-anonym-utils",
-	"version": "2.3.1",
+	"version": "2.3.2",
 	"description": "Personal set of utilities from RusAnonym",
 	"main": "./dist/main.js",
 	"module": "./dist/main.js",
@@ -25,7 +25,7 @@
 		"type": "git",
 		"url": "git+https://github.com/RusAnonym/rus-anonym-utils.git"
 	},
-	"author": "anonymous_rus <alexandrsemin2033@gmail.com>",
+	"author": "rus_anonym <alexandrsemin2033@gmail.com>",
 	"homepage": "https://github.com/RusAnonym/rus-anonym-utils/",
 	"readme": "https://rusanonym.github.io/rus-anonym-utils/",
 	"bugs": {
