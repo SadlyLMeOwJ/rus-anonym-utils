@@ -13,6 +13,7 @@ import VKUtils from "../types";
  * @hideconstructor
  */
 export class VK_User {
+	// eslint-disable-next-line require-jsdoc
 	private async __parseUserGifts(
 		token: string,
 		user_id: number,
@@ -43,6 +44,7 @@ export class VK_User {
 		token: string,
 		sticker_id: number | number[],
 	): Promise<VKUtils.IStoreGetStickersKeywordsNumber>;
+	// eslint-disable-next-line require-jsdoc
 	public async getStickerKeywords(
 		token: string,
 		wordOrSticker?: string | number | number[],
@@ -99,6 +101,11 @@ export class VK_User {
 		return OutputData;
 	}
 
+	/**
+	 * @description Позволяет узнать стикеры ВКонтакте
+	 * @param {string} token - Токен пользователя
+	 * @returns {Array.<VKUtils.IUserStickerPack[]>} - Массив со всеми стикерами ВКонтакте
+	 */
 	public async getAllStickers(token: string): Promise<VKUtils.IUserStickerPack[]> {
 		const UserGifts = await this.__parseUserGifts(token, 0);
 		const ParseStickers: VKUtils.IUserStickerPack[] = [];

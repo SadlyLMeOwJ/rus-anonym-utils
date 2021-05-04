@@ -21,6 +21,7 @@ export class IPUtils {
 	 */
 	public v6: IPv6;
 
+	// eslint-disable-next-line require-jsdoc
 	constructor() {
 		this.v4 = new IPv4();
 		this.v6 = new IPv6();

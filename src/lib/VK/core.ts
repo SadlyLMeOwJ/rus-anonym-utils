@@ -29,6 +29,7 @@ export class VKUtils {
 	 */
 	public group: VK_Group;
 
+	// eslint-disable-next-line require-jsdoc
 	constructor() {
 		this.api = api;
 		this.article = article;

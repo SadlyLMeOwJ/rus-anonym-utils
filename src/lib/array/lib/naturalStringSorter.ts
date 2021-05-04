@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 /* eslint-disable jsdoc/require-jsdoc */
 
 import { logical } from "../../logical/core";

@@ -36,6 +36,7 @@ export class NumberUtils {
 	 * @returns {number} Возвращает случайное целое число в заданном интервале. Возвращаемое значение не менее min (или следующее целое число, которое больше min, если min не целое) и не более (но не равно) max.
 	 */
 	public getRandomInt(min: number, max: number, seed: string): number;
+	// eslint-disable-next-line require-jsdoc
 	public getRandomInt(min: number, max: number, seed?: string): number {
 		min = Math.ceil(min);
 		max = Math.floor(max);

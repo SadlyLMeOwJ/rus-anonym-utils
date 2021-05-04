@@ -8,6 +8,7 @@ import { VK } from "vk-io";
  * @hideconstructor
  */
 export class VK_Group {
+	// eslint-disable-next-line require-jsdoc
 	private async __checkConversationID(
 		instanceVK: VK,
 		peerID: number,

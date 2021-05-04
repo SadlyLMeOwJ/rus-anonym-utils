@@ -77,6 +77,7 @@ class RusAnonymUtils {
 	 */
 	public readonly torrent: TorrentUtils;
 
+	// eslint-disable-next-line require-jsdoc
 	constructor() {
 		this.array = array;
 		this.logical = logical;

@@ -41,6 +41,7 @@ export class RegularUtils {
 	 */
 	public list;
 
+	// eslint-disable-next-line require-jsdoc
 	constructor() {
 		this.list = list;
 	}

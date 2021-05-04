@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 class UtilsError extends Error {
 	public constructor(message: string) {
 		super(message);
