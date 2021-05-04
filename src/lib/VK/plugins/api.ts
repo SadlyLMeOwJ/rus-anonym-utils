@@ -119,6 +119,23 @@ export class VK_API {
 
 		return OutputData;
 	}
+
+	/**
+	 * @description Позволяет получить битовую маску по правам
+	 * @param {VKUtils.TAccessRightType} rights - набор прав
+	 * @param {"user" | "group"} type - пользователь/группа
+	 * @returns {number} - битовая маска
+	 */
+	public generateMask(
+		rights: VKUtils.TAccessRightType[],
+		type: "user" | "group",
+	): number {
+		let mask = 0;
+		for (const right of rights) {
+			accessRights[type].find((x) => x.right === right && (mask += x.mask));
+		}
+		return mask;
+	}
 }
 
 export const api = new VK_API();
