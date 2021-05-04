@@ -49,7 +49,9 @@ export class VK_API {
 			throw new UtilsError("Invalid token length");
 		}
 
-		const TokenWords = token.split("");
+		const TokenWords = token
+			.split("")
+			.map((tempWord) => tempWord.toLowerCase());
 		const AllowedWordSet = new Set([
 			"d",
 			"e",
@@ -69,11 +71,11 @@ export class VK_API {
 			"9",
 		]);
 
-		for (const tempWord of TokenWords) {
-			if (!AllowedWordSet.has(tempWord.toLowerCase())) {
+		TokenWords.forEach((tempWord) => {
+			if (!AllowedWordSet.has(tempWord)) {
 				throw new UtilsError("Invalid token symbols");
 			}
-		}
+		});
 
 		const tempVK = new VK({ token: token });
 		const tokenData = await tempVK.api.users.get({}).catch(() => {
