@@ -122,7 +122,7 @@ export class VK_API {
 
 	/**
 	 * @description Позволяет получить битовую маску по правам
-	 * @param {VKUtils.TAccessRightType} rights - набор прав
+	 * @param {Array.<VKUtils.TAccessRightType>} rights - набор прав
 	 * @param {"user" | "group"} type - пользователь/группа
 	 * @returns {number} - битовая маска
 	 */
@@ -135,6 +135,25 @@ export class VK_API {
 			accessRights[type].find((x) => x.right === right && (mask += x.mask));
 		}
 		return mask;
+	}
+
+	/**
+	 * @description Позволяет получить набор прав по битовой маске
+	 * @param {number} bitmask - битовая маска
+	 * @param {"user" | "group"} type - пользователь/группа
+	 * @returns {Array.<VKUtils.TAccessRightType>} - набор прав
+	 */
+	public decodeMask(
+		bitmask: number,
+		type: "user" | "group",
+	): VKUtils.TAccessRightType[] {
+		const rights: VKUtils.TAccessRightType[] = [];
+		for (const right of accessRights[type]) {
+			if (Boolean(bitmask & right.mask) === true) {
+				rights.push(right.right);
+			}
+		}
+		return rights;
 	}
 }
 
