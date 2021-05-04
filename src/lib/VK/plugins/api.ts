@@ -95,26 +95,16 @@ export class VK_API {
 			const currentPermissions = await tempVK.api.groups.getTokenPermissions(
 				{},
 			);
-			for (const right in accessRights.group) {
-				if (
-					Boolean(currentPermissions.mask & accessRights.group[right].mask) ===
-					true
-				) {
-					OutputData.accessRights.push(accessRights.group[right].right);
-				}
-			}
+			OutputData.accessRights = this.decodeMask(
+				currentPermissions.mask,
+				"group",
+			);
 		} else {
 			OutputData.id = tokenData[0].id;
 			const currentPermissions = await tempVK.api.account.getAppPermissions({
 				user_id: OutputData.id,
 			});
-			for (const right in accessRights.user) {
-				if (
-					Boolean(currentPermissions & accessRights.user[right].mask) === true
-				) {
-					OutputData.accessRights.push(accessRights.user[right].right);
-				}
-			}
+			OutputData.accessRights = this.decodeMask(currentPermissions, "user");
 		}
 
 		return OutputData;
