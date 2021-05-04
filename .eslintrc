@@ -25,6 +25,7 @@
 	"rules": {
 		"no-mixed-spaces-and-tabs": "off",
 		"jsdoc/check-tag-names": "off",
-		"jsdoc/require-example": "warn"
+		"jsdoc/require-example": "warn",
+		"@typescript-eslint/no-namespace": "off"
 	}
 }

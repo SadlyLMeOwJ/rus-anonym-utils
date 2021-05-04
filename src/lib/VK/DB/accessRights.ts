@@ -1,6 +1,6 @@
-import { IAccessRights } from "../types";
+import VKUtils from "../types";
 
-export const accessRights: IAccessRights = {
+export const accessRights: VKUtils.IAccessRights = {
 	user: [
 		{
 			right: "notify",
