@@ -5,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation IPUtils</title>
+  <title>Documentation TorrentUtils</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -82,7 +82,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Class</p>
-                    <h1>IPUtils</h1>
+                    <h1>TorrentUtils</h1>
                 </header>
                 
 
@@ -93,9 +93,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>IPUtils</h2>
-        
-            <div class="class-description"><p>Класс для работы с IP</p></div>
+        <h2><span class="attribs"><span class="type-signature"></span></span>TorrentUtils</h2>
         
     
 </header>
@@ -152,9 +150,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_IP_core.ts.html" class="button">View Source</a>
+            <a href="lib_torrent_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_IP_core.ts.html">lib/IP/core.ts</a>, <a href="lib_IP_core.ts.html#line10">line 10</a>
+                <a href="lib_torrent_core.ts.html">lib/torrent/core.ts</a>, <a href="lib_torrent_core.ts.html#line14">line 14</a>
             </span>
         </p>
     
@@ -190,13 +188,6 @@
     
 
     
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="IPUtils.html">IPUtils</a></dt>
-            <dd></dd>
-        </dl>
-    
 
     
 
@@ -204,167 +195,6 @@
 
     
 
-    
-        <div class='vertical-section'>
-            <h1>Members</h1>
-            <div class="members">
-            
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type"><a href="IPv4.html">IPv4</a></span>
-
-
-    </span>
-
-<h4 class="name" id="v4">
-    <a class="href-link" href="#v4">#</a>
-    
-    <span class="code-name">
-        v4
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Секция для работы с IPv4 адресами</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_IP_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_IP_core.ts.html">lib/IP/core.ts</a>, <a href="lib_IP_core.ts.html#line45">line 45</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-                <div class="member">
-
-    <span class="method-parameter is-pulled-right">
-        <label>Type:</label>
-        
-<span class="param-type"><a href="IPv6.html">IPv6</a></span>
-
-
-    </span>
-
-<h4 class="name" id="v6">
-    <a class="href-link" href="#v6">#</a>
-    
-    <span class="code-name">
-        v6
-    </span>
-    
-</h4>
-
-
-
-
-<div class="description">
-    <p>Секция для работы с IPv6 адресами</p>
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-
-    
-
-    
-        <p class="tag-source">
-            <a href="lib_IP_core.ts.html" class="button">View Source</a>
-            <span>
-                <a href="lib_IP_core.ts.html">lib/IP/core.ts</a>, <a href="lib_IP_core.ts.html#line52">line 52</a>
-            </span>
-        </p>
-    
-</dl>
-
-
-
-
-
-</div>
-            
-            </div>
-        </div>
     
 
     
@@ -376,12 +206,16 @@
 
 
     
-    <h4 class="name" id="is">
-        <a class="href-link" href="#is">#</a>
+    <h4 class="name" id="dayStat">
+        <a class="href-link" href="#dayStat">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
         
         <span class="code-name">
             
-                is<span class="signature">(IP)</span><span class="type-signature"> &rarr; {boolean}</span>
+                dayStat<span class="signature">(countryCode, date<span class="signature-attributes">opt</span>, locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;DayStat>>}</span>
             
         </span>
     </h4>
@@ -390,7 +224,7 @@
     
     
     <div class="description">
-        <p>Проверка является ли переданная строка IP адресом</p>
+        <p>Позволяет получить статистику торрент сети по дню</p>
     </div>
     
 
@@ -415,7 +249,11 @@
             <th>Type</th>
 
             
+            <th>Attributes</th>
+            
 
+            
+            <th>Default</th>
             
 
             <th class="last">Description</th>
@@ -428,7 +266,7 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>IP</code></td>
+      <td class="name"><code>countryCode</code></td>
   
 
   <td class="type">
@@ -441,10 +279,102 @@
   </td>
 
   
+      <td class="attributes">
+      
 
+      
+
+      
+      </td>
   
 
-  <td class="description last"><p>IP адрес</p></td>
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>код страны</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>date</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">Date</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>дата на которую нужна статистика</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>locale</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          en
+      
+      </td>
+  
+
+  <td class="description last"><p>локаль</p></td>
 </tr>
 
 
@@ -490,9 +420,9 @@
 
     
         <p class="tag-source">
-            <a href="lib_IP_core.ts.html" class="button">View Source</a>
+            <a href="lib_torrent_core.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_IP_core.ts.html">lib/IP/core.ts</a>, <a href="lib_IP_core.ts.html#line29">line 29</a>
+                <a href="lib_torrent_core.ts.html">lib/torrent/core.ts</a>, <a href="lib_torrent_core.ts.html#line52">line 52</a>
             </span>
         </p>
     
@@ -523,13 +453,13 @@
 
 <div class="columns">
     
-    <div class='param-desc column is-7'><p>является ли переданный IP адрес валидным</p></div>
+    <div class='param-desc column is-7'><p>данные статистики за день</p></div>
     
     
     <div class='column is-5 has-text-left'>
         <label>Type: </label>
         
-<span class="param-type">boolean</span>
+<span class="param-type">Promise.&lt;Array.&lt;DayStat>></span>
 
 
     </div>
@@ -543,17 +473,238 @@
 
 
 
-    <h5>Examples</h5>
+</div>
+            
+                <div class="member">
+
+
     
-    
-        <pre class="prettyprint"><code>// Return true
-IP.is("192.168.0.1");</code></pre>
+    <h4 class="name" id="getDownloads">
+        <a class="href-link" href="#getDownloads">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                getDownloads<span class="signature">(IP, locale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Promise.&lt;Array.&lt;IPDownload>>}</span>
+            
+        </span>
+    </h4>
     
 
     
-        <pre class="prettyprint"><code>// Return false
-IP.is("test");</code></pre>
     
+    <div class="description">
+        <p>Позволяет узнать загрузки в торрент сети с этого IP</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>IP</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last"><p>IP адрес</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>locale</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          en
+      
+      </td>
+  
+
+  <td class="description last"><p>локаль, по умолчанию en</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_torrent_core.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_torrent_core.ts.html">lib/torrent/core.ts</a>, <a href="lib_torrent_core.ts.html#line21">line 21</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><p>массив с данными</p></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Promise.&lt;Array.&lt;IPDownload>></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
 
 
 </div>

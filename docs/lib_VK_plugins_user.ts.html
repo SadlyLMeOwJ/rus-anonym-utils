@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>Torrent</h2><h3>Classes</h3><ul><li><a href="TorrentUtils.html">TorrentUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li><li><a href="VKUtils.html">VKUtils</a></li></ul></div>
                 
             </nav>
         </div>
@@ -96,17 +96,11 @@
             <pre class="prettyprint source linenums"><code>/* eslint-disable jsdoc/require-example */
 
 import moment from "moment";
-import {
-	IGetUserStickerPacks,
-	IStoreGetStickersKeywords,
-	IStoreGetStickersKeywordsNumber,
-	IStoreGetStickersKeywordsWord,
-	IUserStickerPack,
-} from "../types";
 import { VK } from "vk-io";
 
 import UtilsError from "../../../utils/error";
-import { IGiftsGetCatalogResponse } from "../types";
+import VKUtils from "../types";
+
 
 /**
  * @category VK
@@ -114,10 +108,11 @@ import { IGiftsGetCatalogResponse } from "../types";
  * @hideconstructor
  */
 export class VK_User {
+	// eslint-disable-next-line require-jsdoc
 	private async __parseUserGifts(
 		token: string,
 		user_id: number,
-	): Promise&lt;IGiftsGetCatalogResponse[]> {
+	): Promise&lt;VKUtils.IGiftsGetCatalogResponse[]> {
 		const vk = new VK({ token: token, apiVersion: "5.103" });
 		try {
 			const GiftsCatalog = await vk.api.call("gifts.getCatalog", {
@@ -135,15 +130,16 @@ export class VK_User {
 
 	public async getStickerKeywords(
 		token: string,
-	): Promise&lt;IStoreGetStickersKeywords>;
+	): Promise&lt;VKUtils.IStoreGetStickersKeywords>;
 	public async getStickerKeywords(
 		token: string,
 		word: string,
-	): Promise&lt;IStoreGetStickersKeywordsWord>;
+	): Promise&lt;VKUtils.IStoreGetStickersKeywordsWord>;
 	public async getStickerKeywords(
 		token: string,
 		sticker_id: number | number[],
-	): Promise&lt;IStoreGetStickersKeywordsNumber>;
+	): Promise&lt;VKUtils.IStoreGetStickersKeywordsNumber>;
+	// eslint-disable-next-line require-jsdoc
 	public async getStickerKeywords(
 		token: string,
 		wordOrSticker?: string | number | number[],
@@ -152,12 +148,12 @@ export class VK_User {
 		const StickersKeywords = (await vk.api.call(
 			"store.getStickersKeywords",
 			{},
-		)) as IStoreGetStickersKeywords;
+		)) as VKUtils.IStoreGetStickersKeywords;
 		if (!wordOrSticker) {
 			return StickersKeywords;
 		}
 		if (typeof wordOrSticker === "string") {
-			const OutputData: IStoreGetStickersKeywordsWord = {
+			const OutputData: VKUtils.IStoreGetStickersKeywordsWord = {
 				word: wordOrSticker,
 				stickers: [],
 			};
@@ -175,7 +171,7 @@ export class VK_User {
 			}
 			return OutputData;
 		}
-		const OutputData: IStoreGetStickersKeywordsNumber = {
+		const OutputData: VKUtils.IStoreGetStickersKeywordsNumber = {
 			sticker_id: wordOrSticker,
 			words: [],
 		};
@@ -200,9 +196,14 @@ export class VK_User {
 		return OutputData;
 	}
 
-	public async getAllStickers(token: string): Promise&lt;IUserStickerPack[]> {
+	/**
+	 * @description Позволяет узнать стикеры ВКонтакте
+	 * @param {string} token - Токен пользователя
+	 * @returns {Array.&lt;VKUtils.IUserStickerPack[]>} - Массив со всеми стикерами ВКонтакте
+	 */
+	public async getAllStickers(token: string): Promise&lt;VKUtils.IUserStickerPack[]> {
 		const UserGifts = await this.__parseUserGifts(token, 0);
-		const ParseStickers: IUserStickerPack[] = [];
+		const ParseStickers: VKUtils.IUserStickerPack[] = [];
 
 		for (const category of UserGifts) {
 			for (const gift of category.items) {
@@ -239,9 +240,9 @@ export class VK_User {
 	public async getUserStickerPacks(
 		token: string,
 		user_id: number,
-	): Promise&lt;IGetUserStickerPacks> {
+	): Promise&lt;VKUtils.IGetUserStickerPacks> {
 		const UserGifts = await this.__parseUserGifts(token, user_id);
-		const ParseStickers: IUserStickerPack[] = [];
+		const ParseStickers: VKUtils.IUserStickerPack[] = [];
 		const AllStickers = await this.getAllStickers(token);
 		for (const category of UserGifts) {
 			for (const gift of category.items) {

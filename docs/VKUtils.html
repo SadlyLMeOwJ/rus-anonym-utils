@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +5,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Documentation lib/IP/core.ts</title>
+  <title>Documentation VKUtils</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -83,67 +81,452 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p>Source</p>
-                    <h1>lib/IP/core.ts</h1>
+                    <p>Class</p>
+                    <h1>VKUtils</h1>
                 </header>
                 
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import { regular } from "./../regular/core";
+        <h2><span class="attribs"><span class="type-signature"></span></span>VKUtils</h2>
+        
+    
+</header>
 
-import IPv4 from "./plugins/v4";
-import IPv6 from "./plugins/v6";
+<article>
+    <div class="container-overview">
+    
+        
+            
 
-/**
- * @category IP
- * @classdesc Класс для работы с IP
- * @hideconstructor
- */
-export class IPUtils {
-	/**
-	 * @description Секция для работы с IPv4 адресами
-	 * @type {IPv4}
-	 */
-	public v4: IPv4;
 
-	/**
-	 * @description Секция для работы с IPv6 адресами
-	 * @type {IPv6}
-	 */
-	public v6: IPv6;
 
-	// eslint-disable-next-line require-jsdoc
-	constructor() {
-		this.v4 = new IPv4();
-		this.v6 = new IPv6();
-	}
 
-	/**
-	 * @description Проверка является ли переданная строка IP адресом
-	 * @param {string} IP IP адрес
-	 * @returns {boolean} является ли переданный IP адрес валидным
-	 *
-	 * @example
-	 * // Return true
-	 * IP.is("192.168.0.1");
-	 *
-	 * @example
-	 * // Return false
-	 * IP.is("test");
-	 */
-	public is(IP: string): boolean {
-		return regular.isIP(IP);
-	}
-}
 
-export const IP = new IPUtils();
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_core.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_core.ts.html">lib/VK/core.ts</a>, <a href="lib_VK_core.ts.html#line11">line 11</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+    
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="VKUtils.html">VKUtils</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Members</h1>
+            <div class="members">
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="VK_API.html">VK_API</a></span>
+
+
+    </span>
+
+<h4 class="name" id="api">
+    <a class="href-link" href="#api">#</a>
+    
+    <span class="code-name">
+        api
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Секция для работы с API</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_core.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_core.ts.html">lib/VK/core.ts</a>, <a href="lib_VK_core.ts.html#line32">line 32</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="VK_Article.html">VK_Article</a></span>
+
+
+    </span>
+
+<h4 class="name" id="article">
+    <a class="href-link" href="#article">#</a>
+    
+    <span class="code-name">
+        article
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Секция для работы с статьями</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_core.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_core.ts.html">lib/VK/core.ts</a>, <a href="lib_VK_core.ts.html#line38">line 38</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="VK_Group.html">VK_Group</a></span>
+
+
+    </span>
+
+<h4 class="name" id="group">
+    <a class="href-link" href="#group">#</a>
+    
+    <span class="code-name">
+        group
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Секция требующая токена группы</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_core.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_core.ts.html">lib/VK/core.ts</a>, <a href="lib_VK_core.ts.html#line50">line 50</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+                <div class="member">
+
+    <span class="method-parameter is-pulled-right">
+        <label>Type:</label>
+        
+<span class="param-type"><a href="VK_User.html">VK_User</a></span>
+
+
+    </span>
+
+<h4 class="name" id="user">
+    <a class="href-link" href="#user">#</a>
+    
+    <span class="code-name">
+        user
+    </span>
+    
+</h4>
+
+
+
+
+<div class="description">
+    <p>Секция требующая токена пользователя</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_core.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_core.ts.html">lib/VK/core.ts</a>, <a href="lib_VK_core.ts.html#line44">line 44</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+</div>
+            
+            </div>
+        </div>
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
