@@ -17,7 +17,7 @@ export class VK_Article {
 	 * @returns {Promise} Данные статьи
 	 */
 	public async getByURL(articleLink: string): Promise<VKUtils.IArticleGetByUrl> {
-		articleLink = articleLink.replace("https://m.", "https://");
+		articleLink = articleLink.trim().replace("https://m.", "https://");
 		if (regular.isURL(articleLink) === false) {
 			throw new UtilsError(`Invalid article link`);
 		} else {
