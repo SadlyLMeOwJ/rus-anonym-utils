@@ -22,6 +22,7 @@ export class ArrayUtils {
 	 */
 	public number: NumberArray;
 
+	// eslint-disable-next-line require-jsdoc
 	constructor() {
 		this.clone = new CloneArray();
 		this.number = new NumberArray();

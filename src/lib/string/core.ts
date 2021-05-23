@@ -101,7 +101,10 @@ export class StringUtils {
 	 * // => помидора
 	 * string.declOfNum(3, ["помидор", "помидора", "помидоров"]);
 	 */
-	public declOfNum(inputNumber: number, titlesArray: string[]): string {
+	public declOfNum(
+		inputNumber: number,
+		titlesArray: [string, string, string],
+	): string {
 		return titlesArray[
 			inputNumber % 10 === 1 && inputNumber % 100 !== 11
 				? 0

@@ -6,6 +6,7 @@ import { regular } from "../../regular/core";
  * @hideconstructor
  */
 class IPv4 {
+	// eslint-disable-next-line require-jsdoc
 	private _toBinary(IP: string): string[] {
 		const splittedIP = IP.split(".");
 		const binaryIP = [];
@@ -26,6 +27,7 @@ class IPv4 {
 		return binaryIP;
 	}
 
+	// eslint-disable-next-line require-jsdoc
 	public _toIP(IP: string[]): number[] {
 		const broadcastIP = [];
 		for (let i = 0; i < IP.length; i++) {
@@ -34,6 +36,7 @@ class IPv4 {
 		return broadcastIP;
 	}
 
+	// eslint-disable-next-line require-jsdoc
 	private _bitwise(
 		firstBinary: string,
 		secondBinary: string,
@@ -56,6 +59,7 @@ class IPv4 {
 		return newAdded;
 	}
 
+	// eslint-disable-next-line require-jsdoc
 	private _invertedBinary(number: string): string {
 		const noArr = number.toString().split("");
 		let newNo = "";

@@ -1,6 +1,8 @@
+/* eslint-disable require-jsdoc */
 class UtilsError extends Error {
 	public constructor(message: string) {
 		super(message);
+		this.name = "RusAnonym Utils Error";
 	}
 
 	public get [Symbol.toStringTag](): string {

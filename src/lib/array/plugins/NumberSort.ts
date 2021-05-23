@@ -197,7 +197,7 @@ class NumberArraySort {
 		const arrLeft = inputArray.slice(0, middle);
 		const arrRight = inputArray.slice(middle);
 
-		// eslint-disable-next-line jsdoc/require-jsdoc
+		// eslint-disable-next-line require-jsdoc, jsdoc/require-jsdoc
 		function mergeArray(firstArray: number[], secondArray: number[]): number[] {
 			const arrSort = [];
 			let i = 0;

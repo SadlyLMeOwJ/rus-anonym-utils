@@ -12,6 +12,7 @@ class NumberArray {
 	 */
 	public sort: NumberArraySort;
 
+	// eslint-disable-next-line require-jsdoc
 	constructor() {
 		this.sort = new NumberArraySort();
 	}

@@ -1,17 +1,11 @@
 /* eslint-disable jsdoc/require-example */
 
 import moment from "moment";
-import {
-	IGetUserStickerPacks,
-	IStoreGetStickersKeywords,
-	IStoreGetStickersKeywordsNumber,
-	IStoreGetStickersKeywordsWord,
-	IUserStickerPack,
-} from "../types";
 import { VK } from "vk-io";
 
 import UtilsError from "../../../utils/error";
-import { IGiftsGetCatalogResponse } from "../types";
+import VKUtils from "../types";
+
 
 /**
  * @category VK
@@ -19,10 +13,11 @@ import { IGiftsGetCatalogResponse } from "../types";
  * @hideconstructor
  */
 export class VK_User {
+	// eslint-disable-next-line require-jsdoc
 	private async __parseUserGifts(
 		token: string,
 		user_id: number,
-	): Promise<IGiftsGetCatalogResponse[]> {
+	): Promise<VKUtils.IGiftsGetCatalogResponse[]> {
 		const vk = new VK({ token: token, apiVersion: "5.103" });
 		try {
 			const GiftsCatalog = await vk.api.call("gifts.getCatalog", {
@@ -40,15 +35,16 @@ export class VK_User {
 
 	public async getStickerKeywords(
 		token: string,
-	): Promise<IStoreGetStickersKeywords>;
+	): Promise<VKUtils.IStoreGetStickersKeywords>;
 	public async getStickerKeywords(
 		token: string,
 		word: string,
-	): Promise<IStoreGetStickersKeywordsWord>;
+	): Promise<VKUtils.IStoreGetStickersKeywordsWord>;
 	public async getStickerKeywords(
 		token: string,
 		sticker_id: number | number[],
-	): Promise<IStoreGetStickersKeywordsNumber>;
+	): Promise<VKUtils.IStoreGetStickersKeywordsNumber>;
+	// eslint-disable-next-line require-jsdoc
 	public async getStickerKeywords(
 		token: string,
 		wordOrSticker?: string | number | number[],
@@ -57,12 +53,12 @@ export class VK_User {
 		const StickersKeywords = (await vk.api.call(
 			"store.getStickersKeywords",
 			{},
-		)) as IStoreGetStickersKeywords;
+		)) as VKUtils.IStoreGetStickersKeywords;
 		if (!wordOrSticker) {
 			return StickersKeywords;
 		}
 		if (typeof wordOrSticker === "string") {
-			const OutputData: IStoreGetStickersKeywordsWord = {
+			const OutputData: VKUtils.IStoreGetStickersKeywordsWord = {
 				word: wordOrSticker,
 				stickers: [],
 			};
@@ -80,7 +76,7 @@ export class VK_User {
 			}
 			return OutputData;
 		}
-		const OutputData: IStoreGetStickersKeywordsNumber = {
+		const OutputData: VKUtils.IStoreGetStickersKeywordsNumber = {
 			sticker_id: wordOrSticker,
 			words: [],
 		};
@@ -105,9 +101,14 @@ export class VK_User {
 		return OutputData;
 	}
 
-	public async getAllStickers(token: string): Promise<IUserStickerPack[]> {
+	/**
+	 * @description Позволяет узнать стикеры ВКонтакте
+	 * @param {string} token - Токен пользователя
+	 * @returns {Array.<VKUtils.IUserStickerPack[]>} - Массив со всеми стикерами ВКонтакте
+	 */
+	public async getAllStickers(token: string): Promise<VKUtils.IUserStickerPack[]> {
 		const UserGifts = await this.__parseUserGifts(token, 0);
-		const ParseStickers: IUserStickerPack[] = [];
+		const ParseStickers: VKUtils.IUserStickerPack[] = [];
 
 		for (const category of UserGifts) {
 			for (const gift of category.items) {
@@ -144,9 +145,9 @@ export class VK_User {
 	public async getUserStickerPacks(
 		token: string,
 		user_id: number,
-	): Promise<IGetUserStickerPacks> {
+	): Promise<VKUtils.IGetUserStickerPacks> {
 		const UserGifts = await this.__parseUserGifts(token, user_id);
-		const ParseStickers: IUserStickerPack[] = [];
+		const ParseStickers: VKUtils.IUserStickerPack[] = [];
 		const AllStickers = await this.getAllStickers(token);
 		for (const category of UserGifts) {
 			for (const gift of category.items) {

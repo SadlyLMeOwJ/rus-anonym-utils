@@ -10,6 +10,11 @@ import { regular } from "./../regular/core";
 
 import { DayStat, IPDownload } from "./types";
 
+/**
+ * @category Torrent
+ * @description Класс для работы с Torrent
+ * @hideconstructor
+ */
 export class TorrentUtils {
 	/**
 	 * @description Позволяет узнать загрузки в торрент сети с этого IP

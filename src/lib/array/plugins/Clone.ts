@@ -152,6 +152,7 @@ class CloneArray {
 		return output as T[];
 	}
 
+	// eslint-disable-next-line require-jsdoc
 	private __recursionDeepCopy<T>(inputArray: T | T[]): T | T[] {
 		return Array.isArray(inputArray)
 			? this.__recursionDeepCopy(inputArray)

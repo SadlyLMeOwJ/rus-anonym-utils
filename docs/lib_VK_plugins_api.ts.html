@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK.html">VK</a></li><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>Torrent</h2><h3>Classes</h3><ul><li><a href="TorrentUtils.html">TorrentUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li><li><a href="VKUtils.html">VKUtils</a></li></ul></div>
                 
             </nav>
         </div>
@@ -95,8 +95,8 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* eslint-disable jsdoc/require-example */
 
-import { accessRights as AccessRights } from "./../DB/accessRights";
-import { ICheckToken, IVKAPIStatus } from "../types";
+import { accessRights } from "./../DB/accessRights";
+import VKUtils from "../types";
 
 import axios from "axios";
 import { VK } from "vk-io";
@@ -112,7 +112,7 @@ export class VK_API {
 	 * @description Получить текущее состоянии API VK
 	 * @returns {Promise} Текущее состоянии API VK
 	 */
-	public async status(): Promise&lt;IVKAPIStatus[]> {
+	public async status(): Promise&lt;VKUtils.IVKAPIStatus[]> {
 		let data: string = (await axios.get(`https://vk.com/dev/health`)).data;
 		data = data.toString();
 		let position1 = data.indexOf(`var content = {`);
@@ -131,7 +131,7 @@ export class VK_API {
 				uptime: sectionData[3],
 			});
 		}
-		return outputArray as IVKAPIStatus[];
+		return outputArray as VKUtils.IVKAPIStatus[];
 	}
 
 	/**
@@ -139,12 +139,14 @@ export class VK_API {
 	 * @param {string} token Проверяемый токен
 	 * @returns {Promise} данные токена
 	 */
-	public async checkToken(token: string): Promise&lt;ICheckToken> {
+	public async checkToken(token: string): Promise&lt;VKUtils.ICheckToken> {
 		if (token.length !== 85) {
 			throw new UtilsError("Invalid token length");
 		}
 
-		const TokenWords = token.split("");
+		const TokenWords = token
+			.split("")
+			.map((tempWord) => tempWord.toLowerCase());
 		const AllowedWordSet = new Set([
 			"d",
 			"e",
@@ -164,18 +166,18 @@ export class VK_API {
 			"9",
 		]);
 
-		for (const tempWord of TokenWords) {
-			if (!AllowedWordSet.has(tempWord.toLowerCase())) {
+		TokenWords.forEach((tempWord) => {
+			if (!AllowedWordSet.has(tempWord)) {
 				throw new UtilsError("Invalid token symbols");
 			}
-		}
+		});
 
 		const tempVK = new VK({ token: token });
 		const tokenData = await tempVK.api.users.get({}).catch(() => {
 			throw new UtilsError("Invalid token");
 		});
 
-		const OutputData: ICheckToken = {
+		const OutputData: VKUtils.ICheckToken = {
 			type: "user",
 			id: 0,
 			accessRights: [],
@@ -188,29 +190,55 @@ export class VK_API {
 			const currentPermissions = await tempVK.api.groups.getTokenPermissions(
 				{},
 			);
-			for (const right in AccessRights.group) {
-				if (
-					Boolean(currentPermissions.mask &amp; AccessRights.group[right].mask) ===
-					true
-				) {
-					OutputData.accessRights.push(AccessRights.group[right].right);
-				}
-			}
+			OutputData.accessRights = this.decodeMask(
+				currentPermissions.mask,
+				"group",
+			);
 		} else {
 			OutputData.id = tokenData[0].id;
 			const currentPermissions = await tempVK.api.account.getAppPermissions({
 				user_id: OutputData.id,
 			});
-			for (const right in AccessRights.user) {
-				if (
-					Boolean(currentPermissions &amp; AccessRights.user[right].mask) === true
-				) {
-					OutputData.accessRights.push(AccessRights.user[right].right);
-				}
-			}
+			OutputData.accessRights = this.decodeMask(currentPermissions, "user");
 		}
 
 		return OutputData;
+	}
+
+	/**
+	 * @description Позволяет получить битовую маску по правам
+	 * @param {Array.&lt;VKUtils.TAccessRightType>} rights - набор прав
+	 * @param {"user" | "group"} type - пользователь/группа
+	 * @returns {number} - битовая маска
+	 */
+	public generateMask(
+		rights: VKUtils.TAccessRightType[],
+		type: "user" | "group",
+	): number {
+		let mask = 0;
+		for (const right of rights) {
+			accessRights[type].find((x) => x.right === right &amp;&amp; (mask += x.mask));
+		}
+		return mask;
+	}
+
+	/**
+	 * @description Позволяет получить набор прав по битовой маске
+	 * @param {number} bitmask - битовая маска
+	 * @param {"user" | "group"} type - пользователь/группа
+	 * @returns {Array.&lt;VKUtils.TAccessRightType>} - набор прав
+	 */
+	public decodeMask(
+		bitmask: number,
+		type: "user" | "group",
+	): VKUtils.TAccessRightType[] {
+		const rights: VKUtils.TAccessRightType[] = [];
+		for (const right of accessRights[type]) {
+			if (Boolean(bitmask &amp; right.mask) === true) {
+				rights.push(right.right);
+			}
+		}
+		return rights;
 	}
 }
 

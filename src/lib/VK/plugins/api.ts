@@ -1,7 +1,7 @@
 /* eslint-disable jsdoc/require-example */
 
-import { accessRights as AccessRights } from "./../DB/accessRights";
-import { ICheckToken, IVKAPIStatus } from "../types";
+import { accessRights } from "./../DB/accessRights";
+import VKUtils from "../types";
 
 import axios from "axios";
 import { VK } from "vk-io";
@@ -17,7 +17,7 @@ export class VK_API {
 	 * @description Получить текущее состоянии API VK
 	 * @returns {Promise} Текущее состоянии API VK
 	 */
-	public async status(): Promise<IVKAPIStatus[]> {
+	public async status(): Promise<VKUtils.IVKAPIStatus[]> {
 		let data: string = (await axios.get(`https://vk.com/dev/health`)).data;
 		data = data.toString();
 		let position1 = data.indexOf(`var content = {`);
@@ -36,7 +36,7 @@ export class VK_API {
 				uptime: sectionData[3],
 			});
 		}
-		return outputArray as IVKAPIStatus[];
+		return outputArray as VKUtils.IVKAPIStatus[];
 	}
 
 	/**
@@ -44,12 +44,14 @@ export class VK_API {
 	 * @param {string} token Проверяемый токен
 	 * @returns {Promise} данные токена
 	 */
-	public async checkToken(token: string): Promise<ICheckToken> {
+	public async checkToken(token: string): Promise<VKUtils.ICheckToken> {
 		if (token.length !== 85) {
 			throw new UtilsError("Invalid token length");
 		}
 
-		const TokenWords = token.split("");
+		const TokenWords = token
+			.split("")
+			.map((tempWord) => tempWord.toLowerCase());
 		const AllowedWordSet = new Set([
 			"d",
 			"e",
@@ -69,18 +71,18 @@ export class VK_API {
 			"9",
 		]);
 
-		for (const tempWord of TokenWords) {
-			if (!AllowedWordSet.has(tempWord.toLowerCase())) {
+		TokenWords.forEach((tempWord) => {
+			if (!AllowedWordSet.has(tempWord)) {
 				throw new UtilsError("Invalid token symbols");
 			}
-		}
+		});
 
 		const tempVK = new VK({ token: token });
 		const tokenData = await tempVK.api.users.get({}).catch(() => {
 			throw new UtilsError("Invalid token");
 		});
 
-		const OutputData: ICheckToken = {
+		const OutputData: VKUtils.ICheckToken = {
 			type: "user",
 			id: 0,
 			accessRights: [],
@@ -93,29 +95,55 @@ export class VK_API {
 			const currentPermissions = await tempVK.api.groups.getTokenPermissions(
 				{},
 			);
-			for (const right in AccessRights.group) {
-				if (
-					Boolean(currentPermissions.mask & AccessRights.group[right].mask) ===
-					true
-				) {
-					OutputData.accessRights.push(AccessRights.group[right].right);
-				}
-			}
+			OutputData.accessRights = this.decodeMask(
+				currentPermissions.mask,
+				"group",
+			);
 		} else {
 			OutputData.id = tokenData[0].id;
 			const currentPermissions = await tempVK.api.account.getAppPermissions({
 				user_id: OutputData.id,
 			});
-			for (const right in AccessRights.user) {
-				if (
-					Boolean(currentPermissions & AccessRights.user[right].mask) === true
-				) {
-					OutputData.accessRights.push(AccessRights.user[right].right);
-				}
-			}
+			OutputData.accessRights = this.decodeMask(currentPermissions, "user");
 		}
 
 		return OutputData;
+	}
+
+	/**
+	 * @description Позволяет получить битовую маску по правам
+	 * @param {Array.<VKUtils.TAccessRightType>} rights - набор прав
+	 * @param {"user" | "group"} type - пользователь/группа
+	 * @returns {number} - битовая маска
+	 */
+	public generateMask(
+		rights: VKUtils.TAccessRightType[],
+		type: "user" | "group",
+	): number {
+		let mask = 0;
+		for (const right of rights) {
+			accessRights[type].find((x) => x.right === right && (mask += x.mask));
+		}
+		return mask;
+	}
+
+	/**
+	 * @description Позволяет получить набор прав по битовой маске
+	 * @param {number} bitmask - битовая маска
+	 * @param {"user" | "group"} type - пользователь/группа
+	 * @returns {Array.<VKUtils.TAccessRightType>} - набор прав
+	 */
+	public decodeMask(
+		bitmask: number,
+		type: "user" | "group",
+	): VKUtils.TAccessRightType[] {
+		const rights: VKUtils.TAccessRightType[] = [];
+		for (const right of accessRights[type]) {
+			if (Boolean(bitmask & right.mask) === true) {
+				rights.push(right.right);
+			}
+		}
+		return rights;
 	}
 }
 

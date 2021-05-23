@@ -1,6 +1,5 @@
 import { IPUtils } from "./../lib/IP/core";
 import { VKUtils } from "./../lib/VK/core";
-import { TimeUtils } from "./../lib/time/core";
 import { StringUtils } from "./../lib/string/core";
 import { RegularUtils } from "./../lib/regular/core";
 import { NumberUtils } from "./../lib/number/core";
@@ -12,7 +11,6 @@ import { logical } from "../lib/logical/core";
 import { number } from "../lib/number/core";
 import { regular } from "../lib/regular/core";
 import { string } from "../lib/string/core";
-import { time } from "../lib/time/core";
 import { vk } from "../lib/VK/core";
 import { IP } from "../lib/IP/core";
 import { torrent } from "../lib/torrent/core";
@@ -54,12 +52,6 @@ class RusAnonymUtils {
 	public readonly string: StringUtils;
 
 	/**
-	 * @description Секция для работы с временем
-	 * @type {TimeUtils}
-	 */
-	public readonly time: TimeUtils;
-
-	/**
 	 * @description Секция для работы с VK
 	 * @type {VKUtils}
 	 */
@@ -77,13 +69,13 @@ class RusAnonymUtils {
 	 */
 	public readonly torrent: TorrentUtils;
 
+	// eslint-disable-next-line require-jsdoc
 	constructor() {
 		this.array = array;
 		this.logical = logical;
 		this.number = number;
 		this.regular = regular;
 		this.string = string;
-		this.time = time;
 		this.vk = vk;
 		this.IP = IP;
 		this.torrent = torrent;
