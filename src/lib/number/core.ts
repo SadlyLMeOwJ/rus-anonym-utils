@@ -1,5 +1,4 @@
 import CryptoJS from "crypto-js";
-import UtilsError from "../../utils/error";
 
 /**
  * @category Number
@@ -80,33 +79,26 @@ export class NumberUtils {
 	 * @description Разделяет число по 3 символа
 	 * @param {number} number Число
 	 * @param {string} separator Разделитель
+	 * @param {string=} dotSymbol Разделитель между целой и дробной частью числа
 	 * @returns {string} Итоговую строку
 	 *
 	 * @example
 	 * number.separator(100000, "."); // => 100.000
+	 * number.separator(100000.50, ".", ","); // => 100.000,50
 	 */
-	public separator(number: number, separator: string): string {
-		const output = number.toString();
-		if (!output) {
-			throw new UtilsError(`Invalid number`);
-		} else {
-			separator = separator || ".";
-			const splitted = output.split("");
-			const reversed = splitted.reverse();
-			const joined = reversed.join("");
-			const matched = joined.match(/[0-9]{1,3}/g);
-			const separated = matched?.join(
-				separator.toString().split("").reverse().join(""),
-			);
-			const splittedOutput = separated?.split("");
-			const reversedOutput = splittedOutput?.reverse();
-			const joinedOutput = reversedOutput?.join("");
-			if (joinedOutput) {
-				return joinedOutput;
-			} else {
-				throw new UtilsError(`Invalid number`);
-			}
-		}
+	public separator(number: number, separator: string, dotSymbol = "."): string {
+		return number
+			.toString()
+			.split(".")
+			.map((n, i) =>
+				i
+					? n
+					: n
+							.split("")
+							.map((n, i) => (i % 3 || !i ? n : separator + n))
+							.join(""),
+			)
+			.join(dotSymbol);
 	}
 }
 
