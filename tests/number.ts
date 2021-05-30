@@ -25,6 +25,7 @@ describe("Number section", () => {
 
 	it("separator", () => {
 		assert.strictEqual(utils.number.separator(500, "."), "500");
+		assert.strictEqual(utils.number.separator(500.5, ".", ","), "500,5");
 		assert.strictEqual(utils.number.separator(5000, "."), "5.000");
 		assert.strictEqual(utils.number.separator(500000, "."), "500.000");
 		assert.strictEqual(utils.number.separator(5000000, "."), "5.000.000");
