@@ -87,18 +87,18 @@ export class NumberUtils {
 	 * number.separator(100000.50, ".", ","); // => 100.000,50
 	 */
 	public separator(number: number, separator: string, dotSymbol = "."): string {
-		return number
-			.toString()
-			.split(".")
-			.map((n, i) =>
-				i
-					? n
-					: n
-							.split("")
-							.map((n, i) => (i % 3 || !i ? n : separator + n))
-							.join(""),
+		const splittedNumber = Math.abs(number).toString().split(".");
+		splittedNumber[0] = splittedNumber[0]
+			.split("")
+			.reverse()
+			.map((value, index, arr) =>
+				index > 0 && index < arr.length && index % 3 == 0
+					? value + separator
+					: value,
 			)
-			.join(dotSymbol);
+			.reverse()
+			.join("");
+		return (Math.sign(number) < 0 ? "-" : "") + splittedNumber.join(dotSymbol);
 	}
 }
 
