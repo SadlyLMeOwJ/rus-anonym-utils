@@ -31,11 +31,9 @@ export class IPUtils {
 	 * @description Проверка является ли переданная строка IP адресом
 	 * @param {string} IP IP адрес
 	 * @returns {boolean} является ли переданный IP адрес валидным
-	 *
 	 * @example
 	 * // Return true
 	 * IP.is("192.168.0.1");
-	 *
 	 * @example
 	 * // Return false
 	 * IP.is("test");

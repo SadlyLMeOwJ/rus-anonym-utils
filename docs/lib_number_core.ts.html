@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>Torrent</h2><h3>Classes</h3><ul><li><a href="TorrentUtils.html">TorrentUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li><li><a href="VKUtils.html">VKUtils</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Torrent</h2><h3>Classes</h3><ul><li><a href="TorrentUtils.html">TorrentUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li><li><a href="VKUtils.html">VKUtils</a></li></ul></div>
                 
             </nav>
         </div>
@@ -94,7 +94,6 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import CryptoJS from "crypto-js";
-import UtilsError from "../../utils/error";
 
 /**
  * @category Number
@@ -107,7 +106,6 @@ export class NumberUtils {
 	 * @param {number} min Минимальное значение
 	 * @param {number} max Максимальное значение
 	 * @returns {number} Возвращает случайное число в заданном интервале. Возвращаемое значение не менее (и может быть равно) min и не более (и не равно) max.
-	 *
 	 * @example
 	 * number.getRandomArbitrary(1, 5); // => 2.8043424354010273
 	 */
@@ -148,7 +146,6 @@ export class NumberUtils {
 	 * @param {number} min Минимальное значение
 	 * @param {number} max Максимальное значение
 	 * @returns {number} Возвращает случайное целое число в заданном интервале. Возвращаемое значение не менее min (или следующее целое число, которое больше min, если min не целое) и не более (но не равно) max включительно
-	 *
 	 * @example
 	 * number.getRandomIntInclusive(1, 5); // => 1
 	 */
@@ -162,7 +159,6 @@ export class NumberUtils {
 	 * @description Проверяет, является ли число целым
 	 * @param {number} number Число
 	 * @returns {boolean} Возвращает true, если число целое, и false если оно не является целым
-	 *
 	 * @example
 	 * number.isInteger(1); // => true
 	 * number.isInteger(1.5); // => false
@@ -175,33 +171,25 @@ export class NumberUtils {
 	 * @description Разделяет число по 3 символа
 	 * @param {number} number Число
 	 * @param {string} separator Разделитель
+	 * @param {string=} dotSymbol Разделитель между целой и дробной частью числа
 	 * @returns {string} Итоговую строку
-	 *
 	 * @example
 	 * number.separator(100000, "."); // => 100.000
+	 * number.separator(100000.50, ".", ","); // => 100.000,50
 	 */
-	public separator(number: number, separator: string): string {
-		const output = number.toString();
-		if (!output) {
-			throw new UtilsError(`Invalid number`);
-		} else {
-			separator = separator || ".";
-			const splitted = output.split("");
-			const reversed = splitted.reverse();
-			const joined = reversed.join("");
-			const matched = joined.match(/[0-9]{1,3}/g);
-			const separated = matched?.join(
-				separator.toString().split("").reverse().join(""),
-			);
-			const splittedOutput = separated?.split("");
-			const reversedOutput = splittedOutput?.reverse();
-			const joinedOutput = reversedOutput?.join("");
-			if (joinedOutput) {
-				return joinedOutput;
-			} else {
-				throw new UtilsError(`Invalid number`);
-			}
-		}
+	public separator(number: number, separator: string, dotSymbol = "."): string {
+		const splittedNumber = Math.abs(number).toString().split(".");
+		splittedNumber[0] = splittedNumber[0]
+			.split("")
+			.reverse()
+			.map((value, index, arr) =>
+				index > 0 &amp;&amp; index &lt; arr.length &amp;&amp; index % 3 == 0
+					? value + separator
+					: value,
+			)
+			.reverse()
+			.join("");
+		return (Math.sign(number) &lt; 0 ? "-" : "") + splittedNumber.join(dotSymbol);
 	}
 }
 
@@ -217,7 +205,7 @@ export const number = new NumberUtils();
             
             <footer class="footer">
                 <div class="content has-text-centered">
-                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
                     <p class="sidebar-created-by">
                         <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
                         <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>

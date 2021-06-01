@@ -21,7 +21,6 @@ class NumberArray {
 	 * @description Вывод минимального значения в массиве
 	 * @param {Array.<number>} inputArray Массив с числами
 	 * @returns {number} Минимальное значение
-	 *
 	 * @example
 	 * // Return -50
 	 * array.number.min([1, 2, 3, 4, 5, 6, -50]);
@@ -34,7 +33,6 @@ class NumberArray {
 	 * @description Вывод максимального значения в массиве
 	 * @param {Array.<number>} inputArray массив с числами
 	 * @returns {number} максимальное значение
-	 *
 	 * @example
 	 * // Return 6
 	 * array.number.min([1, 2, 3, 4, 5, 6, -50]);
@@ -47,7 +45,6 @@ class NumberArray {
 	 * @description Вывод среднего значения в массиве
 	 * @param {Array.<number>} inputArray массив с числами
 	 * @returns {number} среднее значение
-	 *
 	 * @example
 	 * // Return 3
 	 * array.number.average([1, 2, 3, 4, 5]);
@@ -60,7 +57,6 @@ class NumberArray {
 	 * @description Подсчёт суммы массива
 	 * @param {Array.<number>} inputArray массив с числами
 	 * @returns {number} сумма массива
-	 *
 	 * @example
 	 * // Return 15
 	 * array.number.total([1, 2, 3, 4, 5]);
@@ -77,15 +73,12 @@ class NumberArray {
 	 * @param {number} length - Длина выходного массива
 	 * @param {number} customNumber - Цифра, которой нужно заполнить массив, или функция её генерирующая
 	 * @returns {Array.<number>} - Массив
-	 *
 	 * @example
 	 * // Return [0, 0, 0, 0, 0]
 	 * array.number.generate(5);
-	 *
 	 * @example
 	 * // Return [5, 5, 5, 5, 5]
 	 * array.number.generate(5, 5);
-	 *
 	 * @example
 	 * // Return [1, 2, 3, 4, 5]
 	 * let i = 1;

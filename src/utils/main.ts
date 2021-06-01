@@ -87,7 +87,6 @@ class RusAnonymUtils {
 	 * @example
 	 * import utils from "rus-anonym-utils";
 	 * await utils.sleep(1000); // Приостановит скрипт на 1 секунду
-	 *
 	 * @returns {Promise} Промис
 	 */
 	public sleep(ms: number): Promise<void> {

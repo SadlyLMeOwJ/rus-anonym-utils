@@ -78,11 +78,9 @@ class IPv4 {
 	 *
 	 * @param {string} IP IP адрес
 	 * @returns {boolean} является ли переданный IP адрес IPv4
-	 *
 	 * @example
 	 * // Return true
 	 * IP.is("192.168.0.1");
-	 *
 	 * @example
 	 * // Return false
 	 * IP.is("test");
@@ -97,7 +95,6 @@ class IPv4 {
 	 * @param {string} IP IP адрес
 	 * @param {string} maskIP маска подсети
 	 * @returns {string} IP сети
-	 *
 	 * @example
 	 * // Return 192.168.1.0
 	 * IP.v4.calculateNetworkIP("192.168.1.1", "255.255.255.0")
@@ -126,7 +123,6 @@ class IPv4 {
 	 * @param {string} IP IP адрес
 	 * @param {string} maskIP маска подсети
 	 * @returns {string} Broadcast IP
-	 *
 	 * @example
 	 * // Return 192.168.1.255
 	 * IP.v4.calculateNetworkIP("192.168.1.1", "255.255.255.0")
