@@ -76,7 +76,7 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Time</h2><h3>Classes</h3><ul><li><a href="TimeUtils.html">TimeUtils</a></li></ul></div><div class="category"><h2>Torrent</h2><h3>Classes</h3><ul><li><a href="TorrentUtils.html">TorrentUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li><li><a href="VKUtils.html">VKUtils</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="RusAnonymUtils.html">RusAnonymUtils</a></li></ul></div><div class="category"><h2>Array</h2><h3>Classes</h3><ul><li><a href="ArrayUtils.html">ArrayUtils</a></li><li><a href="CloneArray.html">CloneArray</a></li><li><a href="NumberArray.html">NumberArray</a></li><li><a href="NumberArraySort.html">NumberArraySort</a></li></ul></div><div class="category"><h2>IP</h2><h3>Classes</h3><ul><li><a href="IPUtils.html">IPUtils</a></li><li><a href="IPv4.html">IPv4</a></li><li><a href="IPv6.html">IPv6</a></li></ul></div><div class="category"><h2>Logical</h2><h3>Classes</h3><ul><li><a href="LogicalUtils.html">LogicalUtils</a></li></ul></div><div class="category"><h2>Number</h2><h3>Classes</h3><ul><li><a href="NumberUtils.html">NumberUtils</a></li></ul></div><div class="category"><h2>Regular</h2><h3>Classes</h3><ul><li><a href="RegularUtils.html">RegularUtils</a></li></ul></div><div class="category"><h2>String</h2><h3>Classes</h3><ul><li><a href="StringUtils.html">StringUtils</a></li></ul></div><div class="category"><h2>Torrent</h2><h3>Classes</h3><ul><li><a href="TorrentUtils.html">TorrentUtils</a></li></ul></div><div class="category"><h2>VK</h2><h3>Classes</h3><ul><li><a href="VK_API.html">VK_API</a></li><li><a href="VK_Article.html">VK_Article</a></li><li><a href="VK_Group.html">VK_Group</a></li><li><a href="VK_User.html">VK_User</a></li><li><a href="VKUtils.html">VKUtils</a></li></ul></div>
                 
             </nav>
         </div>
@@ -145,7 +145,6 @@ export class RegularUtils {
 	 * @description Проверка является ли переданная строка E-Mail адресом
 	 * @param {string} email E-Mail адрес
 	 * @returns {boolean} является ли переданная строка E-Mail адресом
-	 *
 	 * @example
 	 * regular.isEmail("alexandrsemin2033@gmail.com"); // => true
 	 */
@@ -157,7 +156,6 @@ export class RegularUtils {
 	 * @description Проверка является ли переданная строка IPv4 адресом
 	 * @param {string} address IPv4 адрес
 	 * @returns {boolean} является ли переданная строка IPv4 адресом
-	 *
 	 * @example
 	 * regular.isIPv4("192.168.0.1"); // => true
 	 * regular.isIPv4("test"); // => false
@@ -170,7 +168,6 @@ export class RegularUtils {
 	 * @description Проверка является ли переданная строка IPv6 адресом
 	 * @param {string} address IPv6 адрес
 	 * @returns {boolean} является ли переданная строка IPv6 адресом
-	 *
 	 * @example
 	 * regular.isIPv6("2001:0db8:85a3:0000:0000:8a2e:0370:7334"); // => true
 	 * regular.isIPv6("test"); // => false
@@ -183,7 +180,6 @@ export class RegularUtils {
 	 * @description Проверка является ли переданная строка IP адресом
 	 * @param {string} address IP адрес
 	 * @returns {boolean} является ли переданная строка IP адресом
-	 *
 	 * @example
 	 * regular.isIP("192.168.0.1"); // => true
 	 * regular.isIP("2001:0db8:85a3:0000:0000:8a2e:0370:7334"); // => true
@@ -197,7 +193,6 @@ export class RegularUtils {
 	 * @description Проверка является ли переданная строка ccылкой
 	 * @param {string} url URL
 	 * @returns {boolean} является ли переданная строка ccылкой
-	 *
 	 * @example
 	 * regular.isURL("google.com"); // => true
 	 * regular.isURL("http://google.com"); // => true
@@ -233,7 +228,7 @@ export const regular = new RegularUtils();
             
             <footer class="footer">
                 <div class="content has-text-centered">
-                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
                     <p class="sidebar-created-by">
                         <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
                         <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
