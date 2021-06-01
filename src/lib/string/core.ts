@@ -33,12 +33,12 @@ export class StringUtils {
 			remove: 1,
 		},
 	): number {
-		let flip: number,
-			ch: string,
-			chl: string,
-			ii: number,
-			ii2: number,
-			cost: number;
+		let flip: number;
+		let ch: string;
+		let chl: string;
+		let ii: number;
+		let ii2: number;
+		let cost: number;
 		const firstStringLength = firstString.length;
 		const secondStringLength = secondString.length;
 
@@ -58,7 +58,7 @@ export class StringUtils {
 			minCost,
 			(secondStringLength - firstStringLength) * costs.insert,
 		);
-		const buf = new Array(cutHalf * 2 - 1);
+		const buf: number[] = new Array(cutHalf * 2 - 1);
 
 		for (let i = 0; i <= secondStringLength; ++i) {
 			buf[i] = i * minD;
