@@ -255,6 +255,18 @@ export class ArrayUtils {
 	}
 
 	/**
+	 * @description Получает последний элемент из массива
+	 * @param {Array} array - Массив из которого нужно получить последний элемент
+	 * @returns {any} Элемент из массива
+	 * @example
+	 * // Return 2
+	 * array.last([1, 2]);
+	 */
+	public last&lt;T>(array: T[]): T {
+		return array[array.length - 1];
+	}
+
+	/**
 	 * @description Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
 	 * @param {Array} array Входной массив
 	 * @returns {Array} Массив состоящий из реальных значений
