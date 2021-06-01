@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 import utils from "../../dist/main";
 import cloneTests from "./clone";
 import numberArrayTests from "./number";
@@ -95,6 +96,15 @@ describe("Array section", () => {
 				done(new Error());
 			} else {
 				done();
+			}
+		});
+
+		it("last", (done) => {
+			const lastElement = utils.array.last([50, 25, 5, 1]);
+			if (lastElement === 1) {
+				done();
+			} else {
+				done(new Error());
 			}
 		});
 	});
