@@ -14,7 +14,6 @@ export class StringUtils {
 	 * @param {number} costs.insert - Цена присутствия
 	 * @param {number} costs.remove - Цена отсутствия
 	 * @returns {number} - Разница между строками
-	 *
 	 * @example
 	 * string.levenshtein("test", "test1"); // => 1
 	 * string.levenshtein("test", "test123"); // => 3

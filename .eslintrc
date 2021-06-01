@@ -23,6 +23,8 @@
 		}
 	},
 	"rules": {
+		"jsdoc/no-undefined-types": "off",
+		"jsdoc/valid-types": "off",
 		"no-mixed-spaces-and-tabs": "off",
 		"jsdoc/check-tag-names": "off",
 		"jsdoc/require-example": "warn",

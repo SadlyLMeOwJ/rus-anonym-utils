@@ -32,7 +32,6 @@ export class ArrayUtils {
 	 * @description Возвращает рандомный элемент из массива
 	 * @param {Array} inputArray - массив
 	 * @returns {any} элемент из массива
-	 *
 	 * @example
 	 * // Return 2
 	 * array.random([1, 2, 3, 4]);
@@ -46,7 +45,6 @@ export class ArrayUtils {
 	 * @param {Array} inputArray массив
 	 * @param {number} chunks общее количество чанков, которое должно получиться
 	 * @returns {Array.<Array>} итоговый массив
-	 *
 	 * @example
 	 * // Return [[1, 2], [3]]
 	 * array.splitOn([1, 2, 3], 2);
@@ -68,7 +66,6 @@ export class ArrayUtils {
 	 * @param {Array} inputArray массив
 	 * @param {number} elementsInChunk количество элементов в одном чанке
 	 * @returns {Array.<Array>} итоговый массив
-	 *
 	 * @example
 	 * // Return [[1], [2], [3]]
 	 * array.splitTo([1, 2, 3], 1);
@@ -87,7 +84,6 @@ export class ArrayUtils {
 	 * @description Перемешивает массив
 	 * @param {Array} inputArray массив
 	 * @returns {Array} перемешанный массив
-	 *
 	 * @example
 	 * // Return [5, 1, 4, 2, 3]
 	 * array.shuffle([1, 2, 3, 4, 5]);
@@ -107,7 +103,6 @@ export class ArrayUtils {
 	 * @param {number} index Индекс добавляемого элемента
 	 * @param {any} element Новый элемент
 	 * @returns {Array} итоговый массив
-	 *
 	 * @example
 	 * // Return [1, 2, 3, 4, 5]
 	 * array.insert([1, 2, 4, 5], 2, 3);
@@ -122,7 +117,6 @@ export class ArrayUtils {
 	 * @description Убирает пустые элементы из массива
 	 * @param {Array} inputArray массив
 	 * @returns {Array} отсортированный массив
-	 *
 	 * @example
 	 * // Return [1, 3, 5]
 	 * array.removeEmptyElements([1, null, 3, null, 5]);
@@ -138,7 +132,6 @@ export class ArrayUtils {
 	 * @param {Array} array - Массив который требуется отсортировать
 	 * @param {Function=} extractor - Функция переводящая элемент массива в строку
 	 * @returns {Array} Отсортированный массив
-	 *
 	 * @example
 	 * // Return [1, 2, 3]
 	 * array.naturalStringSorter([1, 3, 2], function (element) {
@@ -158,7 +151,6 @@ export class ArrayUtils {
 	 * @description Убирает из массива неуникальные значения (работает только с примитивами)
 	 * @param {Array} array Массив который требуется уникализировать
 	 * @returns {Array} Массив состоящий из уникальных значений
-	 *
 	 * @example
 	 * // Return [1, 2]
 	 * array.makeUnique([1, 2, 1, 1, 2]);
@@ -171,7 +163,6 @@ export class ArrayUtils {
 	 * @description Удаляет из массива ложные значения (0, "", false, null, undefined, NaN)
 	 * @param {Array} array Входной массив
 	 * @returns {Array} Массив состоящий из реальных значений
-	 *
 	 * @example
 	 * // Return ["test"]
 	 * array.removeFalseValues([0, NaN, false, null, undefined, "", "test"])

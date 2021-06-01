@@ -13,7 +13,6 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.AND(true, true) // => true
 	 * logical.AND(true, false); // => true
@@ -33,7 +32,6 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.OR(true, true) // => true
 	 * logical.OR(true, false); // => true
@@ -51,7 +49,6 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.ANOT(true, true) // => true
 	 * logical.ANOT(true, false); // => false
@@ -70,7 +67,6 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.NOR(true, true) // => false
 	 * logical.NOR(true, false); // => false
@@ -90,7 +86,6 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.XOR(true, true) // => false
 	 * logical.XOR(true, false); // => true
@@ -109,7 +104,6 @@ export class LogicalUtils {
 	 *
 	 * @param {boolean} a - 1 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.NOT(true) // => false
 	 * logical.NOT(false); // => true
@@ -127,7 +121,6 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.EQ(true, true) // => false
 	 * logical.EQ(true, false); // => false
@@ -146,7 +139,6 @@ export class LogicalUtils {
 	 * @param {boolean} a - 1 значение
 	 * @param {boolean} b - 2 значение
 	 * @returns {boolean} - результат
-	 *
 	 * @example
 	 * logical.IMP(true, true) // => true
 	 * logical.IMP(true, false); // => false
