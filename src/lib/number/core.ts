@@ -82,7 +82,7 @@ export class NumberUtils {
 	 * number.separator(100000, "."); // => 100.000
 	 * number.separator(100000.50, ".", ","); // => 100.000,50
 	 */
-	public separator(number: number, separator: string, dotSymbol = "."): string {
+	public separator(number: number, separator: string, dotSymbol: string | undefined = "."): string {
 		const splittedNumber = Math.abs(number).toString().split(".");
 		splittedNumber[0] = splittedNumber[0]
 			.split("")
