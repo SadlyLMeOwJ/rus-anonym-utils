@@ -28,7 +28,7 @@ class IPv4 {
 	}
 
 	// eslint-disable-next-line require-jsdoc
-	public _toIP(IP: string[]): number[] {
+	private _toIP(IP: string[]): number[] {
 		const broadcastIP = [];
 		for (let i = 0; i < IP.length; i++) {
 			broadcastIP.push(parseInt(parseInt(IP[i]).toString(), 2));
