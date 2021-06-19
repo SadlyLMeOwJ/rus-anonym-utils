@@ -40,13 +40,13 @@ export class VK_User {
     ): Promise<StoreGetProductsResponse> {
         const vk = new VK({ token: token, apiVersion: "5.103" });
         try {
-            const StoreStockItems = await vk.api.store.getProducts({
+            const StoreStockItems = (await vk.api.store.getProducts({
                 extended: 1,
                 type: "stickers",
                 filters: "purchased",
                 user_id,
-            });
-            return StoreStockItems;
+            })) as any;
+            return StoreStockItems.items as StoreGetProductsResponse;
         } catch (error) {
             if (error.code === 3) {
                 throw new UtilsError("Need token from VK Me\nApp ID: 6146827");
@@ -170,41 +170,67 @@ export class VK_User {
      * @description Получить стикеры пользователя
      * @param {string} token Токен от аккаунта пользователя
      * @param {number} user_id Идентификатор пользователя чьи стикеры требуется получить
+     * @param {boolean} free Получать ли бесплатные стикеры
      * @returns {Promise} Массив со стикерами пользователя
      */
     public async getUserStickerPacks(
         token: string,
-        user_id: number
+        user_id: number,
+        free = false
     ): Promise<VKUtils.IGetUserStickerPacks> {
-        const UserGifts = await this.__parseUserGifts(token, user_id);
         const ParseStickers: VKUtils.IUserStickerPack[] = [];
         const AllStickers = await this.getAllStickers(token);
-        for (const category of UserGifts) {
-            for (const gift of category.items) {
-                if (
-                    gift.gift.stickers_product_id &&
-                    gift.sticker_pack &&
-                    gift.disabled &&
-                    !ParseStickers.find(
-                        (stickerPack) =>
-                            stickerPack.id === gift.gift.stickers_product_id
-                    )
-                ) {
-                    ParseStickers.push({
-                        id: gift.gift.stickers_product_id,
-                        name: gift.sticker_pack.title,
-                        description: gift.sticker_pack.description,
-                        author: gift.sticker_pack.author,
-                        price:
-                            AllStickers.find(
-                                (stickerPack) =>
-                                    stickerPack.id ===
-                                    gift.gift.stickers_product_id
-                            )?.price || 0,
-                        thumb_256: gift.gift.thumb_256,
-                        thumb_48: gift.gift.thumb_48,
-                        thumb_96: gift.gift.thumb_96,
-                    });
+        if (free) {
+            const UserStickerPacks = await this.__getStoreStockItems(
+                token,
+                user_id
+            );
+            console.log(UserStickerPacks);
+            for (const stickerPack of UserStickerPacks) {
+                const StickerPackInfo = AllStickers.find(
+                    (x) => x.id === stickerPack.id
+                );
+                ParseStickers.push({
+                    id: stickerPack.id,
+                    name: stickerPack.title || "Не определено",
+                    author: StickerPackInfo?.author || "Не определён",
+                    description:
+                        StickerPackInfo?.description || "Не определено",
+                    price: StickerPackInfo?.price || 0,
+                    thumb_48: StickerPackInfo?.thumb_48 || "Не определено",
+                    thumb_96: StickerPackInfo?.thumb_96 || "Не определено",
+                    thumb_256: StickerPackInfo?.thumb_256 || "Не определено",
+                });
+            }
+        } else {
+            const UserGifts = await this.__parseUserGifts(token, user_id);
+            for (const category of UserGifts) {
+                for (const gift of category.items) {
+                    if (
+                        gift.gift.stickers_product_id &&
+                        gift.sticker_pack &&
+                        gift.disabled &&
+                        !ParseStickers.find(
+                            (stickerPack) =>
+                                stickerPack.id === gift.gift.stickers_product_id
+                        )
+                    ) {
+                        ParseStickers.push({
+                            id: gift.gift.stickers_product_id,
+                            name: gift.sticker_pack.title,
+                            description: gift.sticker_pack.description,
+                            author: gift.sticker_pack.author,
+                            price:
+                                AllStickers.find(
+                                    (stickerPack) =>
+                                        stickerPack.id ===
+                                        gift.gift.stickers_product_id
+                                )?.price || 0,
+                            thumb_256: gift.gift.thumb_256,
+                            thumb_48: gift.gift.thumb_48,
+                            thumb_96: gift.gift.thumb_96,
+                        });
+                    }
                 }
             }
         }
