@@ -97,10 +97,10 @@
 
 import moment from "moment";
 import { VK } from "vk-io";
+import { StoreGetProductsResponse } from "vk-io/lib/api/schemas/responses";
 
 import UtilsError from "../../../utils/error";
 import VKUtils from "../types";
-
 
 /**
  * @category VK
@@ -108,208 +108,271 @@ import VKUtils from "../types";
  * @hideconstructor
  */
 export class VK_User {
-	// eslint-disable-next-line require-jsdoc
-	private async __parseUserGifts(
-		token: string,
-		user_id: number,
-	): Promise&lt;VKUtils.IGiftsGetCatalogResponse[]> {
-		const vk = new VK({ token: token, apiVersion: "5.103" });
-		try {
-			const GiftsCatalog = await vk.api.call("gifts.getCatalog", {
-				user_id: user_id,
-			});
-			return GiftsCatalog;
-		} catch (error) {
-			if (error.code === 3) {
-				throw new UtilsError("Need token from VK Me\nApp ID: 6146827");
-			} else {
-				throw new UtilsError(error.message);
-			}
-		}
-	}
+    // eslint-disable-next-line require-jsdoc
+    private async __parseUserGifts(
+        token: string,
+        user_id: number
+    ): Promise&lt;VKUtils.IGiftsGetCatalogResponse[]> {
+        const vk = new VK({ token: token, apiVersion: "5.103" });
+        try {
+            const GiftsCatalog = await vk.api.call("gifts.getCatalog", {
+                user_id: user_id,
+            });
+            return GiftsCatalog;
+        } catch (error) {
+            if (error.code === 3) {
+                throw new UtilsError("Need token from VK Me\nApp ID: 6146827");
+            } else {
+                throw new UtilsError(error.message);
+            }
+        }
+    }
 
-	public async getStickerKeywords(
-		token: string,
-	): Promise&lt;VKUtils.IStoreGetStickersKeywords>;
-	public async getStickerKeywords(
-		token: string,
-		word: string,
-	): Promise&lt;VKUtils.IStoreGetStickersKeywordsWord>;
-	public async getStickerKeywords(
-		token: string,
-		sticker_id: number | number[],
-	): Promise&lt;VKUtils.IStoreGetStickersKeywordsNumber>;
-	// eslint-disable-next-line require-jsdoc
-	public async getStickerKeywords(
-		token: string,
-		wordOrSticker?: string | number | number[],
-	): Promise&lt;unknown> {
-		const vk = new VK({ token: token, apiVersion: "5.103" });
-		const StickersKeywords = (await vk.api.call(
-			"store.getStickersKeywords",
-			{},
-		)) as VKUtils.IStoreGetStickersKeywords;
-		if (!wordOrSticker) {
-			return StickersKeywords;
-		}
-		if (typeof wordOrSticker === "string") {
-			const OutputData: VKUtils.IStoreGetStickersKeywordsWord = {
-				word: wordOrSticker,
-				stickers: [],
-			};
-			for (const dictionary of StickersKeywords.dictionary) {
-				if (dictionary.words.includes(wordOrSticker)) {
-					for (const sticker of dictionary.user_stickers) {
-						OutputData.stickers.push(sticker);
-					}
-					if (dictionary.promoted_stickers) {
-						for (const sticker of dictionary.promoted_stickers) {
-							OutputData.stickers.push(sticker);
-						}
-					}
-				}
-			}
-			return OutputData;
-		}
-		const OutputData: VKUtils.IStoreGetStickersKeywordsNumber = {
-			sticker_id: wordOrSticker,
-			words: [],
-		};
-		if (typeof wordOrSticker === "number") {
-			wordOrSticker = [wordOrSticker];
-		}
-		for (const dictionary of StickersKeywords.dictionary) {
-			for (const userSticker of dictionary.user_stickers) {
-				if (wordOrSticker.includes(userSticker.sticker_id)) {
-					OutputData.words = OutputData.words.concat(dictionary.words);
-				}
-			}
+    // eslint-disable-next-line require-jsdoc
+    private async __getStoreStockItems(
+        token: string,
+        user_id: number
+    ): Promise&lt;StoreGetProductsResponse> {
+        const vk = new VK({ token: token, apiVersion: "5.103" });
+        try {
+            const StoreStockItems = (await vk.api.store.getProducts({
+                extended: 1,
+                type: "stickers",
+                filters: "purchased",
+                user_id,
+            })) as any;
+            return StoreStockItems.items as StoreGetProductsResponse;
+        } catch (error) {
+            if (error.code === 3) {
+                throw new UtilsError("Need token from VK Me\nApp ID: 6146827");
+            } else {
+                throw new UtilsError(error.message);
+            }
+        }
+    }
 
-			if (dictionary.promoted_stickers) {
-				for (const promotedSticker of dictionary.promoted_stickers) {
-					if (wordOrSticker.includes(promotedSticker.sticker_id)) {
-						OutputData.words = OutputData.words.concat(dictionary.words);
-					}
-				}
-			}
-		}
-		return OutputData;
-	}
+    public async getStickerKeywords(
+        token: string
+    ): Promise&lt;VKUtils.IStoreGetStickersKeywords>;
+    public async getStickerKeywords(
+        token: string,
+        word: string
+    ): Promise&lt;VKUtils.IStoreGetStickersKeywordsWord>;
+    public async getStickerKeywords(
+        token: string,
+        sticker_id: number | number[]
+    ): Promise&lt;VKUtils.IStoreGetStickersKeywordsNumber>;
+    // eslint-disable-next-line require-jsdoc
+    public async getStickerKeywords(
+        token: string,
+        wordOrSticker?: string | number | number[]
+    ): Promise&lt;unknown> {
+        const vk = new VK({ token: token, apiVersion: "5.103" });
+        const StickersKeywords = (await vk.api.call(
+            "store.getStickersKeywords",
+            {}
+        )) as VKUtils.IStoreGetStickersKeywords;
+        if (!wordOrSticker) {
+            return StickersKeywords;
+        }
+        if (typeof wordOrSticker === "string") {
+            const OutputData: VKUtils.IStoreGetStickersKeywordsWord = {
+                word: wordOrSticker,
+                stickers: [],
+            };
+            for (const dictionary of StickersKeywords.dictionary) {
+                if (dictionary.words.includes(wordOrSticker)) {
+                    for (const sticker of dictionary.user_stickers) {
+                        OutputData.stickers.push(sticker);
+                    }
+                    if (dictionary.promoted_stickers) {
+                        for (const sticker of dictionary.promoted_stickers) {
+                            OutputData.stickers.push(sticker);
+                        }
+                    }
+                }
+            }
+            return OutputData;
+        }
+        const OutputData: VKUtils.IStoreGetStickersKeywordsNumber = {
+            sticker_id: wordOrSticker,
+            words: [],
+        };
+        if (typeof wordOrSticker === "number") {
+            wordOrSticker = [wordOrSticker];
+        }
+        for (const dictionary of StickersKeywords.dictionary) {
+            for (const userSticker of dictionary.user_stickers) {
+                if (wordOrSticker.includes(userSticker.sticker_id)) {
+                    OutputData.words = OutputData.words.concat(
+                        dictionary.words
+                    );
+                }
+            }
 
-	/**
-	 * @description Позволяет узнать стикеры ВКонтакте
-	 * @param {string} token - Токен пользователя
-	 * @returns {Array.&lt;VKUtils.IUserStickerPack[]>} - Массив со всеми стикерами ВКонтакте
-	 */
-	public async getAllStickers(token: string): Promise&lt;VKUtils.IUserStickerPack[]> {
-		const UserGifts = await this.__parseUserGifts(token, 0);
-		const ParseStickers: VKUtils.IUserStickerPack[] = [];
+            if (dictionary.promoted_stickers) {
+                for (const promotedSticker of dictionary.promoted_stickers) {
+                    if (wordOrSticker.includes(promotedSticker.sticker_id)) {
+                        OutputData.words = OutputData.words.concat(
+                            dictionary.words
+                        );
+                    }
+                }
+            }
+        }
+        return OutputData;
+    }
 
-		for (const category of UserGifts) {
-			for (const gift of category.items) {
-				if (
-					gift.gift.stickers_product_id &amp;&amp;
-					gift.sticker_pack &amp;&amp;
-					!ParseStickers.find(
-						(stickerPack) => stickerPack.id === gift.gift.stickers_product_id,
-					)
-				) {
-					ParseStickers.push({
-						id: gift.gift.stickers_product_id,
-						name: gift.sticker_pack.title,
-						description: gift.sticker_pack.description,
-						author: gift.sticker_pack.author,
-						price: gift.price,
-						thumb_256: gift.gift.thumb_256,
-						thumb_48: gift.gift.thumb_48,
-						thumb_96: gift.gift.thumb_96,
-					});
-				}
-			}
-		}
+    /**
+     * @description Позволяет узнать стикеры ВКонтакте
+     * @param {string} token - Токен пользователя
+     * @returns {Array.&lt;VKUtils.IUserStickerPack[]>} - Массив со всеми стикерами ВКонтакте
+     */
+    public async getAllStickers(
+        token: string
+    ): Promise&lt;VKUtils.IUserStickerPack[]> {
+        const UserGifts = await this.__parseUserGifts(token, 0);
+        const ParseStickers: VKUtils.IUserStickerPack[] = [];
 
-		return ParseStickers;
-	}
+        for (const category of UserGifts) {
+            for (const gift of category.items) {
+                if (
+                    gift.gift.stickers_product_id &amp;&amp;
+                    gift.sticker_pack &amp;&amp;
+                    !ParseStickers.find(
+                        (stickerPack) =>
+                            stickerPack.id === gift.gift.stickers_product_id
+                    )
+                ) {
+                    ParseStickers.push({
+                        id: gift.gift.stickers_product_id,
+                        name: gift.sticker_pack.title,
+                        description: gift.sticker_pack.description,
+                        author: gift.sticker_pack.author,
+                        price: gift.price,
+                        thumb_256: gift.gift.thumb_256,
+                        thumb_48: gift.gift.thumb_48,
+                        thumb_96: gift.gift.thumb_96,
+                    });
+                }
+            }
+        }
 
-	/**
-	 * @description Получить стикеры пользователя
-	 * @param {string} token Токен от аккаунта пользователя
-	 * @param {number} user_id Идентификатор пользователя чьи стикеры требуется получить
-	 * @returns {Promise} Массив со стикерами пользователя
-	 */
-	public async getUserStickerPacks(
-		token: string,
-		user_id: number,
-	): Promise&lt;VKUtils.IGetUserStickerPacks> {
-		const UserGifts = await this.__parseUserGifts(token, user_id);
-		const ParseStickers: VKUtils.IUserStickerPack[] = [];
-		const AllStickers = await this.getAllStickers(token);
-		for (const category of UserGifts) {
-			for (const gift of category.items) {
-				if (
-					gift.gift.stickers_product_id &amp;&amp;
-					gift.sticker_pack &amp;&amp;
-					gift.disabled &amp;&amp;
-					!ParseStickers.find(
-						(stickerPack) => stickerPack.id === gift.gift.stickers_product_id,
-					)
-				) {
-					ParseStickers.push({
-						id: gift.gift.stickers_product_id,
-						name: gift.sticker_pack.title,
-						description: gift.sticker_pack.description,
-						author: gift.sticker_pack.author,
-						price:
-							AllStickers.find(
-								(stickerPack) =>
-									stickerPack.id === gift.gift.stickers_product_id,
-							)?.price || 0,
-						thumb_256: gift.gift.thumb_256,
-						thumb_48: gift.gift.thumb_48,
-						thumb_96: gift.gift.thumb_96,
-					});
-				}
-			}
-		}
-		return {
-			id: user_id,
-			total_price: ParseStickers.map((stickerPack) => {
-				return stickerPack.price;
-			}).reduce((totalPrice, tempPrice) => totalPrice + tempPrice, 0),
-			items: ParseStickers,
-		};
-	}
+        return ParseStickers;
+    }
 
-	/**
-	 * @description Устанавливает шаги в приложении Шаги
-	 * @param {Object} token Параметры
-	 * @param {string} token.token Токен от аккаунта пользователя
-	 * @param {number} token.steps Количество шагов
-	 * @param {number} token.distance Пройденная дистанция
-	 * @param {string|Date} token.date Дата в формате YYYY-MM-DD
-	 * @returns {Promise} обьект с полями steps и distance
-	 */
-	public async setSteps({
-		token,
-		steps,
-		distance,
-		date,
-	}: {
-		token: string;
-		steps: number;
-		distance: number;
-		date: string | Date;
-	}): Promise&lt;{
-		steps: number;
-		distance: number;
-	}> {
-		const vk = new VK({ token });
-		return await vk.api.call("vkRun.setSteps", {
-			date: moment(date).format("YYYY-MM-DD"),
-			steps,
-			distance,
-		});
-	}
+    /**
+     * @description Получить стикеры пользователя
+     * @param {string} token Токен от аккаунта пользователя
+     * @param {number} user_id Идентификатор пользователя чьи стикеры требуется получить
+     * @param {boolean} free Получать ли бесплатные стикеры
+     * @returns {Promise} Массив со стикерами пользователя
+     */
+    public async getUserStickerPacks(
+        token: string,
+        user_id: number,
+        free = false
+    ): Promise&lt;VKUtils.IGetUserStickerPacks> {
+        const ParseStickers: VKUtils.IUserStickerPack[] = [];
+        const AllStickers = await this.getAllStickers(token);
+        if (free) {
+            const UserStickerPacks = await this.__getStoreStockItems(
+                token,
+                user_id
+            );
+            for (const stickerPack of UserStickerPacks) {
+                const StickerPackInfo = AllStickers.find(
+                    (x) => x.id === stickerPack.id
+                );
+                ParseStickers.push({
+                    id: stickerPack.id,
+                    name: stickerPack.title || "Не определено",
+                    author: StickerPackInfo?.author || "Не определён",
+                    description:
+                        StickerPackInfo?.description || "Не определено",
+                    price: StickerPackInfo?.price || 0,
+                    thumb_48:
+                        StickerPackInfo?.thumb_48 ||
+                        `https://vk.com/sticker/4-${stickerPack.id}-48`,
+                    thumb_96:
+                        StickerPackInfo?.thumb_96 ||
+                        `https://vk.com/sticker/4-${stickerPack.id}-96`,
+                    thumb_256:
+                        StickerPackInfo?.thumb_256 ||
+                        `https://vk.com/sticker/4-${stickerPack.id}-256w`,
+                });
+            }
+        } else {
+            const UserGifts = await this.__parseUserGifts(token, user_id);
+            for (const category of UserGifts) {
+                for (const gift of category.items) {
+                    if (
+                        gift.gift.stickers_product_id &amp;&amp;
+                        gift.sticker_pack &amp;&amp;
+                        gift.disabled &amp;&amp;
+                        !ParseStickers.find(
+                            (stickerPack) =>
+                                stickerPack.id === gift.gift.stickers_product_id
+                        )
+                    ) {
+                        ParseStickers.push({
+                            id: gift.gift.stickers_product_id,
+                            name: gift.sticker_pack.title,
+                            description: gift.sticker_pack.description,
+                            author: gift.sticker_pack.author,
+                            price:
+                                AllStickers.find(
+                                    (stickerPack) =>
+                                        stickerPack.id ===
+                                        gift.gift.stickers_product_id
+                                )?.price || 0,
+                            thumb_256: gift.gift.thumb_256,
+                            thumb_48: gift.gift.thumb_48,
+                            thumb_96: gift.gift.thumb_96,
+                        });
+                    }
+                }
+            }
+        }
+        return {
+            id: user_id,
+            total_price: ParseStickers.map((stickerPack) => {
+                return stickerPack.price;
+            }).reduce((totalPrice, tempPrice) => totalPrice + tempPrice, 0),
+            items: ParseStickers,
+        };
+    }
+
+    /**
+     * @description Устанавливает шаги в приложении Шаги
+     * @param {Object} token Параметры
+     * @param {string} token.token Токен от аккаунта пользователя
+     * @param {number} token.steps Количество шагов
+     * @param {number} token.distance Пройденная дистанция
+     * @param {string|Date} token.date Дата в формате YYYY-MM-DD
+     * @returns {Promise} обьект с полями steps и distance
+     */
+    public async setSteps({
+        token,
+        steps,
+        distance,
+        date,
+    }: {
+        token: string;
+        steps: number;
+        distance: number;
+        date: string | Date;
+    }): Promise&lt;{
+        steps: number;
+        distance: number;
+    }> {
+        const vk = new VK({ token });
+        return await vk.api.call("vkRun.setSteps", {
+            date: moment(date).format("YYYY-MM-DD"),
+            steps,
+            distance,
+        });
+    }
 }
 
 export const user = new VK_User();
