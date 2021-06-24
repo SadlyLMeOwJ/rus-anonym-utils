@@ -185,7 +185,6 @@ export class VK_User {
                 token,
                 user_id
             );
-            console.log(UserStickerPacks);
             for (const stickerPack of UserStickerPacks) {
                 const StickerPackInfo = AllStickers.find(
                     (x) => x.id === stickerPack.id
