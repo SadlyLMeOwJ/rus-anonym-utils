@@ -197,9 +197,15 @@ export class VK_User {
                     description:
                         StickerPackInfo?.description || "Не определено",
                     price: StickerPackInfo?.price || 0,
-                    thumb_48: StickerPackInfo?.thumb_48 || "Не определено",
-                    thumb_96: StickerPackInfo?.thumb_96 || "Не определено",
-                    thumb_256: StickerPackInfo?.thumb_256 || "Не определено",
+                    thumb_48:
+                        StickerPackInfo?.thumb_48 ||
+                        `https://vk.com/sticker/4-${stickerPack.id}-48`,
+                    thumb_96:
+                        StickerPackInfo?.thumb_96 ||
+                        `https://vk.com/sticker/4-${stickerPack.id}-96`,
+                    thumb_256:
+                        StickerPackInfo?.thumb_256 ||
+                        `https://vk.com/sticker/4-${stickerPack.id}-256w`,
                 });
             }
         } else {
