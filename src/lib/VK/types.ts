@@ -1,145 +1,157 @@
 namespace VKUtils {
-	export type TAccessRightType =
-		| "notify"
-		| "friends"
-		| "photos"
-		| "audio"
-		| "video"
-		| "stories"
-		| "pages"
-		| "leftLink"
-		| "status"
-		| "notes"
-		| "messages"
-		| "wall"
-		| "ads"
-		| "offline"
-		| "docs"
-		| "groups"
-		| "notifications"
-		| "stats"
-		| "email"
-		| "market"
-		| "app_widget"
-		| "manage";
+    export type TAccessRightType =
+        | "notify"
+        | "friends"
+        | "photos"
+        | "audio"
+        | "video"
+        | "stories"
+        | "pages"
+        | "leftLink"
+        | "status"
+        | "notes"
+        | "messages"
+        | "wall"
+        | "ads"
+        | "offline"
+        | "docs"
+        | "groups"
+        | "notifications"
+        | "stats"
+        | "email"
+        | "market"
+        | "app_widget"
+        | "manage";
 
-	export interface IVKAPIStatus {
-		section: string;
-		performance: number;
-		uptime: number;
-	}
+    export interface IVKAPIStatus {
+        section: string;
+        performance: number;
+        uptime: number;
+    }
 
-	export interface ICheckToken {
-		type: "user" | "group";
-		id: number;
-		accessRights: TAccessRightType[];
-	}
+    export interface ICheckToken {
+        type: "user" | "group";
+        id: number;
+        accessRights: TAccessRightType[];
+    }
 
-	export interface IAccessRights {
-		user: Array<{
-			right: TAccessRightType;
-			mask: number;
-		}>;
-		group: Array<{
-			right: TAccessRightType;
-			mask: number;
-		}>;
-	}
+    export interface IAccessRights {
+        user: Array<{
+            right: TAccessRightType;
+            mask: number;
+        }>;
+        group: Array<{
+            right: TAccessRightType;
+            mask: number;
+        }>;
+    }
 
-	export interface IArticleGetByUrl {
-		id: number;
-		owner_id: number;
-		raw_id: string;
-		access_hash: string;
-		title: string;
-		subtitle: string;
-		published: Date;
-		views: number;
-		views_formatted: string;
-		shares: number;
-		shares_formatted: string;
-		url: string;
-	}
+    export interface IArticleGetByUrl {
+        id: number;
+        owner_id: number;
+        raw_id: string;
+        access_hash: string;
+        title: string;
+        subtitle: string;
+        published: Date;
+        views: number;
+        views_formatted: string;
+        shares: number;
+        shares_formatted: string;
+        url: string;
+    }
 
-	interface IGift {
-		gift: {
-			id: number;
-			thumb_256: string;
-			thumb_48: string;
-			thumb_96: string;
-			keywords?: string;
-			stickers_product_id?: number;
-		};
-		description: string;
-		payment_type: string;
-		price: number;
-		price_str: string;
-		sticker_pack?: {
-			title: string;
-			description: string;
-			author: string;
-		};
-		gifts_left?: number;
-		real_price?: number;
-		disabled?: number;
-	}
+    interface IGift {
+        gift: {
+            id: number;
+            thumb_256: string;
+            thumb_48: string;
+            thumb_96: string;
+            keywords?: string;
+            stickers_product_id?: number;
+        };
+        description: string;
+        payment_type: string;
+        price: number;
+        price_str: string;
+        sticker_pack?: {
+            title: string;
+            description: string;
+            author: string;
+        };
+        gifts_left?: number;
+        real_price?: number;
+        disabled?: number;
+    }
 
-	export interface IGiftsGetCatalogResponse {
-		name: string;
-		title: string;
-		items: IGift[];
-	}
+    export interface IGiftsGetCatalogResponse {
+        name: string;
+        title: string;
+        items: IGift[];
+    }
 
-	export interface IUserStickerPack {
-		id: number;
-		name: string;
-		description: string;
-		author: string;
-		price: number;
-		thumb_256: string;
-		thumb_48: string;
-		thumb_96: string;
-	}
+    export interface IUserStickerPack {
+        id: number;
+        name: string;
+        description: string;
+        author: string;
+        price: number;
+        thumb_256: string;
+        thumb_48: string;
+        thumb_96: string;
+    }
 
-	export interface IGetUserStickerPacks {
-		id: number;
-		total_price: number;
-		items: IUserStickerPack[];
-	}
+    export interface IGetUserStickerPacks {
+        id: number;
+        total_price: number;
+        items: IUserStickerPack[];
+        paid: number;
+        free: number;
+    }
 
-	interface IStoreGetStickersKeywordsSticker {
-		sticker_id: number;
-		images: {
-			height: number;
-			width: number;
-			url: string;
-		}[];
-		images_with_background: {
-			height: number;
-			width: number;
-			url: string;
-		}[];
-	}
+    interface IStoreGetStickersKeywordsSticker {
+        sticker_id: number;
+        images: {
+            height: number;
+            width: number;
+            url: string;
+        }[];
+        images_with_background: {
+            height: number;
+            width: number;
+            url: string;
+        }[];
+    }
 
-	interface IStoreGetStickersKeywordsDictionary {
-		words: string[];
-		user_stickers: IStoreGetStickersKeywordsSticker[];
-		promoted_stickers?: IStoreGetStickersKeywordsSticker[];
-	}
-	export interface IStoreGetStickersKeywords {
-		count: number;
-		dictionary: IStoreGetStickersKeywordsDictionary[];
-	}
+    export interface IStickerPackInfo {
+        id: number;
+        name: string;
+        url: string;
+        description: string;
+        author: string;
+        isFree: boolean;
+        price: number;
+    }
 
-	export interface IStoreGetStickersKeywordsWord {
-		word: string;
-		stickers: IStoreGetStickersKeywordsSticker[];
-	}
+    interface IStoreGetStickersKeywordsDictionary {
+        words: string[];
+        user_stickers: IStoreGetStickersKeywordsSticker[];
+        promoted_stickers?: IStoreGetStickersKeywordsSticker[];
+    }
+    export interface IStoreGetStickersKeywords {
+        count: number;
+        dictionary: IStoreGetStickersKeywordsDictionary[];
+    }
 
-	export interface IStoreGetStickersKeywordsNumber {
-		sticker_id: number | number[];
-		words: string[];
-	}
+    export interface IStoreGetStickersKeywordsWord {
+        word: string;
+        stickers: IStoreGetStickersKeywordsSticker[];
+    }
+
+    export interface IStoreGetStickersKeywordsNumber {
+        sticker_id: number | number[];
+        words: string[];
+    }
 }
 
 export default VKUtils;

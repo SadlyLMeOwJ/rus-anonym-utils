@@ -1,6 +1,6 @@
 {
     "name": "rus-anonym-utils",
-    "version": "2.3.6",
+    "version": "2.3.7",
     "description": "Personal set of utilities from RusAnonym",
     "main": "./dist/main.js",
     "module": "./dist/main.js",
@@ -33,7 +33,7 @@
         "url": "https://github.com/RusAnonym/rus-anonym-utils/issues"
     },
     "scripts": {
-        "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack",
+        "build": "cross-env TS_NODE_PROJECT=\"tsconfig-for-webpack.json\" webpack",
         "docs": "jsdoc -c jsdoc.json",
         "lint": "eslint ./src --ext .ts",
         "test": "env TS_NODE_PROJECT='./tsconfig-for-autotests.json' mocha -r ts-node/register './tests/main.ts'"
