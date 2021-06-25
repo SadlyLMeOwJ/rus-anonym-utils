@@ -105,6 +105,8 @@ namespace VKUtils {
         id: number;
         total_price: number;
         items: IUserStickerPack[];
+        paid: number;
+        free: number;
     }
 
     interface IStoreGetStickersKeywordsSticker {
