@@ -5,6 +5,7 @@ import { VK } from "vk-io";
 import { StoreGetProductsResponse } from "vk-io/lib/api/schemas/responses";
 
 import UtilsError from "../../../utils/error";
+import { array } from "../../array/core";
 import VKUtils from "../types";
 
 /**
@@ -33,6 +34,47 @@ export class VK_User {
         }
     }
 
+    /**
+     * @description Метод позволяющий получить информацию о стикерпаках
+     * @param {string} token - Токен пользователя
+     * @param {number[]} stickerPackIDs - Массив с идентификаторами стикерпаков
+     * @returns {Array.<VKUtils.IStickerPackInfo>} - Массив с данными о стикерах
+     */
+    public async getStickersInfo(
+        token: string,
+        stickerPackIDs: number[]
+    ): Promise<VKUtils.IStickerPackInfo[]> {
+        const vk = new VK({ token, apiVersion: "5.103" });
+        const StickersInfo: VKUtils.IStickerPackInfo[] = [];
+        const SplittedStickerPacks = array.splitTo(stickerPackIDs, 400);
+        for (const chunk of SplittedStickerPacks) {
+            const Info = await vk.api.call(`store.getStockItems`, {
+                type: "stickers",
+                product_ids: chunk.join(),
+            });
+            Info.items.map(
+                (x: {
+                    product: { id: number; title: string; url: string };
+                    description: string;
+                    author: string;
+                    free: number;
+                    price: number;
+                }) => {
+                    StickersInfo.push({
+                        id: x.product.id,
+                        name: x.product.title,
+                        url: x.product.url,
+                        description: x.description,
+                        author: x.author,
+                        isFree: Boolean(x.free),
+                        price: x.price || 0,
+                    });
+                }
+            );
+        }
+        return StickersInfo;
+    }
+
     // eslint-disable-next-line require-jsdoc
     private async __getStoreStockItems(
         token: string,
@@ -41,11 +83,14 @@ export class VK_User {
         const vk = new VK({ token: token, apiVersion: "5.103" });
         try {
             const StoreStockItems = (await vk.api.store.getProducts({
-                extended: 1,
                 type: "stickers",
                 filters: "purchased",
                 user_id,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             })) as any;
+            if (StoreStockItems.error_code) {
+                throw new Error(StoreStockItems.error_msg);
+            }
             return StoreStockItems.items as StoreGetProductsResponse;
         } catch (error) {
             if (error.code === 3) {
@@ -191,7 +236,10 @@ export class VK_User {
                 );
                 ParseStickers.push({
                     id: stickerPack.id,
-                    name: stickerPack.title || "Не определено",
+                    name:
+                        stickerPack.title ||
+                        StickerPackInfo?.name ||
+                        "Не определено",
                     author: StickerPackInfo?.author || "Не определён",
                     description:
                         StickerPackInfo?.description || "Не определено",
@@ -238,6 +286,9 @@ export class VK_User {
                     }
                 }
             }
+        }
+        if (!ParseStickers.every((x) => x.name !== "Не определено")) {
+            console.log("PIZDA");
         }
         return {
             id: user_id,
