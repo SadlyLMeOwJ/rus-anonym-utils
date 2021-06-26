@@ -152,7 +152,7 @@
         <p class="tag-source">
             <a href="lib_VK_plugins_user.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line11">line 11</a>
+                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line12">line 12</a>
             </span>
         </p>
     
@@ -326,7 +326,7 @@
         <p class="tag-source">
             <a href="lib_VK_plugins_user.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line105">line 105</a>
+                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line137">line 137</a>
             </span>
         </p>
     
@@ -385,8 +385,8 @@
 
 
     
-    <h4 class="name" id="getUserStickerPacks">
-        <a class="href-link" href="#getUserStickerPacks">#</a>
+    <h4 class="name" id="getStickersInfo">
+        <a class="href-link" href="#getStickersInfo">#</a>
         
             
                 <span class='tag'>async</span>
@@ -394,7 +394,7 @@
         
         <span class="code-name">
             
-                getUserStickerPacks<span class="signature">(token, user_id, free)</span><span class="type-signature"> &rarr; {Promise}</span>
+                getStickersInfo<span class="signature">(token, stickerPackIDs)</span><span class="type-signature"> &rarr; {Array.&lt;VKUtils.IStickerPackInfo>}</span>
             
         </span>
     </h4>
@@ -403,7 +403,7 @@
     
     
     <div class="description">
-        <p>Получить стикеры пользователя</p>
+        <p>Метод позволяющий получить информацию о стикерпаках</p>
     </div>
     
 
@@ -429,8 +429,6 @@
 
             
 
-            
-            <th>Default</th>
             
 
             <th class="last">Description</th>
@@ -458,12 +456,8 @@
   
 
   
-      <td class="default">
-      
-      </td>
-  
 
-  <td class="description last"><p>Токен от аккаунта пользователя</p></td>
+  <td class="description last"><p>Токен пользователя</p></td>
 </tr>
 
 
@@ -472,13 +466,13 @@
             
 <tr class="deep-level-0">
   
-      <td class="name"><code>user_id</code></td>
+      <td class="name"><code>stickerPackIDs</code></td>
   
 
   <td class="type">
   
       
-<span class="param-type">number</span>
+<span class="param-type">Array.&lt;number></span>
 
 
   
@@ -487,43 +481,8 @@
   
 
   
-      <td class="default">
-      
-      </td>
-  
 
-  <td class="description last"><p>Идентификатор пользователя чьи стикеры требуется получить</p></td>
-</tr>
-
-
-        
-
-            
-<tr class="deep-level-0">
-  
-      <td class="name"><code>free</code></td>
-  
-
-  <td class="type">
-  
-      
-<span class="param-type">boolean</span>
-
-
-  
-  </td>
-
-  
-
-  
-      <td class="default">
-      
-          false
-      
-      </td>
-  
-
-  <td class="description last"><p>Получать ли бесплатные стикеры</p></td>
+  <td class="description last"><p>Массив с идентификаторами стикерпаков</p></td>
 </tr>
 
 
@@ -571,7 +530,211 @@
         <p class="tag-source">
             <a href="lib_VK_plugins_user.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line135">line 135</a>
+                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line37">line 37</a>
+            </span>
+        </p>
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
+            
+                    
+
+<div class="columns">
+    
+    <div class='param-desc column is-7'><ul>
+<li>Массив с данными о стикерах</li>
+</ul></div>
+    
+    
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<span class="param-type">Array.&lt;VKUtils.IStickerPackInfo></span>
+
+
+    </div>
+    
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="getUserStickerPacks">
+        <a class="href-link" href="#getUserStickerPacks">#</a>
+        
+            
+                <span class='tag'>async</span>
+            
+        
+        <span class="code-name">
+            
+                getUserStickerPacks<span class="signature">(token, user_id)</span><span class="type-signature"> &rarr; {Promise}</span>
+            
+        </span>
+    </h4>
+    
+
+    
+    
+    <div class="description">
+        <p>Получить стикеры пользователя</p>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>token</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">string</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Токен от аккаунта пользователя</p></td>
+</tr>
+
+
+        
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>user_id</code></td>
+  
+
+  <td class="type">
+  
+      
+<span class="param-type">number</span>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last"><p>Идентификатор пользователя чьи стикеры требуется получить</p></td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+
+    
+
+    
+        <p class="tag-source">
+            <a href="lib_VK_plugins_user.ts.html" class="button">View Source</a>
+            <span>
+                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line166">line 166</a>
             </span>
         </p>
     
@@ -846,7 +1009,7 @@
         <p class="tag-source">
             <a href="lib_VK_plugins_user.ts.html" class="button">View Source</a>
             <span>
-                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line197">line 197</a>
+                <a href="lib_VK_plugins_user.ts.html">lib/VK/plugins/user.ts</a>, <a href="lib_VK_plugins_user.ts.html#line205">line 205</a>
             </span>
         </p>
     
