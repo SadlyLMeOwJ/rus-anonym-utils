@@ -5,6 +5,7 @@ import { RegularUtils } from "./../lib/regular/core";
 import { NumberUtils } from "./../lib/number/core";
 import { LogicalUtils } from "./../lib/logical/core";
 import { TorrentUtils } from "../lib/torrent/core";
+import { TimeUtils } from "../lib/time/core";
 
 import { array, ArrayUtils } from "../lib/array/core";
 import { logical } from "../lib/logical/core";
@@ -14,6 +15,7 @@ import { string } from "../lib/string/core";
 import { vk } from "../lib/VK/core";
 import { IP } from "../lib/IP/core";
 import { torrent } from "../lib/torrent/core";
+import { time } from "../lib/time/core";
 
 /**
  * @description Класс функций
@@ -69,6 +71,12 @@ class RusAnonymUtils {
      */
     public readonly torrent: TorrentUtils;
 
+    /**
+     * @description Секция для работы с временем
+     * @type {TimeUtils}
+     */
+    public readonly time: TimeUtils;
+
     // eslint-disable-next-line require-jsdoc
     constructor() {
         this.array = array;
@@ -79,6 +87,7 @@ class RusAnonymUtils {
         this.vk = vk;
         this.IP = IP;
         this.torrent = torrent;
+        this.time = time;
     }
 
     /**
