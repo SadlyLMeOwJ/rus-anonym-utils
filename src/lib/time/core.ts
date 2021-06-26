@@ -39,12 +39,41 @@ export class TimeUtils {
     ): string {
         const diff = moment.preciseDiff(m1, m2, true);
         const output = [];
-        output.push(string.declOfNum(diff.years, i18n.years));
-        output.push(string.declOfNum(diff.months, i18n.months));
-        output.push(string.declOfNum(diff.days, i18n.days));
-        output.push(string.declOfNum(diff.hours, i18n.hours));
-        output.push(string.declOfNum(diff.minutes, i18n.minutes));
-        output.push(string.declOfNum(diff.seconds, i18n.seconds));
+
+        if (diff.years > 0) {
+            output.push(
+                diff.years + ` ` + string.declOfNum(diff.years, i18n.years)
+            );
+        }
+        if (diff.months > 0) {
+            output.push(
+                diff.months + ` ` + string.declOfNum(diff.months, i18n.months)
+            );
+        }
+        if (diff.days > 0) {
+            output.push(
+                diff.days + ` ` + string.declOfNum(diff.days, i18n.days)
+            );
+        }
+        if (diff.hours > 0) {
+            output.push(
+                diff.hours + ` ` + string.declOfNum(diff.hours, i18n.hours)
+            );
+        }
+        if (diff.minutes > 0) {
+            output.push(
+                diff.minutes +
+                    ` ` +
+                    string.declOfNum(diff.minutes, i18n.minutes)
+            );
+        }
+        if (diff.seconds > 0) {
+            output.push(
+                diff.seconds +
+                    ` ` +
+                    string.declOfNum(diff.seconds, i18n.seconds)
+            );
+        }
         return output.join(`, `);
     }
 }
