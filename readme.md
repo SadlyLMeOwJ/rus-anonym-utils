@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/rusanonym/rus-anonym-utils/badge/master)](https://www.codefactor.io/repository/github/rusanonym/rus-anonym-utils/overview/master)
+
 # rus-anonym-utils
 
 ## Модуль сочетающий в себе некоторые функции, которые могут быть полезны
