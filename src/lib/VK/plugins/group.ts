@@ -35,6 +35,13 @@ export class VK_Group {
         let minConversationID = 2000000001;
         let currentConversationID: number = maxConversationID;
         let status = false;
+        // eslint-disable-next-line require-jsdoc
+        const nextConversation = () => {
+            maxConversationID = currentConversationID;
+            currentConversationID = Math.round(
+                (currentConversationID + minConversationID) / 2
+            );
+        };
         while (!status) {
             if (
                 !(await this.__checkConversationID(
@@ -42,10 +49,7 @@ export class VK_Group {
                     currentConversationID
                 ))
             ) {
-                maxConversationID = currentConversationID;
-                currentConversationID = Math.round(
-                    (currentConversationID + minConversationID) / 2
-                );
+                nextConversation();
             } else {
                 if (maxConversationID !== currentConversationID) {
                     while (!status) {
@@ -77,10 +81,7 @@ export class VK_Group {
                                 currentConversationID
                             ))
                         ) {
-                            maxConversationID = currentConversationID;
-                            currentConversationID = Math.round(
-                                (currentConversationID + minConversationID) / 2
-                            );
+                            nextConversation();
                         } else {
                             minConversationID = currentConversationID;
                         }
