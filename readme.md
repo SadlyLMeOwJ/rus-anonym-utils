@@ -1,4 +1,4 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/rusanonym/rus-anonym-utils/badge/master)](https://www.codefactor.io/repository/github/rusanonym/rus-anonym-utils/overview/master)
+[![CodeFactor](https://www.codefactor.io/repository/github/rusanonym/rus-anonym-utils/badge)](https://www.codefactor.io/repository/github/rusanonym/rus-anonym-utils)
 
 # rus-anonym-utils
 
