@@ -249,7 +249,7 @@ export class VK_User {
             });
         }
         const PaidStickersCount = ParseStickers.filter(
-            (x) => x.price === 0
+            (x) => x.price > 0
         ).length;
 
         return {
