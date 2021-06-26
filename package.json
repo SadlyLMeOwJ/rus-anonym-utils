@@ -1,6 +1,6 @@
 {
     "name": "rus-anonym-utils",
-    "version": "2.3.7",
+    "version": "2.3.8",
     "description": "Personal set of utilities from RusAnonym",
     "main": "./dist/main.js",
     "module": "./dist/main.js",
