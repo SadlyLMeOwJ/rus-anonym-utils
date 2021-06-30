@@ -53,9 +53,16 @@ export class VK_User {
                 type: "stickers",
                 product_ids: chunk.join(),
             });
+
             Info.items.map(
                 (x: {
-                    product: { id: number; title: string; url: string };
+                    product: {
+                        id: number;
+                        title: string;
+                        url: string;
+                        purchased: number;
+                        purchase_date?: number;
+                    };
                     description: string;
                     author: string;
                     free?: number;
@@ -72,6 +79,10 @@ export class VK_User {
                         author: x.author,
                         isFree: stickerPackPrice === 0,
                         isStyle: !!x.purchase_detail,
+                        isPurchased: Boolean(x.product.purchased),
+                        purchaseDate: x.product.purchase_date
+                            ? new Date(x.product.purchase_date * 1000)
+                            : undefined,
                         price: stickerPackPrice,
                     });
                 }
@@ -185,9 +196,9 @@ export class VK_User {
      */
     public async getAllStickers(
         token: string
-    ): Promise<VKUtils.IUserStickerPack[]> {
+    ): Promise<VKUtils.IUserStickerPackByGiftsGetCatalog[]> {
         const UserGifts = await this.__parseUserGifts(token, 0);
-        const ParseStickers: VKUtils.IUserStickerPack[] = [];
+        const ParseStickers: VKUtils.IUserStickerPackByGiftsGetCatalog[] = [];
 
         for (const category of UserGifts) {
             for (const gift of category.items) {
@@ -226,7 +237,7 @@ export class VK_User {
         token: string,
         user_id: number
     ): Promise<VKUtils.IGetUserStickerPacks> {
-        const ParseStickers: VKUtils.IUserStickerPack[] = [];
+        const ParseStickers: VKUtils.IStickerPackInfo[] = [];
         const UserStickerPacks = await this.__getStoreStockItems(
             token,
             user_id
@@ -239,19 +250,9 @@ export class VK_User {
             const StickerPackInfo = StickersInfo.find(
                 (x) => x.id === stickerPack.id
             );
-            ParseStickers.push({
-                id: stickerPack.id,
-                name:
-                    stickerPack.title ||
-                    StickerPackInfo?.name ||
-                    "Не определено",
-                author: StickerPackInfo?.author || "Не определён",
-                description: StickerPackInfo?.description || "Не определено",
-                price: StickerPackInfo?.price || 0,
-                thumb_48: `https://vk.com/sticker/4-${stickerPack.id}-48`,
-                thumb_96: `https://vk.com/sticker/4-${stickerPack.id}-96`,
-                thumb_256: `https://vk.com/sticker/4-${stickerPack.id}-256w`,
-            });
+            if (StickerPackInfo) {
+                ParseStickers.push(StickerPackInfo);
+            }
         }
         const PaidStickersCount = ParseStickers.filter(
             (x) => x.price > 0

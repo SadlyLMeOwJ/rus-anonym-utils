@@ -90,7 +90,7 @@ namespace VKUtils {
         items: IGift[];
     }
 
-    export interface IUserStickerPack {
+    export interface IUserStickerPackByGiftsGetCatalog {
         id: number;
         name: string;
         description: string;
@@ -104,7 +104,7 @@ namespace VKUtils {
     export interface IGetUserStickerPacks {
         id: number;
         total_price: number;
-        items: IUserStickerPack[];
+        items: IStickerPackInfo[];
         paid: number;
         free: number;
     }
@@ -131,6 +131,8 @@ namespace VKUtils {
         author: string;
         isFree: boolean;
         isStyle: boolean;
+        isPurchased: boolean;
+        purchaseDate?: Date;
         price: number;
     }
 
