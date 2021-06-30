@@ -53,22 +53,25 @@ export class VK_User {
                 type: "stickers",
                 product_ids: chunk.join(),
             });
+            console.log(Info.items[0]);
             Info.items.map(
                 (x: {
                     product: { id: number; title: string; url: string };
                     description: string;
                     author: string;
-                    free: number;
-                    price: number;
+                    free?: number;
+                    price?: number;
+                    old_price?: number;
                 }) => {
+                    const stickerPackPrice = x.old_price || x.price || 0;
                     StickersInfo.push({
                         id: x.product.id,
                         name: x.product.title,
                         url: x.product.url,
                         description: x.description,
                         author: x.author,
-                        isFree: Boolean(x.free),
-                        price: x.price || 0,
+                        isFree: stickerPackPrice === 0,
+                        price: stickerPackPrice,
                     });
                 }
             );
