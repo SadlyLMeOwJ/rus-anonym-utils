@@ -53,7 +53,6 @@ export class VK_User {
                 type: "stickers",
                 product_ids: chunk.join(),
             });
-            console.log(Info.items[0]);
             Info.items.map(
                 (x: {
                     product: { id: number; title: string; url: string };
