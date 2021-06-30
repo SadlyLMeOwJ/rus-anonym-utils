@@ -130,6 +130,7 @@ namespace VKUtils {
         description: string;
         author: string;
         isFree: boolean;
+        isStyle: boolean;
         price: number;
     }
 

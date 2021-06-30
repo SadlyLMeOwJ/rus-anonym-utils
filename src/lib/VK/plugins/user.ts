@@ -61,6 +61,7 @@ export class VK_User {
                     free?: number;
                     price?: number;
                     old_price?: number;
+                    purchase_detail?: unknown;
                 }) => {
                     const stickerPackPrice = x.old_price || x.price || 0;
                     StickersInfo.push({
@@ -70,6 +71,7 @@ export class VK_User {
                         description: x.description,
                         author: x.author,
                         isFree: stickerPackPrice === 0,
+                        isStyle: !!x.purchase_detail,
                         price: stickerPackPrice,
                     });
                 }
