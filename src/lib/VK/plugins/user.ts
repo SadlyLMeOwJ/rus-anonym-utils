@@ -14,7 +14,7 @@ import types from "../types";
  */
 export class VK_User {
     /**
-     * @description Позволяет узнать информацию о стикерах
+     * @description Позволяет узнать информацию о стикерпаках
      * @param {string} token - токен
      * @param {number[]} stickerPacks_ids - Массив идентификаторов стикерпаков
      * @returns {types.IStickerPackInfo[]} - Массив с информацией о стикерпаках
