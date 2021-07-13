@@ -82,6 +82,17 @@ namespace VKUtils {
     }
 
     export type IUserStickerPackExtend = IUserStickerPack & IStickerPackInfo;
+
+    export interface IGetUserStickerPacksResponse {
+        totalPrice: number;
+        items: IUserStickerPackExtend[];
+        stats: {
+            free: number;
+            paid: number;
+            animated: number;
+            styles: number;
+        };
+    }
 }
 
 export default VKUtils;
