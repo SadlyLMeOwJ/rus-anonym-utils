@@ -16,12 +16,12 @@ export class VK_User {
     /**
      * @description Позволяет узнать информацию о стикерах
      * @param {string} token - токен
-     * @param {number[]} stickers_ids - Массив идентификаторов стикеров
+     * @param {number[]} stickerPacks_ids - Массив идентификаторов стикерпаков
      * @returns {types.IStickerPackInfo[]} - Массив с информацией о стикерпаках
      */
-    public async getStickersInfo(
+    public async getStickerPacksInfo(
         token: string,
-        stickers_ids: number[]
+        stickerPacks_ids: number[]
     ): Promise<types.IStickerPackInfo[]> {
         const api = new API({
             token,
@@ -30,7 +30,7 @@ export class VK_User {
 
         const data = await api.call(`store.getStockItems`, {
             type: "stickers",
-            product_ids: stickers_ids,
+            product_ids: stickerPacks_ids,
             lang: "ru",
         });
 
@@ -116,7 +116,7 @@ export class VK_User {
         if (!extend) {
             return parsedUserStickerPacks;
         } else {
-            const extendsStickerPackInfo = await this.getStickersInfo(
+            const extendsStickerPackInfo = await this.getStickerPacksInfo(
                 token,
                 parsedUserStickerPacks.map((x) => x.id)
             );
