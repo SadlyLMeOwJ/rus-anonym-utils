@@ -130,14 +130,22 @@ export class VK_User {
                 output.push(Object.assign(stickerPack, userStickerPackInfo));
             }
 
+            const freeStickerPacks = output.filter((x) => x.isFree).length;
+            const animatedStickerPacks = output.filter(
+                (x) => x.isAnimation
+            ).length;
+            const stylesStickerPacks = output.filter((x) => x.isStyle).length;
+
             return {
                 items: output,
                 totalPrice: array.number.total(output.map((x) => x.price)),
                 stats: {
-                    free: output.filter((x) => x.isFree).length,
-                    paid: output.filter((x) => !x.isFree).length,
-                    animated: output.filter((x) => x.isAnimation).length,
-                    styles: output.filter((x) => x.isStyle).length,
+                    free: freeStickerPacks,
+                    paid: freeStickerPacks - output.length,
+                    animated: animatedStickerPacks,
+                    notAnimated: animatedStickerPacks - output.length,
+                    styles: stylesStickerPacks,
+                    notStyles: stylesStickerPacks - output.length,
                 },
             };
         }
