@@ -14,14 +14,14 @@ import types from "../types";
  */
 export class VK_User {
     /**
-     * @description Позволяет узнать информацию о стикерах
+     * @description Позволяет узнать информацию о стикерпаках
      * @param {string} token - токен
-     * @param {number[]} stickers_ids - Массив идентификаторов стикеров
+     * @param {number[]} stickerPacks_ids - Массив идентификаторов стикерпаков
      * @returns {types.IStickerPackInfo[]} - Массив с информацией о стикерпаках
      */
-    public async getStickersInfo(
+    public async getStickerPacksInfo(
         token: string,
-        stickers_ids: number[]
+        stickerPacks_ids: number[]
     ): Promise<types.IStickerPackInfo[]> {
         const api = new API({
             token,
@@ -30,7 +30,7 @@ export class VK_User {
 
         const data = await api.call(`store.getStockItems`, {
             type: "stickers",
-            product_ids: stickers_ids,
+            product_ids: stickerPacks_ids,
             lang: "ru",
         });
 
@@ -116,7 +116,7 @@ export class VK_User {
         if (!extend) {
             return parsedUserStickerPacks;
         } else {
-            const extendsStickerPackInfo = await this.getStickersInfo(
+            const extendsStickerPackInfo = await this.getStickerPacksInfo(
                 token,
                 parsedUserStickerPacks.map((x) => x.id)
             );
@@ -130,14 +130,22 @@ export class VK_User {
                 output.push(Object.assign(stickerPack, userStickerPackInfo));
             }
 
+            const freeStickerPacks = output.filter((x) => x.isFree).length;
+            const animatedStickerPacks = output.filter(
+                (x) => x.isAnimation
+            ).length;
+            const stylesStickerPacks = output.filter((x) => x.isStyle).length;
+
             return {
                 items: output,
                 totalPrice: array.number.total(output.map((x) => x.price)),
                 stats: {
-                    free: output.filter((x) => x.isFree).length,
-                    paid: output.filter((x) => !x.isFree).length,
-                    animated: output.filter((x) => x.isAnimation).length,
-                    styles: output.filter((x) => x.isStyle).length,
+                    free: freeStickerPacks,
+                    paid: freeStickerPacks - output.length,
+                    animated: animatedStickerPacks,
+                    notAnimated: animatedStickerPacks - output.length,
+                    styles: stylesStickerPacks,
+                    notStyles: stylesStickerPacks - output.length,
                 },
             };
         }

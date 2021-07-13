@@ -90,7 +90,9 @@ namespace VKUtils {
             free: number;
             paid: number;
             animated: number;
+            notAnimated: number;
             styles: number;
+            notStyles: number;
         };
     }
 }
