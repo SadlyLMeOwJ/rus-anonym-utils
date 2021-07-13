@@ -8,13 +8,13 @@
 
 ## Initializing
 
-#### JavaScript
+#### CJS
 
 ```javascript
 const utils = require(`rus-anonym-utils`).default;
 ```
 
-#### TypeScript
+#### ESM
 
 ```typescript
 import utils from "rus-anonym-utils";
