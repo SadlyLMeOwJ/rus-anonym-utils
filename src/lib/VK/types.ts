@@ -60,6 +60,28 @@ namespace VKUtils {
         shares_formatted: string;
         url: string;
     }
+
+    export interface IStickerPackInfo {
+        id: number;
+        price: number;
+        title: string;
+        author: string;
+        description: string;
+        copyright: string;
+        url: string;
+        isFree: boolean;
+        isStyle: boolean;
+        isAnimation: boolean;
+    }
+
+    export interface IUserStickerPack {
+        id: number;
+        purchaseDate: Date;
+        isActive: boolean;
+        isStyle: boolean;
+    }
+
+    export type IUserStickerPackExtend = IUserStickerPack & IStickerPackInfo;
 }
 
 export default VKUtils;
