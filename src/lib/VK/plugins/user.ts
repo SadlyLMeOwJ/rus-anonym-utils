@@ -141,11 +141,11 @@ export class VK_User {
                 totalPrice: array.number.total(output.map((x) => x.price)),
                 stats: {
                     free: freeStickerPacks,
-                    paid: freeStickerPacks - output.length,
+                    paid: output.length - freeStickerPacks ,
                     animated: animatedStickerPacks,
-                    notAnimated: animatedStickerPacks - output.length,
+                    notAnimated: output.length - animatedStickerPacks,
                     styles: stylesStickerPacks,
-                    notStyles: stylesStickerPacks - output.length,
+                    notStyles: output.length - stylesStickerPacks ,
                 },
             };
         }
