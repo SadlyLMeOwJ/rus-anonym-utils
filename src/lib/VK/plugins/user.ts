@@ -1,3 +1,4 @@
+import { array } from "./../../array/core";
 /* eslint-disable jsdoc/require-example */
 
 import axios from "axios";
@@ -75,19 +76,19 @@ export class VK_User {
         token: string,
         user_id: number,
         extend: true
-    ): Promise<types.IUserStickerPackExtend[]>;
+    ): Promise<types.IGetUserStickerPacksResponse>;
     /**
      * @description Узнать стикеры пользователя
      * @param {string} token - токен
      * @param {number} user_id - ID пользователя
      * @param {true=} extend - Расширенная информация о стикерпаках
-     * @returns {types.IUserStickerPack[] | types.IUserStickerPackExtend[]} - массив с информацией о стикерах
+     * @returns {types.IUserStickerPack[] | types.IGetUserStickerPacksResponse} - массив с информацией о стикерах
      */
     public async getUserStickerPacks(
         token: string,
         user_id: number,
         extend?: true
-    ): Promise<types.IUserStickerPack[] | types.IUserStickerPackExtend[]> {
+    ): Promise<types.IUserStickerPack[] | types.IGetUserStickerPacksResponse> {
         const api = new API({ token, apiVersion: "5.157" });
 
         const userStickerPacks = await api.call(`store.getProducts`, {
@@ -129,7 +130,16 @@ export class VK_User {
                 output.push(Object.assign(stickerPack, userStickerPackInfo));
             }
 
-            return output;
+            return {
+                items: output,
+                totalPrice: array.number.total(output.map((x) => x.price)),
+                stats: {
+                    free: output.filter((x) => x.isFree).length,
+                    paid: output.filter((x) => !x.isFree).length,
+                    animated: output.filter((x) => x.isAnimation).length,
+                    styles: output.filter((x) => x.isStyle).length,
+                },
+            };
         }
     }
 
