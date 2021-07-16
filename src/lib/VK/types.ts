@@ -70,8 +70,8 @@ namespace VKUtils {
         copyright: string;
         url: string;
         isFree: boolean;
-        isStyle: boolean;
         isAnimation: boolean;
+        isStyle: boolean;
     }
 
     export interface IUserStickerPack {
@@ -87,12 +87,31 @@ namespace VKUtils {
         totalPrice: number;
         items: IUserStickerPackExtend[];
         stats: {
+            total: number;
             free: number;
             paid: number;
-            animated: number;
-            notAnimated: number;
-            styles: number;
-            notStyles: number;
+            packs: {
+                count: number;
+                free: number;
+                paid: number;
+                simple: number;
+                animated: number;
+                freeSimple: number;
+                paidSimple: number;
+                freeAnimated: number;
+                paidAnimated: number;
+            };
+            styles: {
+                count: number;
+                free: number;
+                paid: number;
+                simple: number;
+                animated: number;
+                freeSimple: number;
+                paidSimple: number;
+                freeAnimated: number;
+                paidAnimated: number;
+            };
         };
     }
 }
