@@ -3,7 +3,7 @@ import { array } from "./../../array/core";
 
 import axios from "axios";
 import moment from "moment";
-import { API } from "vk-io";
+import { API, createCollectIterator } from "vk-io";
 
 import types from "../types";
 
@@ -28,46 +28,54 @@ export class VK_User {
             apiVersion: "5.157",
         });
 
-        const data = await api.call(`store.getStockItems`, {
-            type: "stickers",
-            product_ids: stickerPacks_ids,
-            lang: "ru",
-        });
+        const output: types.IStickerPackInfo[] = [];
 
-        return data.items.map(
-            (x: {
-                product: {
-                    style_sticker_ids: number[];
-                    has_animation: boolean;
-                    id: number;
-                    title: string;
-                    copyright: string;
-                    url: string;
-                };
-                old_price: number;
-                price: number;
-                author: string;
-                description: string;
-            }) => {
-                const price = x.old_price || x.price || 0;
+        for (const chunk of array.splitTo(stickerPacks_ids, 350)) {
+            const data = await api.call(`store.getStockItems`, {
+                type: "stickers",
+                product_ids: chunk,
+                lang: "ru",
+            });
 
-                const isFree = price === 0;
-                const isAnimation = !!x.product.has_animation;
-                const isStyle = !!x.product.style_sticker_ids;
-                return {
-                    id: x.product.id,
-                    price,
-                    title: x.product.title,
-                    author: x.author,
-                    description: x.description,
-                    copyright: x.product.copyright,
-                    url: x.product.url,
-                    isFree,
-                    isAnimation,
-                    isStyle,
-                };
-            }
-        );
+            output.push(
+                ...data.items.map(
+                    (x: {
+                        product: {
+                            style_sticker_ids: number[];
+                            has_animation: boolean;
+                            id: number;
+                            title: string;
+                            copyright: string;
+                            url: string;
+                        };
+                        old_price: number;
+                        price: number;
+                        author: string;
+                        description: string;
+                    }) => {
+                        const price = x.old_price || x.price || 0;
+
+                        const isFree = price === 0;
+                        const isAnimation = !!x.product.has_animation;
+                        const isStyle = !!x.product.style_sticker_ids;
+                        return {
+                            id: x.product.id,
+                            price,
+                            title: x.product.title,
+                            author: x.author,
+                            description: x.description,
+                            copyright: x.product.copyright,
+                            url: x.product.url,
+                            isFree,
+                            isAnimation,
+                            isStyle,
+                        };
+                    }
+                )
+            );
+        }
+
+        return output;
     }
 
     public async getUserStickerPacks(
