@@ -49,9 +49,11 @@ export class VK_User {
                 author: string;
                 description: string;
             }) => {
-                const isStyle = !!x.product.style_sticker_ids;
-                const isAnimation = !!x.product.has_animation;
                 const price = x.old_price || x.price || 0;
+
+                const isFree = price === 0;
+                const isAnimation = !!x.product.has_animation;
+                const isStyle = !!x.product.style_sticker_ids;
                 return {
                     id: x.product.id,
                     price,
@@ -60,9 +62,9 @@ export class VK_User {
                     description: x.description,
                     copyright: x.product.copyright,
                     url: x.product.url,
-                    isFree: price === 0,
-                    isStyle,
+                    isFree,
                     isAnimation,
+                    isStyle,
                 };
             }
         );
@@ -130,22 +132,85 @@ export class VK_User {
                 output.push(Object.assign(stickerPack, userStickerPackInfo));
             }
 
-            const freeStickerPacks = output.filter((x) => x.isFree).length;
-            const animatedStickerPacks = output.filter(
-                (x) => x.isAnimation
+            const free = output.filter((x) => x.isFree).length;
+            const paid = output.length - free;
+
+            const packsCount = output.filter((x) => !x.isStyle).length;
+            const stylesCount = output.length - packsCount;
+
+            const simplePacksCount = output.filter(
+                (x) => !x.isStyle && !x.isAnimation
             ).length;
-            const stylesStickerPacks = output.filter((x) => x.isStyle).length;
+            const animatedPacksCount = output.filter(
+                (x) => !x.isStyle && x.isAnimation
+            ).length;
+
+            const freePacksCount = output.filter(
+                (x) => x.isFree && !x.isStyle
+            ).length;
+            const paidPacksCount = output.filter(
+                (x) => !x.isFree && !x.isStyle
+            ).length;
+
+            const simpleFreePacksCount = output.filter(
+                (x) => x.isFree && !x.isStyle && !x.isAnimation
+            ).length;
+            const animatedFreePacksCount = output.filter(
+                (x) => x.isFree && !x.isStyle && x.isAnimation
+            ).length;
+
+            const freeStylesCount = output.filter(
+                (x) => x.isStyle && x.isFree
+            ).length;
+            const paidStylesCount = output.filter(
+                (x) => x.isStyle && !x.isFree
+            ).length;
+
+            const simpleStylesCount = output.filter(
+                (x) => x.isStyle && !x.isAnimation
+            ).length;
+            const animatedStylesCount = output.filter(
+                (x) => x.isStyle && x.isAnimation
+            ).length;
+
+            const freeSimpleStylesCount = output.filter(
+                (x) => x.isFree && x.isStyle && !x.isAnimation
+            ).length;
+            const freeAnimatedStylesCount = output.filter(
+                (x) => x.isFree && x.isStyle && x.isAnimation
+            ).length;
 
             return {
                 items: output,
                 totalPrice: array.number.total(output.map((x) => x.price)),
                 stats: {
-                    free: freeStickerPacks,
-                    paid: output.length - freeStickerPacks ,
-                    animated: animatedStickerPacks,
-                    notAnimated: output.length - animatedStickerPacks,
-                    styles: stylesStickerPacks,
-                    notStyles: output.length - stylesStickerPacks ,
+                    total: output.length,
+                    free,
+                    paid,
+                    packs: {
+                        count: packsCount,
+                        free: freePacksCount,
+                        paid: paidPacksCount,
+                        simple: simplePacksCount,
+                        animated: animatedPacksCount,
+                        freeSimple: simpleFreePacksCount,
+                        freeAnimated: animatedFreePacksCount,
+                        paidSimple: simplePacksCount - simpleFreePacksCount,
+                        paidAnimated:
+                            animatedPacksCount - animatedFreePacksCount,
+                    },
+                    styles: {
+                        count: stylesCount,
+                        free: freeStylesCount,
+                        paid: paidStylesCount,
+                        simple: simpleStylesCount,
+                        animated: animatedStylesCount,
+                        freeSimple: freeSimpleStylesCount,
+                        freeAnimated: animatedStylesCount,
+                        paidSimple: simpleStylesCount - freeSimpleStylesCount,
+                        paidAnimated:
+                            animatedStylesCount - freeAnimatedStylesCount,
+                    },
                 },
             };
         }
