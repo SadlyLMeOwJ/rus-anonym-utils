@@ -42,11 +42,17 @@ class Balaboba {
             method: "POST",
             data: {
                 query,
-                intro: generatorStyles[generatorStyles.indexOf(style)],
-                filter: 1,
+                intro: generatorStyles.indexOf(style),
+                filter: 0,
             },
         });
         const end = performance.now();
+        if (response.data.bad_query) {
+            throw new Error("Query is not valid");
+        }
+        if (response.data.error) {
+            throw new Error("Unknown error");
+        }
         return {
             query: response.data.query,
             response: response.data.text,
